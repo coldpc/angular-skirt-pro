@@ -1,5 +1,5 @@
-<div class="box-wrapper" [style]="style">
-  <div class="box-content">
+<div class="box-wrapper" [ngStyle]="style">
+  <div class="box-content" [ngStyle]="getBackground()">
     <ng-content></ng-content>
   </div>
 </div>

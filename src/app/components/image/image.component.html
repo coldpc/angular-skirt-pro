@@ -1,3 +1,2 @@
-<p>
-  image works!
-</p>
+<sk-box *ngIf="ratio" [ratio]="ratio" [backgroundImage]="src"></sk-box>
+<img *ngIf="!ratio" [src]="src" alt="">
