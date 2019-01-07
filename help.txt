@@ -1,0 +1,15 @@
+/*******编译********/
+ng build --aot --prod
+
+
+生成组件
+--skip-import 不导入到module
+ng generate component ./components/skDialog --skip-import --prefix sk
+ng generate directive 指令
+
+生成路由
+--flat 把这个文件放进了 src/app 中，而不是单独的目录中。
+--module=app 告诉 CLI 把它注册到 AppModule 的 imports 数组中。
+
+ng generate module page/name/name-routing --flat --module=app
+ng generate module page/name/name --flat --module=app

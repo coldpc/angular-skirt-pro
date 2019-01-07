@@ -1,0 +1,32 @@
+.layout-wrapper.static{
+  display: table;
+  table-layout: fixed;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .row{
+    display: table-row;
+  }
+
+  .main-part{
+    height: 100%;
+  }
+}
+
+.layout-wrapper.fixed{
+  .top-part, .bottom-part{
+    position: fixed;
+    left: 0;
+    width: 100%;
+  }
+  .top-part{
+    top: 0;
+  }
+  .bottom-part{
+    bottom: 0;
+  }
+}

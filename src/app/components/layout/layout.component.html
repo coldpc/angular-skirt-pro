@@ -1,0 +1,11 @@
+<div class="layout-wrapper" [ngClass]="this.isFixed ? 'fixed' : 'static'" [ngStyle]="style">
+  <div #topPart class="top-part row">
+    <ng-content select=".top, sk-header"></ng-content>
+  </div>
+  <div class="main-part row">
+    <ng-content></ng-content>
+  </div>
+  <div #bottomPart class="bottom-part row">
+    <ng-content select=".bottom"></ng-content>
+  </div>
+</div>
