@@ -1,13 +1,16 @@
+@import "../../theme/variables";
+
+$headerBorderColor: #f1f1f1;
 :host{
   display: block;
 }
 .header-part{
   position: relative;
-  height: 46px;
-  line-height: 46px;
+  height: $headerHeight;
+  line-height: $headerHeight;
   text-align: center;
   background-color: #ffffff;
-  border-bottom: #f1f1f1;
+  border-bottom: $headerBorderColor;
   box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.117647);
 
   .title{
