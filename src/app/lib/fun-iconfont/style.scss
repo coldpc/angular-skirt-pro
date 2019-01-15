@@ -1,0 +1,503 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?d8jleu') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?d8jleu') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?d8jleu##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.sk-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sk-i-failure {
+  &:before {
+    content: $sk-i-failure; 
+  }
+}
+.sk-i-more {
+  &:before {
+    content: $sk-i-more; 
+  }
+}
+.sk-i-checked-normal {
+  &:before {
+    content: $sk-i-checked-normal; 
+  }
+}
+.sk-i-search {
+  &:before {
+    content: $sk-i-search; 
+  }
+}
+.sk-i-plus-circle-fill {
+  &:before {
+    content: $sk-i-plus-circle-fill; 
+  }
+}
+.sk-i-building {
+  &:before {
+    content: $sk-i-building; 
+  }
+}
+.sk-i-minus-circle-fill {
+  &:before {
+    content: $sk-i-minus-circle-fill; 
+  }
+}
+.sk-i-plus {
+  &:before {
+    content: $sk-i-plus; 
+  }
+}
+.sk-i-angle-up {
+  &:before {
+    content: $sk-i-angle-up; 
+  }
+}
+.sk-i-add-circle {
+  &:before {
+    content: $sk-i-add-circle; 
+  }
+}
+.sk-i-editor-pan {
+  &:before {
+    content: $sk-i-editor-pan; 
+  }
+}
+.sk-i-full-angle-up {
+  &:before {
+    content: $sk-i-full-angle-up; 
+  }
+}
+.sk-i-determine {
+  &:before {
+    content: $sk-i-determine; 
+  }
+}
+.sk-i-edit {
+  &:before {
+    content: $sk-i-edit; 
+  }
+}
+.sk-i-bill {
+  &:before {
+    content: $sk-i-bill; 
+  }
+}
+.sk-i-new {
+  &:before {
+    content: $sk-i-new; 
+  }
+}
+.sk-i-question {
+  &:before {
+    content: $sk-i-question; 
+  }
+}
+.sk-i-electric {
+  &:before {
+    content: $sk-i-electric; 
+  }
+}
+.sk-i-water {
+  &:before {
+    content: $sk-i-water; 
+  }
+}
+.sk-i-alipay {
+  &:before {
+    content: $sk-i-alipay; 
+  }
+}
+.sk-i-phone {
+  &:before {
+    content: $sk-i-phone; 
+  }
+}
+.sk-i-loading {
+  &:before {
+    content: $sk-i-loading; 
+  }
+}
+.sk-i-wechat {
+  &:before {
+    content: $sk-i-wechat; 
+  }
+}
+.sk-i-funlive {
+  &:before {
+    content: $sk-i-funlive; 
+  }
+}
+.sk-i-funsuper {
+  &:before {
+    content: $sk-i-funsuper; 
+  }
+}
+.sk-i-funwork {
+  &:before {
+    content: $sk-i-funwork; 
+  }
+}
+.sk-i-help {
+  &:before {
+    content: $sk-i-help; 
+  }
+}
+.sk-i-eye-hide {
+  &:before {
+    content: $sk-i-eye-hide; 
+  }
+}
+.sk-i-eye-show {
+  &:before {
+    content: $sk-i-eye-show; 
+  }
+}
+.sk-i-service {
+  &:before {
+    content: $sk-i-service; 
+  }
+}
+.sk-i-bank2 {
+  &:before {
+    content: $sk-i-bank2; 
+  }
+}
+.sk-i-bus2 {
+  &:before {
+    content: $sk-i-bus2; 
+  }
+}
+.sk-i-fitness2 {
+  &:before {
+    content: $sk-i-fitness2; 
+  }
+}
+.sk-i-food2 {
+  &:before {
+    content: $sk-i-food2; 
+  }
+}
+.sk-i-location2 {
+  &:before {
+    content: $sk-i-location2; 
+  }
+}
+.sk-i-mall2 {
+  &:before {
+    content: $sk-i-mall2; 
+  }
+}
+.sk-i-metro2 {
+  &:before {
+    content: $sk-i-metro2; 
+  }
+}
+.sk-i-plane2 {
+  &:before {
+    content: $sk-i-plane2; 
+  }
+}
+.sk-i-supermarket2 {
+  &:before {
+    content: $sk-i-supermarket2; 
+  }
+}
+.sk-i-train2 {
+  &:before {
+    content: $sk-i-train2; 
+  }
+}
+.sk-i-logo {
+  &:before {
+    content: $sk-i-logo; 
+  }
+}
+.sk-i-moments {
+  &:before {
+    content: $sk-i-moments; 
+  }
+}
+.sk-i-about {
+  &:before {
+    content: $sk-i-about; 
+  }
+}
+.sk-i-apartment_pitch {
+  &:before {
+    content: $sk-i-apartment_pitch; 
+  }
+}
+.sk-i-full-angle-down {
+  &:before {
+    content: $sk-i-full-angle-down; 
+  }
+}
+.sk-i-head {
+  &:before {
+    content: $sk-i-head; 
+  }
+}
+.sk-i-angle-right {
+  &:before {
+    content: $sk-i-angle-right; 
+  }
+}
+.sk-i-angle-down {
+  &:before {
+    content: $sk-i-angle-down; 
+  }
+}
+.sk-i-angle-left {
+  &:before {
+    content: $sk-i-angle-left; 
+  }
+}
+.sk-i-angle-left-edge {
+  &:before {
+    content: $sk-i-angle-left-edge; 
+  }
+}
+.sk-i-camera {
+  &:before {
+    content: $sk-i-camera; 
+  }
+}
+.sk-i-close {
+  &:before {
+    content: $sk-i-close; 
+  }
+}
+.sk-i-checked1 {
+  &:before {
+    content: $sk-i-checked1; 
+  }
+}
+.sk-i-confirm {
+  &:before {
+    content: $sk-i-confirm; 
+  }
+}
+.sk-i-confirm2 {
+  &:before {
+    content: $sk-i-confirm2; 
+  }
+}
+.sk-i-conversion {
+  &:before {
+    content: $sk-i-conversion; 
+  }
+}
+.sk-i-home {
+  &:before {
+    content: $sk-i-home; 
+  }
+}
+.sk-i-mine_pitch {
+  &:before {
+    content: $sk-i-mine_pitch; 
+  }
+}
+.sk-i-opinion {
+  &:before {
+    content: $sk-i-opinion; 
+  }
+}
+.sk-i-pattern {
+  &:before {
+    content: $sk-i-pattern; 
+  }
+}
+.sk-i-photograph {
+  &:before {
+    content: $sk-i-photograph; 
+  }
+}
+.sk-i-problem {
+  &:before {
+    content: $sk-i-problem; 
+  }
+}
+.sk-i-qq {
+  &:before {
+    content: $sk-i-qq; 
+  }
+}
+.sk-i-qzone {
+  &:before {
+    content: $sk-i-qzone; 
+  }
+}
+.sk-i-reserve {
+  &:before {
+    content: $sk-i-reserve; 
+  }
+}
+.sk-i-set-up {
+  &:before {
+    content: $sk-i-set-up; 
+  }
+}
+.sk-i-share {
+  &:before {
+    content: $sk-i-share; 
+  }
+}
+.sk-i-useful_gray {
+  &:before {
+    content: $sk-i-useful_gray; 
+  }
+}
+.sk-i-useless_gray {
+  &:before {
+    content: $sk-i-useless_gray; 
+  }
+}
+.sk-i-weibo {
+  &:before {
+    content: $sk-i-weibo; 
+  }
+}
+.sk-i-weixin {
+  &:before {
+    content: $sk-i-weixin; 
+  }
+}
+.sk-i-dispose {
+  &:before {
+    content: $sk-i-dispose; 
+  }
+}
+.sk-i-full {
+  &:before {
+    content: $sk-i-full; 
+  }
+}
+.sk-i-distance {
+  &:before {
+    content: $sk-i-distance; 
+  }
+}
+.sk-i-location {
+  &:before {
+    content: $sk-i-location; 
+  }
+}
+.sk-i-remove-back {
+  &:before {
+    content: $sk-i-remove-back; 
+  }
+}
+.sk-i-verify {
+  &:before {
+    content: $sk-i-verify; 
+  }
+}
+.sk-i-start-empty {
+  &:before {
+    content: $sk-i-start-empty; 
+  }
+}
+.sk-i-question-fill {
+  &:before {
+    content: $sk-i-question-fill; 
+  }
+}
+.sk-i-heart1 {
+  &:before {
+    content: $sk-i-heart1; 
+  }
+}
+.sk-i-start-empty-bold {
+  &:before {
+    content: $sk-i-start-empty-bold; 
+  }
+}
+.sk-i-star-full {
+  &:before {
+    content: $sk-i-star-full; 
+  }
+}
+.sk-i-bank {
+  &:before {
+    content: $sk-i-bank; 
+  }
+}
+.sk-i-bus {
+  &:before {
+    content: $sk-i-bus; 
+  }
+}
+.sk-i-fitness {
+  &:before {
+    content: $sk-i-fitness; 
+  }
+}
+.sk-i-food {
+  &:before {
+    content: $sk-i-food; 
+  }
+}
+.sk-i-mall {
+  &:before {
+    content: $sk-i-mall; 
+  }
+}
+.sk-i-metro {
+  &:before {
+    content: $sk-i-metro; 
+  }
+}
+.sk-i-navigation {
+  &:before {
+    content: $sk-i-navigation; 
+  }
+}
+.sk-i-plane {
+  &:before {
+    content: $sk-i-plane; 
+  }
+}
+.sk-i-supermarket {
+  &:before {
+    content: $sk-i-supermarket; 
+  }
+}
+.sk-i-train {
+  &:before {
+    content: $sk-i-train; 
+  }
+}
+.sk-i-payfailure {
+  &:before {
+    content: $sk-i-payfailure; 
+  }
+}
+.sk-i-payprocessing {
+  &:before {
+    content: $sk-i-payprocessing; 
+  }
+}
+.sk-i-heart {
+  &:before {
+    content: $sk-i-heart; 
+  }
+}
+
