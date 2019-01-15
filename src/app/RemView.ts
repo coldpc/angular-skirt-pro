@@ -1,21 +1,33 @@
+import {UtilsBase} from "./lib/utils/UtilsBase";
+
 declare var window;
 
 // 设计稿的宽度危375
-export const DEFAULT_DESIGN_WIDTH = 375;
-export const DEFAULT_MAX_FONT_SIZE = 120;
+const DEFAULT_DESIGN_WIDTH = 375;
+const DEFAULT_MAX_FONT_SIZE = 120;
+
+// 设备像素比
+const devicePixelRatio = window.devicePixelRatio || 1;
 
 export class RemView {
-
-
-  // 原来的设备像素比
-  static  devicePixelRatio = window.devicePixelRatio || 1;
+  static _install;
 
   designWidth;
   maxFontSize;
   designRatio = 1;
   htmlFontSize = 100;
 
-  constructor(designWidth = DEFAULT_DESIGN_WIDTH, designRatio = 1, maxFontSize = DEFAULT_MAX_FONT_SIZE) {
+  /**
+   * 初始化设置
+   * @param designWidth 设计稿的宽度
+   * @param designRatio 设计的比例
+   * @param maxFontSize 最大的字体
+   */
+  static init(designWidth: number = DEFAULT_DESIGN_WIDTH, designRatio: number = 1, maxFontSize: number = DEFAULT_MAX_FONT_SIZE) {
+    RemView._install = new RemView(designWidth, designRatio, maxFontSize);
+  }
+
+  constructor(designWidth, designRatio, maxFontSize) {
     this.stopPageMenu();
 
     this.designWidth = designWidth;
@@ -45,7 +57,7 @@ export class RemView {
   setViewPort() {
     const viewport = window.document.querySelector("meta[name=viewport]");
     viewport.setAttribute('content',
-      `width=device-width, initial-scale=${1 / SystemConfig.devicePixelRatio}, shrink-to-fit=no, user-scalable=0, viewport-fit=cover`);
+      `width=device-width, initial-scale=${1 / devicePixelRatio}, shrink-to-fit=no, user-scalable=0, viewport-fit=cover`);
   }
 
   /**
@@ -54,16 +66,19 @@ export class RemView {
    * rem包含缩放
    */
   setHtmlFontSize() {
-    const {maxFontSize, designWidth, designRatio} = this;
+    const client = UtilsBase.getClient();
+    const {designWidth, designRatio} = this;
     const html = window.document.documentElement;
-    const screenWidth = window.Math.min(window.screen.availWidth, window.screen.availHeight);
+    const screenWidth = client.width;
 
     let fontSize = 100 * screenWidth / designWidth;
+    let maxFontSize = this.maxFontSize * devicePixelRatio;
+
     if (fontSize > maxFontSize) {
       fontSize = maxFontSize;
     }
 
-    fontSize = window.Math.floor(fontSize * SystemConfig.devicePixelRatio / designRatio);
+    fontSize = window.Math.floor(fontSize * devicePixelRatio / designRatio);
     html.style.fontSize = fontSize + "px";
     this.htmlFontSize = fontSize;
   }

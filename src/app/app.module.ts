@@ -17,7 +17,10 @@ import {ModalComponent} from "./components/modal/modal.component";
 import 'hammerjs';
 declare var Hammer: any;
 Hammer.defaults.touchAction = "auto";
-/**********************************************************/
+
+/************************设置rem视图**********************************/
+import {RemView} from './RemView';
+RemView.init(375, 2);
 
 @NgModule({
   declarations: [
