@@ -3,6 +3,7 @@
 html{
   font-size: $defaultFontSize;
   color: $defaultFontColor;
+  user-select: none;
 }
 html, body{
   margin: 0;

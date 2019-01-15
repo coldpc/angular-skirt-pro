@@ -1,10 +1,12 @@
 <sk-layout>
   <sk-header title="首页"></sk-header>
   <div class="main">
-    <sk-image [src]="imgSrc" [ratio]="16/9"></sk-image>
+    <sk-image [src]="imgSrc" [ratio]="16/9" (tap)="onTapImg()"></sk-image>
     <sk-image [src]="imgSrc" [ratio]="16/9"></sk-image>
     <sk-image [src]="imgSrc" [ratio]="16/9"></sk-image>
     <sk-image [src]="imgSrc" [ratio]="16/9"></sk-image>
   </div>
   <div class="bottom">底部</div>
 </sk-layout>
+
+<sk-mask [(isShow)]="isShowMask"></sk-mask>

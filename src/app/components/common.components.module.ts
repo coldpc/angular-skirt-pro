@@ -5,13 +5,15 @@ import {LayoutComponent} from "./layout/layout.component";
 import {ImageComponent} from "./image/image.component";
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from "./header/header.component";
+import {MaskComponent} from "./mask/mask.component";
 
 const components = [
   BoxComponent,
   ButtonComponent,
   LayoutComponent,
   ImageComponent,
-  HeaderComponent
+  HeaderComponent,
+  MaskComponent
 ];
 
 @NgModule({

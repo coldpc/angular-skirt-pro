@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   imgSrc = "/assets/test.jpg";
+  isShowMask = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onTapImg() {
+    this.isShowMask = true;
   }
 
 }
