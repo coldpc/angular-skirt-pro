@@ -1,12 +1,13 @@
 export enum EnButtonColor {
   primary = 'primary',
-  default = 'default'
+  default = 'default-color'
 }
 
 export enum EnButtonSize {
   small = 'small',
   xSmall = 'x-small',
-  default = 'normal',
+  default = 'normal-size',
   large = 'large',
-  xLarge = 'x-large'
+  xLarge = 'x-large',
+  full = 'full'
 }

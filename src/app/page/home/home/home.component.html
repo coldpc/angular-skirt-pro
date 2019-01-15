@@ -1,15 +1,17 @@
 <sk-layout>
   <sk-header title="首页"></sk-header>
   <div class="main">
-    <sk-button>
-      <sk-icon icon="full"></sk-icon>
-    </sk-button>
     <sk-image [src]="imgSrc" [ratio]="16/9" (tap)="onTapImg()"></sk-image>
-    <sk-image [src]="imgSrc" [ratio]="16/9"></sk-image>
-    <sk-image [src]="imgSrc" [ratio]="16/9"></sk-image>
-    <sk-image [src]="imgSrc" [ratio]="16/9"></sk-image>
+
+    <div class="input-con">
+      <input type="text">
+    </div>
   </div>
-  <div class="bottom">底部</div>
+
+  <div class="bottom btn-con">
+    <sk-button>取消</sk-button>
+    <sk-button type="primary">添加</sk-button>
+  </div>
 </sk-layout>
 
 <sk-mask [(isShow)]="isShowMask"></sk-mask>

@@ -1,5 +1,27 @@
-.bottom{
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
+.btn-con{
+  padding: 0.1rem;
+  text-align: right;
+}
+
+sk-button{
+  & + & {
+    margin-left: 0.1rem;
+  }
+}
+
+.input-con{
+  border-bottom: 1px solid #ddd;
+  height: 0.36rem;
+  line-height: 0;
+}
+input{
+  border: none;
+  padding: 0.05rem;
+  border-radius: 10px;
+  width: 50%;
+  transform: scale(2);
+  transform-origin: left top;
+  font-size: 0.07rem;
+  line-height: 0.07rem;
+  background-color: transparent;
 }

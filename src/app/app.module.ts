@@ -20,7 +20,7 @@ Hammer.defaults.touchAction = "auto";
 
 /************************设置rem视图**********************************/
 import {RemView} from './RemView';
-RemView.init(375, 2);
+RemView.init(375, 1);
 
 @NgModule({
   declarations: [

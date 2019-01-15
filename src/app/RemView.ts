@@ -78,7 +78,7 @@ export class RemView {
       fontSize = maxFontSize;
     }
 
-    fontSize = window.Math.floor(fontSize * devicePixelRatio / designRatio);
+    fontSize = window.Math.floor(fontSize);
     html.style.fontSize = fontSize + "px";
     this.htmlFontSize = fontSize;
   }

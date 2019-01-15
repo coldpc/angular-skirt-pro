@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 import {HeaderComponent} from "./header/header.component";
 import {MaskComponent} from "./mask/mask.component";
 import {IconComponent} from "./icon/icon.component";
+import {DeviceAdaptiveComponent} from "./device-adaptive/device-adaptive.component";
 
 const components = [
   BoxComponent,
@@ -15,7 +16,8 @@ const components = [
   ImageComponent,
   HeaderComponent,
   MaskComponent,
-  IconComponent
+  IconComponent,
+  DeviceAdaptiveComponent
 ];
 
 @NgModule({

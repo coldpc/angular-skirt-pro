@@ -1,0 +1,68 @@
+@import "../../theme/variables";
+
+$borderRadius: 0.4rem;
+$fontSize: 0.15rem;
+$defaultHeight: 0.4rem;
+
+$primaryFontColor: #795600;
+$primaryHoverFontColor: #916700;
+$primaryHoverBackColor: #ddbf6a;
+
+
+:host{
+  display: inline-block;
+}
+
+.sk-btn {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  transition: background-color 250ms ease-in;
+  overflow: hidden;
+  vertical-align: middle;
+  position: relative;
+  background-color: transparent;
+  border-radius: $borderRadius;
+  text-align: center;
+  font-size: $fontSize;
+
+  button{
+    background-color: transparent;
+    border: none;
+    height: $defaultHeight;
+    font-size: inherit;
+    color: inherit;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  // 颜色
+  &.default-color{
+    border: 1px solid $greyColor;
+    color: $greyFontColor;
+
+    &.hover{
+      background-color: $greyColor;
+      color: $greyFontColor;
+    }
+  }
+
+  &.primary{
+    color: $primaryFontColor;
+    background-color: $primaryColor;
+
+    &.hover{
+      background-color: $primaryHoverBackColor;
+      color: $primaryHoverFontColor;
+    }
+  }
+
+  // 尺寸
+  &.normal-size{
+    width: 1.1rem;
+  }
+
+  &.full{
+    width: 100%;
+  }
+}
