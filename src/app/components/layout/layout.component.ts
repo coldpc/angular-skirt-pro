@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, AfterContentChecked} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, AfterViewChecked, OnDestroy} from '@angular/core';
 import {EnLayoutType} from "../../lib/enums/Layout";
 
 @Component({
@@ -6,7 +6,7 @@ import {EnLayoutType} from "../../lib/enums/Layout";
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit, AfterViewInit, AfterContentChecked {
+export class LayoutComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   @ViewChild("topPart") topPartRef: ElementRef;
   @ViewChild("bottomPart") bottomPartRef: ElementRef;
@@ -23,13 +23,10 @@ export class LayoutComponent implements OnInit, AfterViewInit, AfterContentCheck
 
   ngOnInit() {
     this.isFixed = this.type === EnLayoutType.fixed;
+    window.addEventListener('resize', this.setStyle);
   }
 
-  ngAfterViewInit() {
-    this.setStyle();
-  }
-
-  ngAfterContentChecked() {
+  ngAfterViewChecked() {
     this.setStyle();
   }
 
@@ -50,5 +47,9 @@ export class LayoutComponent implements OnInit, AfterViewInit, AfterContentCheck
   getBottomHeight() {
     const element = this.bottomPartRef;
     return !!element ? (element.nativeElement.firstChild.offsetHeight + 'px') : "auto";
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.setStyle);
   }
 }
