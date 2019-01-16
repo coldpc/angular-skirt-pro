@@ -20,14 +20,12 @@ enum EnMaskState {
   styleUrls: ['./mask.component.scss'],
   animations: [
     trigger('ctrlMask', [
-      state("void", style({
-        opacity: 0
-      })),
       state('active', style({
         opacity: 1,
       })),
       state('inactive', style({
-        opacity: 0
+        opacity: 0,
+        display: "none"
       })),
       transition('* <=> *', animate('200ms ease-out'))
     ])
