@@ -10,15 +10,15 @@ import {DynamicCore} from "../dynamicCore/DynamicCore";
     trigger('anim', [
       state("void", style({
         opacity: 0,
-        transform: 'scale(0.5) translate(-50%, -50%)'
+        transform: 'scale3d(0.5, 0.5, 1) translate(-50%, -50%)'
       })),
       state('active', style({
         opacity: 1,
-        transform: 'scale(1) translate(-50%, -50%)'
+        transform: 'scale3d(1, 1, 1) translate(-50%, -50%)'
       })),
       state('inactive', style({
         opacity: 0,
-        transform: 'scale(0.5) translate(-50%, -50%)'
+        transform: 'scale3d(0.5, 0.5, 1) translate(-50%, -50%)'
       })),
       transition('* <=> *', animate('200ms ease-out'))
     ])

@@ -24,7 +24,8 @@ RemView.init(375, 1);
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent
+    ListComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
