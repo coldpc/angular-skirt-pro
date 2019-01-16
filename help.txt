@@ -4,7 +4,7 @@ ng build --aot --prod
 
 生成组件
 --skip-import 不导入到module
-ng generate component ./components/skDialog --skip-import --prefix sk
+ng generate component ./components/Dialog --skip-import --prefix sk
 ng generate directive 指令
 
 生成路由

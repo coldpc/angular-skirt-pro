@@ -1,0 +1,20 @@
+.sk-input{
+  color: #828999;
+  height: 0.52rem;
+
+  input{
+    display: block;
+    box-sizing: content-box;
+    padding: 0.16rem 0.1rem;
+    height: 0.2rem;
+    line-height: 0.2rem;
+    color: inherit;
+    border: none;
+    transform-origin: left top;
+    background-color: transparent;
+  }
+
+  &.disabled{
+    color: #828999;
+  }
+}
