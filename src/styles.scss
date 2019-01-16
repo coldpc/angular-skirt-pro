@@ -13,10 +13,13 @@ html, body{
 html{
   font-size: 100px;
 }
-body, button, p, input{
+body{
   font-size: $defaultFontSize;
   color: $defaultFontColor;
   user-select: none;
+}
+button, p, input{
+  font-size: inherit;
 }
 
 *{

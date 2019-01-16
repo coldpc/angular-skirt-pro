@@ -1,0 +1,55 @@
+@import "../../theme/variables";
+.dialog-wrapper{
+  position: fixed;
+  z-index: $dialogIndex;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: #fff;
+  width: 2.7rem;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 70%;
+  max-height: 70%;
+  font-size: $largeFontSize;
+  transform-origin: left top;
+  box-shadow: rgba(0, 0, 0, 0.298039) 0px 19px 60px, rgba(0, 0, 0, 0.219608) 0px 15px 20px;
+}
+
+.dialog-content{
+  min-height: 1rem;
+  text-align: center;
+  line-height: 0.2rem;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  padding: 0.1rem;
+}
+.info{
+  flex: 1;
+}
+
+.actions{
+  height: 0.45rem;
+  border-top: 1px solid #ebebeb;
+  display: flex;
+}
+.btn{
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  text-indent: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 0.15rem;
+  letter-spacing: 4px;
+
+  &.cancel{
+    border-right: 1px solid #ebebeb;
+    color: $greyFontColor;
+  }
+  &.ok{
+    color: #e0ae01;
+  }
+}

@@ -3,37 +3,16 @@
   <div class="main">
     <sk-image [src]="imgSrc" [ratio]="16/9" (tap)="onTapImg()"></sk-image>
 
-    <div class="input-con">
-      <input type="text">
-    </div>
-
-    <div class="btn-con">
-      <sk-button [type]="'black'" [disabled]="true" (tapEvent)="onTapButton()">选房预定</sk-button>
-      <sk-button [disabled]="true">取消</sk-button>
-      <sk-button [type]="'primary'" [disabled]="true">添加</sk-button>
-    </div>
-
-    <sk-input></sk-input>
+    <sk-dialog message="效手机的人还是在哪里" [(isShow)]="isShowMask"></sk-dialog>
   </div>
 
-  <div class="bottom1">
-    <div class="btn-con">
-      <sk-button [type]="'black'" [disabled]="true" (tapEvent)="onTapButton()">选房预定</sk-button>
-      <sk-button [disabled]="true">取消</sk-button>
-      <sk-button [type]="'primary'" [disabled]="true">添加</sk-button>
-    </div>
+  <div class="bottom">
     <div class="btn-con">
       <sk-button [type]="'black'" [disabled]="false" (tapEvent)="onTapButton()">选房预定</sk-button>
       <sk-button [disabled]="false">取消</sk-button>
       <sk-button type="primary" [disabled]="false">添加</sk-button>
     </div>
-    <div class="btn-con">
-      <sk-button [type]="'black'" [disabled]="false" size="small" (tapEvent)="onTapButton()">选房预定</sk-button>
-      <sk-button [disabled]="false" size="small">取消</sk-button>
-      <sk-button type="primary" [disabled]="false" size="small">添加</sk-button>
-    </div>
-    <sk-button [type]="'primary'" [size]="'full'">点击</sk-button>
   </div>
 </sk-layout>
 
-<sk-mask [(isShow)]="isShowMask"></sk-mask>
+<!--<sk-mask [(isShow)]="isShowMask"></sk-mask>-->

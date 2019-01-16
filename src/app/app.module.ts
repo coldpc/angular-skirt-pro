@@ -6,7 +6,6 @@ import {CommonModule} from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {DialogComponent} from "./components/dialog/dialog.component";
 import {ListComponent} from "./components/list/list.component";
 import {ModalComponent} from "./components/modal/modal.component";
 
@@ -25,9 +24,7 @@ RemView.init(375, 1);
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent,
-    ListComponent,
-    ModalComponent
+    ListComponent
   ],
   imports: [
     BrowserModule,

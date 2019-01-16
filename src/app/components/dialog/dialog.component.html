@@ -1,1 +1,10 @@
-<div>a</div>
+<div *ngIf="isShow" class="dialog-wrapper"  [@anim]="state">
+  <div class="dialog-content">
+    <div class="info">{{message}}</div>
+  </div>
+  <div class="actions">
+    <button class="cancel btn" (tap)="onTapCancel()">取消</button>
+    <button class="ok btn" (tap)="onTapOk()">确定</button>
+  </div>
+</div>
+<sk-mask [(isShow)]="isShow" [isTapBackHide]="false"></sk-mask>

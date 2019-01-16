@@ -1,44 +1,46 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {DynamicCore} from "../dynamicCore/DynamicCore";
 
-/**
- *
- * message
- * show 方法调用
- * config: {
- *    type 类型: default: message; confirm,
- *    title: 标题 default: 提示
- *    content: 文本文字
- *    btnGroup: default: ['确定','取消'];
- *    ok: Function
- *    cancel: Function
- * }
- * **/
 @Component({
   selector: 'sk-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
   animations: [
-    trigger('msgState', [
-      state('show', style({
-        top: '48%',
-        opacity: 1
+    trigger('anim', [
+      state("void", style({
+        opacity: 0,
+        transform: 'scale(0.5) translate(-50%, -50%)'
       })),
-      transition('void => show', [
-        style({top: '58%', opacity: 0}),
-        animate('0.3s cubic-bezier(0.46, 0.03, 0.52, 0.96)')
-      ]),
-      transition('show => void', [
-        animate('0.3s cubic-bezier(0.46, 0.03, 0.52, 0.96)', style({top: '58%', opacity: 0}))
-      ])
+      state('active', style({
+        opacity: 1,
+        transform: 'scale(1) translate(-50%, -50%)'
+      })),
+      state('inactive', style({
+        opacity: 0,
+        transform: 'scale(0.5) translate(-50%, -50%)'
+      })),
+      transition('* <=> *', animate('200ms ease-out'))
     ])
   ]
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent extends DynamicCore implements OnInit {
+  @Input() message: string = '';
+
   constructor() {
+    super();
+  }
+
+  ngOnInit(): void {
 
   }
 
-  ngOnInit() {}
+  onTapCancel() {
+    this.hide();
+  }
+
+  onTapOk() {
+    this.hide();
+  }
 }
 
