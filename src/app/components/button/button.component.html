@@ -1,6 +1,6 @@
-<div [ngClass]="['sk-btn', size, type, innerClass]"
+<div [ngClass]="['sk-btn', size, type, innerClass, disabledClass]"
      (touchstart)="onHover()"
-     (touchmove)="onEnd()" (touchend)="onEnd()" (touchcancel)="onEnd()">
+     (touchmove)="onEnd()" (touchend)="onEnd()" (touchcancel)="onEnd()" (tap)="onTapButton($event)">
   <sk-device-adaptive [type]="adaptType">
     <button>
       <ng-content></ng-content>

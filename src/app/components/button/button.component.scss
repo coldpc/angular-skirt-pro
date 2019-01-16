@@ -1,17 +1,4 @@
-@import "../../theme/variables";
-
-$borderRadius: 0.4rem;
-$fontSize: 0.15rem;
-$defaultHeight: 0.4rem;
-
-$primaryFontColor: #795600;
-$primaryHoverFontColor: #916700;
-$primaryHoverBackColor: #ddbf6a;
-
-
-:host{
-  display: inline-block;
-}
+@import "variables";
 
 .sk-btn {
   display: inline-block;
@@ -24,43 +11,87 @@ $primaryHoverBackColor: #ddbf6a;
   background-color: transparent;
   border-radius: $borderRadius;
   text-align: center;
-  font-size: $fontSize;
+  font-size: $defaultFontSize;
+  border: 1px solid transparent;
 
   button{
+    box-sizing: border-box;
     background-color: transparent;
     border: none;
-    height: $defaultHeight;
-    line-height: 0.4rem;
+    line-height: 1;
     font-size: inherit;
     color: inherit;
     width: 100%;
     pointer-events: none;
+    height: $defaultHeight;
   }
 
   // 颜色
   &.default-color{
-    border: 1px solid $greyColor;
-    color: $greyFontColor;
+    border-color: $defaultBorderColor;
+    color: $defaultFontColor;
 
     &.hover{
-      background-color: $greyColor;
-      color: $greyFontColor;
+      color: $defaultHoverFontColor;
+      background-color: $defaultHoverBackColor;
+    }
+
+    &.disabled{
+      background-color: transparent;
+      border-color: $defaultDisabledBorderColor;
+      color: $defaultDisabledFontColor;
     }
   }
 
   &.primary{
+    border-color: $primaryBackColor;
     color: $primaryFontColor;
-    background-color: $primaryColor;
+    background-color: $primaryBackColor;
 
     &.hover{
+      border-color: $primaryHoverBackColor;
       background-color: $primaryHoverBackColor;
       color: $primaryHoverFontColor;
+    }
+
+    &.disabled{
+      border-color: $primaryDisabledBackColor;
+      background-color: $primaryDisabledBackColor;
+      color: $primaryDisabledFontColor;
+    }
+  }
+
+  &.black{
+    border-color: $blackBackColor;
+    color: $blackFontColor;
+    background-color: $blackBackColor;
+
+    &.hover{
+      border-color: $blackHoverBackColor;
+      background-color: $blackHoverBackColor;
+      color: $blackHoverFontColor;
+    }
+
+    &.disabled{
+      border-color: $blackDisabledBackColor;
+      background-color: $blackDisabledBackColor;
+      color: $blackDisabledFontColor;
     }
   }
 
   // 尺寸
   &.normal-size{
-    width: 1.1rem;
+    width: $defaultWidth;
+    font-size: $defaultFontSize;
+  }
+
+  &.small{
+    width: $smallWidth;
+    font-size: $smallFontSize;
+
+    button{
+      height: $smallHeight;
+    }
   }
 
   &.full{

@@ -20,6 +20,7 @@ export class DeviceAdaptiveComponent implements OnInit {
   @Input() type: EnDeviceAdaptiveType = EnDeviceAdaptiveType.none;
 
   style = {
+    backgroundColor: '',
     paddingTop: '0',
     paddingBottom: '0'
   };
@@ -28,12 +29,15 @@ export class DeviceAdaptiveComponent implements OnInit {
 
   ngOnInit() {
     let systemDeviceInfo = this.setSystemInfo();
+    let style = this.style;
+
+    style.backgroundColor = this.color;
 
     if (this.type === EnDeviceAdaptiveType.top && systemDeviceInfo.topBarHeight) { // 顶部适配
-      this.style.paddingTop = systemDeviceInfo.topBarHeight + 'px';
+      style.paddingTop = systemDeviceInfo.topBarHeight + 'px';
 
     } else if (this.type === EnDeviceAdaptiveType.bottom && systemDeviceInfo.bottomHeight) { // 底部适配
-      this.style.paddingBottom = systemDeviceInfo.bottomHeight + 'px';
+      style.paddingBottom = systemDeviceInfo.bottomHeight + 'px';
     }
   }
 

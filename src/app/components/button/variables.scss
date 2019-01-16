@@ -1,0 +1,43 @@
+@import "../../theme/variables";
+
+$borderRadius: 0.4rem;
+
+// size default
+$defaultHeight: 0.4rem;
+$defaultWidth: 1.1rem;
+$defaultFontSize: 0.15rem;
+
+// small
+$smallHeight: 0.3rem;
+$smallWidth: 0.78rem;
+$smallFontSize: $xSmallFontSize;
+
+/*************color default-color 字体颜色 border颜色**************/
+$defaultFontColor: $greyFontColor;
+$defaultBorderColor: $greyColor;
+$defaultHoverFontColor: $greyFontColor;
+$defaultHoverBackColor: $greyColor;
+
+// disabled的样式
+$defaultDisabledFontColor: #e3e5ed;
+$defaultDisabledBorderColor: $greyColor;
+
+/************* color primary 字体颜色 背景色 hover的背景色 hover字体的颜色**************/
+$primaryFontColor: #795600;
+$primaryBackColor: $primaryColor;
+$primaryHoverFontColor: #916700;
+$primaryHoverBackColor: #ddbf6a;
+
+// disabled的样式
+$primaryDisabledBackColor: #edd180;
+$primaryDisabledFontColor: #d9bd6b;
+
+/************* color black 字体颜色 背景色 hover的背景色 hover字体的颜色**************/
+$blackFontColor: #ffd55e;
+$blackBackColor: #2d3037;
+$blackHoverFontColor: #ffe59a;
+$blackHoverBackColor: #19191b;
+
+// disabled的样式
+$blackDisabledBackColor: #2d3037;
+$blackDisabledFontColor: #49463c;
