@@ -41,12 +41,14 @@ export class LayoutComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   getTopHeight() {
     const element = this.topPartRef;
-    return !!element ? (element.nativeElement.firstChild.offsetHeight + 'px') : "auto";
+    const firstChild = element.nativeElement.firstChild;
+    return (!!element && firstChild) ? (firstChild.offsetHeight + 'px') : "auto";
   }
 
   getBottomHeight() {
     const element = this.bottomPartRef;
-    return !!element ? (element.nativeElement.firstChild.offsetHeight + 'px') : "auto";
+    const firstChild = element.nativeElement.firstChild;
+    return (!!element && firstChild) ? (firstChild.offsetHeight + 'px') : "auto";
   }
 
   ngOnDestroy() {
