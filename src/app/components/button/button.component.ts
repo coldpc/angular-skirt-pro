@@ -19,6 +19,9 @@ export class ButtonComponent implements OnInit {
   // 是否适配设备 例如：iphoneX
   @Input() adaptType: EnDeviceAdaptiveType = EnDeviceAdaptiveType.none;
 
+  // 按钮的样式
+  @Input() buttonStyle: any = {};
+
   // 按钮的颜色
   @Input() type: EnButtonType = EnButtonType.default;
 

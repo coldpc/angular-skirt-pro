@@ -3,7 +3,7 @@
     <div class="info">{{message}}</div>
   </div>
   <div class="actions">
-    <button class="cancel btn" (tap)="onTapCancel()">取消</button>
+    <button *ngIf="isConfirm" class="cancel btn" (tap)="onTapCancel()">取消</button>
     <button class="ok btn" (tap)="onTapOk()">确定</button>
   </div>
 </div>

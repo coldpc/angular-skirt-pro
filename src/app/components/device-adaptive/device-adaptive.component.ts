@@ -18,11 +18,11 @@ export class DeviceAdaptiveComponent implements OnInit {
 
   // 适配的类型 默认不适配
   @Input() type: EnDeviceAdaptiveType = EnDeviceAdaptiveType.none;
-
+  
   style = {
     backgroundColor: '',
-    paddingTop: '0',
-    paddingBottom: '0'
+    paddingTop: null,
+    paddingBottom: null
   };
 
   constructor() { }
@@ -33,10 +33,9 @@ export class DeviceAdaptiveComponent implements OnInit {
 
     style.backgroundColor = this.color;
 
-    if (this.type === EnDeviceAdaptiveType.top && systemDeviceInfo.topBarHeight) { // 顶部适配
+    if (this.type === EnDeviceAdaptiveType.top && systemDeviceInfo.topBarHeight > 0) { // 顶部适配
       style.paddingTop = systemDeviceInfo.topBarHeight + 'px';
-
-    } else if (this.type === EnDeviceAdaptiveType.bottom && systemDeviceInfo.bottomHeight) { // 底部适配
+    } else if (this.type === EnDeviceAdaptiveType.bottom && systemDeviceInfo.bottomHeight > 0) { // 底部适配
       style.paddingBottom = systemDeviceInfo.bottomHeight + 'px';
     }
   }

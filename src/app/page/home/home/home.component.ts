@@ -24,4 +24,12 @@ export class HomeComponent implements OnInit {
   onTapButton() {
     this.isShowMask = true;
   }
+
+  onConfirm() {
+    console.log("ok");
+  }
+
+  onCancel() {
+    console.log('cancel');
+  }
 }

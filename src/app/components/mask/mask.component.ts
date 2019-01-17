@@ -24,7 +24,7 @@ enum EnMaskState {
         opacity: 1,
       })),
       state('inactive', style({
-        opacity: 0,
+        opacity: 0.1,
         display: "none"
       })),
       transition('* <=> *', animate('200ms ease-out'))
