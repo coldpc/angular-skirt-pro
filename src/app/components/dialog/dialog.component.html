@@ -1,10 +1,12 @@
-<div class="dialog-wrapper"  [@anim]="state">
-  <div class="dialog-content">
-    <div class="info">{{message}}</div>
-  </div>
-  <div class="actions">
-    <button *ngIf="isConfirm" class="cancel btn" (tap)="onTapCancel()">取消</button>
-    <button class="ok btn" (tap)="onTapOk()">确定</button>
+<div class="dialog-container" [@anim]="state" (touchmove)="$event.preventDefault()">
+  <div class="dialog-wrapper">
+    <div class="dialog-content">
+      <div class="info">{{message}}</div>
+    </div>
+    <div class="actions">
+      <button *ngIf="isConfirm" skHover class="cancel btn" (tap)="onTapCancel()">取消</button>
+      <button skHover class="ok btn" (tap)="onTapOk()">确定</button>
+    </div>
   </div>
 </div>
 <sk-mask [(isShow)]="isShow" [isTapBackHide]="false"></sk-mask>

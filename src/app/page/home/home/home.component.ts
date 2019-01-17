@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {EnButtonType} from "../../../lib/enums/Button";
+import {DialogService} from "../../../lib/service/system/dialog.service";
 @Component({
-  selector: 'app-home',
+  selector: 'sk-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -12,17 +13,21 @@ export class HomeComponent implements OnInit {
 
   buttonType: any = EnButtonType;
 
-  constructor() { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
   }
 
   onTapImg() {
-    this.isShowMask = true;
+    this.dialogService.alert("这里的 loadComponent() 方法很重要。 来一步步看看。首先，它选取了一个广告。");
   }
 
   onTapButton() {
-    this.isShowMask = true;
+    // this.isShowMask = true;
+    this.dialogService.confirm({
+      message: "确定要删除订单吗？",
+      onOk: this.onConfirm
+    });
   }
 
   onConfirm() {

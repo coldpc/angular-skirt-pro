@@ -27,7 +27,7 @@ enum EnMaskState {
         opacity: 0.1,
         display: "none"
       })),
-      transition('* <=> *', animate('200ms ease-out'))
+      transition('active <=> inactive', animate('250ms ease-out'))
     ])
   ]
 })

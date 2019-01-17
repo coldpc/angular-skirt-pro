@@ -10,6 +10,7 @@ import {IconComponent} from "./icon/icon.component";
 import {DeviceAdaptiveComponent} from "./device-adaptive/device-adaptive.component";
 import {InputComponent} from "./input/input.component";
 import {DialogComponent} from "./dialog/dialog.component";
+import {TouchHoverDirective} from "../lib/directives/touch-hover.directive";
 
 const components = [
   BoxComponent,
@@ -21,7 +22,8 @@ const components = [
   IconComponent,
   DeviceAdaptiveComponent,
   InputComponent,
-  DialogComponent
+  DialogComponent,
+  TouchHoverDirective
 ];
 
 @NgModule({

@@ -1,10 +1,19 @@
 @import "../../theme/variables";
-.dialog-wrapper{
+.dialog-container{
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: $dialogIndex;
+}
+
+.dialog-wrapper{
+  z-index: $dialogIndex;
+  position: absolute;
   left: 50%;
   top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translate(-50%, -50%);
   background-color: #fff;
   width: 2.7rem;
   border-radius: 0px;
@@ -12,14 +21,13 @@
   max-width: 70%;
   max-height: 70%;
   font-size: $largeFontSize;
-  transform-origin: left top;
 }
 
 .dialog-content{
   min-height: 1rem;
   text-align: center;
-  line-height: 0.2rem;
-  letter-spacing: 2px;
+  line-height: 0.24rem;
+  letter-spacing: 0px;
   display: flex;
   align-items: center;
   padding: 0.1rem;
@@ -43,6 +51,7 @@
   margin: 0;
   font-size: 0.15rem;
   letter-spacing: 4px;
+  transition: background-color 200ms ease-in;
 
   &.cancel{
     border-right: 1px solid #ebebeb;
@@ -50,5 +59,9 @@
   }
   &.ok{
     color: #e0ae01;
+  }
+
+  &.hover{
+    background-color: #ebebeb;
   }
 }
