@@ -62,19 +62,19 @@ export class MaskComponent implements OnInit {
   ngOnInit() {
   }
 
-  private onTap(): void {
+  public onTap(): void {
     if (this.isTapBackHide) {
       this.hide();
     }
   }
 
-  hide() {
+  public hide() {
     if (this.isShow) {
       this.isShow = false;
     }
   }
 
-  show() {
+  public show() {
     if (!this.isShow) {
       this.isShow = true;
     }
@@ -93,7 +93,7 @@ export class MaskComponent implements OnInit {
     this.isShowChange.emit(isShow);
   }
 
-  private onTouchMove(event: TouchEvent): void {
+  public onTouchMove(event: TouchEvent): void {
     event.stopPropagation();
 
     if (event.cancelable) {

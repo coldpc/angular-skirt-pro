@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {EnButtonType} from "../../../lib/enums/Button";
+import {EnButtonSize} from "../../../lib/enums/EnButtonSize";
 import {DialogService} from "../../../lib/service/system/dialog.service";
+import {EnButtonType} from "../../../lib/enums/EnButtonType";
+import {HttpClientCore} from "../../../lib/service/http/HttpClientCore";
 @Component({
   selector: 'sk-home',
   templateUrl: './home.component.html',
@@ -11,11 +13,23 @@ export class HomeComponent implements OnInit {
   imgSrc = "/assets/test.jpg";
   isShowMask = false;
 
-  buttonType: any = EnButtonType;
+  EnButtonType = EnButtonType;
+  EnButtonSize = EnButtonSize;
 
-  constructor(private dialogService: DialogService) { }
+  constructor(private dialogService: DialogService,
+              private httpClientCore: HttpClientCore) { }
 
   ngOnInit() {
+    this.httpClientCore.request({
+      url: 'test',
+      data: {
+        name: 'pccold'
+      }
+    }).subscribe((res) => {
+
+    }, (error) => {
+
+    });
   }
 
   onTapImg() {

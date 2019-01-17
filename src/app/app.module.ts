@@ -1,5 +1,4 @@
 import { BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 /*********************需要使用收拾识别************************/
 /**设置Hammer.defaults.touchAction 保证touch不会停止冒泡*/
@@ -13,42 +12,41 @@ import {RemView} from './RemView';
 RemView.init(375, 1);
 
 import { NgModule } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ListComponent} from "./components/list/list.component";
-import {ModalComponent} from "./components/modal/modal.component";
 import {SkDynamicComponentService} from "./components/dynamic-component-factory/sk-dynamic-component.service";
 import { AddHostDirective } from './lib/directives/add-host.directive';
+import {HttpClientCore} from "./lib/service/http/HttpClientCore";
+import {SystemModule} from "./lib/modules/system.module";
 import {DialogService} from "./lib/service/system/dialog.service";
 import {DialogComponent} from "./components/dialog/dialog.component";
-import {CommonComponentsModule} from "./components/common.components.module";
 
 
 let providers = [
   SkDynamicComponentService,
+  HttpClientCore,
   DialogService
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent,
-    ModalComponent,
     AddHostDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CommonModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    CommonComponentsModule
+    SystemModule
   ],
   providers: [
     ...providers
   ],
   bootstrap: [AppComponent],
-  entryComponents:[DialogComponent]
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

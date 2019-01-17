@@ -1,9 +1,3 @@
-export enum EnButtonType {
-  black = 'black',
-  primary = 'primary',
-  default = 'default-color'
-}
-
 export enum EnButtonSize {
   small = 'small',
   xSmall = 'x-small',

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {EnButtonType, EnButtonSize} from "../../lib/enums/Button";
+import {EnButtonSize} from "../../lib/enums/EnButtonSize";
 import {EnDeviceAdaptiveType} from "../../lib/enums/EnDeviceAdaptiveType";
+import {EnButtonType} from "../../lib/enums/EnButtonType";
 
 enum EnButtonEffectClass {
   hover = 'hover',
