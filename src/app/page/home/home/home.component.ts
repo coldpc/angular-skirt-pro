@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
 
     this.httpClientCore
       .setPath("/product/index/get-city-list")
+      .setParams({name: 'pccold'})
+      .setBody({test: '123', password: 'asfd'})
       .catchError()
       .subscribe((data) => {
         this.onLoadData(data);

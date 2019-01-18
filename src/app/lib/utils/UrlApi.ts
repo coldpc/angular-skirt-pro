@@ -5,10 +5,10 @@ export class UrlApi {
     let temp, keys;
 
     keys = Object.keys(params || {});
-    for (let key in keys) {
+    for (let key of keys) {
       temp = params[key];
       if (!UtilsBase.isNull(temp)) {
-        url += `${url.indexOf("?") === -1 ? '?' : '&'}key=${encodeURIComponent(temp)}`;
+        url += `${url.indexOf("?") === -1 ? '?' : '&'}${key}=${encodeURIComponent(temp)}`;
       }
     }
     return url;

@@ -31,8 +31,8 @@ export class HttpApi {
   }
 
   static getFormBody(data): string {
-    let body = "", key;
-    for (key in Object.keys(data)) {
+    let body = "", index, key;
+    for (key of Object.keys(data)) {
       if (!UtilsBase.isNull(data[key])) {
         if (body) {
           body += "&";
@@ -46,7 +46,7 @@ export class HttpApi {
   static getFileBody(data): FormData {
     let body = new FormData(), key;
 
-    for (key in Object.keys(data)) {
+    for (key of Object.keys(data)) {
       if (!UtilsBase.isNull(data[key])) {
         body.append(key, data[key]);
       }
