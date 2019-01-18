@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, AfterViewChecked, OnDestroy} from '@angular/core';
-import {EnLayoutType} from "../../lib/enums/Layout";
+import {EnLayoutType} from "../../lib/enums/EnLayoutType";
 
 @Component({
   selector: 'sk-layout',

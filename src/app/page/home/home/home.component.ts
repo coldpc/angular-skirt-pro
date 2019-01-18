@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EnButtonSize} from "../../../lib/enums/EnButtonSize";
 import {DialogService} from "../../../lib/service/system/dialog.service";
 import {EnButtonType} from "../../../lib/enums/EnButtonType";
 import {HttpClientCore} from "../../../lib/service/http/HttpClientCore";
+
 @Component({
   selector: 'sk-home',
   templateUrl: './home.component.html',
@@ -17,23 +18,23 @@ export class HomeComponent implements OnInit {
   EnButtonSize = EnButtonSize;
 
   constructor(private dialogService: DialogService,
-              private httpClientCore: HttpClientCore) { }
+              private httpClientCore: HttpClientCore<any>) {
+
+    this.httpClientCore
+      .setPath("/product/index/get-city-list")
+      .catchError()
+      .subscribe((data) => {
+        this.onLoadData(data);
+      }, (error) => {
+        this.onError(error);
+      });
+  }
 
   ngOnInit() {
-    this.httpClientCore.request({
-      url: 'test',
-      data: {
-        name: 'pccold'
-      }
-    }).subscribe((res) => {
-
-    }, (error) => {
-
-    });
   }
 
   onTapImg() {
-    this.dialogService.alert("这里的 loadComponent() 方法很重要。 来一步步看看。首先，它选取了一个广告。");
+    this.getRemoteData();
   }
 
   onTapButton() {
@@ -50,5 +51,17 @@ export class HomeComponent implements OnInit {
 
   onCancel() {
     console.log('cancel');
+  }
+
+  getRemoteData() {
+    this.httpClientCore.request();
+  }
+
+  onLoadData(data) {
+    console.log(data);
+  }
+
+  onError(error) {
+    console.log(error.message);
   }
 }

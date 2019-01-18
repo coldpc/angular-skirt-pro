@@ -2,7 +2,7 @@
 @import "./app/theme/variables";
 
 //导入字体图标
-@import "./app/lib/fun-iconfont/style.css";
+@import "./assets/fun-iconfont/style.css";
 
 html, body{
   margin: 0;
@@ -12,7 +12,7 @@ html, body{
 }
 html{
   font-size: 100px;
-  font-family: arial;
+  font-family: arial, serif;
 }
 body{
   font-size: $defaultFontSize;
@@ -21,8 +21,6 @@ body{
   -webkit-touch-callout:none;/*系统默认菜单被禁用*/
 
   -webkit-user-select:none;/*webkit浏览器*/
-
-  -khtml-user-select:none;/*早起浏览器*/
 
   -moz-user-select:none;/*火狐浏览器*/
 

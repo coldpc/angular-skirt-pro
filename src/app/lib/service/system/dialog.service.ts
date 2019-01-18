@@ -1,23 +1,10 @@
 import { Injectable, ComponentRef, EventEmitter} from "@angular/core";
 import {DialogComponent} from "../../../components/dialog/dialog.component";
 import {SkDynamicComponentService} from "../../../components/dynamic-component-factory/sk-dynamic-component.service";
-
-export interface InDialogModel {
-  isConfirm ?: boolean;
-  message ?: string;
-
-  cancelText ?: string;
-  okText ?: string;
-
-  onShow ?: Function;
-  onHide ?: Function;
-  onOk ?: Function;
-  onCancel ?: Function;
-}
+import {InDialogModel} from "../../interfaces/InDialogModel";
 
 @Injectable()
 export class DialogService {
-
   private _dialogComponent: DialogComponent;
   set dialogComponent(con: DialogComponent) {
     this._dialogComponent = con;
@@ -31,9 +18,12 @@ export class DialogService {
     this.dialogComponent = dynamicService.createComponent(DialogComponent);
   }
 
+  /**
+   * 消息框
+   * @param message 消息内容
+   */
   alert(message: string) {
     this.show({message, isConfirm: false});
-
   }
 
   /**
@@ -45,7 +35,11 @@ export class DialogService {
     this.show(config);
   }
 
-  show(config: InDialogModel): void{
+  /**
+   * 展示对话框
+   * @param config 配置
+   */
+  show(config: InDialogModel): void {
     let dialog = this.dialogComponent;
     dialog.isConfirm = config.isConfirm;
     dialog.okText = config.okText;
