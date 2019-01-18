@@ -27,9 +27,11 @@ export class HomeComponent implements OnInit {
       .catchError()
       .subscribe((data) => {
         this.onLoadData(data);
-      }, (error) => {
-        this.onError(error);
       });
+
+    this.httpClientCore.subscribeError((error) => {
+      console.log(error);
+    });
   }
 
   ngOnInit() {

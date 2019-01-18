@@ -12,6 +12,7 @@ import {UrlApi} from "../../utils/UrlApi";
 import {InHttpResponseDataFormat} from "../../interfaces/InHttpResponseDataFormat";
 import {HttpApi} from "../../utils/HttpApi";
 import {HttpErrorModel} from "./HttpErrorModel";
+import {InHttpErrorModel} from "../../interfaces/InHttpErrorModel";
 
 // 成功返回请求的code值
 const SERVICE_SUCCESS_CODE_VALUE = 200;
@@ -55,6 +56,10 @@ export class HttpClientCore<T> extends Subject<T>  {
   // 捕获异常
   private _isCatchError: boolean = false;
   private _catchErrorCode: string;
+
+  // 异常
+  private _errorSubject: Subject<HttpErrorModel> = new Subject();
+  private _completeSubject: Subject<null> = new Subject();
 
   constructor(private http: HttpClient,
               private dialogService: DialogService) {
@@ -126,7 +131,7 @@ export class HttpClientCore<T> extends Subject<T>  {
   /**
    * 不捕获异常
    */
-  uncatchError() {
+  unCatchError() {
     this._isCatchError = false;
     this._catchErrorCode = '';
     return this;
@@ -179,7 +184,6 @@ export class HttpClientCore<T> extends Subject<T>  {
   }
 
   request() {
-    this.closed = false;
     let headers, body, url;
 
     // 获取url地址
@@ -200,7 +204,22 @@ export class HttpClientCore<T> extends Subject<T>  {
       this.handleData(res);
     }, (error: HttpErrorResponse) => {
       return this.handleResponseError(error);
-    }, () => {});
+    }, () => {
+        this._completeSubject.next();
+      });
+  }
+
+  /**
+   * 订阅请求完成
+   * 异常或者正常返回都会调用一次
+   * @param call 监听函数
+   */
+  subscribeError(call: any) {
+    this._errorSubject.subscribe(call);
+  }
+
+  subscribeComplete(call) {
+    this._completeSubject.subscribe(call);
   }
 
   /**
@@ -230,15 +249,13 @@ export class HttpClientCore<T> extends Subject<T>  {
   }
 
   // 控制正确返回200的异常处理
+  // 在用户不捕获异常的时候 系统自动捕获异常
+  // 或者不是用户捕获错误code的异常的时候 系统也要自动捕获
   handleError(error: HttpErrorModel) {
-    console.log(error);
-
-    // 在用户不捕获异常的时候 系统自动捕获异常
-    // 或者不是用户捕获错误code的异常的时候 系统也要自动捕获
     if (this.isCatchError &&
       (!this.catchErrorCode ||
         (UtilsBase.checkIsEqual(this.catchErrorCode, error.code)))) {
-      super.error(error);
+      this._errorSubject.next(error);
     } else {
       this.dialogService.alert(error.message);
     }
