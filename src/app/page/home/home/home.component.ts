@@ -22,16 +22,17 @@ export class HomeComponent implements OnInit {
 
     this.httpClientCore
       .setPath("/product/index/get-city-list")
-      .setParams({name: 'pccold'})
+      .setParams({name: 'pccold', a: 'a'})
       .setBody({test: '123', password: 'asfd'})
-      .catchError()
+      .subscribeError((error) => {
+        console.log('error');
+      })
+      .subscribeComplete(() => {
+        console.log('complete');
+      })
       .subscribe((data) => {
-        this.onLoadData(data);
+        console.log('load');
       });
-
-    this.httpClientCore.subscribeError((error) => {
-      console.log(error);
-    });
   }
 
   ngOnInit() {

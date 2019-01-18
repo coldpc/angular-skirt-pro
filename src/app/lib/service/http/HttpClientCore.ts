@@ -214,12 +214,14 @@ export class HttpClientCore<T> extends Subject<T>  {
    * 异常或者正常返回都会调用一次
    * @param call 监听函数
    */
-  subscribeError(call: any) {
+  subscribeError(call: any): HttpClientCore<T> {
     this._errorSubject.subscribe(call);
+    return this;
   }
 
-  subscribeComplete(call) {
+  subscribeComplete(call): HttpClientCore<T>  {
     this._completeSubject.subscribe(call);
+    return this;
   }
 
   /**
@@ -259,6 +261,8 @@ export class HttpClientCore<T> extends Subject<T>  {
     } else {
       this.dialogService.alert(error.message);
     }
+
+    this._completeSubject.next();
   }
 
   /**
