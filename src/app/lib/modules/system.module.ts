@@ -3,11 +3,13 @@ import {CommonModule} from '@angular/common';
 import {DialogComponent} from "../../components/dialog/dialog.component";
 import {MaskComponent} from "../../components/mask/mask.component";
 import {TouchHoverDirective} from "../directives/touch-hover.directive";
+import {LoadingComponent} from "../../components/loading/loading.component";
 
 // 系统加载的内容
 const components = [
   MaskComponent,
   DialogComponent,
+  LoadingComponent,
   TouchHoverDirective
 ];
 

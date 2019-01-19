@@ -3,6 +3,7 @@ import {EnButtonSize} from "../../../lib/enums/EnButtonSize";
 import {DialogService} from "../../../lib/service/system/dialog.service";
 import {EnButtonType} from "../../../lib/enums/EnButtonType";
 import {HttpClientCore} from "../../../lib/service/http/HttpClientCore";
+import {LoadingService} from "../../../lib/service/system/loading.service";
 
 @Component({
   selector: 'sk-home',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   EnButtonSize = EnButtonSize;
 
   constructor(private dialogService: DialogService,
+              private loadingService: LoadingService,
               private httpClientCore: HttpClientCore<any>) {
 
     this.httpClientCore
@@ -59,6 +61,7 @@ export class HomeComponent implements OnInit {
   }
 
   getRemoteData() {
+    this.loadingService.show();
     this.httpClientCore.request();
   }
 

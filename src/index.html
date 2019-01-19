@@ -7,8 +7,56 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+    body, html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      transition: background-color 300ms ease-in;
+      -webkit-transition: background-color 300ms ease-in;
+    }
+  </style>
 </head>
 <body>
-  <sk-root></sk-root>
+<sk-root>
+  <style>
+    sk-root {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: #EDD180;
+      text-transform: uppercase;
+      font-size: 5vh;
+      text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes dots {
+      50% {
+        transform: translateY(-.2em);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .d {
+      animation: dots 1.5s ease-out infinite;
+    }
+
+    .d-2 {
+      animation-delay: .5s;
+    }
+
+    .d-3 {
+      animation-delay: 1s;
+    }
+  </style>
+  Loading<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
+</sk-root>
+
+
 </body>
 </html>

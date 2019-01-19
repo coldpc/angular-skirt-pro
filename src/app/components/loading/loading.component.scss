@@ -1,0 +1,85 @@
+@import "../../theme/variables";
+
+.loading-wrapper{
+  position: fixed;
+  z-index: $loadingIndex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  perspective: 2rem;
+}
+.loading-content{
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 50%;
+  left: 50%;
+  margin-left: -1rem;
+  margin-top: -1rem;
+  z-index: $loadingIndex;
+  background-color: transparent;
+  transform-style: preserve-3d;
+  transform: scale(0.13);
+}
+
+.circle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin-left: -0.5rem;
+  margin-top: -0.5rem;
+  border-radius: 50%;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.black{
+  background-color: #000;
+  animation-name: ani-black;
+}
+.primary{
+  background-color: $primaryColor;
+  transform: translate3d(-1rem, 0, 0);
+  animation-name: ani-primary;
+}
+
+$zDistance: 0.6rem;
+$xDistance: 1.2rem;
+@keyframes ani-black {
+  0%{
+    transform: translate3d($xDistance, 0, 0);
+  }
+  25%{
+    transform: translate3d(0rem, 0, -$zDistance);
+  }
+  50%{
+    transform: translate3d(-$xDistance, 0, 0);
+  }
+  75%{
+    transform: translate3d(0rem, 0, $zDistance);
+  }
+  100%{
+    transform: translate3d($xDistance, 0, 0);
+  }
+}
+
+@keyframes ani-primary {
+  0%{
+    transform: translate3d(-$xDistance, 0, 0);
+  }
+  25%{
+    transform: translate3d(0rem, 0, $zDistance);
+  }
+  50%{
+    transform: translate3d($xDistance, 0, 0);
+  }
+  75%{
+    transform: translate3d(0rem, 0, -$zDistance);
+  }
+  100%{
+    transform: translate3d(-$xDistance, 0, 0);
+  }
+}

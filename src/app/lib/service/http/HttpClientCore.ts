@@ -12,6 +12,7 @@ import {UrlApi} from "../../utils/UrlApi";
 import {InHttpResponseDataFormat} from "../../interfaces/InHttpResponseDataFormat";
 import {HttpApi} from "../../utils/HttpApi";
 import {HttpErrorModel} from "./HttpErrorModel";
+import {LoadingService} from "../system/loading.service";
 
 // 成功返回请求的code值
 const SERVICE_SUCCESS_CODE_VALUE = 200;
@@ -61,6 +62,7 @@ export class HttpClientCore<T> extends Subject<T>  {
   private _completeSubject: Subject<null> = new Subject();
 
   constructor(private http: HttpClient,
+              private loadingService: LoadingService,
               private dialogService: DialogService) {
     super();
 
@@ -182,6 +184,11 @@ export class HttpClientCore<T> extends Subject<T>  {
     return this._body;
   }
 
+  showLoading(): HttpClientCore<T> {
+    this.loadingService.show(this.url);
+    return this;
+  }
+
   request() {
     let headers, body, url;
 
@@ -204,7 +211,7 @@ export class HttpClientCore<T> extends Subject<T>  {
     }, (error: HttpErrorResponse) => {
       return this.handleResponseError(error);
     }, () => {
-      this._completeSubject.next();
+      this.complete();
     });
   }
 
@@ -229,6 +236,11 @@ export class HttpClientCore<T> extends Subject<T>  {
    */
   next(data) {
     super.next(data);
+  }
+
+  complete() {
+    this._completeSubject.next();
+    this.loadingService.hide(this.url);
   }
 
   /**
@@ -261,7 +273,7 @@ export class HttpClientCore<T> extends Subject<T>  {
       this.dialogService.alert(error.message);
     }
 
-    this._completeSubject.next();
+    this.complete();
   }
 
   /**

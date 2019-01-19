@@ -21,12 +21,15 @@ import {HttpClientCore} from "./lib/service/http/HttpClientCore";
 import {SystemModule} from "./lib/modules/system.module";
 import {DialogService} from "./lib/service/system/dialog.service";
 import {DialogComponent} from "./components/dialog/dialog.component";
+import {LoadingService} from "./lib/service/system/loading.service";
+import {LoadingComponent} from "./components/loading/loading.component";
 
 // app根节点需要提供的服务
 let providers = [
   SkDynamicComponentService,
   HttpClientCore,
-  DialogService
+  DialogService,
+  LoadingService
 ];
 
 @NgModule({
@@ -45,7 +48,7 @@ let providers = [
     ...providers
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: [DialogComponent, LoadingComponent]
 })
 export class AppModule {
 }
