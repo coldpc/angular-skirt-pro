@@ -1,5 +1,5 @@
 <div class="header-part">
-  <div class="left">
+  <div class="left" (tap)="onTapLeft()">
     <sk-icon *ngIf="hasBack" [icon]="'angle-left'"></sk-icon>
     <ng-content selector=".left"></ng-content>
   </div>

@@ -172,7 +172,7 @@ export class HttpClientCore<T> extends Subject<T>  {
    * 设置时长
    * @param duration 时长 毫秒数
    */
-  setTimeout(duration: number): HttpClientCore<T> {
+  setTimeoutDuration(duration: number): HttpClientCore<T> {
     this._timeout = duration;
     return this;
   }
@@ -204,7 +204,7 @@ export class HttpClientCore<T> extends Subject<T>  {
     return this;
   }
 
-  request() {
+  request(onSuccess ?: Function, onError ?: Function, onComplete ?: Function) {
     let headers, body, url;
 
     // 获取url地址
@@ -222,11 +222,21 @@ export class HttpClientCore<T> extends Subject<T>  {
       body
     }).pipe(timeout(this.getTimeout()))
       .subscribe((res) => {
-      this.handleData(res);
+
+      let data = this.getHandleResult(res);
+      if (data instanceof HttpErrorModel) {
+        this.handleError(data, onError);
+      } else {
+        this.handleResponse(data, onSuccess);
+      }
     }, (error: HttpErrorResponse) => {
-      return this.handleResponseError(error);
+
+      let httpError = this.getResponseError(error);
+      this.handleError(httpError, onError);
+      this.complete(onComplete);
+
     }, () => {
-      this.complete();
+      this.complete(onComplete);
     });
   }
 
@@ -245,17 +255,12 @@ export class HttpClientCore<T> extends Subject<T>  {
     return this;
   }
 
-  /**
-   * 事件流出
-   * @param data 响应的数据
-   */
-  next(data) {
-    super.next(data);
-  }
-
-  complete() {
+  complete(onComplete ?: Function) {
     this._completeSubject.next();
     this.loadingService.hide(this.url);
+    if (typeof onComplete === 'function') {
+      onComplete();
+    }
   }
 
   /**
@@ -264,50 +269,60 @@ export class HttpClientCore<T> extends Subject<T>  {
    * 服务端响应的数据格式为 {code, message, data}
    * @param res 响应数据
    */
-  handleData(res: InHttpResponseDataFormat): any {
+  getHandleResult(res: InHttpResponseDataFormat): any {
     if (!!res && UtilsBase.checkIsEqual(res.code, SERVICE_SUCCESS_CODE_VALUE)) {
-      this.next(res.data);
+      return res.data;
     } else {
       res = res || {};
       let message = HttpErrorMessage.getErrorMessageByCode(res.code);
 
       // 抛出异常
-      this.handleError(new HttpErrorModel({code: res.code, message, responseData: res}));
+      return new HttpErrorModel({code: res.code, message, responseData: res});
+    }
+  }
+
+  handleResponse(data, onSuccess ?: Function) {
+    super.next(data);
+
+    if (typeof onSuccess === 'function') {
+      onSuccess(data);
     }
   }
 
   // 控制正确返回200的异常处理
   // 在用户不捕获异常的时候 系统自动捕获异常
   // 或者不是用户捕获错误code的异常的时候 系统也要自动捕获
-  handleError(error: HttpErrorModel) {
+  handleError(error: HttpErrorModel, onError ?: Function) {
     if (this.isCatchError &&
       (!this.catchErrorCode ||
         (UtilsBase.checkIsEqual(this.catchErrorCode, error.code)))) {
+
       this._errorSubject.next(error);
+      if (typeof onError === 'function') {
+        onError(error);
+      }
     } else {
       this.dialogService.alert(error.message);
     }
-
-    this.complete();
   }
 
   /**
    * 处理服务端未正常响应的异常
    * @param response 响应数据
    */
-  handleResponseError(response: HttpErrorResponse) {
+  getResponseError(response: HttpErrorResponse) {
     let error, status = response.status;
 
     // 处理错误消息
     error = !!status ? HttpErrorMessage.getHasStatusError(status) :
       HttpErrorMessage.getNoStatusError(response.statusText || response.message);
 
-    this.handleError(new HttpErrorModel({
+    return new HttpErrorModel({
       status,
       code: error.code,
       message: error.message,
       response: HttpErrorResponse
-    }));
+    });
   }
 }
 

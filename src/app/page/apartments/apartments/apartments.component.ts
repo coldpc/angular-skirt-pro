@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ApiApartmentListService, InApartmentModel} from "../../../lib/service/http/api/ApiApartmentListService";
 
 @Component({
@@ -6,25 +6,29 @@ import {ApiApartmentListService, InApartmentModel} from "../../../lib/service/ht
   templateUrl: './apartments.component.html',
   styleUrls: ['./apartments.component.scss']
 })
-export class ApartmentsComponent implements OnInit {
+export class ApartmentsComponent implements OnInit, OnDestroy {
 
   apartments: Array<InApartmentModel>;
 
   constructor(private apiApartmentListService: ApiApartmentListService) {
-    apiApartmentListService.subscribe((res) => {
+  }
+
+  ngOnInit() {
+    this.apiApartmentListService.showLoading().request((res) => {
       this.onLoadData(res);
     });
   }
 
-  ngOnInit() {
-    this.apiApartmentListService.showLoading().request();
-  }
-
-  onLoadData(res: Array<InApartmentModel>) {
+  onLoadData(res: Array<InApartmentModel>){
     this.apartments = res;
   }
 
   getPoi(distance) {
     return Math.round(distance / 1000);
+  }
+
+  ngOnDestroy(): void {
+    // this.apiApartmentListService.observers.splice(0);
+    // this.apiApartmentListService.unsubscribe();
   }
 }
