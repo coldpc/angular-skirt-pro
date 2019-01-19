@@ -4,4 +4,17 @@
       <span>全国</span>
     </div>
   </sk-header>
+  <div class="main">
+    <div *ngFor="let apartment of apartments" class="apartment">
+      <div class="img-con">
+        <sk-image [ratio]="345/190" [src]="apartment.coverPictures.medium"></sk-image>
+      </div>
+      <div class="title">
+        <span>{{apartment.apartmentName}}</span>
+        <div class="right">7300 /月起</div>
+      </div>
+      <div class="address">{{apartment.addressLine}}</div>
+      <div class="address poi-distance">{{apartment.focusPoi.poiName}}{{getPoi(apartment.focusPoi.distance/1000)}}km</div>
+    </div>
+  </div>
 </sk-layout>

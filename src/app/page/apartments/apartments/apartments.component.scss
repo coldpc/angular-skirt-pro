@@ -1,0 +1,32 @@
+@import "../../../theme/variables";
+.main{
+  background-color: #fff;
+}
+.apartment{
+  padding: 0.15rem 0;
+  margin: 0 0.15rem;
+  border-bottom: 1px solid #eee;
+}
+.img-con{
+  border-radius: 0.06rem;
+  overflow: hidden;
+}
+
+.title{
+  padding-top: 0.14rem;
+  font-size: 0.15rem;
+  position: relative;
+  border-top: none;
+
+  .right{
+    float: right;
+    color: $primaryColor;
+  }
+}
+
+.address{
+  line-height: 1;
+  color: $greyFontColor;
+  font-size: $xSmallFontSize;
+  padding-top: 0.06rem;
+}

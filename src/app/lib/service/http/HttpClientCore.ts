@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {HttpErrorMessage} from "./HttpErrorMessage";
 import {EnRequestContentType} from "../../enums/EnRequestContentType";
@@ -34,7 +34,7 @@ export class HttpClientCore<T> extends Subject<T>  {
   public method = EnRequestMethod.post;
 
   // contentType
-  public contentType = EnRequestContentType.form;
+  public contentType = EnRequestContentType.json;
 
   // 接口通用的路径 /h5-api
   public basePath = DEFAULT_BASE_PATH;
@@ -61,13 +61,28 @@ export class HttpClientCore<T> extends Subject<T>  {
   private _errorSubject: Subject<HttpErrorModel> = new Subject();
   private _completeSubject: Subject<null> = new Subject();
 
-  constructor(private http: HttpClient,
-              private loadingService: LoadingService,
-              private dialogService: DialogService) {
+  private http: HttpClient;
+  private loadingService: LoadingService;
+  private dialogService: DialogService;
+
+  constructor(private baseInjector: Injector) {
     super();
 
+    this.http = this.baseInjector.get(HttpClient);
+    this.loadingService = this.baseInjector.get(LoadingService);
+    this.dialogService = this.baseInjector.get(DialogService);
+
+    this.init();
+  }
+
+  init() {
     this.initHeader(this.contentType);
     this.initPath(this.path);
+    this.initBody();
+  }
+
+  initBody() {
+    this.setBody({});
   }
 
   // 初始化path，设置url

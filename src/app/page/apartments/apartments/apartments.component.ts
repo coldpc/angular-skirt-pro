@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiApartmentListService, InApartmentModel} from "../../../lib/service/http/api/ApiApartmentListService";
 
 @Component({
   selector: 'sk-apartments',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApartmentsComponent implements OnInit {
 
-  constructor() { }
+  apartments: Array<InApartmentModel>;
 
-  ngOnInit() {
+  constructor(private apiApartmentListService: ApiApartmentListService) {
+    apiApartmentListService.subscribe((res) => {
+      this.onLoadData(res);
+    });
   }
 
+  ngOnInit() {
+    this.apiApartmentListService.showLoading().request();
+  }
+
+  onLoadData(res: Array<InApartmentModel>) {
+    this.apartments = res;
+  }
+
+  getPoi(distance) {
+    return Math.round(distance / 1000);
+  }
 }
