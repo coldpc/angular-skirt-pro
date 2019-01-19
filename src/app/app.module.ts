@@ -1,8 +1,5 @@
-import { BrowserModule} from '@angular/platform-browser';
-
 /*********************需要使用收拾识别************************/
 /**设置Hammer.defaults.touchAction 保证touch不会停止冒泡*/
-
 import 'hammerjs';
 declare var Hammer: any;
 Hammer.defaults.touchAction = "auto";
@@ -11,20 +8,21 @@ Hammer.defaults.touchAction = "auto";
 import {RemView} from './RemView';
 RemView.init(375, 1);
 
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {SkDynamicComponentService} from "./components/dynamic-component-factory/sk-dynamic-component.service";
-import { AddHostDirective } from './lib/directives/add-host.directive';
+import {AddHostDirective} from './lib/directives/add-host.directive';
 import {HttpClientCore} from "./lib/service/http/HttpClientCore";
 import {SystemModule} from "./lib/modules/system.module";
 import {DialogService} from "./lib/service/system/dialog.service";
 import {DialogComponent} from "./components/dialog/dialog.component";
 
-
+// app根节点需要提供的服务
 let providers = [
   SkDynamicComponentService,
   HttpClientCore,
@@ -39,8 +37,8 @@ let providers = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     SystemModule
   ],
   providers: [
@@ -49,4 +47,5 @@ let providers = [
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

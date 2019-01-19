@@ -1,9 +1,10 @@
 <div class="header-part">
   <div class="left">
-    <ng-content selector="left"></ng-content>
+    <sk-icon *ngIf="hasBack" [icon]="'angle-left'"></sk-icon>
+    <ng-content selector=".left"></ng-content>
   </div>
   <div class="title">{{title}}</div>
   <div class="right">
-    <ng-content selector="right"></ng-content>
+    <ng-content selector=".right"></ng-content>
   </div>
 </div>

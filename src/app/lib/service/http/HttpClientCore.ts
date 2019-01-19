@@ -12,7 +12,6 @@ import {UrlApi} from "../../utils/UrlApi";
 import {InHttpResponseDataFormat} from "../../interfaces/InHttpResponseDataFormat";
 import {HttpApi} from "../../utils/HttpApi";
 import {HttpErrorModel} from "./HttpErrorModel";
-import {InHttpErrorModel} from "../../interfaces/InHttpErrorModel";
 
 // 成功返回请求的code值
 const SERVICE_SUCCESS_CODE_VALUE = 200;
@@ -154,7 +153,7 @@ export class HttpClientCore<T> extends Subject<T>  {
 
   /**
    * 设置时长
-   * @param duration 时长
+   * @param duration 时长 毫秒数
    */
   setTimeout(duration: number): HttpClientCore<T> {
     this._timeout = duration;
@@ -205,8 +204,8 @@ export class HttpClientCore<T> extends Subject<T>  {
     }, (error: HttpErrorResponse) => {
       return this.handleResponseError(error);
     }, () => {
-        this._completeSubject.next();
-      });
+      this._completeSubject.next();
+    });
   }
 
   /**

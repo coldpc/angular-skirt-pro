@@ -25,10 +25,19 @@ $headerBorderColor: #f1f1f1;
   }
   .left{
     left: 0;
-    padding-left: 0.1rem;
+    padding-left: 0.12rem;
+    text-align: left;
+    color: $greyFontColor;
   }
   .right{
     right: 0;
-    padding-right: 0.1rem;
+    padding-right: 0.16rem;
+    text-align: right;
+    color: #666;
   }
+}
+
+
+sk-icon{
+ font-size: $xxLargeFontSize;
 }

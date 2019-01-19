@@ -29,9 +29,9 @@ $defaultDisabledBorderColor: $greyColor;
 
 /************* color primary 字体颜色 背景色 hover的背景色 hover字体的颜色**************/
 $primaryFontColor: #795600;
-$primaryBackColor: $primaryColor;
-$primaryHoverFontColor: #916700;
-$primaryHoverBackColor: #ddbf6a;
+$primaryBackColor: #ffdf83;
+$primaryHoverFontColor: $primaryFontColor;
+$primaryHoverBackColor: #fcd35d;
 
 // disabled的样式
 $primaryDisabledBackColor: #edd180;

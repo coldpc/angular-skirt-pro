@@ -7,7 +7,6 @@ enum EnButtonEffectClass {
   hover = 'hover',
   disabled = 'disabled',
   none = ''
-
 }
 
 @Component({
@@ -29,9 +28,6 @@ export class ButtonComponent implements OnInit {
   // 按钮的尺寸
   @Input() size: EnButtonSize = EnButtonSize.default;
 
-  // 内部效果class
-  innerClass: EnButtonEffectClass = EnButtonEffectClass.none;
-
   // 禁用样式
   disabledClass: EnButtonEffectClass = EnButtonEffectClass.none;
 
@@ -49,16 +45,6 @@ export class ButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  // 设置hover的样式
-  onHover() {
-    this.innerClass = EnButtonEffectClass.hover;
-  }
-
-  // 取消hover的样式
-  onEnd() {
-    this.innerClass = EnButtonEffectClass.none;
   }
 
   // tap触发的事件
