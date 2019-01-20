@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ApiApartmentListService, InApartmentModel} from "../../../lib/service/http/api/ApiApartmentListService";
 
 @Component({
@@ -14,12 +14,15 @@ export class ApartmentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.apiApartmentListService.showLoading().request((res) => {
-      this.onLoadData(res);
-    });
+    this.apiApartmentListService
+      .showLoading()
+      .request()
+      .subscribe((res: InApartmentModel[]) => {
+        this.onLoadData(res);
+      });
   }
 
-  onLoadData(res: Array<InApartmentModel>){
+  onLoadData(res: InApartmentModel[]): void {
     this.apartments = res;
   }
 

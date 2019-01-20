@@ -6,8 +6,8 @@ import {DialogService} from "../system/dialog.service";
 import {EnRequestMethod} from "../../enums/EnRequestMethod";
 import {UtilsBase} from "../../utils/UtilsBase";
 
-import {Subject} from 'rxjs';
-import {timeout} from 'rxjs/operators';
+import {Subject, Subscription} from 'rxjs';
+import {timeout, map, catchError} from 'rxjs/operators';
 import {UrlApi} from "../../utils/UrlApi";
 import {InHttpResponseDataFormat} from "../../interfaces/InHttpResponseDataFormat";
 import {HttpApi} from "../../utils/HttpApi";
@@ -26,7 +26,7 @@ const DEFAULT_REQUEST_HOST = location.host;
 const HEADER_CONTENT_TYPE_KEY = 'Content-Type';
 
 @Injectable()
-export class HttpClientCore<T> extends Subject<T>  {
+export class HttpClientCore<T> {
   // 默认的协议
   public protocol = DEFAULT_PROTOCOL;
 
@@ -48,26 +48,23 @@ export class HttpClientCore<T> extends Subject<T>  {
   // 请求地址 body headers timeout params
   private _url: string;
   private _headers: HttpHeaders = new HttpHeaders();
-  private _body: any;
+  private _body: any = {};
   private _params: any;
-  private _timeout: number = 1000 * 20;
+
+  // 超时时间
+  private _timeoutDuration: number = 1000 * 20;
 
 
   // 捕获异常
   private _isCatchError: boolean = false;
   private _catchErrorCode: string;
 
-  // 异常
-  private _errorSubject: Subject<HttpErrorModel> = new Subject();
-  private _completeSubject: Subject<null> = new Subject();
-
+  // 服务
   private http: HttpClient;
   private loadingService: LoadingService;
   private dialogService: DialogService;
 
   constructor(private baseInjector: Injector) {
-    super();
-
     this.http = this.baseInjector.get(HttpClient);
     this.loadingService = this.baseInjector.get(LoadingService);
     this.dialogService = this.baseInjector.get(DialogService);
@@ -81,17 +78,18 @@ export class HttpClientCore<T> extends Subject<T>  {
     this.initBody();
   }
 
-  initBody() {
-    this.setBody({});
+  // 初始化body
+  private initBody() {
+    this.setBody(this.getBody());
   }
 
   // 初始化path，设置url
-  initPath(path): void {
+  private initPath(path): void {
     this.setUrl(this.getUrlByPath(path));
   }
 
   // 初始化headers
-  initHeader(contentType: EnRequestContentType): void {
+  private initHeader(contentType: EnRequestContentType): void {
     if (contentType !== EnRequestContentType.file) {
       this.setHeader(HEADER_CONTENT_TYPE_KEY, contentType);
     }
@@ -99,14 +97,16 @@ export class HttpClientCore<T> extends Subject<T>  {
 
   /**
    * 设置请求的路径
+   * 需要更新url
    * @param path 路径
    */
-  setPath(path): HttpClientCore<T>  {
+  setPath(path): HttpClientCore<T> {
     this.setUrl(this.getUrlByPath(path));
     this.path = path;
     return this;
   }
 
+  // 设置直接访问的url
   private setUrl(url) {
     this._url = url;
   }
@@ -115,7 +115,7 @@ export class HttpClientCore<T> extends Subject<T>  {
     return this._url;
   }
 
-  getUrlByPath(path): string {
+  private getUrlByPath(path): string {
     let url;
     if (path.indexOf('http') !== 0) {
       url = this.protocol + '//' + this.host + this.basePath + path;
@@ -129,7 +129,7 @@ export class HttpClientCore<T> extends Subject<T>  {
     return this._params;
   }
 
-  setParams(params) {
+  public setParams(params) {
     this._params = params;
     return this;
   }
@@ -164,16 +164,16 @@ export class HttpClientCore<T> extends Subject<T>  {
   /**
    * 获取超时时间
    */
-  getTimeout(): number {
-    return this._timeout;
+  getTimeoutDuration(): number {
+    return this._timeoutDuration;
   }
 
   /**
-   * 设置时长
+   * 设置超时的时长
    * @param duration 时长 毫秒数
    */
   setTimeoutDuration(duration: number): HttpClientCore<T> {
-    this._timeout = duration;
+    this._timeoutDuration = duration;
     return this;
   }
 
@@ -199,67 +199,68 @@ export class HttpClientCore<T> extends Subject<T>  {
     return this._body;
   }
 
+  // 显示加载中效果
   showLoading(): HttpClientCore<T> {
     this.loadingService.show(this.url);
     return this;
   }
 
-  request(onSuccess ?: Function, onError ?: Function, onComplete ?: Function) {
-    let headers, body, url;
+  // 必须立即调用subscribe，否则可能监听不到函数
+  request(): Subject<T> {
+    // 定义新的subject， 一切操作都在这个新的subject上
+    let _subject: Subject<T> = new Subject();
 
     // 获取url地址
-    url = UrlApi.addParams(this.url, this.params);
+    const url = UrlApi.addParams(this.url, this.params);
 
     // 获取请求的header
-    headers = this.getHeaders();
+    const headers = this.getHeaders();
 
     // 添加body数据
-    body = this.getBody();
+    const body = this.getBody();
 
     // 发送请求
-    this.http.request(this.method, url, {
+    let httpSubject = this.http.request(this.method, url, {
       headers,
       body
-    }).pipe(timeout(this.getTimeout()))
-      .subscribe((res) => {
+    }).pipe(timeout(this.getTimeoutDuration()));
 
-      let data = this.getHandleResult(res);
-      if (data instanceof HttpErrorModel) {
-        this.handleError(data, onError);
-      } else {
-        this.handleResponse(data, onSuccess);
-      }
-    }, (error: HttpErrorResponse) => {
-
-      let httpError = this.getResponseError(error);
-      this.handleError(httpError, onError);
-      this.complete(onComplete);
-
-    }, () => {
-      this.complete(onComplete);
+    httpSubject.subscribe((httpRes: InHttpResponseDataFormat) => {
+      this.handleHttpResult(this.getResponseData(httpRes), _subject);
+    }, (httpError: HttpErrorResponse) => {
+      this.handleHttpResult(this.getResponseError(httpError), _subject);
     });
+
+    return _subject;
   }
 
   /**
-   * 订阅请求完成
-   * 异常或者正常返回都会调用一次
-   * @param call 监听函数
+   * 返回结果
+   * @param data 返回的数据
+   * @param subject 订阅者
    */
-  subscribeError(call: any): HttpClientCore<T> {
-    this._errorSubject.subscribe(call);
-    return this;
-  }
-
-  subscribeComplete(call): HttpClientCore<T>  {
-    this._completeSubject.subscribe(call);
-    return this;
-  }
-
-  complete(onComplete ?: Function) {
-    this._completeSubject.next();
+  handleHttpResult(data: any, subject: Subject<T>): void {
     this.loadingService.hide(this.url);
-    if (typeof onComplete === 'function') {
-      onComplete();
+    if (data instanceof HttpErrorModel) {
+      this.handleHttpError(data, subject);
+    } else {
+      subject.next(data);
+      subject.complete();
+    }
+  }
+
+  // 控制正确返回200的异常处理
+  // 在用户不捕获异常的时候 系统自动捕获异常
+  // 或者不是用户捕获错误code的异常的时候 系统也要自动捕获
+  // 用户未捕获异常都将执行complete操作
+  handleHttpError(error: HttpErrorModel, subject: Subject<T>) {
+    if (this.isCatchError &&
+      (!this.catchErrorCode ||
+        (UtilsBase.checkIsEqual(this.catchErrorCode, error.code)))) {
+      subject.error(error);
+    } else {
+      this.dialogService.alert(error.message);
+      subject.complete();
     }
   }
 
@@ -269,40 +270,13 @@ export class HttpClientCore<T> extends Subject<T>  {
    * 服务端响应的数据格式为 {code, message, data}
    * @param res 响应数据
    */
-  getHandleResult(res: InHttpResponseDataFormat): any {
+  getResponseData(res: InHttpResponseDataFormat): any {
     if (!!res && UtilsBase.checkIsEqual(res.code, SERVICE_SUCCESS_CODE_VALUE)) {
       return res.data;
     } else {
       res = res || {};
-      let message = HttpErrorMessage.getErrorMessageByCode(res.code);
-
-      // 抛出异常
-      return new HttpErrorModel({code: res.code, message, responseData: res});
-    }
-  }
-
-  handleResponse(data, onSuccess ?: Function) {
-    super.next(data);
-
-    if (typeof onSuccess === 'function') {
-      onSuccess(data);
-    }
-  }
-
-  // 控制正确返回200的异常处理
-  // 在用户不捕获异常的时候 系统自动捕获异常
-  // 或者不是用户捕获错误code的异常的时候 系统也要自动捕获
-  handleError(error: HttpErrorModel, onError ?: Function) {
-    if (this.isCatchError &&
-      (!this.catchErrorCode ||
-        (UtilsBase.checkIsEqual(this.catchErrorCode, error.code)))) {
-
-      this._errorSubject.next(error);
-      if (typeof onError === 'function') {
-        onError(error);
-      }
-    } else {
-      this.dialogService.alert(error.message);
+      let message = HttpErrorMessage.getErrorMessageByCode(res.code + '', res.message);
+      return new HttpErrorModel({code: res.code + '', message, responseData: res});
     }
   }
 

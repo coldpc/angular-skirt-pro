@@ -23,13 +23,15 @@ import {DialogService} from "./lib/service/system/dialog.service";
 import {DialogComponent} from "./components/dialog/dialog.component";
 import {LoadingService} from "./lib/service/system/loading.service";
 import {LoadingComponent} from "./components/loading/loading.component";
+import {httpInterceptorProviders} from "./lib/service/http/http-interceptors";
 
 // app根节点需要提供的服务
 let providers = [
   SkDynamicComponentService,
   HttpClientCore,
   DialogService,
-  LoadingService
+  LoadingService,
+  httpInterceptorProviders
 ];
 
 @NgModule({

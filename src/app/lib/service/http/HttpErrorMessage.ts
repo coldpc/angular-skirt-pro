@@ -3,8 +3,13 @@ import {EnHttpErrorCode} from "../../enums/EnHttpErrorCode";
 import {ErrorCodeMapMessage} from "./ErrorCodeMapMessage";
 
 export class HttpErrorMessage {
-  static getErrorMessageByCode(code: string): string {
-    return ErrorCodeMapMessage[code || EnHttpErrorCode.unknown];
+  /**
+   * 获取code对应的错误message
+   * @param code 错误code 不存在就取出返回的内部错误消息 否则就为未知异常
+   * @param responseMessage 响应的消息
+   */
+  static getErrorMessageByCode(code: string, responseMessage ?: string): string {
+    return ((!!code) && ErrorCodeMapMessage[code]) || (responseMessage || ErrorCodeMapMessage[EnHttpErrorCode.unknown]);
   }
 
   /**

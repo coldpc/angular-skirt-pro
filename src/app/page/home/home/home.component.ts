@@ -26,12 +26,7 @@ export class HomeComponent implements OnInit {
       .setPath("/product/index/get-city-list")
       .setParams({name: 'pccold', a: 'a'})
       .setBody({test: '123', password: 'asfd'})
-      .subscribeError((error) => {
-        console.log('error');
-      })
-      .subscribeComplete(() => {
-        console.log('complete');
-      })
+      .request()
       .subscribe((data) => {
         console.log('load');
       });
