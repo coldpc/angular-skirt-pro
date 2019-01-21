@@ -17,11 +17,14 @@ export class LayoutComponent implements OnInit, AfterViewChecked, OnDestroy {
   isFixed = false;
   style = {};
 
+  hasInit: boolean = false;
+
   constructor() {
 
   }
 
   ngOnInit() {
+    this.hasInit = true;
     this.isFixed = this.type === EnLayoutType.fixed;
     window.addEventListener('resize', this.setStyle);
   }

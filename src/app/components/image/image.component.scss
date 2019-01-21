@@ -1,0 +1,28 @@
+@import "../../theme/variables";
+
+.img-wrapper{
+  background-color: #f2f2f2;
+}
+
+.img-content{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 3;
+}
+
+sk-icon{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  font-size: 0.4rem;
+  color: #dfdfdf;
+}

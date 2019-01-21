@@ -4,10 +4,11 @@
       <span>全国</span>
     </div>
   </sk-header>
-  <div class="main">
+
+  <div class="main-part">
     <div class="apartment" *ngFor="let apartment of apartments">
       <div class="img-con">
-        <sk-image [ratio]="345/190" [src]="'http://sce-funlive-01.oss-cn-shanghai.aliyuncs.com/hotel/1545961988406040e3fd9-c766-4fb1-a2f8-ce4ad66e19b7?x-oss-process=image/resize,w_1125'"></sk-image>
+        <sk-image [ratio]="345/190" [src]="apartment.coverPictures.medium"></sk-image>
       </div>
       <div class="store-name">
         <span>泉州方隅中骏商城公寓</span>
@@ -15,27 +16,21 @@
           <sk-money [isShowDecimal]="false" [amount]="1350"></sk-money>
         </div>
       </div>
-      <div class="store-name">
-        <span>泉州方隅中骏商城公寓</span>
-      </div>
-      <div class="price">
-        <sk-money [isShowDecimal]="false" [amount]="1350"></sk-money>
-      </div>
+
       <div class="address store-desc">
         <img class="icon" src="../../../../assets/img/coordinate.svg" alt="">
-        <span class="text">鲤城区 池峰路770号</span>
+        <span class="text">{{apartment.addressLine}}</span>
       </div>
-      <div class="geo-tags store-desc">
+      <div *ngIf="!!apartment.focusPoi" class="geo-tags store-desc">
         <div class="main">
           <img class="icon" src="../../../../assets/img/distance.svg" alt="">
           <span class="text">
-            <span>距浮桥</span>
-            <span>1.6km</span>
+            <span>{{getPoiName(apartment)}}</span>
+            <span class="distance">{{getPoiPosition(apartment)}}</span>
           </span>
         </div>
         <div class="tags">
-          <sk-tag [size]="EnTagSize.small" [text]="'交通便利'"></sk-tag>
-          <sk-tag [size]="EnTagSize.small" [text]="'地铁附近'"></sk-tag>
+          <sk-tag *ngFor="let label of apartment.labels" [size]="EnTagSize.small" [text]="label.name"></sk-tag>
         </div>
       </div>
     </div>

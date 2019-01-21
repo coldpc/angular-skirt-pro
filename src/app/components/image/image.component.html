@@ -1,2 +1,8 @@
-<sk-box *ngIf="ratio" [ratio]="ratio" [backgroundImage]="src"></sk-box>
-<img *ngIf="!ratio" [src]="src" alt="">
+<div class="img-wrapper">
+  <sk-box *ngIf="ratio" [ratio]="ratio">
+    <sk-icon [icon]="'logo'"></sk-icon>
+    <div class="img-content" [ngStyle]="{backgroundImage: 'url(' + src + ')'}"></div>
+  </sk-box>
+  <img *ngIf="!ratio" [src]="src" alt="">
+</div>
+
