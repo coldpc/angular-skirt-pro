@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>distance</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="LIVE首页" transform="translate(-28.000000, -676.000000)" fill-rule="nonzero">
+            <g id="Group-3" transform="translate(28.000000, 676.000000)">
+                <g id="distance" transform="translate(2.000000, 2.000000)">
+                    <polygon fill="#FFDA71" points="13.9208984 8.03125 7 12.4169922 10.4604492 22.9511719 16.9921875 6"></polygon>
+                    <polygon stroke="#333333" points="21 0 11.8170365 21 9.39603077 11.6039692 0 9.19232913"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

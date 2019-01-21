@@ -130,4 +130,15 @@ export class UtilsBase {
     }
     return result;
   }
+
+  /**
+   * 处理回调函数
+   * @param call 回调函数
+   * @param args 参数
+   */
+  static doCall(call, ...args): void {
+    if (typeof call === 'function') {
+      call(...args);
+    }
+  }
 }

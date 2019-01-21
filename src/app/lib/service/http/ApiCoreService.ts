@@ -26,7 +26,7 @@ const DEFAULT_REQUEST_HOST = location.host;
 const HEADER_CONTENT_TYPE_KEY = 'Content-Type';
 
 @Injectable()
-export class HttpClientCore<T> {
+export class ApiCoreService<T> {
   // 默认的协议
   public protocol = DEFAULT_PROTOCOL;
 
@@ -100,7 +100,7 @@ export class HttpClientCore<T> {
    * 需要更新url
    * @param path 路径
    */
-  setPath(path): HttpClientCore<T> {
+  setPath(path): ApiCoreService<T> {
     this.setUrl(this.getUrlByPath(path));
     this.path = path;
     return this;
@@ -153,11 +153,11 @@ export class HttpClientCore<T> {
     return this;
   }
 
-  get isCatchError(): boolean {
+  private get isCatchError(): boolean {
     return this._isCatchError;
   }
 
-  get catchErrorCode(): string {
+  private get catchErrorCode(): string {
     return this._catchErrorCode;
   }
 
@@ -172,7 +172,7 @@ export class HttpClientCore<T> {
    * 设置超时的时长
    * @param duration 时长 毫秒数
    */
-  setTimeoutDuration(duration: number): HttpClientCore<T> {
+  setTimeoutDuration(duration: number): ApiCoreService<T> {
     this._timeoutDuration = duration;
     return this;
   }
@@ -181,12 +181,12 @@ export class HttpClientCore<T> {
    * 设置发送到服务端的body内容 仅仅在post中才有使用价值
    * @param data 发送的数据
    */
-  setBody(data): HttpClientCore<T> {
+  setBody(data): ApiCoreService<T> {
     this._body = HttpApi.getBodyByContentType(data, this.contentType);
     return this;
   }
 
-  setHeader(key, value): HttpClientCore<T> {
+  setHeader(key, value): ApiCoreService<T> {
     this._headers = this._headers.set(key, value);
     return this;
   }
@@ -200,15 +200,15 @@ export class HttpClientCore<T> {
   }
 
   // 显示加载中效果
-  showLoading(): HttpClientCore<T> {
+  showLoading(): ApiCoreService<T> {
     this.loadingService.show(this.url);
     return this;
   }
 
   // 必须立即调用subscribe，否则可能监听不到函数
-  request(): Subject<T> {
-    // 定义新的subject， 一切操作都在这个新的subject上
-    let _subject: Subject<T> = new Subject();
+  request(onSuccess ?: (data: T) => void,
+          onError ?: (error: HttpErrorModel) => void,
+          onComplete ?: (api: ApiCoreService<T>) => void): void {
 
     // 获取url地址
     const url = UrlApi.addParams(this.url, this.params);
@@ -226,43 +226,49 @@ export class HttpClientCore<T> {
     }).pipe(timeout(this.getTimeoutDuration()));
 
     httpSubject.subscribe((httpRes: InHttpResponseDataFormat) => {
-      this.handleHttpResult(this.getResponseData(httpRes), _subject);
+      this.handleHttpResult(this.getResponseData(httpRes), onSuccess, onError, onComplete);
     }, (httpError: HttpErrorResponse) => {
-      this.handleHttpResult(this.getResponseError(httpError), _subject);
+      this.handleHttpResult(this.getResponseError(httpError), onSuccess, onError, onComplete);
     });
-
-    return _subject;
   }
 
   /**
-   * 返回结果
-   * @param data 返回的数据
-   * @param subject 订阅者
+   * 处理返回结果
+   * @param data 请求的数据
+   * @param onSuccess 成功
+   * @param onError 错误
+   * @param onComplete 完成
    */
-  handleHttpResult(data: any, subject: Subject<T>): void {
+  handleHttpResult(data: any,
+                   onSuccess ?: (data: T) => void,
+                   onError ?: (error: HttpErrorModel) => void,
+                   onComplete ?: (api: ApiCoreService<T>) => void): void {
+
+    // 如果开始打开了 就需要隐藏了
     this.loadingService.hide(this.url);
+
     if (data instanceof HttpErrorModel) {
-      this.handleHttpError(data, subject);
+      if (this.checkIsCallError(data)) {
+        UtilsBase.doCall(onError, data);
+      } else {
+        this.dialogService.alert(data.message);
+      }
     } else {
-      subject.next(data);
-      subject.complete();
+      UtilsBase.doCall(onSuccess, data);
     }
+
+    UtilsBase.doCall(onComplete, this);
   }
 
   // 控制正确返回200的异常处理
   // 在用户不捕获异常的时候 系统自动捕获异常
   // 或者不是用户捕获错误code的异常的时候 系统也要自动捕获
   // 用户未捕获异常都将执行complete操作
-  handleHttpError(error: HttpErrorModel, subject: Subject<T>) {
-    if (this.isCatchError &&
-      (!this.catchErrorCode ||
-        (UtilsBase.checkIsEqual(this.catchErrorCode, error.code)))) {
-      subject.error(error);
-    } else {
-      this.dialogService.alert(error.message);
-      subject.complete();
-    }
+  checkIsCallError(error: HttpErrorModel): boolean {
+    return this.isCatchError &&
+      (!this.catchErrorCode || (UtilsBase.checkIsEqual(this.catchErrorCode, error.code)));
   }
+
 
   /**
    * 处理数据 返回的数据有可能也是异常的

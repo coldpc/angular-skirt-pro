@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>coordinate</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="LIVE首页" transform="translate(-28.000000, -633.000000)">
+            <g id="coordinate" transform="translate(28.000000, 633.000000)">
+                <g transform="translate(3.000000, 1.000000)" id="Group-3-Copy-19">
+                    <g>
+                        <path d="M10,24.375 C12.4380388,24.375 20,15.6256021 20,10.0661957 C20,4.50678932 15.5228475,0 10,0 C4.4771525,0 0,4.50678932 0,10.0661957 C0,15.6256021 7.56196121,24.375 10,24.375 Z" id="Oval-3" stroke="#333333"></path>
+                        <circle id="Oval-5" fill="#FFDA71" fill-rule="nonzero" cx="11" cy="14" r="6"></circle>
+                        <circle id="Oval-4" stroke="#333333" cx="10" cy="10" r="4.375"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

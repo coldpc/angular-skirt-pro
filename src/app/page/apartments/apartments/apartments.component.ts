@@ -1,5 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ApiApartmentListService, InApartmentModel} from "../../../lib/service/http/api/ApiApartmentListService";
+import {EnTagSize} from 'src/app/lib/enums/EnTagSize';
 
 @Component({
   selector: 'sk-apartments',
@@ -8,7 +9,9 @@ import {ApiApartmentListService, InApartmentModel} from "../../../lib/service/ht
 })
 export class ApartmentsComponent implements OnInit, OnDestroy {
 
-  apartments: Array<InApartmentModel>;
+  apartments: Array<InApartmentModel> = [];
+
+  EnTagSize = EnTagSize;
 
   constructor(private apiApartmentListService: ApiApartmentListService) {
   }
@@ -16,10 +19,7 @@ export class ApartmentsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.apiApartmentListService
       .showLoading()
-      .request()
-      .subscribe((res: InApartmentModel[]) => {
-        this.onLoadData(res);
-      });
+      .request(this.onLoadData.bind(this));
   }
 
   onLoadData(res: InApartmentModel[]): void {

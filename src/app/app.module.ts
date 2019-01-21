@@ -17,7 +17,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SkDynamicComponentService} from "./components/dynamic-component-factory/sk-dynamic-component.service";
 import {AddHostDirective} from './lib/directives/add-host.directive';
-import {HttpClientCore} from "./lib/service/http/HttpClientCore";
+import {ApiCoreService} from "./lib/service/http/ApiCoreService";
 import {SystemModule} from "./lib/modules/system.module";
 import {DialogService} from "./lib/service/system/dialog.service";
 import {DialogComponent} from "./components/dialog/dialog.component";
@@ -28,7 +28,7 @@ import {httpInterceptorProviders} from "./lib/service/http/http-interceptors";
 // app根节点需要提供的服务
 let providers = [
   SkDynamicComponentService,
-  HttpClientCore,
+  ApiCoreService,
   DialogService,
   LoadingService,
   httpInterceptorProviders

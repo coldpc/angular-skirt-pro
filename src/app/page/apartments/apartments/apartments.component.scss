@@ -2,6 +2,9 @@
 .main{
   background-color: #fff;
 }
+.main{
+  font-size: 0.15rem;
+}
 .apartment{
   padding: 0.15rem 0;
   margin: 0 0.15rem;
@@ -12,21 +15,37 @@
   overflow: hidden;
 }
 
-.title{
+.store-name{
   padding-top: 0.14rem;
-  font-size: 0.15rem;
-  position: relative;
-  border-top: none;
-
-  .right{
+  .price{
+    font-size: $xLargeFontSize;
     float: right;
     color: $primaryColor;
   }
 }
 
-.address{
-  line-height: 1;
+.store-desc{
+  padding-top: 0.05rem;
   color: $greyFontColor;
+  display: flex;
+  align-items: center;
+  width: 100%;
   font-size: $xSmallFontSize;
-  padding-top: 0.06rem;
+
+  .main{
+    flex: 1;
+  }
+
+  .icon{
+    width: 0.13rem;
+    vertical-align: middle;
+  }
+  .text{
+    vertical-align: middle;
+    margin-left: 0.07rem;
+  }
+}
+
+sk-tag + sk-tag{
+  margin-left: 0.06rem;
 }

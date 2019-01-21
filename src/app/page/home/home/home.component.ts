@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EnButtonSize} from "../../../lib/enums/EnButtonSize";
 import {DialogService} from "../../../lib/service/system/dialog.service";
 import {EnButtonType} from "../../../lib/enums/EnButtonType";
-import {HttpClientCore} from "../../../lib/service/http/HttpClientCore";
+import {ApiCoreService} from "../../../lib/service/http/ApiCoreService";
 import {LoadingService} from "../../../lib/service/system/loading.service";
 
 @Component({
@@ -20,16 +20,13 @@ export class HomeComponent implements OnInit {
 
   constructor(private dialogService: DialogService,
               private loadingService: LoadingService,
-              private httpClientCore: HttpClientCore<any>) {
+              private httpClientCore: ApiCoreService<any>) {
 
     this.httpClientCore
       .setPath("/product/index/get-city-list")
       .setParams({name: 'pccold', a: 'a'})
       .setBody({test: '123', password: 'asfd'})
-      .request()
-      .subscribe((data) => {
-        console.log('load');
-      });
+      .request();
   }
 
   ngOnInit() {

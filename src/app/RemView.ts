@@ -57,7 +57,11 @@ export class RemView {
   setViewPort() {
     const viewport = window.document.querySelector("meta[name=viewport]");
     viewport.setAttribute('content',
-      `width=device-width, initial-scale=${1 / devicePixelRatio}, shrink-to-fit=no, user-scalable=0, viewport-fit=cover`);
+      `width=device-width, initial-scale=${this.getScale(1, devicePixelRatio)}, shrink-to-fit=no, user-scalable=0, viewport-fit=cover`);
+  }
+
+  getScale(x, y) {
+    return Math.round(100 * x / y) / 100;
   }
 
   /**

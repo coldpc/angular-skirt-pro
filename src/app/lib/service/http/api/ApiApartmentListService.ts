@@ -1,5 +1,5 @@
 import {Injectable, Injector} from '@angular/core';
-import {HttpClientCore} from "../HttpClientCore";
+import {ApiCoreService} from "../ApiCoreService";
 
 export interface InApartmentModel {
   addressLine: string;
@@ -22,7 +22,7 @@ export interface InApartmentModel {
 }
 
 @Injectable()
-export class ApiApartmentListService extends HttpClientCore<Array<InApartmentModel>> {
+export class ApiApartmentListService extends ApiCoreService<Array<InApartmentModel>> {
   public path = '/product/apartment/get-apartment-list';
 
   constructor(private injector: Injector) {
