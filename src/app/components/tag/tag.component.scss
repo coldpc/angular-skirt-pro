@@ -1,0 +1,17 @@
+@import "../../theme/variables";
+.tag {
+  color: #828999;
+  border: 1px solid $tagBorderColor;
+  background-color: transparent;
+
+  &.normal {
+
+  }
+  &.small {
+    padding: 0 0.06rem;
+    border-radius: 0.6rem;
+    height: 0.18rem;
+    line-height: 0.18rem;
+    font-size: $xSmallFontSize;
+  }
+}

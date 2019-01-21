@@ -1,0 +1,9 @@
+<span [ngClass]="{
+        'sk-money': true,
+        'bold': isBold
+      }">
+  <span *ngIf="isShowUnit" class="unit">¥</span>
+  <span class="amount">{{isShowDecimal ? getDecimalAmount(amount) : amount}}</span>
+  <span class='suffix'>/月<span *ngIf="isShowQiText">起</span></span>
+
+</span>
