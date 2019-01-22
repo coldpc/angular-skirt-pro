@@ -9,7 +9,7 @@ declare var window: any;
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() title: string = "标题";
+  @Input() title: string = "";
   @Input() hasBack: boolean = false;
   @Input() isBackAction: boolean = true;
 

@@ -1,0 +1,28 @@
+<div class="container" [ngStyle]="containerStyle">
+  <ng-content select=".drag-back"></ng-content>
+  <div #top class="top-bar">
+    <div *ngIf="isPullRefresh" class="refresh-container" [ngStyle]="getRefreshContainerTransform()">
+            <span class="center-logo">
+                <i class="icon-logo"></i>
+            </span>
+      <span class="rotate" [ngStyle]="getRefreshCircleTransform()" >
+                <span class="circle-up">
+                    <i class="icon-refreshCircle"></i>
+                </span>
+                <span class="circle-down">
+                    <i class="icon-refreshCircle"></i>
+                </span>
+            </span>
+    </div>
+
+    <div *ngIf="!isPullRefresh && !isHideTeamText" class="technology-mark">FUN信息团队</div>
+  </div>
+  <div #scrollWrapper class="scroll-wrapper" [ngStyle]='wrapperStyle'>
+    <div #scrollContent class="scroll-content" [ngStyle]="contentStyle">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div #bottom class="bottom-bar">
+    <div *ngIf="!isHideTeamText" class="technology-mark">中骏</div>
+  </div>
+</div>

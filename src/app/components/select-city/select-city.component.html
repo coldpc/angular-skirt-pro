@@ -1,0 +1,18 @@
+<sk-layout [type]="'static'">
+  <sk-header [hasBack]="true"></sk-header>
+
+  <sk-inner-scroll>
+    <div class="current">
+      <div class="desc">当前城市</div>
+      <div class="city-item">{{currentCity.cityName}}</div>
+    </div>
+
+    <div class="city-part">
+      <div class="desc">全部城市</div>
+      <ul class="city-list">
+        <li *ngFor="let city of cityList" class="city-item">{{city.cityName}}</li>
+      </ul>
+    </div>
+  </sk-inner-scroll>
+
+</sk-layout>

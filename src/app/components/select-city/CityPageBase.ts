@@ -12,18 +12,15 @@ const LIVE_DEFAULT_CITY: InCityModel = {
 
 export class CityPageBase {
 
-  static getRootDomain() {
+  // 获取顶级域名
+  static getRootDomain(): string {
     let domainArray = window.location.hostname.split('.');
     let domain = domainArray.pop();
     return `.${domainArray.pop()}.${domain}`;
   }
 
   // 获取缓存中的city
-  static getCacheCity(): {cityName: string, cityId: string} {
-    let city = CookieApi.getCookie(LIVE_CITY_LOC_KEY, true);
-    if (!city || (!city.cityName && !city.cityName)) {
-      city = LIVE_DEFAULT_CITY;
-    }
-    return city;
+  static getCacheCity(): InCityModel {
+    return CookieApi.getCookie(LIVE_CITY_LOC_KEY, true) || LIVE_DEFAULT_CITY;
   }
 }

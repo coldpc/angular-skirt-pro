@@ -3,7 +3,9 @@
     <ng-content select=".top, sk-header"></ng-content>
   </div>
   <div class="main-part row">
-    <ng-content></ng-content>
+    <div class="main-content">
+      <ng-content></ng-content>
+    </div>
   </div>
   <div #bottomPart class="bottom-part row">
     <ng-content select=".bottom"></ng-content>
