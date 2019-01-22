@@ -9,7 +9,7 @@
   <div class="main-part">
     <div *ngFor="let apartment of apartments" class="apartment">
       <div class="img-con">
-        <sk-image [ratio]="345/190" [src]="apartment.coverPictures.medium"></sk-image>
+        <sk-image [ratio]="345/190" [pictures]="apartment.coverPictures"></sk-image>
       </div>
       <div class="store-name">
         <span>泉州方隅中骏商城公寓</span>

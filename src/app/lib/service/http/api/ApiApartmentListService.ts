@@ -1,5 +1,6 @@
 import {Injectable, Injector} from '@angular/core';
 import {ApiCoreService} from "../ApiCoreService";
+import {InCoverPictures} from "../../../interfaces/InCoverPictures";
 
 export interface InApartmentModel {
   addressLine: string;
@@ -8,7 +9,7 @@ export interface InApartmentModel {
   apartmentName: string;
   apartmentPhoneNo: string;
   cbdDesc: string;
-  coverPictures: string;
+  coverPictures: InCoverPictures;
   district: string;
   focusPoi: string;
   geoPosition: string;
@@ -23,6 +24,8 @@ export interface InApartmentModel {
 
 @Injectable()
 export class ApiApartmentListService extends ApiCoreService<Array<InApartmentModel>> {
+
+  // 请求路径
   public path = '/product/apartment/get-apartment-list';
 
   constructor(private injector: Injector) {
