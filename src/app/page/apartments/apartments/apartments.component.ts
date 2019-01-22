@@ -7,11 +7,13 @@ import {EnTagSize} from 'src/app/lib/enums/EnTagSize';
   templateUrl: './apartments.component.html',
   styleUrls: ['./apartments.component.scss']
 })
-export class ApartmentsComponent implements OnInit, OnDestroy {
+export class ApartmentsComponent implements OnInit {
 
   apartments: Array<InApartmentModel> = [];
 
   EnTagSize = EnTagSize;
+
+  isShowSelectCity: boolean = false;
 
   constructor(private apiApartmentListService: ApiApartmentListService) {
   }
@@ -47,8 +49,7 @@ export class ApartmentsComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    // this.apiApartmentListService.observers.splice(0);
-    // this.apiApartmentListService.unsubscribe();
+  onTapCity(): void {
+    this.isShowSelectCity = true;
   }
 }

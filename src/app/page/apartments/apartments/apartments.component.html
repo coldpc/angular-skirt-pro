@@ -1,12 +1,13 @@
 <sk-layout>
-  <sk-header [hasBack]="true" [title]="'公寓列表'">
+  <sk-header [hasBack]="true" [title]="'公寓列表'" (tapRight)="onTapCity()">
     <div class="right">
       <span>全国</span>
+      <span [skIcon]="'full-angle-down'"></span>
     </div>
   </sk-header>
 
   <div class="main-part">
-    <div class="apartment" *ngFor="let apartment of apartments">
+    <div *ngFor="let apartment of apartments" class="apartment">
       <div class="img-con">
         <sk-image [ratio]="345/190" [src]="apartment.coverPictures.medium"></sk-image>
       </div>
@@ -25,9 +26,9 @@
         <div class="main">
           <img class="icon" src="../../../../assets/img/distance.svg" alt="">
           <span class="text">
-            <span>{{getPoiName(apartment)}}</span>
-            <span class="distance">{{getPoiPosition(apartment)}}</span>
-          </span>
+          <span>{{getPoiName(apartment)}}</span>
+          <span class="distance">{{getPoiPosition(apartment)}}</span>
+        </span>
         </div>
         <div class="tags">
           <sk-tag *ngFor="let label of apartment.labels" [size]="EnTagSize.small" [text]="label.name"></sk-tag>
@@ -35,4 +36,5 @@
       </div>
     </div>
   </div>
+
 </sk-layout>

@@ -4,7 +4,6 @@ import {ButtonComponent} from "../../components/button/button.component";
 import {LayoutComponent} from "../../components/layout/layout.component";
 import {ImageComponent} from "../../components/image/image.component";
 import {HeaderComponent} from "../../components/header/header.component";
-import {IconComponent} from "../../components/icon/icon.component";
 import {DeviceAdaptiveComponent} from "../../components/device-adaptive/device-adaptive.component";
 import {InputComponent} from "../../components/input/input.component";
 import {ListComponent} from "../../components/list/list.component";
@@ -19,7 +18,6 @@ const components = [
   LayoutComponent,
   ImageComponent,
   HeaderComponent,
-  IconComponent,
   DeviceAdaptiveComponent,
   InputComponent,
   ModalComponent,

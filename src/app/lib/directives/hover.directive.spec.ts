@@ -1,4 +1,4 @@
-import { TouchHoverDirective } from './touch-hover.directive';
+import { TouchHoverDirective } from './hover.directive';
 import {TestBed} from '@angular/core/testing';
 import {ElementRef} from '@angular/core';
 

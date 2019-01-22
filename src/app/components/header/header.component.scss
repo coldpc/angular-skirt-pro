@@ -7,14 +7,17 @@ $headerBorderColor: #f1f1f1;
 .header-part{
   position: relative;
   height: $headerHeight;
-  line-height: $headerHeight;
   text-align: center;
   background-color: #ffffff;
   border-bottom: $headerBorderColor;
   box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.117647);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-  .title{
+  .title {
     font-size: $xLargeFontSize;
+    flex: 1;
   }
 
   .left, .right{
@@ -22,22 +25,24 @@ $headerBorderColor: #f1f1f1;
     top: 0;
     height: 100%;
     z-index: 2;
+    display: inline-flex;
+    align-items: center;
   }
   .left{
     left: 0;
-    padding-left: 0.12rem;
+    padding-left: 0.1rem;
     text-align: left;
     color: $greyFontColor;
+    min-width: $headerHeight;
+
+    .icon{
+      font-size: 0.22rem;
+    }
   }
   .right{
     right: 0;
-    padding-right: 0.16rem;
+    padding-right: 0.1rem;
     text-align: right;
     color: #666;
   }
-}
-
-
-sk-icon{
- font-size: $xxLargeFontSize;
 }

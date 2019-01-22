@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 declare var window: any;
 
@@ -13,14 +13,24 @@ export class HeaderComponent implements OnInit {
   @Input() hasBack: boolean = false;
   @Input() isBackAction: boolean = true;
 
+  // 输出的事件
+  @Output() tapLeft: EventEmitter<Event> = new EventEmitter();
+  @Output() tapRight: EventEmitter<Event> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  onTapLeft() {
+  onTapLeft(e: Event) {
     if (this.isBackAction) {
       window.history.back();
+    } else {
+      this.tapLeft.emit(e);
     }
+  }
+
+  onTapRight(e: Event) {
+    this.tapRight.emit(e);
   }
 }

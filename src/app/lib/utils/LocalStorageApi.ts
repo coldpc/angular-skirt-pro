@@ -1,11 +1,13 @@
-export default class LocalStorageApi {
+import {UtilsBase} from "./UtilsBase";
+
+export class LocalStorageApi {
 
   /**
    * 移除本地缓存项
-   * @param key
-   * @returns {boolean}
+   * @param key 缓存key'
+   * @returns 返回是否移除成功
    */
-  static removeItem(key) {
+  static removeItem(key): boolean {
     let localStorage = window.localStorage;
     if (localStorage) {
       localStorage.removeItem(key);
@@ -17,11 +19,10 @@ export default class LocalStorageApi {
 
   /**
    * 加入缓存项
-   * @param key
-   * @param value
-   * @returns {boolean}
+   * @param key 键
+   * @param value 值
    */
-  static setItem(key, value) {
+  static setItem(key, value): void {
     let localStorage = window.localStorage;
 
     if (localStorage) {
@@ -35,13 +36,12 @@ export default class LocalStorageApi {
 
   /**
    * 获取存储项
-   * @param key
-   * @param isParse
-   * @returns {string}
+   * @param key 键
+   * @param isAutoParse 是否自动格式化
    */
-  static getItem(key, isParse) {
+  static getItem(key, isAutoParse): any {
     let data = window.localStorage.getItem(key);
-    if (data && isParse) {
+    if (!UtilsBase.isNull(data) && isAutoParse) {
       data = JSON.parse(data);
     }
     return data;

@@ -3,7 +3,7 @@ import { Directive, ElementRef, HostListener, Input} from '@angular/core';
 @Directive({
   selector: '[skHover]'
 })
-export class TouchHoverDirective {
+export class HoverDirective {
   // hover的颜色值
   @Input('skHover') hoverColor: string;
 
