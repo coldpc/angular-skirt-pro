@@ -1,4 +1,4 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[skIcon]',
@@ -9,8 +9,15 @@ import { Directive, Input } from '@angular/core';
 export class IconDirective {
 
   @Input("skIcon") iconClass: string;
+
+  // 固定的className
   className = 'icon sk-icon sk-i-';
 
-  constructor() { }
+  constructor(private el: ElementRef) {
+    let originClass = el.nativeElement.className;
+    if (originClass) {
+      this.className = `${originClass} ${this.className}`;
+    }
+  }
 
 }

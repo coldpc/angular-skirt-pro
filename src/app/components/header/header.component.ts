@@ -9,7 +9,7 @@ declare var window: any;
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() title: string = "";
+  @Input() title: string = '';
   @Input() hasBack: boolean = false;
   @Input() isBackAction: boolean = true;
 
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onTapLeft(e: Event) {
-    if (this.isBackAction) {
+    if (this.hasBack && this.isBackAction) {
       window.history.back();
     } else {
       this.tapLeft.emit(e);

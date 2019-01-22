@@ -1,7 +1,7 @@
 <sk-layout>
-  <sk-header [hasBack]="true" [title]="'公寓列表'" (tapRight)="onTapCity()">
+  <sk-header [hasBack]="true" [title]="'FUNLIVE方隅公寓'" (tapRight)="onTapCity()">
     <div class="right">
-      <span>全国</span>
+      <span>{{currentCity.cityName}}</span>
       <span [skIcon]="'full-angle-down'"></span>
     </div>
   </sk-header>
@@ -12,7 +12,7 @@
         <sk-image [ratio]="345/190" [pictures]="apartment.coverPictures"></sk-image>
       </div>
       <div class="store-name">
-        <span>泉州方隅中骏商城公寓</span>
+        <span>{{apartment.apartmentName}}</span>
         <div class="price">
           <sk-money [isShowDecimal]="false" [amount]="1350"></sk-money>
         </div>
@@ -38,4 +38,4 @@
   </div>
 </sk-layout>
 
-<sk-select-city></sk-select-city>
+<sk-select-city [(isShow)]="isShowSelectCity" [currentCity]="currentCity" (currentCityChange)="OnSwitchCity($event)"></sk-select-city>

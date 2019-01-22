@@ -1,5 +1,7 @@
-<sk-layout [type]="'static'">
-  <sk-header [hasBack]="true"></sk-header>
+<sk-layout [@anim]="state" [type]="'static'">
+  <sk-header (tapLeft)="onTapClose()">
+    <span class="left close" [skIcon]="'close'"></span>
+  </sk-header>
 
   <sk-inner-scroll>
     <div class="current">
@@ -10,9 +12,8 @@
     <div class="city-part">
       <div class="desc">全部城市</div>
       <ul class="city-list">
-        <li *ngFor="let city of cityList" class="city-item">{{city.cityName}}</li>
+        <li *ngFor="let city of cityList" (tap)="onTapCity(city)" class="city-item">{{city.cityName}}<span *ngIf="city.cityId === currentCity.cityId" [skIcon]="'confirm'"></span> </li>
       </ul>
     </div>
   </sk-inner-scroll>
-
 </sk-layout>

@@ -1,6 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ApiApartmentListService, InApartmentModel} from "../../../lib/service/http/api/ApiApartmentListService";
 import {EnTagSize} from 'src/app/lib/enums/EnTagSize';
+import {InCityModel} from "../../../lib/interfaces/InCityModel";
+import {CityPageBase} from "../../../components/select-city/CityPageBase";
 
 @Component({
   selector: 'sk-apartments',
@@ -15,21 +17,25 @@ export class ApartmentsComponent implements OnInit {
 
   isShowSelectCity: boolean = false;
 
+  currentCity: InCityModel = CityPageBase.getCacheCity();
+
   constructor(private apiApartmentListService: ApiApartmentListService) {
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    let cityId = this.currentCity.cityId || '';
     this.apiApartmentListService
+      .setBody({cityId})
       .showLoading()
       .request(this.onLoadData.bind(this));
   }
 
   onLoadData(res: InApartmentModel[]): void {
     this.apartments = res;
-  }
-
-  getPoi(distance) {
-    return Math.round(distance / 1000);
   }
 
   getPoiName(apartment) {
@@ -51,5 +57,10 @@ export class ApartmentsComponent implements OnInit {
 
   onTapCity(): void {
     this.isShowSelectCity = true;
+  }
+
+  OnSwitchCity(city: InCityModel): void {
+    this.currentCity = city;
+    this.loadData();
   }
 }

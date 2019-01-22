@@ -1,4 +1,8 @@
 @import "../../theme/variables";
+
+$distance: 0.2rem;
+$border: 1px solid #efefef;
+
 sk-layout{
   position: fixed;
   top: 0;
@@ -8,116 +12,60 @@ sk-layout{
   z-index: 100;
 }
 
-.fun-city-wrapper {
-  height: 100%;
-  position: fixed;
-  overflow: hidden;
-  display: none;
-  transition-timing-function: ease-in;
-  transition: all 0.2s;
-  top: 0%;
-  bottom: 0;
-  width: 100%;
-  background: #ffffff;
-  z-index: 101;
 
-  .close-con{
-    color: #949AA7;
-    font-size: 17px; /*no*/
-    text-align: left;
-    padding-left: 15px;/*no*/
+.close{
+  color: $greyFontColor;
+  margin-left: 0.04rem;
+  font-size: $xLargeFontSize;
+}
+
+
+
+.f-icon-confirm {
+  font-size: 40px;
+  color: #E0AE01;
+  float: right;
+  display: block;
+  line-height: 82px;
+  margin-right: 20px;
+}
+
+.current {
+  font-size: 0.15rem;
+  letter-spacing: 0.52px;
+  padding: 0 $distance;
+  border-bottom: $border;
+}
+
+.desc {
+  color: $greyFontColor;
+  font-size: $smallFontSize;
+  padding-top: 0.16rem;
+}
+
+.city-part .desc{
+  padding-left: $distance;
+}
+
+.city-item {
+  padding: 0.12rem 0;
+  font-size: 0.15rem;
+
+  & + &{
+    border-top: $border;
   }
 
-  .line-bottom{
-    height: 1px; /*no*/
-  }
-
-  .scroll-back{
-    background-color: #fff !important;
-  }
-
-  .f-icon-confirm {
-    font-size: 40px;
-    color: #E0AE01;
+  .icon{
+    color: $primaryColor;
     float: right;
-    display: block;
-    line-height: 82px;
-    margin-right: 20px;
+    margin-right: $distance;
+    font-size: $xxLargeFontSize;
   }
+}
 
-  .city_container {
-    font-size: 26px;
-    color: #949AA7;
-    letter-spacing: 0.52px;
-    padding: 30px 80px 20px 40px;
-
-    .city_current {
-      padding-top: 24px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      line-height: 30px;
-      font-size: 30px;
-      color: #333333;
-      letter-spacing: 0.6px;
-    }
-  }
-
-  .city-list {
-    padding: 30px 45px 0px 45px;
-    .city-item {
-      line-height: 82px;
-      height: 82px;
-      font-size: 30px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      color: #333333;
-      letter-spacing: 0.6px;
-    }
-
-    .city_list_title{
-      color: #949AA7;
-    }
-  }
-
-  .city_close_wrapper {
-    .city_close {
-      position: absolute;
-      padding: 28px 30px;
-      font-size: 34px;
-    }
-    background: #ffffff;
-    position: relative;
-    font-size: 34px;
-    height: 88px;
-    color: $greyFontColor;
-  }
-
-
-  &.fun-city-wrapper-enter {
-    display: block;
-    top: -100%;
-  }
-  &.fun-city-wrapper-active {
-    display: block;
-    top: 0%;
-  }
-  &.fun-city-wrapper-enter-done {
-    top: 0%;
-    display: block;
-  }
-  &.fun-city-wrapper-exit {
-    display: block;
-    top: 0%;
-  }
-  &.fun-city-wrapper-exit-active {
-    display: block;
-    top: -100%;
-  }
-
-  &.fun-city-wrapper-exit-done{
-    top: -100%;
-    display: none;
-  }
+.city-list {
+  list-style: none;
+  margin: 0;
+  padding-left: $distance;
+  border-bottom: $border;
 }
