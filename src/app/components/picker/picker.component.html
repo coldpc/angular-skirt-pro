@@ -1,7 +1,7 @@
 <div class="wrapper">
-  <div class="window" />
+  <div class="window"></div>
   <div class="indicator"></div>
   <div class="items">
-    <div *ngfor="let item of listData">{{getItemDisplay(item)}}</div>
+    <div class="item" *ngFor="let item of listData">{{getItemDisplay(item)}}</div>
   </div>
 </div>
