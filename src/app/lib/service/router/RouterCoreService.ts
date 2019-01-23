@@ -58,7 +58,24 @@ export class RouterCoreService {
 
   // 返回
   gotoBack() {
+    // 标记是否历史返回操作
+    let isBack = false;
+    window.addEventListener('popstate', setIsBack);
+
+    // 触发返回
     history.go(-1);
+
+    setTimeout((_this) => {
+      window.removeEventListener('popstate', setIsBack);
+      if (!isBack) {
+        _this.backHome();
+      }
+    }, 100, this);
+
+    // 设置是触发返回的操作
+    function setIsBack() {
+      isBack = true;
+    }
   }
 
   // 去重定向的页面 登陆之后调用比较合适
@@ -152,5 +169,12 @@ export class RouterCoreService {
         this.redirectPage(USER_LOGIN_URL);
       }
     }
+  }
+
+  backHome() {
+    this.loadPage({
+      path: EnRouterPath.home,
+      historyState: EnHistoryState.replace
+    });
   }
 }

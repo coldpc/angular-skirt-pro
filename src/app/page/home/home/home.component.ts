@@ -5,6 +5,7 @@ import {EnButtonType} from "../../../lib/enums/EnButtonType";
 import {ApiCoreService} from "../../../lib/service/http/ApiCoreService";
 import {LoadingService} from "../../../lib/service/system/loading.service";
 import {RouterService} from "../../../lib/service/router/RouterService";
+import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 
 @Component({
   selector: 'sk-home',
@@ -40,7 +41,8 @@ export class HomeComponent implements OnInit {
 
   onTapButton() {
     this.routerService.gotoApartments({
-      params: {cityId: 1, cityName: "权国"}
+      params: {cityId: 1, cityName: "权国"},
+      historyState: EnHistoryState.replace
     });
     // this.isShowMask = true;
     // this.dialogService.confirm({
