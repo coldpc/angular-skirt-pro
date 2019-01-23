@@ -141,4 +141,35 @@ export class UtilsBase {
       call(...args);
     }
   }
+
+  /**
+   *
+   * @param str 处理的字符串
+   * @param isStart 是否从首字符开始
+   * @returns 下划线转化为驼峰命名规格 an_apple
+   */
+  static transToUppercase(str: string, isStart: boolean = false): string {
+    if (isStart) {
+      let $0 = str.charAt(0);
+      if ((/[a-z]/i).test($0)) {
+        str = str.replace($0, $0.toUpperCase());
+      }
+    }
+
+    return str.replace(/_(\w)/g, function ($0, $1) {
+      if ((/[a-z]/i).test($1)) {
+        return $1.toUpperCase();
+      } else {
+        return $0;
+      }
+    });
+  }
+
+  /**
+   * 转化为小写下划线分隔开
+   * @param str anApple 转化为 an_apple
+   */
+  static transToUnderline(str: string): string {
+    return str.replace(/([A-Z])/g, "_$1").toLowerCase();
+  }
 }

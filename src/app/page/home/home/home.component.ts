@@ -4,6 +4,7 @@ import {DialogService} from "../../../lib/service/system/dialog.service";
 import {EnButtonType} from "../../../lib/enums/EnButtonType";
 import {ApiCoreService} from "../../../lib/service/http/ApiCoreService";
 import {LoadingService} from "../../../lib/service/system/loading.service";
+import {RouterService} from "../../../lib/service/router/RouterService";
 
 @Component({
   selector: 'sk-home',
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private dialogService: DialogService,
               private loadingService: LoadingService,
-              private httpClientCore: ApiCoreService<any>) {
+              private httpClientCore: ApiCoreService<any>,
+              private routerService: RouterService) {
 
     this.httpClientCore
       .setPath("/product/index/get-city-list")
@@ -37,11 +39,14 @@ export class HomeComponent implements OnInit {
   }
 
   onTapButton() {
-    // this.isShowMask = true;
-    this.dialogService.confirm({
-      message: "确定要删除订单吗？",
-      onOk: this.onConfirm
+    this.routerService.gotoApartments({
+      params: {cityId: 1, cityName: "权国"}
     });
+    // this.isShowMask = true;
+    // this.dialogService.confirm({
+    //   message: "确定要删除订单吗？",
+    //   onOk: this.onConfirm
+    // });
   }
 
   onConfirm() {

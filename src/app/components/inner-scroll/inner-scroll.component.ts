@@ -44,13 +44,13 @@ export class InnerScrollComponent implements OnInit, AfterViewInit {
   @ViewChild("bottom") bottomElementRef: ElementRef;
 
   // 最大的下拉距离
-  @Input() maxPullDownDistance = 100;
+  @Input() maxPullDownDistance = 100 * (window.devicePixelRatio || 1);
 
   // 最大上拉的距离
-  @Input() maxPullUpDistance = 100;
+  @Input() maxPullUpDistance = 100 * (window.devicePixelRatio || 1);
 
   // 下拉达到的距离触发刷新
-  @Input() pullRefreshDistance = 70;
+  @Input() pullRefreshDistance = 70 * (window.devicePixelRatio || 1);
   // 是否为下拉刷新
   @Input() isPullRefresh = false;
 
@@ -270,8 +270,7 @@ export class InnerScrollComponent implements OnInit, AfterViewInit {
 
   // 阻止浏览器默认行为
   stop(e) {
-    e.stopPropagation();
-    if (e.cancelable && !e.defaultPrevented) {
+    if (e.cancelable) {
       e.preventDefault();
     }
   }

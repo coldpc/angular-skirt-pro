@@ -5,6 +5,7 @@ import {CommonComponentsModule} from "../../lib/modules/common.components.module
 import {ApiApartmentListService} from "../../lib/service/http/api/ApiApartmentListService";
 import {TagComponent} from "../../components/tag/tag.component";
 import {CityModule} from "../../lib/modules/city.module";
+import {RouterService} from "../../lib/service/router/RouterService";
 
 @NgModule({
   declarations: [ApartmentsComponent, TagComponent],
@@ -13,6 +14,6 @@ import {CityModule} from "../../lib/modules/city.module";
     CommonComponentsModule,
     CityModule
   ],
-  providers: [ApiApartmentListService]
+  providers: [ApiApartmentListService, RouterService]
 })
 export class ApartmentsModule { }

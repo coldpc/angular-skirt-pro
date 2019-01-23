@@ -3,6 +3,7 @@ import {ApiApartmentListService, InApartmentModel} from "../../../lib/service/ht
 import {EnTagSize} from 'src/app/lib/enums/EnTagSize';
 import {InCityModel} from "../../../lib/interfaces/InCityModel";
 import {CityPageBase} from "../../../components/select-city/CityPageBase";
+import {RouterService} from "../../../lib/service/router/RouterService";
 
 @Component({
   selector: 'sk-apartments',
@@ -19,7 +20,9 @@ export class ApartmentsComponent implements OnInit {
 
   currentCity: InCityModel = CityPageBase.getCacheCity();
 
-  constructor(private apiApartmentListService: ApiApartmentListService) {
+  constructor(private apiApartmentListService: ApiApartmentListService,
+              private routerService: RouterService) {
+    console.log(this.routerService.queryParams);
   }
 
   ngOnInit() {
