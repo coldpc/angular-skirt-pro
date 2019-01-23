@@ -1,8 +1,6 @@
-<div class="img-wrapper">
-  <sk-box *ngIf="ratio" [ratio]="ratio">
-    <span [skIcon]="'logo'"></span>
-    <div class="img-content" [ngStyle]="getStyle()"></div>
-  </sk-box>
-  <img *ngIf="!ratio" [src]="src" alt="">
-</div>
+<sk-box *ngIf="ratio" [ratio]="ratio">
+  <span [skIcon]="'logo'"></span>
+  <div class="img-content" [ngStyle]="getStyle()"></div>
+</sk-box>
+<img *ngIf="!ratio" [src]="src" alt="">
 

@@ -1,6 +1,8 @@
 @import "../../theme/variables";
 
-.img-wrapper{
+:host{
+  display: inline-block;
+  width: 100%;
   background-color: #f2f2f2;
 }
 
@@ -13,6 +15,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-image: none;
   z-index: 3;
 }
 

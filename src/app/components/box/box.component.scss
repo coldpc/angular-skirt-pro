@@ -1,5 +1,6 @@
-.box-wrapper{
+:host{
   position: relative;
+  display: block;
 }
 .box-content{
   position: absolute;
