@@ -1,0 +1,69 @@
+@import "../../theme/variables";
+
+.sk-picker-wrapper {
+  width: 100%;
+  background: #fff;
+}
+
+.picker-title {
+  text-align: center;
+  padding: 0.06rem 0;
+  color: $greyFontColor;
+  background-color: #F8F8F8;
+  font-size: $largeFontSize;
+  font-weight: normal;
+  margin: 0;
+}
+
+.picker-list-con {
+  height: 3rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.picker-list, .picker-line {
+  text-align: center;
+  list-style: none;
+  line-height: 0.4rem;
+  color: #EAEAEA;
+  height: 0.40rem;
+  top: 50%;
+  margin-top: -0.2rem;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.picker-line {
+  background: #eee;
+  opacity: 0.3;
+  transform: none;
+}
+
+.picker-item {
+  color: $greyFontColor;
+  height: 100%;
+  padding: 0 0.1rem;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: default;
+  display: none;
+
+  &.high-light {
+    color: $primaryColor;
+  }
+
+  &.visible {
+    display: block;
+  }
+}

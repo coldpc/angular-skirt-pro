@@ -10,7 +10,7 @@ export class RouterService extends RouterCoreService {
   /**
    * 公寓列表
    */
-  gotoApartments(params ?: ApartmentsParams): void {
+  gotoApartments(params: ApartmentsParams = {}): void {
     params.path = EnRouterPath.apartments;
     this.loadPage(params);
   }

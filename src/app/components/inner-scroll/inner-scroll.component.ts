@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {UtilsBase} from "../../lib/utils/UtilsBase";
 
 export const RE_TRANSLATE_MATRIX = /matrix(3d)?\((.+?)\)/;
 
@@ -96,11 +97,6 @@ export class InnerScrollComponent implements OnInit, AfterViewInit {
   };
 
   private _isLock = false; // 是否锁定整个操作
-
-
-  static getStyle(t: any) {
-    return t.currentStyle ? t.currentStyle : getComputedStyle(t);
-  }
 
   constructor() {
   }
@@ -340,7 +336,7 @@ export class InnerScrollComponent implements OnInit, AfterViewInit {
 
   // transform 的xyz
   parseTranslateMatrix(dom): Position {
-    let style = InnerScrollComponent.getStyle(dom);
+    let style = UtilsBase.getStyle(dom);
     let matrix: Array<string> = style['webkitTransform'].match(RE_TRANSLATE_MATRIX);
     let is3D = matrix && matrix[1];
 

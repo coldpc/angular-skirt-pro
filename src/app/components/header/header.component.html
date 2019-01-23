@@ -1,13 +1,11 @@
-<div class="header-part">
-  <div class="left" (tap)="onTapLeft($event)">
-    <span *ngIf="hasBack" [skIcon]="'angle-left'"></span>
-    <ng-content *ngIf="!hasBack" select=".left"></ng-content>
-  </div>
-  <div class="title">
-    {{title}}
-    <ng-content></ng-content>
-  </div>
-  <div class="right" (tap)="onTapRight($event)">
-    <ng-content select=".right"></ng-content>
-  </div>
+<div class="left" (tap)="onTapLeft($event)">
+  <span *ngIf="hasBack" [skIcon]="'angle-left'"></span>
+  <ng-content *ngIf="!hasBack" select=".left"></ng-content>
+</div>
+<div class="title">
+  {{title}}
+  <ng-content></ng-content>
+</div>
+<div class="right" (tap)="onTapRight($event)">
+  <ng-content select=".right"></ng-content>
 </div>

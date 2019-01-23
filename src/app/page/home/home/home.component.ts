@@ -41,8 +41,7 @@ export class HomeComponent implements OnInit {
 
   onTapButton() {
     this.routerService.gotoApartments({
-      params: {cityId: 1, cityName: "权国"},
-      historyState: EnHistoryState.replace
+      params: {cityId: 1, cityName: "权国"}
     });
     // this.isShowMask = true;
     // this.dialogService.confirm({

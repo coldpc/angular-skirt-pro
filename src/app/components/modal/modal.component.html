@@ -1,3 +1,10 @@
-<p>
-  modal works!
-</p>
+<div class="modal-container" [@anim]="state">
+  <sk-header [title]="title" (tapRight)="onTapConfirm()" (tapLeft)="onTapClose()">
+    <span class="left" [skIcon]="'close'"></span>
+    <span *ngIf="hasConfirm" class="right" [skIcon]="'confirm2'"></span>
+  </sk-header>
+  <div class="main-content">
+    <ng-content></ng-content>
+  </div>
+</div>
+<sk-mask [(isShow)]="isShow"></sk-mask>

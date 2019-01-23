@@ -2,17 +2,15 @@
   <sk-header title="首页"></sk-header>
   <div class="main">
     <sk-image [src]="imgSrc" [ratio]="16/9" (tap)="onTapImg()"></sk-image>
-    <button routerLink="/page/apartments">Go to sidekicks</button>
   </div>
 
   <div class="bottom">
-    <sk-button [buttonStyle]="{borderRadius: '0'}"
-               [type]="EnButtonType.primary"
-               [size]="EnButtonSize.full"
+    <sk-button [type]="EnButtonType.black"
+               [disabled]="false" (tapEvent)="isShowMask = true" [adaptType]="'bottom'">选择日期</sk-button>
+
+    <sk-button [type]="EnButtonType.primary" [size]="EnButtonSize.default"
                [disabled]="false" (tapEvent)="onTapButton()" [adaptType]="'bottom'">选房预定</sk-button>
   </div>
 </sk-layout>
 
-<sk-dialog [isConfirm]="true" (cancelEvent)="onCancel()" message="效手机的人还是在哪里" [(isShow)]="isShowMask" (okEvent)="onConfirm()"></sk-dialog>
-
-<sk-loading></sk-loading>
+<sk-date-picker [(isShow)]="isShowMask"></sk-date-picker>

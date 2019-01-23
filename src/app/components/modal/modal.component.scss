@@ -1,0 +1,28 @@
+@import "../../theme/variables";
+
+sk-header{
+  box-shadow: none;
+  background-color: #f8f8f8;
+}
+
+.modal-container{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: $modalIndex;
+}
+
+.main-content{
+  background-color: #fff;
+}
+
+.left{
+  font-size: $xxLargeFontSize;
+  color: $greyFontColor;
+}
+
+.right{
+  font-size: 0.2rem;
+  color: $primaryColor;
+}

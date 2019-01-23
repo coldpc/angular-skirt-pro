@@ -17,11 +17,11 @@ import {state, trigger, style, animate, transition} from '@angular/animations';
       })),
       state('inactive', style({
         display: 'none',
-        opacity: 0,
-        transform: 'scale3d(1, 1, 1) translateY(100%)'
+        opacity: 0.8,
+        transform: 'scale3d(1, 1, 1) translateY(-100%)'
       })),
-      transition('inactive => active', animate('250ms ease-out')),
-      transition('active => inactive', animate('250ms ease-in'))
+      transition('inactive => active', animate('250ms ease-in')),
+      transition('active => inactive', animate('250ms ease-out'))
     ])
   ]
 })

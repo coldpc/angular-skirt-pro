@@ -172,4 +172,8 @@ export class UtilsBase {
   static transToUnderline(str: string): string {
     return str.replace(/([A-Z])/g, "_$1").toLowerCase();
   }
+
+  static getStyle(t: any) {
+    return t.currentStyle ? t.currentStyle : getComputedStyle(t);
+  }
 }

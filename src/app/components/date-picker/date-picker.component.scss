@@ -1,0 +1,9 @@
+@import "../../theme/variables";
+.sk-picker-item{
+    flex: 1;
+}
+
+.pickers{
+  display: flex;
+  flex-direction: row;
+}

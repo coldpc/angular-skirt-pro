@@ -1,48 +1,46 @@
 @import "../../theme/variables";
 
 $headerBorderColor: #f1f1f1;
-:host{
+:host {
   display: block;
-}
-.header-part{
   position: relative;
   height: $headerHeight;
+  line-height: $headerHeight;
   text-align: center;
   background-color: #ffffff;
   border-bottom: 1px solid $headerBorderColor;
   box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.117647);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+}
 
-  .title {
-    font-size: $xLargeFontSize;
-    flex: 1;
-  }
+.title {
+  font-size: $xLargeFontSize;
+  margin: 0;
+  padding: 0;
+  line-height: $headerHeight;
+}
 
-  .left, .right{
-    position: absolute;
-    top: 0;
-    height: 100%;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    min-width: $headerHeight;
-  }
-  .left{
-    left: 0;
-    padding-left: 0.1rem;
-    text-align: left;
-    color: $greyFontColor;
+.left, .right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 2;
+  min-width: $headerHeight;
+}
 
-    .icon{
-      font-size: 0.22rem;
-    }
+.left {
+  left: 0;
+  padding-left: 0.12rem;
+  text-align: left;
+  color: $greyFontColor;
+
+  .icon {
+    font-size: 0.22rem;
   }
-  .right{
-    right: 0;
-    padding-right: 0.1rem;
-    text-align: right;
-    color: #666;
-  }
+}
+
+.right {
+  right: 0;
+  padding-right: 0.12rem;
+  text-align: right;
+  color: #666;
 }
