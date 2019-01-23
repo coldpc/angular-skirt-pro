@@ -26,7 +26,12 @@ export class ImageComponent implements OnInit {
   ngOnInit() {
   }
 
-  getSrc() {
-    return this.src || (this.pictures && this.pictures[this.pictureType]);
+  getStyle(): any {
+    let src = this.src || (this.pictures && this.pictures[this.pictureType]);
+    if (src) {
+      return {
+        backgroundImage: `url(${src})`
+      };
+    }
   }
 }

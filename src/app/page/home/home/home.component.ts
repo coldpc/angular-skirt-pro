@@ -59,7 +59,6 @@ export class HomeComponent implements OnInit {
   }
 
   getRemoteData() {
-    this.loadingService.show();
     this.httpClientCore.request();
   }
 
