@@ -1,9 +1,7 @@
-<div #pickerWrapper class="sk-picker-wrapper">
-    <h2 *ngIf="!!title"  class="picker-title">{{title}}</h2>
-    <div #pickerConRef class="picker-list-con" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)" (touchcancel)="onTouchCancel($event)" (touchend)="onTouchEnd($event)">
-        <div class="picker-line"></div>
-        <ul #listRef class="picker-list" (tap)="onTapList($event)" [ngStyle]="getListStyle()">
-            <li class="picker-item" [ngStyle]="itemAngleSheet[i].css" [ngClass]="itemAngleSheet[i].className" *ngFor="let item of listData; let i = index;" [value]="getItemValue(item)">{{getItemDisplay(item)}}</li>
-        </ul>
-    </div>
+<div class="wrapper">
+  <div class="window" />
+  <div class="indicator"></div>
+  <div class="items">
+    <div *ngfor="let item of listData">{{getItemDisplay(item)}}</div>
+  </div>
 </div>
