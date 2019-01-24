@@ -14,7 +14,7 @@ const providers = [];
 @NgModule({
   declarations: [...components],
   imports: [CommonComponentsModule, PickerModule],
-  exports: [...components],
+  exports: [...components, PickerModule],
   providers: [...providers],
   entryComponents: []
 })

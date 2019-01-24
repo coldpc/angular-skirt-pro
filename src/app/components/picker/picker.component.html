@@ -1,7 +1,9 @@
 <div class="wrapper">
   <div class="window"></div>
-  <div class="indicator"></div>
-  <div class="items">
-    <div class="item" *ngFor="let item of listData">{{getItemDisplay(item)}}</div>
+  <div #indicatorRef class="indicator"></div>
+  <div #listRef class="list">
+    <div *ngFor="let item of data; let i = index"
+         (tap)="onTapItem(i, item)"
+         [ngClass]="{'item': true, 'selected': (selectedIndex || 0) === i}">{{getDisplay(item)}}</div>
   </div>
 </div>

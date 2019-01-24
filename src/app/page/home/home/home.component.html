@@ -13,4 +13,6 @@
   </div>
 </sk-layout>
 
-<sk-date-picker [(isShow)]="isShowMask"></sk-date-picker>
+<sk-modal [(isShow)]="isShowMask" [title]="'选择日期'">
+  <sk-picker [data]="[1, 2, 3, 4, 5, 6]"></sk-picker>
+</sk-modal>

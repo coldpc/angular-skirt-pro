@@ -1,4 +1,4 @@
-<div [ngClass]="['layout-wrapper', (isFixed ? 'fixed' : 'static'), (!!hasInit ? 'show' : 'hidden')]" [ngStyle]="style">
+<div [ngClass]="['layout-wrapper', type, (!!hasInit ? 'init' : '')]" [ngStyle]="{paddingTop: paddingTop, paddingBottom: paddingBottom}">
   <div #topPart class="top-part row">
     <ng-content select=".top, sk-header"></ng-content>
   </div>

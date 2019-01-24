@@ -1,4 +1,5 @@
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import { Location } from '@angular/common';
 import {Injectable} from "@angular/core";
 import {EnHistoryState} from "../../enums/EnHistoryState";
 import {UtilsBase} from "../../utils/UtilsBase";
@@ -13,7 +14,9 @@ export class RouterCoreService {
   queryParams: Params;
   historyState: string = '';
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router,
+              private location: Location,
+              private activatedRoute: ActivatedRoute) {
     this.initQueryParams();
 
     // 根据历史
@@ -58,12 +61,12 @@ export class RouterCoreService {
 
   // 返回
   gotoBack() {
+    // 返回
+    this.location.back();
+
     // 标记是否历史返回操作
     let isBack = false;
     window.addEventListener('popstate', setIsBack);
-
-    // 触发返回
-    history.go(-1);
 
     setTimeout((_this) => {
       window.removeEventListener('popstate', setIsBack);

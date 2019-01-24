@@ -31,10 +31,15 @@
   }
 
   &.fixed {
-    padding-top: $headerHeight;
+    padding-top: 0;
+
+    &.init{
+      .top-part{
+        position: fixed;
+      }
+    }
 
     .top-part, .bottom-part {
-      position: fixed;
       left: 0;
       width: 100%;
       background-color: #fff;
@@ -47,17 +52,7 @@
 
     .bottom-part {
       bottom: 0;
-    }
-  }
-
-  &.hidden{
-    .main-part{
-      opacity: 0;
-    }
-  }
-  &.show{
-    .main-part{
-      opacity: 1;
+      position: fixed;
     }
   }
 }

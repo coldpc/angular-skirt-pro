@@ -91,6 +91,7 @@ const DEFAULT_TYPE = Type.datetime;
 })
 export class DatePickerComponent extends DynamicCore implements OnInit, OnChanges {
 
+  @Input() title: string;
   @Input() dataType: string;
   @Input() options: DatePickerOptions;
   @Input() value: string;
@@ -197,9 +198,7 @@ export class DatePickerComponent extends DynamicCore implements OnInit, OnChange
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.value && !changes.value.firstChange) {
-      if (!PickerComponent.compareTwoValue(changes.value.previousValue, changes.value.currentValue)) {
-        this.setSelectedValue(changes.value.currentValue);
-      }
+      this.setSelectedValue(changes.value.currentValue);
     }
   }
 

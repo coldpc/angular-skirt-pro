@@ -1,23 +1,23 @@
-<sk-modal #view [(isShow)]="isShow" (confirmEvent)="confirm()">
+<sk-modal #view [(isShow)]="isShow" (confirmEvent)="confirm()" [title]="title">
   <div class="pickers">
     <div *ngIf="getIsShow('y')" data-id="picker-y" class="sk-picker-item">
-      <sk-picker #year [list]="yearListOption" (change)="onChangeYear($event)" [value]="separateValue.y"></sk-picker>
+      <sk-picker #year [isShow]="isShow"  [data]="yearListOption"></sk-picker>
     </div>
 
     <div *ngIf="getIsShow('m')" data-id="picker-m" class="sk-picker-item">
-      <sk-picker #month [list]="monthListOption" (change)="onChangeMonth($event)" [value]="separateValue.m"></sk-picker>
+      <sk-picker #month [isShow]="isShow" [data]="monthListOption"></sk-picker>
     </div>
 
     <div *ngIf="getIsShow('d')" data-id="picker-d" class="sk-picker-item">
-      <sk-picker #day [list]="dayListOption" (change)="onChangeDay($event)" [value]="separateValue.d"></sk-picker>
+      <sk-picker #day  [isShow]="isShow" [data]="dayListOption"></sk-picker>
     </div>
 
     <div *ngIf="getIsShow('h')" data-id="picker-h" class="sk-picker-item">
-      <sk-picker #hour [list]="hourListOption" (change)="onChangeHour($event)" [value]="separateValue.h"></sk-picker>
+      <sk-picker #hour  [isShow]="isShow" [data]="hourListOption"></sk-picker>
     </div>
 
     <div *ngIf="getIsShow('i')" data-id="picker-i" class="sk-picker-item">
-      <sk-picker #minute [list]="minuteListOption" (change)="onChangeMinute($event)" [value]="separateValue.i"></sk-picker>
+      <sk-picker #minute  [isShow]="isShow" [data]="minuteListOption"></sk-picker>
     </div>
   </div>
 </sk-modal>

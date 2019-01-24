@@ -1,12 +1,13 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, AfterViewChecked, OnDestroy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, AfterContentChecked, ChangeDetectorRef} from '@angular/core';
 import {EnLayoutType} from "../../lib/enums/EnLayoutType";
 
 @Component({
   selector: 'sk-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LayoutComponent implements OnInit, AfterViewChecked, OnDestroy {
+export class LayoutComponent implements OnDestroy, AfterContentChecked {
 
   @ViewChild("topPart") topPartRef: ElementRef;
   @ViewChild("bottomPart") bottomPartRef: ElementRef;
@@ -15,46 +16,68 @@ export class LayoutComponent implements OnInit, AfterViewChecked, OnDestroy {
   @Input() type: EnLayoutType = EnLayoutType.fixed;
 
   isFixed = false;
-  style = {};
-
   hasInit: boolean = false;
 
-  constructor() {
+  // 顶部和底部的内边距
+  paddingTop: string;
+  paddingBottom: string;
 
+  // 绑定this
+  setStyleBind: () => void;
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
+    this.setStyleBind = this.setStyle.bind(this);
   }
 
-  ngOnInit() {
+  ngAfterContentChecked(): void {
+    let isFixed = this.type === EnLayoutType.fixed;
+    this.isFixed = isFixed;
+
+    if (isFixed) {
+      window.addEventListener('resize', this.setStyleBind);
+    }
+    this.initView();
+  }
+
+  // 滑动了说明在滚动
+  initView(): void {
     this.hasInit = true;
-    this.isFixed = this.type === EnLayoutType.fixed;
-    window.addEventListener('resize', this.setStyle);
-  }
-
-  ngAfterViewChecked() {
     this.setStyle();
   }
 
-  setStyle() {
+  setStyle(): void {
     if (this.isFixed) {
-      this.style = {
-        paddingTop: this.getTopHeight(),
-        paddingBottom: this.getBottomHeight()
-      };
+      let temp = this.getPaddingTop(), isChange = false;
+      if (temp !== this.paddingTop) {
+        this.paddingTop = temp;
+        isChange = true;
+      }
+
+      temp = this.getPaddingBottom();
+      if (temp !== this.paddingBottom) {
+        this.paddingBottom = temp;
+        isChange = true;
+      }
+
+      if (isChange) {
+        this.changeDetectorRef.markForCheck();
+      }
     }
   }
 
-  getTopHeight() {
+  getPaddingTop(): string {
     const element = this.topPartRef;
     const firstChild = element.nativeElement.firstChild;
-    return (!!element && firstChild) ? (firstChild.offsetHeight + 'px') : "auto";
+    return (!!element && firstChild) ? (firstChild.offsetHeight + 'px') : "0";
   }
 
-  getBottomHeight() {
+  getPaddingBottom(): string {
     const element = this.bottomPartRef;
     const firstChild = element.nativeElement.firstChild;
-    return (!!element && firstChild) ? (firstChild.offsetHeight + 'px') : "auto";
+    return (!!element && firstChild) ? (firstChild.offsetHeight + 'px') : "0";
   }
 
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.setStyle);
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.setStyleBind);
   }
 }
