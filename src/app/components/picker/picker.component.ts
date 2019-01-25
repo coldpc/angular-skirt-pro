@@ -14,7 +14,7 @@ import {
 
 import {isUndefined} from "util";
 import {InPickerSelectedValue} from "../../lib/interfaces/InPickerSelectedValue";
-import ZScroller from 'zscroller';
+import {TsEasyScroller} from "../../lib/utils/ZScroller/TsEasyScroller";
 
 // 默认的valueFiled 和displayFiled
 const DEFAULT_VALUE_FIELD = 'value';
@@ -82,7 +82,7 @@ export class PickerComponent implements AfterViewInit {
 
   @ViewChild("listRef") listRef: ElementRef;
 
-  zScroller: ZScroller;
+  zScroller: TsEasyScroller;
 
   constructor() {
 
@@ -110,18 +110,18 @@ export class PickerComponent implements AfterViewInit {
     // 最后还是用了何一鸣的zscroll插件
     // 但是这个插件并没有太多的文档介绍 gg
     // 插件demo地址：http://yiminghe.me/zscroller/examples/demo.html
-    this.zScroller = new ZScroller(this.listRef.nativeElement, {
-      scrollbars: false,
+    let zScroller = this.zScroller = new TsEasyScroller(this.listRef.nativeElement, {
       scrollingX: false,
-      zooming: false,
-      snapping: true, // 滚动结束之后 滑动对应的位置
-      penetrationDeceleration: .1,
-      minVelocityToKeepDecelerating: 0.5,
-      scrollingComplete: this.onScrollComplete.bind(this),
-      onScroll: () => {
-        this.recountSelectedValue();
-      }
+      snapping: false, // 滚动结束之后 滑动对应的位置
+      scrollingComplete: this.onScrollComplete.bind(this)
     });
+
+    let content = this.listRef.nativeElement;
+    let container = content.parentNode;
+    let rect = container.getBoundingClientRect();
+
+    zScroller.scroller.setPosition(rect.left + container.clientLeft, rect.top + container.clientTop);
+    zScroller.scroller.setDimensions(container.clientWidth, container.clientHeight, content.offsetWidth, content.offsetHeight);
 
     // 设置每个格子的高度 这样滚动结束 自动滚到对应格子上
     // 单位必须是px 所以要动态取一下
@@ -130,6 +130,7 @@ export class PickerComponent implements AfterViewInit {
 
   // 新方法，在滚动完成时触发，和滚动事件有所区别
   onScrollComplete() {
+    console.log(this.zScroller.scroller.__clientTop)
     this.scrollEnd.emit(this.selectedItem);
     this.recountSelectedValue();
   }
@@ -157,7 +158,7 @@ export class PickerComponent implements AfterViewInit {
 
   // 滚动到index对应的位置
   scrollToIndex(index) {
-    this.zScroller.scroller.scrollTo(500, this.itemHeight * index);
+    this.zScroller.scroller.scrollTo(0, this.itemHeight * index);
   }
 
   getValue(item) {
