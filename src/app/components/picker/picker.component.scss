@@ -67,11 +67,11 @@ $num: 5;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      transition: font-size 300ms ease-in;
+      transition: transform 300ms ease-in;
       color: $greyFontColor;
 
       &.selected {
-        font-size: $xxLargeFontSize;
+        transform: scale(1.2, 1.2);
         color: #333;
         background: transparent;
       }

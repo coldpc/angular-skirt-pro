@@ -112,16 +112,11 @@ export class PickerComponent implements AfterViewInit {
     // 插件demo地址：http://yiminghe.me/zscroller/examples/demo.html
     let zScroller = this.zScroller = new TsEasyScroller(this.listRef.nativeElement, {
       scrollingX: false,
-      snapping: false, // 滚动结束之后 滑动对应的位置
+      snapping: true, // 滚动结束之后 滑动对应的位置
       scrollingComplete: this.onScrollComplete.bind(this)
     });
 
-    let content = this.listRef.nativeElement;
-    let container = content.parentNode;
-    let rect = container.getBoundingClientRect();
-
-    zScroller.scroller.setPosition(rect.left + container.clientLeft, rect.top + container.clientTop);
-    zScroller.scroller.setDimensions(container.clientWidth, container.clientHeight, content.offsetWidth, content.offsetHeight);
+    window['zScroller'] = zScroller;
 
     // 设置每个格子的高度 这样滚动结束 自动滚到对应格子上
     // 单位必须是px 所以要动态取一下
@@ -130,7 +125,6 @@ export class PickerComponent implements AfterViewInit {
 
   // 新方法，在滚动完成时触发，和滚动事件有所区别
   onScrollComplete() {
-    console.log(this.zScroller.scroller.__clientTop)
     this.scrollEnd.emit(this.selectedItem);
     this.recountSelectedValue();
   }
@@ -171,7 +165,9 @@ export class PickerComponent implements AfterViewInit {
 
   // 点击每一项
   onTapItem(index) {
-    this.scrollToIndex(index);
+    setTimeout(() => {
+      this.zScroller.scroller.scrollTo(0, this.itemHeight * index, true);
+    }, 10);
   }
 
   setValue(index, item) {

@@ -644,9 +644,10 @@ export class TsScroller {
     }
 
     // Publish new values
-    if (!_self.__isTracking) {
-      _self.__publish(left, top, zoom, animate);
-    }
+    _self.__publish(left, top, zoom, animate);
+    // if (!_self.__isTracking) {
+    //   _self.__publish(left, top, zoom, animate);
+    // }
 
   }
 
@@ -1139,12 +1140,13 @@ export class TsScroller {
       };
 
       let verify = function (id) {
-        return _self.__isAnimating === id;
+        return _self.__animatingId === id;
       };
 
       let completed = function (renderedFramesPerSecond, animationId, wasFinished) {
-        if (animationId === _self.__isAnimating) {
+        if (animationId === _self.__animatingId) {
           _self.__isAnimating = false;
+          _self.__animatingId = NaN;
         }
         if (_self.__didDecelerationComplete || wasFinished) {
           _self.options.scrollingComplete();
