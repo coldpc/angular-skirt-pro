@@ -107,13 +107,11 @@ export class PickerComponent implements AfterViewInit {
     // 根据变量判断dom是否渲染完毕
     this.itemHeight = this.indicatorRef.nativeElement.getBoundingClientRect().height;
 
-    // 最后还是用了何一鸣的zscroll插件
-    // 但是这个插件并没有太多的文档介绍 gg
-    // 插件demo地址：http://yiminghe.me/zscroller/examples/demo.html
     let zScroller = this.zScroller = new TsEasyScroller(this.listRef.nativeElement, {
       scrollingX: false,
       snapping: true, // 滚动结束之后 滑动对应的位置
-      scrollingComplete: this.onScrollComplete.bind(this)
+      scrollingComplete: this.onScrollComplete.bind(this),
+      onScroll: this.onScroll.bind(this)
     });
 
     window['zScroller'] = zScroller;
@@ -121,6 +119,10 @@ export class PickerComponent implements AfterViewInit {
     // 设置每个格子的高度 这样滚动结束 自动滚到对应格子上
     // 单位必须是px 所以要动态取一下
     this.zScroller.scroller.setSnapSize(0, this.itemHeight);
+  }
+
+  onScroll(left, top, zoom) {
+    this.recountSelectedValue();
   }
 
   // 新方法，在滚动完成时触发，和滚动事件有所区别
@@ -131,7 +133,11 @@ export class PickerComponent implements AfterViewInit {
 
   // 重新计算选中的值
   recountSelectedValue() {
-    let top, selectedIndex, data, floor;
+    let top, selectedIndex, data;
+
+    if (!this.zScroller || !this.zScroller.scroller) {
+      return;
+    }
 
     top = this.zScroller.scroller.getValues().top;
     if (!this.data || isNaN(top)) {

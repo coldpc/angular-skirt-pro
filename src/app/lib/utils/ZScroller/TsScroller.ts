@@ -56,6 +56,8 @@ export interface InScrollerOptions {
    when to fade out a scrollbar. */
   scrollingComplete?: () => void;
 
+  onScroll?: (left: number, top: number, zoom: number) => void;
+
   /** This configures the amount of change applied to deceleration when reaching boundaries  **/
   penetrationDeceleration?: number;
 

@@ -23,6 +23,9 @@ export class TsEasyScroller {
     let that = this;
     this.scroller = new TsScroller(function (left, top, zoom) {
       that.render(left, top, zoom);
+      if (typeof that.options.onScroll === 'function') {
+        that.options.onScroll(left, top, zoom);
+      }
     }, options);
 
     // bind events
