@@ -200,18 +200,16 @@ function initRender() {
   }[engine];
 
   let helperElem = document.createElement("div");
-  let undef;
-
   let perspectiveProperty = vendorPrefix + "Perspective";
   let transformProperty = vendorPrefix + "Transform";
 
-  if (helperElem.style[perspectiveProperty] !== undef) {
+  if (helperElem.style[perspectiveProperty] !== undefined) {
 
     return function (left, top, zoom) {
       this.content.style[transformProperty] = 'translate3d(' + (-left) + 'px,' + (-top) + 'px,0) scale(' + zoom + ')';
     };
 
-  } else if (helperElem.style[transformProperty] !== undef) {
+  } else if (helperElem.style[transformProperty] !== undefined) {
 
     return function (left, top, zoom) {
       this.content.style[transformProperty] = 'translate(' + (-left) + 'px,' + (-top) + 'px) scale(' + zoom + ')';

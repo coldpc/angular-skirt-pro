@@ -15,9 +15,9 @@ import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 export class HomeComponent implements OnInit {
 
   imgSrc = "/assets/test.jpg";
-  isShowMask = true;
+  isShowMask = false;
 
-  year = '3101';
+  year = 3101;
 
   EnButtonType = EnButtonType;
   EnButtonSize = EnButtonSize;
@@ -39,7 +39,8 @@ export class HomeComponent implements OnInit {
   }
 
   onTapImg() {
-    this.getRemoteData();
+    this.year = this.year === 3101 ? 3505 : 3101;
+    // this.getRemoteData();
   }
 
   onTapButton() {

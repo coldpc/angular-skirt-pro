@@ -61,6 +61,7 @@ export class PickerComponent implements AfterViewChecked {
   @Input()
   set value(value: any) {
     this._value = value;
+    this.hasChangeValue = true;
   }
 
   get value(): any {
@@ -71,11 +72,10 @@ export class PickerComponent implements AfterViewChecked {
   set isShow(isShow: boolean) {
 
     if (this._isShow !== isShow) {
-
       this._isShow = isShow;
 
       if (isShow) {
-        this.scrollToValue(this.value);
+        this.hasChangeShow = true;
       }
     }
   }
@@ -97,26 +97,35 @@ export class PickerComponent implements AfterViewChecked {
 
   lastTop = 0;
   hasChangeData = false;
+  hasChangeValue = false;
+  hasChangeShow = false;
+
   constructor(private changeDetectorRef: ChangeDetectorRef) {
     changeDetectorRef.detach();
-
   }
 
   ngAfterViewChecked() {
-    this.init();
+    this.initView();
   }
 
-  init() {
+  initView() {
     if (this.checkIsShow()) {
       if (!this.zScroller) {
         this.createScroll();
-      } else if (this.hasChangeData) {
+      } else {
+
+        if (this.hasChangeData) {
           let index = this.getIndexByValue(this.value);
           if (index !== this.selectedIndex) {
-            console.log(1);
             this.scrollToIndex(0);
           }
           this.hasChangeData = false;
+        } else if (this.hasChangeValue && this.hasChangeShow) {
+          this.scrollToValue(this.value);
+        }
+
+        this.hasChangeValue = false;
+        this.hasChangeShow = false;
       }
     }
   }
@@ -270,6 +279,7 @@ export class PickerComponent implements AfterViewChecked {
   setValue(index, item) {
     this.selectedItem = item;
     this.value = this.getValue(item);
+    this.hasChangeValue = false;
 
     this.selectedIndex = index;
     this.valueChange.emit(this.value);
