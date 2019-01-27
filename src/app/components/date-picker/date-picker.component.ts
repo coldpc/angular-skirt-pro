@@ -91,7 +91,7 @@ const DEFAULT_TYPE = Type.datetime;
 })
 export class DatePickerComponent extends DynamicCore implements OnInit, OnChanges {
 
-  @Input() title: string;
+  @Input() title: string = '选择日期';
   @Input() dataType: string;
   @Input() options: DatePickerOptions;
   @Input() value: string;
@@ -150,6 +150,11 @@ export class DatePickerComponent extends DynamicCore implements OnInit, OnChange
   }
 
   static inArray(array: Array<any>, item: any): boolean {
+    item = item + '';
+    if (item.length === 1) {
+      item = '0' + item;
+    }
+
     for (let index in array) {
       if (array[index] === item) {
         return true;
@@ -366,7 +371,6 @@ export class DatePickerComponent extends DynamicCore implements OnInit, OnChange
     if (mArray) {
       if (this.monthListOption !== mArray) {
         this.monthListOption = mArray;
-        console.log("change month");
       }
     } else {
       let m = options.beginMonth && this._isBeginYear() ? options.beginMonth : 1;
@@ -378,7 +382,6 @@ export class DatePickerComponent extends DynamicCore implements OnInit, OnChange
 
       if (!DatePickerComponent.compareTwoArray(mArray, this.monthListOption)) {
         this.monthListOption = mArray;
-        console.log("change month");
       }
     }
     return mArray;

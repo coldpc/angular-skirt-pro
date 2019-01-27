@@ -87,6 +87,7 @@ export class PickerComponent implements AfterViewChecked {
   @Input()
   set data(data: Array<any>) {
     this._data = data;
+    this.hasChangeData = true;
     this.changeDetectorRef.detectChanges();
   }
 
@@ -95,6 +96,7 @@ export class PickerComponent implements AfterViewChecked {
   }
 
   lastTop = 0;
+  hasChangeData = false;
   constructor(private changeDetectorRef: ChangeDetectorRef) {
     changeDetectorRef.detach();
 
@@ -108,6 +110,13 @@ export class PickerComponent implements AfterViewChecked {
     if (this.checkIsShow()) {
       if (!this.zScroller) {
         this.createScroll();
+      } else if (this.hasChangeData) {
+          let index = this.getIndexByValue(this.value);
+          if (index !== this.selectedIndex) {
+            console.log(1);
+            this.scrollToIndex(0);
+          }
+          this.hasChangeData = false;
       }
     }
   }
@@ -169,7 +178,8 @@ export class PickerComponent implements AfterViewChecked {
    * 在滚动完成时触发，和滚动事件有所区别
    */
   onScrollComplete() {
-    this.scrollEnd.emit(this.selectedItem);
+    let selectedItem = this.selectedItem || this.data[0];
+    this.scrollEnd.emit({value: this.getValue(selectedItem), item: selectedItem});
     this.recountSelectedValue();
   }
 
@@ -213,6 +223,8 @@ export class PickerComponent implements AfterViewChecked {
     let index = this.getIndexByValue(value) || 0;
     if (index !== this.selectedIndex) {
       this.scrollToIndex(index, true);
+    } else if (this.zScroller && this.zScroller.scroller && this.data && this.data.length > 0) {
+      this.onScrollComplete();
     }
   }
 
