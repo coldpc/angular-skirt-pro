@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import has = Reflect.has;
 
 
 enum EnMaskState {
@@ -31,6 +32,14 @@ export class DynamicCore {
   // 点击背景是否隐藏
   @Input() isTapBackHide = true;
 
+  private _hasShow: boolean = false;
+  get hasShow(): boolean {
+    return this._hasShow;
+  }
+  set hasShow(hasShow: boolean) {
+    this._hasShow = hasShow;
+  }
+
   constructor() {
   }
 
@@ -52,6 +61,7 @@ export class DynamicCore {
     this.state = maskState;
 
     if (isShow) {
+      this.hasShow = true;
       this.showEvent.emit(maskState);
     } else {
       this.hideEvent.emit(maskState);

@@ -34,7 +34,7 @@ let running = {};
 let counter = 1;
 
 
-export class TsAnimate {
+export class SkAnimate {
   /**
    * A requestAnimationFrame wrapper / polyfill.
    *
@@ -50,7 +50,7 @@ export class TsAnimate {
    * @param id Unique animation ID
    * @return Whether the animation was stopped (aka, was running before)
    */
-  static stop(id: number): boolean {
+  static stop(id: any): boolean {
     let cleared = running[id] != null;
     if (cleared) {
       running[id] = null;
@@ -155,7 +155,7 @@ export class TsAnimate {
         }
       } else if (render) {
         lastFrame = now;
-        TsAnimate.requestAnimationFrame(step);
+        SkAnimate.requestAnimationFrame(step);
       }
     };
 
@@ -163,7 +163,7 @@ export class TsAnimate {
     running[id] = true;
 
     // Init first step
-    TsAnimate.requestAnimationFrame(step);
+    SkAnimate.requestAnimationFrame(step);
 
     // Return unique animation ID
     return id;

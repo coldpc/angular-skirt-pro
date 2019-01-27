@@ -17,19 +17,22 @@ export class HomeComponent implements OnInit {
   imgSrc = "/assets/test.jpg";
   isShowMask = true;
 
+  year = '3101';
+
   EnButtonType = EnButtonType;
   EnButtonSize = EnButtonSize;
+
+  cityList: Array<any> = [];
 
   constructor(private dialogService: DialogService,
               private loadingService: LoadingService,
               private httpClientCore: ApiCoreService<any>,
               private routerService: RouterService) {
 
-    this.httpClientCore
-      .setPath("/product/index/get-city-list")
-      .setParams({name: 'pccold', a: 'a'})
-      .setBody({test: '123', password: 'asfd'})
-      .request();
+
+
+    window['test'] = this;
+    this.getRemoteData();
   }
 
   ngOnInit() {
@@ -43,11 +46,6 @@ export class HomeComponent implements OnInit {
     this.routerService.gotoApartments({
       params: {cityId: 1, cityName: "权国"}
     });
-    // this.isShowMask = true;
-    // this.dialogService.confirm({
-    //   message: "确定要删除订单吗？",
-    //   onOk: this.onConfirm
-    // });
   }
 
   onConfirm() {
@@ -59,7 +57,13 @@ export class HomeComponent implements OnInit {
   }
 
   getRemoteData() {
-    this.httpClientCore.request();
+    this.httpClientCore
+      .setPath("/product/index/get-city-list")
+      .setParams({name: 'pccold', a: 'a'})
+      .setBody({test: '123', password: 'asfd'})
+      .request((data) => {
+        this.cityList = data;
+      });
   }
 
   onLoadData(data) {

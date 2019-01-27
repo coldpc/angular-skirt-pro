@@ -1,13 +1,13 @@
-import {InScrollerOptions, TsScroller} from "./TsScroller";
+import {InScrollerOptions, SkScroller} from "./SkScroller";
 
-export class TsEasyScroller {
+export class SkEasyScroller {
 
   static vendorPrefix: string;
 
   container: any;
   content: HTMLDivElement;
   options: InScrollerOptions;
-  scroller: TsScroller;
+  scroller: SkScroller;
 
   render: any = initRender();
 
@@ -21,7 +21,7 @@ export class TsEasyScroller {
 
     // create Scroller instance
     let that = this;
-    this.scroller = new TsScroller(function (left, top, zoom) {
+    this.scroller = new SkScroller(function (left, top, zoom) {
       that.render(left, top, zoom);
       if (typeof that.options.onScroll === 'function') {
         that.options.onScroll(left, top, zoom);
@@ -32,7 +32,7 @@ export class TsEasyScroller {
     this.bindEvents();
 
     // the content element needs a correct transform origin for zooming
-    this.content.style[TsEasyScroller.vendorPrefix + 'TransformOrigin'] = "left top";
+    this.content.style[SkEasyScroller.vendorPrefix + 'TransformOrigin'] = "left top";
 
     // reflow for the first time
     this.reflow();
@@ -192,7 +192,7 @@ function initRender() {
     engine = 'trident';
   }
 
-  let vendorPrefix = TsEasyScroller.vendorPrefix = {
+  let vendorPrefix = SkEasyScroller.vendorPrefix = {
     trident: 'ms',
     gecko: 'Moz',
     webkit: 'Webkit',
