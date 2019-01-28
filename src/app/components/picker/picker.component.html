@@ -1,9 +1,14 @@
-<div class="wrapper">
-  <div class="window"></div>
-  <div #indicatorRef class="indicator"></div>
-  <div #listRef class="list">
-    <div *ngFor="let item of data; let i = index"
-         (tap)="onTapItem(i, item)"
-         [ngClass]="{'item': true, 'selected': (selectedIndex || 0) === i}">{{getDisplay(item)}}</div>
-  </div>
-</div>
+<sk-modal [(isShow)]="isShow"
+          [title]="title"
+          (hideEvent)="onHide()"
+          (showEvent)="onShow()"
+          (confirmEvent)="onConfirm()"
+          (animationStartEvent)="onAnimateStart($event)"
+          (animalDoneEvent)="onAnimateDone($event)">
+
+  <sk-picker-column [(value)]="innerValue"
+                    [isShow]="isShowPicker"
+                    [data]="data"
+                    [displayField]="displayField"
+                    [valueField]="valueField"></sk-picker-column>
+</sk-modal>

@@ -13,8 +13,9 @@
   </div>
 </sk-layout>
 
-<!--<sk-date-picker [(isShow)]="isShowMask" [dataType]="'date'"></sk-date-picker>-->
-
-<sk-modal [(isShow)]="isShowMask" [title]="'选择日期'">
-  <sk-picker [(value)]="year" [isShow]="isShowMask" [data]="cityList" [displayField]="'cityName'" [valueField]="'cityId'"></sk-picker>
-</sk-modal>
+<sk-picker [title]="'选择城市'"
+           [(value)]="year"
+           [(isShow)]="isShowMask"
+           [data]="cityList"
+           [displayField]="'cityName'"
+           [valueField]="'cityId'"></sk-picker>

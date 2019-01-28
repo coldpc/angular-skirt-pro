@@ -1,5 +1,9 @@
-<div *ngIf="hasShow" class="modal-container" [@anim]="state">
-  <sk-header [title]="title" (tapRight)="onTapConfirm()" (tapLeft)="onTapClose()">
+<div *ngIf="hasShow" class="modal-container"
+     [@anim]="state"
+     (@anim.done)="animationDone($event)"
+     (@anim.start)="animationStart($event)">
+
+  <sk-header [title]="title" (tapRight)="onTapConfirm()" (tapLeft)="onTapClose()" (touchmove)="onTouchMove($event)">
     <span class="left" [skIcon]="'close'"></span>
     <span *ngIf="hasConfirm" class="right" [skIcon]="'confirm2'"></span>
   </sk-header>

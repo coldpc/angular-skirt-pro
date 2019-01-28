@@ -15,7 +15,7 @@ import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 export class HomeComponent implements OnInit {
 
   imgSrc = "/assets/test.jpg";
-  isShowMask = false;
+  isShowMask = true;
 
   year = 3101;
 

@@ -7,6 +7,7 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import {DynamicCore} from "../dynamicCore/DynamicCore";
 
 
 enum EnMaskState {
@@ -27,36 +28,21 @@ enum EnMaskState {
         opacity: 0.1,
         display: "none"
       })),
+      state('void', style({
+        opacity: 0.1,
+        display: "none"
+      })),
+      transition('void => active', animate('250ms ease-out')),
       transition('active <=> inactive', animate('250ms ease-out'))
     ])
   ]
 })
-export class MaskComponent implements OnInit {
-  @Output() hideEvent: EventEmitter<EnMaskState> = new EventEmitter<EnMaskState>();
-  @Output() showEvent: EventEmitter<EnMaskState> = new EventEmitter<EnMaskState>();
-
-  // 是否显示
-  private _isShow: boolean = false;
-  state: EnMaskState = EnMaskState.hide;
-
-  @Input()
-  set isShow(isShow) {
-    if (this.isShow !== isShow) {
-      this._isShow = isShow;
-      this.setState(isShow);
-    }
-  }
-
-  get isShow(): boolean {
-    return this._isShow;
-  }
-
-  @Output() isShowChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+export class MaskComponent extends DynamicCore implements OnInit {
   // 点击背景是否隐藏
   @Input() isTapBackHide = true;
 
   constructor() {
+    super();
   }
 
   ngOnInit() {
@@ -64,38 +50,11 @@ export class MaskComponent implements OnInit {
 
   public onTap(): void {
     if (this.isTapBackHide) {
-      this.hide();
+      super.hide();
     }
-  }
-
-  public hide() {
-    if (this.isShow) {
-      this.isShow = false;
-    }
-  }
-
-  public show() {
-    if (!this.isShow) {
-      this.isShow = true;
-    }
-  }
-
-  private setState(isShow: boolean) {
-    // 常量 遮罩
-    const maskState = isShow ? EnMaskState.show : EnMaskState.hide;
-    this.state = maskState;
-
-    if (isShow) {
-      this.showEvent.emit(maskState);
-    } else {
-      this.hideEvent.emit(maskState);
-    }
-    this.isShowChange.emit(isShow);
   }
 
   public onTouchMove(event: TouchEvent): void {
-    event.stopPropagation();
-
     if (event.cancelable) {
       event.preventDefault();
     }

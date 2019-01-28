@@ -213,6 +213,7 @@ function initRender() {
 
     return function (left, top, zoom) {
       this.content.style[transformProperty] = 'translate(' + (-left) + 'px,' + (-top) + 'px) scale(' + zoom + ')';
+      this.content.style[transformProperty] = 'translate(' + (-left) + 'px,' + (-top) + 'px) scale(' + zoom + ')';
     };
 
   } else {

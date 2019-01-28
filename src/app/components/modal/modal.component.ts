@@ -33,6 +33,8 @@ export class ModalComponent extends DynamicCore implements OnInit {
   @Input() hasConfirm: boolean = true;
 
   @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
+  @Output() animationStartEvent: EventEmitter<AnimationEvent> = new EventEmitter();
+  @Output() animalDoneEvent: EventEmitter<AnimationEvent> = new EventEmitter();
 
   constructor() {
     super();
@@ -49,4 +51,19 @@ export class ModalComponent extends DynamicCore implements OnInit {
     super.hide();
     this.confirmEvent.emit();
   }
+
+  animationDone(e) {
+    this.animalDoneEvent.emit(e);
+  }
+
+  animationStart(e) {
+    this.animationStartEvent.emit(e);
+  }
+
+  onTouchMove(e) {
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+  }
+
 }

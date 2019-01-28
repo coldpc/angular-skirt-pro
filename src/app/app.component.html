@@ -1,4 +1,5 @@
-<router-outlet></router-outlet>
-
+<!--<div [@routeAnimations]="prepareRoute(outlet)" >-->
+  <router-outlet #outlet="outlet"></router-outlet>
+<!--</div>-->
 <!--动态组件的插入地方-->
 <ng-template skAddHost></ng-template>

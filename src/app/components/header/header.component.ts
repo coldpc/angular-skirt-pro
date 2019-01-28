@@ -35,4 +35,6 @@ export class HeaderComponent implements OnInit {
   onTapRight(e: Event) {
     this.tapRight.emit(e);
   }
+
+
 }
