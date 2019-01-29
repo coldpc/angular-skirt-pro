@@ -4,12 +4,16 @@ import {
   EventEmitter,
   Input,
   Output,
-  ChangeDetectorRef
+  OnInit,
+  ChangeDetectorRef,
+  ViewChildren,
+  QueryList
 } from '@angular/core';
 
 import {isUndefined} from "util";
 import {InPickerSelectedValue} from "../../lib/interfaces/InPickerSelectedValue";
 import {DynamicCore} from "../dynamicCore/DynamicCore";
+import {PickerColumnComponent} from "../picker-column/picker-column.component";
 
 // 默认的valueFiled 和displayFiled
 const DEFAULT_VALUE_FIELD = 'value';
@@ -22,29 +26,47 @@ const DEFAULT_DISPLAY_FIELD = 'text';
   changeDetection: ChangeDetectionStrategy.Default
 
 })
-export class PickerComponent extends DynamicCore {
+export class PickerComponent extends DynamicCore implements OnInit {
 
   // 输入参数
   @Input() displayField: string = DEFAULT_DISPLAY_FIELD;
   @Input() valueField: string = DEFAULT_VALUE_FIELD;
-  @Input() data: Array<any>;
   @Input() title: string;
 
+  // 如果是多列请设置为true
+  @Input() isMulti: boolean = false;
+
+  // 这个参数至关重要
+  // 如何友好使用 最简单的是什么
+  // 一维数组
+  // 多个列的时候涉及多维数组
+  @Input() data: Array<any>;
+
   // 输出参数
-  @Output() valueChange: EventEmitter<InPickerSelectedValue> = new EventEmitter();
+  @Output() valueChange: EventEmitter<any> = new EventEmitter();
+  @Output() scrollChange: EventEmitter<any> = new EventEmitter();
+  @Output() changeSelectedItem: EventEmitter<any> = new EventEmitter();
+
+  @ViewChildren(PickerColumnComponent) columns: QueryList<PickerColumnComponent>;
 
   private _value;
 
   // 完成动画事件
   public animateEvent;
 
-  // 内部值
-  public innerValue;
   // 是否显示了picker的dom结构
   public isShowPicker: boolean = false;
 
+  // 内部显示的值
+  public innerValue;
+
+
   constructor() {
     super();
+  }
+
+  ngOnInit(): void {
+
   }
 
   onAnimateDone(e) {
@@ -54,8 +76,6 @@ export class PickerComponent extends DynamicCore {
     if (isShow !== this.isShowPicker) {
       this.isShowPicker = isShow;
     }
-
-    console.log(this.innerValue);
   }
 
   onAnimateStart(e) {
@@ -70,23 +90,65 @@ export class PickerComponent extends DynamicCore {
 
   // 重置value
   onShow() {
-    this.innerValue = this.value;
+    this.setInnerValue();
   }
 
+  // 点击确定
+  // 收集所有的值
   onConfirm() {
-    this._value = this.innerValue;
-    this.valueChange.emit(this.value);
+    let values = [], items = [];
+    let columns: PickerColumnComponent[] = this.columns.toArray(), column;
+
+    // 收集结果
+    for (let i = 0, l = columns.length; i < l; i++) {
+      column = columns[i];
+      values.push(column.value);
+      items.push(column.selectedItem);
+    }
+
+    // 最后如果是单选 不需要采用数组
+    if (!this.isMulti) {
+      values = values[0];
+      items = items[0];
+    }
+
+    // 触发事件
+    this._value = values;
+    this.valueChange.emit(values);
+    this.changeSelectedItem.emit(items);
   }
 
   @Input()
   set value(value: any) {
     if (this._value !== value) {
       this._value = value;
-      this.innerValue = value;
+      this.setInnerValue();
     }
   }
 
   get value(): any {
     return this._value;
+  }
+
+  onScrollEnd(e, index ?: number) {
+    if (this.isMulti && e.item && e.item.children) {
+      this.data[index]['options'] = e.item.children;
+    }
+  }
+
+  setInnerValue() {
+    let value = this.value;
+
+    // 多选的话必须复制，否则对象值的改变无法触发
+    if (this.isMulti) {
+      value = value || [];
+      this.innerValue = [];
+
+      for (let i = 0; i < value.length; i++) {
+        this.innerValue[i] = value[i];
+      }
+    } else {
+      this.innerValue = value;
+    }
   }
 }

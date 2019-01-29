@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   imgSrc = "/assets/test.jpg";
   isShowMask = true;
 
-  year = 3101;
+  year = [4401, 3101];
 
   EnButtonType = EnButtonType;
   EnButtonSize = EnButtonSize;
@@ -39,8 +39,6 @@ export class HomeComponent implements OnInit {
   }
 
   onTapImg() {
-    this.year = this.year === 3101 ? 3505 : 3101;
-    // this.getRemoteData();
   }
 
   onTapButton() {
@@ -63,7 +61,7 @@ export class HomeComponent implements OnInit {
       .setParams({name: 'pccold', a: 'a'})
       .setBody({test: '123', password: 'asfd'})
       .request((data) => {
-        this.cityList = data;
+        this.cityList = [{options: data}, {options: data}];
       });
   }
 

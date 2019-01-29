@@ -6,9 +6,24 @@
           (animationStartEvent)="onAnimateStart($event)"
           (animalDoneEvent)="onAnimateDone($event)">
 
-  <sk-picker-column [(value)]="innerValue"
-                    [isShow]="isShowPicker"
-                    [data]="data"
-                    [displayField]="displayField"
-                    [valueField]="valueField"></sk-picker-column>
+  <div class="pickers">
+
+    <ng-container *ngIf="isMulti">
+      <sk-picker-column *ngFor="let item of data; let inx = index"
+                        [(value)]="innerValue[inx]"
+                        [isShow]="isShowPicker"
+                        [data]="item.options"
+                        [displayField]="displayField"
+                        [valueField]="valueField" (scrollEnd)="onScrollEnd($event, inx)"></sk-picker-column>
+    </ng-container>
+
+    <ng-container *ngIf="!isMulti">
+      <sk-picker-column [(value)]="innerValue"
+                        [isShow]="isShowPicker"
+                        [data]="data"
+                        [displayField]="displayField"
+                        [valueField]="valueField" (scrollEnd)="onScrollEnd($event, 0)"></sk-picker-column>
+    </ng-container>
+  </div>
+
 </sk-modal>

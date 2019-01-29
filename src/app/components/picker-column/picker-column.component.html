@@ -4,6 +4,6 @@
   <div #listRef class="list">
     <div *ngFor="let item of data; let i = index"
          (tap)="onTapItem(i, item)"
-         [ngClass]="{'item': true, 'selected': (selectedIndex || 0) === i}">{{getDisplay(item)}}</div>
+         [ngClass]="{'item': true, 'selected': (selectedIndex || 0) === i}">{{getItemDisplay(item)}}</div>
   </div>
 </div>

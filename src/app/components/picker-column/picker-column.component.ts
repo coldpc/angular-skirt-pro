@@ -55,8 +55,9 @@ export class PickerColumnComponent implements AfterViewChecked {
   // 标记
   hasChange = false;
 
+  lastEndItem = null;
+
   constructor(private changeDetectorRef: ChangeDetectorRef) {
-    changeDetectorRef.detach();
   }
 
   @Input()
@@ -96,7 +97,7 @@ export class PickerColumnComponent implements AfterViewChecked {
       if (this.isShow && !this.hasChange) {
         this.hasChange = true;
       }
-      this.changeDetectorRef.detectChanges();
+      this.changeDetectorRef.markForCheck();
     }
   }
 
@@ -151,6 +152,10 @@ export class PickerColumnComponent implements AfterViewChecked {
       let index = this.getIndexByValue(this.value);
       if (index > 0 ) {
         this.scrollToIndex(index, true);
+      } else {
+        this.selectedItem = this.data[0];
+        this.setValue(0, this.data[0], false);
+        this.onScrollComplete();
       }
     }
 
@@ -177,9 +182,11 @@ export class PickerColumnComponent implements AfterViewChecked {
    * 在滚动完成时触发，和滚动事件有所区别
    */
   onScrollComplete() {
-    let selectedItem = this.selectedItem || this.data[0];
-    this.scrollEnd.emit({value: this.getValue(selectedItem), item: selectedItem});
-    this.recountSelectedValue();
+    let selectedItem = this.selectedItem;
+    if (selectedItem && this.lastEndItem !== selectedItem) {
+      this.lastEndItem = selectedItem;
+      this.scrollEnd.emit({value: this.getItemValue(selectedItem), item: selectedItem});
+    }
   }
 
   /**
@@ -226,12 +233,12 @@ export class PickerColumnComponent implements AfterViewChecked {
   }
 
   // 获取值
-  getValue(item) {
+  getItemValue(item) {
     return typeof item === 'object' ? item[this.valueField] : item;
   }
 
   // 获取展示
-  getDisplay(item) {
+  getItemDisplay(item) {
     return typeof item === 'object' ? item[this.displayField] : item;
   }
 
@@ -239,7 +246,7 @@ export class PickerColumnComponent implements AfterViewChecked {
   getIndexByValue(value): number {
     let data = this.data || [], index = -1;
     for (let i = 0, l = data.length; i < l; i++) {
-      if (UtilsBase.checkIsEqual(this.getValue(data[i]), value)) {
+      if (UtilsBase.checkIsEqual(this.getItemValue(data[i]), value)) {
         index = i;
         break;
       }
@@ -263,14 +270,18 @@ export class PickerColumnComponent implements AfterViewChecked {
    * 设置值
    * @param index 索引
    * @param item 项
+   * @param isDetectChange 是否进行刷新界面
    */
-  private setValue(index, item) {
+  private setValue(index, item, isDoCheck = true) {
     this.selectedItem = item;
     this.selectedIndex = index;
 
-    this._value = this.getValue(item);
-    this.valueChange.emit(this.value);
-    this.changeDetectorRef.detectChanges();
+    this._value = this.getItemValue(item);
+
+    if (isDoCheck) {
+      this.valueChange.emit(this.getItemValue(item));
+      this.changeDetectorRef.markForCheck();
+    }
   }
 
   onTouchMove(e) {
