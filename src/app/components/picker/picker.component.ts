@@ -5,13 +5,11 @@ import {
   Input,
   Output,
   OnInit,
-  ChangeDetectorRef,
   ViewChildren,
   QueryList
 } from '@angular/core';
 
 import {isUndefined} from "util";
-import {InPickerSelectedValue} from "../../lib/interfaces/InPickerSelectedValue";
 import {DynamicCore} from "../dynamicCore/DynamicCore";
 import {PickerColumnComponent} from "../picker-column/picker-column.component";
 
@@ -39,7 +37,8 @@ export class PickerComponent extends DynamicCore implements OnInit {
   // 这个参数至关重要
   // 如何友好使用 最简单的是什么
   // 一维数组
-  // 多个列的时候涉及多维数组
+  // 多个列的时候涉及多维数组 [{options: [], child: {}}, {}]
+  // {options, child}
   @Input() data: Array<any>;
 
   // 输出参数
@@ -130,9 +129,10 @@ export class PickerComponent extends DynamicCore implements OnInit {
     return this._value;
   }
 
+  // [{options: [{ cityId: 11, child: {options: []} ] }]
   onScrollEnd(e, index ?: number) {
-    if (this.isMulti && e.item && e.item.children) {
-      this.data[index]['options'] = e.item.children;
+    if (this.isMulti && index < this.data.length - 1 && e.item && e.item.child) {
+      this.data[index + 1] = e.item.child;
     }
   }
 

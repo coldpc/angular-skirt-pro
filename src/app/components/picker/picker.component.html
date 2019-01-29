@@ -8,7 +8,7 @@
 
   <div class="pickers">
 
-    <ng-container *ngIf="isMulti">
+    <ng-container *ngIf="isMulti && data">
       <sk-picker-column *ngFor="let item of data; let inx = index"
                         [(value)]="innerValue[inx]"
                         [isShow]="isShowPicker"

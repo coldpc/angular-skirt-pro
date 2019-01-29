@@ -61,7 +61,11 @@ export class HomeComponent implements OnInit {
       .setParams({name: 'pccold', a: 'a'})
       .setBody({test: '123', password: 'asfd'})
       .request((data) => {
-        this.cityList = [{options: data}, {options: data}];
+        let result = Object.assign([], data);
+        for (let i = 0; i < data.length; i++) {
+          data[i].child = {options: result.slice(0, i + 1)};
+        }
+        this.cityList = [{options: data}, {}];
       });
   }
 
