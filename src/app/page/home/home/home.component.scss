@@ -7,6 +7,20 @@
   text-align: right;
 }
 
+.main{
+  white-space: nowrap;
+  line-height: 0;
+  overflow: hidden;
+  .list {
+    line-height: 0;
+    width: 400%;
+  }
+
+  sk-image{
+    width: 25%;
+  }
+}
+
 sk-button{
   & + & {
     margin-left: 0.1rem;

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 import {EnButtonSize} from "../../../lib/enums/EnButtonSize";
 import {DialogService} from "../../../lib/service/system/dialog.service";
 import {EnButtonType} from "../../../lib/enums/EnButtonType";
@@ -6,13 +6,14 @@ import {ApiCoreService} from "../../../lib/service/http/ApiCoreService";
 import {LoadingService} from "../../../lib/service/system/loading.service";
 import {RouterService} from "../../../lib/service/router/RouterService";
 import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
+import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
 
 @Component({
   selector: 'sk-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   imgSrc = "/assets/test.jpg";
   isShowMask = false;
@@ -23,6 +24,10 @@ export class HomeComponent implements OnInit {
   EnButtonSize = EnButtonSize;
 
   cityList: Array<any> = [];
+
+  scroll: SkEasyScroller;
+
+  @ViewChild("list") list: ElementRef;
 
   constructor(private dialogService: DialogService,
               private loadingService: LoadingService,
@@ -38,7 +43,19 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit(): void {
+    this.scroll = new SkEasyScroller(this.list.nativeElement, {
+      scrollingX: true,
+      scrollingY: false,
+      snapping: false
+    });
+    this.scroll.scroller.setSnapSize(this.list.nativeElement.parentNode.offsetWidth, 0);
+  }
+
   onTapImg() {
+    this.dialogService.confirm({
+      message: "确定要退出吗？"
+    });
   }
 
   onTapButton() {
