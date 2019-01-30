@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'page/apartments',
     loadChildren: './page/apartments/apartments.module#ApartmentsModule',
     canLoad: []
+  },
+  {
+    path: 'page/store',
+    loadChildren: './page/apartments/store.module#StoreModule',
+    canLoad: []
   }
 ];
 

@@ -66,4 +66,8 @@ export class ApartmentsComponent implements OnInit {
     this.currentCity = city;
     this.loadData();
   }
+
+  onTapApartment(apartment) {
+    this.routerService.gotoStore();
+  }
 }

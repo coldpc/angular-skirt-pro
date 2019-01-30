@@ -14,9 +14,18 @@ export class RouterService extends RouterCoreService {
     params.path = EnRouterPath.apartments;
     this.loadPage(params);
   }
+
+  /**
+   * 公寓列表
+   */
+  gotoStore(params: ApartmentsParams = {}): void {
+    params.path = EnRouterPath.apartments;
+    this.loadPage(params);
+  }
 }
 
 
 interface ApartmentsParams extends InRouterPath {
   params ?: InCityModel;
 }
+

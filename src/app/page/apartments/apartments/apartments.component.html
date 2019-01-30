@@ -7,7 +7,7 @@
   </sk-header>
 
   <div class="main-part">
-    <div *ngFor="let apartment of apartments" class="apartment">
+    <div *ngFor="let apartment of apartments" class="apartment" (tap)="this.onTapApartment(apartment)" >
       <div class="img-con">
         <sk-image [ratio]="345/190" [pictures]="apartment.coverPictures"></sk-image>
       </div>
