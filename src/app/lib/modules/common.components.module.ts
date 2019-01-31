@@ -10,6 +10,7 @@ import {ListComponent} from "../../components/list/list.component";
 import {ModalComponent} from "../../components/modal/modal.component";
 import {SystemModule} from "./system.module";
 import {MoneyComponent} from 'src/app/components/money/money.component';
+import {TagComponent} from "../../components/tag/tag.component";
 
 const components = [
   ListComponent,
@@ -21,7 +22,8 @@ const components = [
   DeviceAdaptiveComponent,
   InputComponent,
   ModalComponent,
-  MoneyComponent
+  MoneyComponent,
+  TagComponent
 ];
 
 @NgModule({

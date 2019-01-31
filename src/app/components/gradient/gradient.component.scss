@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  .show-default-part {
+    z-index: 2;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .show-gradient-part{
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.gradient-area {
+    .show-default-part{
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .show-gradient-part {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .show-default-part, .show-gradient-part {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 250ms ease-in;
+  }
+}

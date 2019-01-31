@@ -24,8 +24,6 @@ import {DialogComponent} from "./components/dialog/dialog.component";
 import {LoadingService} from "./lib/service/system/loading.service";
 import {LoadingComponent} from "./components/loading/loading.component";
 import {httpInterceptorProviders} from "./lib/service/http/http-interceptors";
-import { StoreRoutingModule } from './page/store/store-routing.module';
-import { StoreModule } from './page/store/store.module';
 
 // app根节点需要提供的服务
 let providers = [
@@ -46,9 +44,7 @@ let providers = [
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SystemModule,
-    StoreRoutingModule,
-    StoreModule
+    SystemModule
   ],
   providers: [
     ...providers

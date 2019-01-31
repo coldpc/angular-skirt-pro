@@ -67,7 +67,7 @@ export class ApartmentsComponent implements OnInit {
     this.loadData();
   }
 
-  onTapApartment(apartment) {
-    this.routerService.gotoStore();
+  onTapApartment(apartment: InApartmentModel) {
+    this.routerService.gotoApartment(apartment.apartmentId);
   }
 }

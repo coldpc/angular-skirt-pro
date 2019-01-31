@@ -10,6 +10,8 @@ const DEFAULT_MAX_FONT_SIZE = 120;
 const devicePixelRatio = window.devicePixelRatio || 1;
 
 export class RemView {
+  static scale = devicePixelRatio;
+
   static _install;
 
   designWidth;

@@ -12,7 +12,11 @@ declare var window: any;
 export class HeaderComponent implements OnInit {
 
   @Input() title: string = '';
+
+  // 是否有返回的icon
   @Input() hasBack: boolean = false;
+
+  // 返回的icon是否默认具有返回的动作
   @Input() isBackAction: boolean = true;
 
   // 输出的事件

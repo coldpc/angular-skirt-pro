@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'page/store',
-    loadChildren: './page/apartments/store.module#StoreModule',
+    loadChildren: './page/apartment/apartment.module#ApartmentModule',
     canLoad: []
   }
 ];

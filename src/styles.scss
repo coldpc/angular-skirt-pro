@@ -8,7 +8,7 @@ html, body{
   margin: 0;
   width: 100%;
   height: 100%;
-  background-color: #fafafa !important;
+  background-color: #EFEFEF !important;
 }
 html{
   font-size: 100px;
@@ -41,4 +41,6 @@ button, p, input{
 .icon{
   line-height: inherit;
 }
-
+p, h1, h2, h3, h4 {
+  margin: 0;
+}
