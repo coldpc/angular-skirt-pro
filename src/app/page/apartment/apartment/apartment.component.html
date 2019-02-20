@@ -5,7 +5,12 @@
   </sk-gradient>
 
   <div class="main">
-    <sk-image [src]="apartmentDetail.pics[0].picUrl" [ratio]="16 / 9"></sk-image>
+
+    <sk-swiper>
+      <sk-swiper-slide *ngFor="let pic of apartmentDetail.pics">
+        <sk-image [src]="pic.picUrl" [ratio]="16 / 9"></sk-image>
+      </sk-swiper-slide>
+    </sk-swiper>
 
     <div class="info-part">
       <h3>{{apartmentDetail.apartmentName}}</h3>
@@ -26,15 +31,31 @@
       </div>
     </div>
 
-    <div class="device-list">
-      <div class="icon-text">
-        <span [skIcon]=""></span>
+    <div class="facilities">
+      <div class="fac-item" *ngFor="let facItem of apartmentDetail.apartmentFacilities.slice(0, 5)">
+        <sk-image class="fac-image" [ratio]="1" [src]="facItem.iconUrl"></sk-image>
+        <p>{{facItem.facilityName}}</p>
+      </div>
+    </div>
+
+    <div class="hot-part">
+      <div class="title">热门房型</div>
+      <div class="hot-list">
+        <div class="hot-item">
+          <sk-image class="hot-image" [ratio]="100 / 66" [src]="'http://sce-funlive-01.oss-cn-shanghai.aliyuncs.com/roomType/1548644521429d954d457-461c-419e-bb74-c8434c9a155b'"></sk-image>
+          <div class="info">
+            <p>good</p>
+            <p class="desc">1室1厅1厨1卫</p>
+            <p class="price"><sk-money [amount]="1"></sk-money></p>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
 
   <div class="bottom">
-
+    <sk-button [size]="EnButtonSize.default" [type]="EnButtonType.primary">预约看房</sk-button>
+    <sk-button [size]="EnButtonSize.default" [type]="EnButtonType.black">选房预定</sk-button>
   </div>
 </sk-layout>

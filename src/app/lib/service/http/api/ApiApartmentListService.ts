@@ -20,6 +20,11 @@ export interface InApartmentModel {
   managerName: string;
   pics: Array<any>;
   priceLow: number;
+  apartmentFacilities: Array<{
+    facilityCode: string,
+    facilityName: string,
+    iconUrl: string
+  }>;
 }
 
 @Injectable()

@@ -3,6 +3,8 @@ import {GetApartmentDetailService} from "../../../lib/service/http/api/GetApartm
 import {RouterService} from "../../../lib/service/router/RouterService";
 import {InApartmentModel} from "../../../lib/service/http/api/ApiApartmentListService";
 import {EnTagSize} from 'src/app/lib/enums/EnTagSize';
+import {EnButtonSize} from 'src/app/lib/enums/EnButtonSize';
+import {EnButtonType} from "../../../lib/enums/EnButtonType";
 
 @Component({
   selector: 'sk-apartment',
@@ -14,6 +16,9 @@ export class ApartmentComponent implements OnInit {
   isLoading = false;
 
   EnTagSize = EnTagSize;
+
+  EnButtonSize = EnButtonSize;
+  EnButtonType = EnButtonType;
 
   apartmentDetail: InApartmentModel;
 

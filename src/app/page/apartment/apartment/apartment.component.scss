@@ -58,9 +58,72 @@
   }
 }
 
-
 .device-list {
   margin-top: 0.1rem;
   min-height: 100px;
   background-color: #fff;
+}
+
+.facilities{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  background-color: #fff;
+  padding-bottom: 0.2rem;
+  font-size: $xSmallFontSize;
+  color: $greyFontColor;
+
+  .fac-item{
+    flex: 1;
+  }
+
+  .fac-image{
+    width: 0.3rem;
+    margin: auto;
+    background-color: transparent;
+    font-size: 0.1rem;
+  }
+}
+
+.hot-part {
+  background-color: #fff;
+  margin-top: 0.1rem;
+  padding: 0.2rem;
+
+  .title {
+    padding-bottom: 0.1rem;
+    margin-top: -0.06rem;
+    font-size: $largeFontSize;
+  }
+}
+.hot-item {
+  display: flex;
+
+  .hot-image {
+    width: 1.6rem;
+  }
+
+  .info {
+    padding-left: 0.15rem;
+  }
+
+  .desc {
+    color: $greyFontColor;
+    font-size: $xSmallFontSize;
+    margin: 0.1rem 0;
+  }
+
+  .price {
+    color: $primaryColor;
+    font-size: $xLargeFontSize;
+  }
+}
+
+.bottom {
+  padding: 0.1rem;
+  text-align: right;
+
+  sk-button  + sk-button {
+    margin-left: 0.1rem;
+  }
 }

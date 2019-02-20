@@ -3,6 +3,7 @@ import {
   AfterViewInit, Component, ContentChildren, ElementRef, Input, OnDestroy, QueryList, ViewChild
 } from '@angular/core';
 import {SwiperSlideComponent} from "./swiper-slide/swiper-slide.component";
+import {LoadJs} from "../../lib/utils/LoadJs";
 
 @Component({
   selector: 'sk-swiper',
@@ -10,17 +11,23 @@ import {SwiperSlideComponent} from "./swiper-slide/swiper-slide.component";
   styleUrls: ['./swiper.component.scss']
 })
 export class SwiperComponent implements AfterViewInit, AfterContentInit, OnDestroy {
-  plugin: any;
-
-  @ViewChild("wrapper") wrapper: ElementRef;
+  @ViewChild("container") container: ElementRef;
   @ContentChildren(SwiperSlideComponent) sliders: QueryList<SwiperSlideComponent>;
 
   @Input() isAuto: boolean = true;
   @Input() isLoop: boolean = true;
-  @Input() times: number = 900; // 切换的时间
+  @Input() speed: number = 500; // 切换的时间
   @Input() duration: number = 6000; // 切换的间隔
 
-  _active = 1;
+  // swiper实例
+  private plugin: any;
+
+  // 当前定焦的index
+  private _active = 1;
+
+  constructor() {
+  }
+
   @Input()
   set activeIndex(index: number) {
     this._active = index;
@@ -30,14 +37,7 @@ export class SwiperComponent implements AfterViewInit, AfterContentInit, OnDestr
     return this._active;
   }
 
-  constructor() {
-  }
-
-  ngAfterViewInit () {
-    this.sliders.changes.subscribe(() => {
-      this.reCreate();
-    });
-  }
+  ngAfterViewInit () {}
 
   ngAfterContentInit() {
     this.update();
@@ -47,57 +47,36 @@ export class SwiperComponent implements AfterViewInit, AfterContentInit, OnDestr
     this.destroy();
   }
 
+  async loadSwiper(): Promise<any> {
+    if (typeof window['Swiper'] === "undefined") {
+      await LoadJs("/assets/swiper/swiper.custom.min.js");
+    }
+    return window['Swiper'];
+  }
+
   update() {
     if (!this.plugin) {
-      this.createSlider();
-    }else {
-      this.update();
+      this.createSwiper().then(() => {
+        this.initEvent(this.plugin);
+      }).catch();
     }
   }
 
+  async createSwiper() {
+    let Swiper = await this.loadSwiper();
 
-  // 重新创建
-  reCreate() {
-    this.destroy();
-    this.createSlider();
-  }
-
-  createSlider() {
-    // 变态的插件 initialSlide从0开始
-    // 事件改变从1开始
-    this.initEvent(this.plugin = new Swiper(this.wrapper.nativeElement, {
-      speed: 400,
+    this.plugin = new Swiper(this.container.nativeElement, {
+      speed: this.speed,
       loop: this.isLoop,
       initialSlide: this.activeIndex - 1,
-      autoplay: this.isAuto ? {
-        delay: this.duration
-      } : false
-    }));
-
+      autoplay: this.isAuto ? this.duration : 0
+    });
   }
 
   initEvent(swiper: any) {
     swiper.on('slideChange', () => {
       this.setActive(this.plugin.activeIndex);
     });
-  }
-
-  getPluginInstance() {
-    return this.plugin;
-  }
-
-  getClass(index: number): string {
-    if (this._active === index + 1) {
-      return 'active';
-    }else {
-      return '';
-    }
-  }
-
-  onTapSign(index: number): void {
-    if (this.activeIndex !== index) {
-      this.slideTo(index);
-    }
   }
 
   setActive(index: number) {
@@ -114,12 +93,12 @@ export class SwiperComponent implements AfterViewInit, AfterContentInit, OnDestr
 
   // 激活某个tab
   slideTo(index: number) {
-    this.getPluginInstance().slideTo(index);
+    this.plugin.slideTo(index);
   }
 
   destroy() {
     if (this.plugin) {
-      this.getPluginInstance().destroy(true, true);
+      this.plugin.destroy(true, true);
     }
   }
 }

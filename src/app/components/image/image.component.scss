@@ -4,6 +4,8 @@
   display: block;
   width: 100%;
   background-color: #f2f2f2;
+  overflow: hidden;
+  font-size: 0.4rem;
 }
 
 .img-content{
@@ -26,6 +28,13 @@
   left: 50%;
   align-items: center;
   transform: translate(-50%, -50%);
-  font-size: 0.4rem;
   color: #dfdfdf;
+}
+
+.img-sign {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
 }

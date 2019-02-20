@@ -44,12 +44,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.scroll = new SkEasyScroller(this.list.nativeElement, {
-      scrollingX: true,
-      scrollingY: false,
-      snapping: false
-    });
-    this.scroll.scroller.setSnapSize(this.list.nativeElement.parentNode.offsetWidth, 0);
+    // this.scroll = new SkEasyScroller(this.list.nativeElement, {
+    //   scrollingX: true,
+    //   scrollingY: false,
+    //   snapping: false
+    // });
+    // this.scroll.scroller.setSnapSize(this.list.nativeElement.parentNode.offsetWidth, 0);
+
+    let a = {
+      name: 'pcd',
+      age: 30,
+      sex: 'boy'
+    };
   }
 
   onTapImg() {

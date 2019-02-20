@@ -3,5 +3,5 @@ export enum EnRouterPath {
   home = '',
   login = 'page/user/login',
   apartments = 'page/apartments',
-  store = 'page/store',
+  store = 'page/apartment',
 }

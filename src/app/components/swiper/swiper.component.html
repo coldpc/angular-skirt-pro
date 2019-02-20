@@ -1,8 +1,5 @@
-<div #wrapper class="swiper-container">
+<div #container class="swiper-container">
   <div class="swiper-wrapper">
     <ng-content></ng-content>
-  </div>
-  <div class="short-link-sign">
-    <div *ngFor="let slider of sliders;let i = index;" (tap)="onTapSign(i)" class="short-link transition" [ngClass]="getClass(i)">{{i}}</div>
   </div>
 </div>
