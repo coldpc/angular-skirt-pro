@@ -5,15 +5,14 @@ import {ApartmentRoutingModule} from "./apartment-routing.module";
 import {RouterService} from "../../lib/service/router/RouterService";
 import {GetApartmentDetailService} from "../../lib/service/http/api/GetApartmentDetailService";
 import {GradientComponent} from "../../components/gradient/gradient.component";
-import {SwiperSlideComponent} from 'src/app/components/swiper/swiper-slide/swiper-slide.component';
-import {SwiperComponent} from "../../components/swiper/swiper.component";
+import {SwiperModule} from "../../lib/modules/swiper.module";
 
 @NgModule({
-  declarations: [ApartmentComponent, GradientComponent,
-    SwiperSlideComponent, SwiperComponent],
+  declarations: [ApartmentComponent, GradientComponent],
   imports: [
     ApartmentRoutingModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    SwiperModule
   ],
   providers: [RouterService, GetApartmentDetailService]
 })
