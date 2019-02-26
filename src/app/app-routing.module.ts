@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'page/apartment',
     loadChildren: './page/apartment/apartment.module#ApartmentModule',
     canLoad: []
+  },
+  {
+    path: 'page/reserve',
+    loadChildren: './page/reserve/reserve.module#ReserveModule',
+    canLoad: []
   }
 ];
 

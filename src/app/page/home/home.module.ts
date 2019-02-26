@@ -4,9 +4,10 @@ import {HomeRoutingModule} from "./home-routing.module";
 import {CommonComponentsModule} from "../../lib/modules/common.components.module";
 import {RouterService} from "../../lib/service/router/RouterService";
 import {DatePickerModule} from "../../lib/modules/date.picker.module";
+import { CoolMenuComponent } from './cool-menu/cool-menu.component';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, CoolMenuComponent],
   imports: [
     HomeRoutingModule,
     CommonComponentsModule,
