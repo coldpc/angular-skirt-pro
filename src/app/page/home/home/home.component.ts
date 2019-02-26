@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   renderer: any;
   mesh: any;
   ball: any;
-  rotate: 0;
+  rotate: number = 0;
 
   constructor(private dialogServeice: DialogService) {
 
@@ -41,9 +41,38 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.addCube();
         this.render();
         this.animate();
+
+        this.addEvent();
+
       });
 
     }).catch();
+  }
+
+  addEvent() {
+    let _this = this;
+    let touchData = {x0: 0, y0: 0, xt: 0, yt: 0};
+    this.canvasCon.nativeElement.addEventListener('touchstart', startFunc);
+
+    this.canvasCon.nativeElement.addEventListener('touchmove', moveFunc);
+
+    function startFunc(e) {
+      console.log(e.target);
+      let touches = e.targetTouches;
+      touchData.y0 = touchData.yt = touches[0].clientY;
+      touchData.x0 = touchData.xt = touches[0].clientX;
+    }
+
+    function moveFunc(e) {
+      console.log(e.target);
+      let touches = e.targetTouches;
+      touchData.yt = touches[0].clientY;
+      touchData.xt = touches[0].clientX;
+      _this.rotate += (touchData.xt - touchData.x0) / 1000;
+      touchData.x0 = touchData.xt;
+      touchData.y0 = touchData.yt;
+      console.log(_this.rotate);
+    }
   }
 
   async loadInit() {
@@ -60,7 +89,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     requestAnimationFrame( () => {
       this.animate();
     } );
-    mesh.rotation.y += 0.005;
+
+    mesh.rotation.y = this.rotate;
     this.renderer.render( this.scene, this.camera );
   }
 
@@ -149,12 +179,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     let geometry2 = new THREE.SphereGeometry( 100, 100, 100);
     let texture2 = new THREE.TextureLoader().load( '/assets/textures/map2.png' );
-    // let texture2 = new THREE.TextureLoader().load( '/assets/textures/xinqiu.jpg' );
     let material2 = new THREE.MeshBasicMaterial( {
       map: texture2,  // 贴图
       color: 0xffffff,
-      wireframe: false,
-      transparent: true
+      wireframe: false, // 是否渲染边框
+      transparent: true // 透明
     } );
     let mesh2 = this.ball = new THREE.Mesh( geometry2, material2 );
     mesh2.position.x = 0;
@@ -175,5 +204,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     renderer.setSize( client.width, client.width );
 
     this.canvasCon.nativeElement.appendChild( renderer.domElement );
+    renderer.render( this.scene, this.camera );
   }
 }
