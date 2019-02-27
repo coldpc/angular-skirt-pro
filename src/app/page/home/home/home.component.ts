@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   initCamera() {
     let THREE = this.THREE;
     let camera = this.camera = new THREE.PerspectiveCamera( 70, 1, 1, 1000 );
-    camera.position.z = 200;
+    camera.position.z = 1200;
   }
 
   initScene(): void {
@@ -177,8 +177,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     mesh.position.x = 0;
     mesh.position.y = 0;
 
-    let geometry2 = new THREE.SphereGeometry( 100, 100, 100);
-    let texture2 = new THREE.TextureLoader().load( '/assets/textures/map2.png' );
+    let geometry2 = new THREE.SphereGeometry( 600, 100, 100);
+    // let texture2 = new THREE.TextureLoader().load( '/assets/textures/map2.png' );
+    let texture2 = new THREE.TextureLoader().load( '/assets/textures/xingqiu-last.jpg' );
     let material2 = new THREE.MeshBasicMaterial( {
       map: texture2,  // 贴图
       color: 0xffffff,

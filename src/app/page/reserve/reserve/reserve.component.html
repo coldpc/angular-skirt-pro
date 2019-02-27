@@ -1,2 +1,48 @@
 <sk-layout>
+  <div class="bg" #bg>
+  </div>
+
+  <div class="inputBack" #inputBack></div>
+
+  <div class="main">
+    <div class="top-part">
+      <sk-image [ratio]="164/31" src="'/assets/img/main/logo.png'"></sk-image>
+    </div>
+
+    <div class="content-part">
+      <div class="scroll-part">
+        <div class="scroll-content" #scrollContent>
+          <div class="form-part" #form>
+            <sk-form-item [isFocus]="focusIndex == 0" placeholder="姓名" (tap)="onTapItem(0)"></sk-form-item>
+            <sk-form-item [isFocus]="focusIndex == 1" placeholder="电话" [type]="'number'" [level]="1" (tap)="onTapItem(1)"></sk-form-item>
+
+            <sk-form-item [isFocus]="focusIndex == 2"
+                          placeholder="车型" [level]="2" (tap)="onTapItem(2, 'car')"
+                          [selectText]="selectCar.text"
+                          type="select"></sk-form-item>
+
+            <sk-form-item [isFocus]="focusIndex == 3"
+                          placeholder="地区" [level]="3"  [selectText]="selectAreaText"
+                          (tap)="onTapItem(3, 'area')" type="select"></sk-form-item>
+
+
+            <sk-form-item [isFocus]="focusIndex == 4" placeholder="经销商" [level]="4" (tap)="onTapItem(4)" type="select"></sk-form-item>
+            <sk-form-item [isFocus]="focusIndex == 5" placeholder="试驾时间" [level]="5" (tap)="onTapItem(5)" type="date"></sk-form-item>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn">
+      <sk-image src="/assets/img/reserve/submit.png" [ratio]="289/98" (tap)="onSubmit()"></sk-image>
+    </div>
+  </div>
 </sk-layout>
+
+<sk-picker [(isShow)]="isShowCar" [title]="'选择车型'" [data]="carData" (changeSelectedItem)="onChangeCar($event)"></sk-picker>
+<sk-picker [(isShow)]="isShowArea" [isMulti]="true"
+           [title]="'选择地区'" displayField="name" valueField="id"
+           [data]="areaData" (changeSelectedItem)="onChangeArea($event)"></sk-picker>
+
+
+

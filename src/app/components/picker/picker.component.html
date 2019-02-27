@@ -10,7 +10,7 @@
 
     <ng-container *ngIf="isMulti && data">
       <sk-picker-column *ngFor="let item of data; let inx = index"
-                        [(value)]="innerValue[inx]"
+                        [(value)]="innerValue && innerValue[inx]"
                         [isShow]="isShowPicker"
                         [data]="item.options"
                         [displayField]="displayField"
