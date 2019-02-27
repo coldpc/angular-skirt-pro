@@ -1,0 +1,86 @@
+:host {
+  position: relative;
+  display: inline-block;
+  border: 2px solid #fff;
+  color:rgba(255,255,255,1);
+  font-size: 0.223rem;
+  white-space: nowrap;
+  padding: 0.1rem 0.12rem;
+  line-height: 1;
+  text-shadow: 0 0 10px #00d2ff,
+  0 0 20px #00d2ff, 0 0 30px #00d2ff,
+  0 0 40px #228DFF,
+  0 0 70px #228DFF,
+  0 0 80px #228DFF,
+  0 0 100px #228DFF,
+  0 0 150px #228DFF;
+
+  box-shadow: 0 0 10px #00d2ff;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 0.06rem;
+  height: 0.06rem;
+  position: absolute;
+  z-index: 2;
+  background-color: #ffffff;
+  box-shadow: 0 0 23px 4px #00d2ff;
+}
+.c1 {
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+.c2 {
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+}
+.c3 {
+  left: 0;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+}
+.c4 {
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+}
+
+.line {
+  background-color: #fff;
+  position: absolute;
+  box-shadow: 0 0 10px 4px #00d2ff;
+}
+.line1 {
+  height: 6px;
+  width: 0.55rem;
+  top: 0;
+  right: 0.4rem;
+  transform: translateY(-60%);
+}
+.line2 {
+  width: 6px;
+  height: 0.2rem;
+  left: 0;
+  bottom: 0;
+  transform: translate(-50%, -1%);
+}
+.line3 {
+  height: 6px;
+  width: 0.35rem;
+  left: 0;
+  bottom: 0;
+  transform: translate(0%, 50%);
+}
+.line4 {
+  width: 6px;
+  height: 0.2rem;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  transform: translate(-50%, 3px);
+  position: absolute;
+  background: #fff;
+}
