@@ -1,3 +1,26 @@
-<sk-layout>
-  <div #canvasCon></div>
+<sk-layout [type]="'static'">
+  <div class="main">
+    <div class="top-part">
+      <sk-image [ratio]="164/31" src="'/assets/img/main/logo.png'"></sk-image>
+    </div>
+    <sk-image class="text1 text-img" [src]="'/assets/img/main/text/t1.png'" [ratio]="431/28"></sk-image>
+    <sk-image class="text2 text-img" [src]="'/assets/img/main/text/t2.png'" [ratio]="323/86"></sk-image>
+    <sk-image class="text3 text-img" [src]="'/assets/img/main/text/t3.png'" [ratio]="28/431"></sk-image>
+
+    <div class="start-point-part">
+      <sk-cool-menu class="p1" [text]="'星球大咖乐园'"></sk-cool-menu>
+      <sk-cool-menu class="p2" [text]="'星球巡航预约'"></sk-cool-menu>
+      <sk-cool-menu class="p3" [text]="'雷凌劲擎购'"></sk-cool-menu>
+      <sk-cool-menu class="p4" [text]="'雷凌群英汇'"></sk-cool-menu>
+      <sk-cool-menu class="p5" [text]="'PHEV星球展览'"></sk-cool-menu>
+    </div>
+
+
+    <div class="hand-con">
+      <sk-image [src]="'/assets/img/main/hand.png'" [ratio]="119/53"></sk-image>
+      <p>滑动移动星球</p>
+    </div>
+  </div>
+
+  <div #canvasCon class="canvas-part"></div>
 </sk-layout>

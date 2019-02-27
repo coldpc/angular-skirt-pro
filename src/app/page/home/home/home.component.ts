@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   renderer: any;
   mesh: any;
   ball: any;
+  rotate: number = 0;
 
   constructor(private dialogServeice: DialogService) {
 
@@ -38,12 +39,40 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.initCamera();
         this.initScene();
         this.addCube();
-        // this.drawPoint();
         this.render();
         this.animate();
+
+        this.addEvent();
+
       });
 
     }).catch();
+  }
+
+  addEvent() {
+    let _this = this;
+    let touchData = {x0: 0, y0: 0, xt: 0, yt: 0};
+    this.canvasCon.nativeElement.addEventListener('touchstart', startFunc);
+
+    this.canvasCon.nativeElement.addEventListener('touchmove', moveFunc);
+
+    function startFunc(e) {
+      console.log(e.target);
+      let touches = e.targetTouches;
+      touchData.y0 = touchData.yt = touches[0].clientY;
+      touchData.x0 = touchData.xt = touches[0].clientX;
+    }
+
+    function moveFunc(e) {
+      console.log(e.target);
+      let touches = e.targetTouches;
+      touchData.yt = touches[0].clientY;
+      touchData.xt = touches[0].clientX;
+      _this.rotate += (touchData.xt - touchData.x0) / 1000;
+      touchData.x0 = touchData.xt;
+      touchData.y0 = touchData.yt;
+      console.log(_this.rotate);
+    }
   }
 
   async loadInit() {
@@ -60,8 +89,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     requestAnimationFrame( () => {
       this.animate();
     } );
-    mesh.rotation.y += 0.005;
-    // this.ball.rotation.y += 0.005;
+
+    mesh.rotation.y = this.rotate;
     this.renderer.render( this.scene, this.camera );
   }
 
@@ -122,8 +151,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   initCamera() {
     let THREE = this.THREE;
-    let camera = this.camera = new THREE.PerspectiveCamera( 70, client.width / client.height, 1, 1000 );
-    camera.position.z = 300;
+    let camera = this.camera = new THREE.PerspectiveCamera( 70, 1, 1, 1000 );
+    camera.position.z = 200;
   }
 
   initScene(): void {
@@ -138,30 +167,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
    */
   addCube(): void {
     let THREE = this.THREE;
-    let texture = new THREE.TextureLoader().load( '/assets/textures/crate.gif' );
-
-
-    // let geometry = new THREE.SphereGeometry( 100, 18, 13 );
-    let geometry = new THREE.IcosahedronBufferGeometry( 1, 1 );
+    let geometry = new THREE.SphereGeometry( 1, 18, 13 );
     let material = new THREE.MeshBasicMaterial( {
-      // map: texture,  // 贴图
       color: 0x76c1d4,
       wireframe: true,
       wireframeLinewidth: 10
-
     } );
     let mesh = this.mesh = new THREE.Mesh( geometry, material );
     mesh.position.x = 0;
     mesh.position.y = 0;
 
-    let geometry2 = new THREE.SphereGeometry( 80, 100, 100);
-    // let texture2 = new THREE.TextureLoader().load( '/assets/textures/earth.jpg' )
-    let texture2 = new THREE.TextureLoader().load( '/assets/textures/map2.png' )
+    let geometry2 = new THREE.SphereGeometry( 100, 100, 100);
+    let texture2 = new THREE.TextureLoader().load( '/assets/textures/map2.png' );
     let material2 = new THREE.MeshBasicMaterial( {
       map: texture2,  // 贴图
       color: 0xffffff,
-      wireframe: false,
-      transparent: true
+      wireframe: false, // 是否渲染边框
+      transparent: true // 透明
     } );
     let mesh2 = this.ball = new THREE.Mesh( geometry2, material2 );
     mesh2.position.x = 0;
@@ -172,44 +194,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.scene.add(mesh);
   }
 
-  drawPoint() {
-    let THREE = this.THREE;
-    let points = [{
-      x: 98,
-      y: 0,
-      z: 0
-    }, {
-      x: 0,
-      z: 98,
-      y: 0
-    }];
-
-    for (let i = 0; i < points.length; i++) {
-      let geometry2 = new THREE.SphereGeometry( 4, 100, 100);
-      let material2 = new THREE.MeshBasicMaterial( {
-        color: 0xc9f5fb,
-        wireframe: false
-      } );
-
-      let point = points[i];
-      let mesh2 = this.ball = new THREE.Mesh( geometry2, material2 );
-      mesh2.position.x = point.x;
-      mesh2.position.y = point.y;
-      mesh2.position.z = point.z;
-      this.mesh.add(mesh2);
-    }
-
-  }
-
   render() {
     let THREE = this.THREE;
     this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true} );
 
     let renderer = this.renderer;
     renderer.setPixelRatio( 1 );
-    renderer.setClearColor( 0x0d2444, 1 );
-    renderer.setSize( client.width, client.height );
+    renderer.setClearColor( 0x0d2444, 0 );
+    renderer.setSize( client.width, client.width );
 
     this.canvasCon.nativeElement.appendChild( renderer.domElement );
+    renderer.render( this.scene, this.camera );
   }
 }

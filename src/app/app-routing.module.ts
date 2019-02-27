@@ -25,6 +25,11 @@ const routes: Routes = [
     path: 'page/jinrongjie',
     loadChildren: './page/jinrongjie/jinrongjie.module#JinrongjieModule',
     canLoad: []
+  },
+  {
+    path: 'page/reserve',
+    loadChildren: './page/reserve/reserve.module#ReserveModule',
+    canLoad: []
   }
 ];
 
