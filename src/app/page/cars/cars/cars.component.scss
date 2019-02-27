@@ -1,0 +1,81 @@
+@import "../../../theme/variables";
+$headerH: 0.30rem;
+$colorT: #0AAAEC;
+.header {
+  height: $headerH;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 3;
+  background-color: #fff;
+}
+.logo-box {
+  display: inline-block;
+  padding-top: 0.06rem;
+  padding-left: 0.11rem;
+  .logo {
+    height: 0.16rem;
+  }
+}
+.main {
+  padding-top: $headerH;
+  background: url("../../../../assets/img/jinrongjie/bg.jpg") no-repeat;
+  background-position: center top;
+  background-size: cover;
+  //background-origin: content-box;
+  min-height: 100vh;
+}
+.content {
+  margin: 1.95rem auto 0;
+  width: 3.21rem;
+  background-color: #fff;
+  border-radius: 0.06rem;
+  padding: 0 0.14rem 0.07rem;
+}
+.title-row {
+  overflow: hidden;
+  padding: 0.14rem 0.45rem;
+  .title-l, .title-r {
+    float: left;
+    width: 50%;
+    font-size: 0.11rem;
+    color: $colorT;
+  }
+  .title-r {
+    text-align: right;
+  }
+}
+.cell-row {
+  border-top: 1px solid #ccc;
+  padding: 0.05rem 0;
+  overflow: hidden;
+  .cell-l, .cell-r {
+    float: left;
+    line-height: 0.26rem;
+  }
+  .cell-l {
+    width: 60%;
+    font-size: 0.14rem;
+    color: #333;
+  }
+  .cell-r {
+    text-align: right;
+    width: 40%;
+    font-size: 0.17rem;
+    color: #FF0000;
+  }
+  .more {
+    margin-left: 0.08rem;
+    vertical-align: top;
+    width: 0.26rem;
+  }
+}
+.btn-box {
+  margin-top: 0.28rem;
+  text-align: center;
+  .btn {
+    width: 1.55rem;
+  }
+}
