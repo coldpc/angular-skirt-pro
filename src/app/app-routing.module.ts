@@ -22,6 +22,16 @@ const routes: Routes = [
     canLoad: []
   },
   {
+    path: 'page/cars',
+    loadChildren: './page/cars/cars.module#CarsModule',
+    canLoad: []
+  },
+  {
+    path: 'page/jinrongjie',
+    loadChildren: './page/jinrongjie/jinrongjie.module#JinrongjieModule',
+    canLoad: []
+  },
+  {
     path: 'page/reserve',
     loadChildren: './page/reserve/reserve.module#ReserveModule',
     canLoad: []
