@@ -112,5 +112,11 @@ sk-layout {
   top: 3.2rem;
   left: 0%;
   width: 100%;
-  transform: translate(-50%, -50%);
+  transform: translate(0%, -50%);
+}
+
+.outer-ball {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

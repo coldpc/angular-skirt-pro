@@ -15,14 +15,26 @@ const client = UtilsBase.getClient();
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild("canvasCon") canvasCon: ElementRef;
+  @ViewChild("outerBallCon") outerBallCon: ElementRef;
 
   THREE: any;
-  scene: any;
-  camera: any;
-  renderer: any;
-  mesh: any;
-  ball: any;
-  rotate: number = 0;
+
+  innerBall: {
+    scene ?: any,
+    camera ?: any,
+    renderer ?: any,
+    mesh ?: any
+  } = {};
+
+  outerBall: {
+    scene ?: any,
+    camera ?: any,
+    renderer ?: any,
+    mesh ?: any
+  } = {};
+
+
+  rotate: number = -1.5;
 
   constructor(private dialogServeice: DialogService) {
 
@@ -38,10 +50,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.loadInit().then(() => {
         this.initCamera();
         this.initScene();
-        this.addCube();
+        this.addInnerMesh();
+        this.addOuterMesh();
+        this.addLight();
         this.render();
         this.animate();
-
         this.addEvent();
 
       });
@@ -57,14 +70,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.canvasCon.nativeElement.addEventListener('touchmove', moveFunc);
 
     function startFunc(e) {
-      console.log(e.target);
       let touches = e.targetTouches;
       touchData.y0 = touchData.yt = touches[0].clientY;
       touchData.x0 = touchData.xt = touches[0].clientX;
     }
 
     function moveFunc(e) {
-      console.log(e.target);
       let touches = e.targetTouches;
       touchData.yt = touches[0].clientY;
       touchData.xt = touches[0].clientX;
@@ -85,13 +96,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   animate() {
-    let mesh = this.mesh;
+
+    this.rotate += 0.001;
     requestAnimationFrame( () => {
       this.animate();
     } );
 
-    mesh.rotation.y = this.rotate;
-    this.renderer.render( this.scene, this.camera );
+    rotate(this.innerBall, this.rotate);
+    rotate(this.outerBall, this.rotate);
+
+    function rotate(ball, r) {
+      let mesh = ball.mesh;
+      mesh.rotation.y = r;
+      ball.renderer.render( ball.scene, ball.camera );
+    }
   }
 
   test() {
@@ -151,60 +169,101 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   initCamera() {
     let THREE = this.THREE;
-    let camera = this.camera = new THREE.PerspectiveCamera( 70, client.width /client.height, 1, 1000 );
-    camera.position.z = 650;
-    camera.position.x = 0;
+    this.innerBall.camera = addCamera();
+    this.outerBall.camera = addCamera();
+
+    function addCamera() {
+      let camera = new THREE.PerspectiveCamera( 70, client.width / client.height, 1, 1000 );
+      // let camera = new THREE.OrthographicCamera(-2, 2, 1.5, -1.5, 1, 10);
+      camera.position.z = 480;
+      camera.position.x = 0;
+      return camera;
+    }
   }
 
   initScene(): void {
     let THREE = this.THREE;
 
     // 创建相机和场景
-    this.scene = new THREE.Scene();
+    this.innerBall.scene = new THREE.Scene();
+    this.outerBall.scene = new THREE.Scene();
   }
 
   /**
    * 添加立方体
    */
-  addCube(): void {
+  addOuterMesh(): void {
     let THREE = this.THREE;
-    let geometry = new THREE.SphereGeometry( 1, 18, 13 );
+    let geometry = new THREE.SphereGeometry( 96, 20, 20 );
+    let texture = new THREE.TextureLoader().load( '/assets/textures/star/inner.png' );
+    texture.mapping = THREE.SphericalReflectionMapping;
+    // texture.wrapS = THREE.RepeatWrapping;
+    // texture.wrapT = THREE.RepeatWrapping;
+
     let material = new THREE.MeshBasicMaterial( {
-      color: 0x76c1d4,
-      wireframe: true,
-      wireframeLinewidth: 10
+      map: texture,  // 贴图
+      wireframe: false,
+      depthTest: true,
+      transparent: true // 透明
     } );
-    let mesh = this.mesh = new THREE.Mesh( geometry, material );
+    let mesh = new THREE.Mesh( geometry, material );
     mesh.position.x = 0;
     mesh.position.y = 0;
 
-    let geometry2 = new THREE.SphereGeometry( 100, 100, 100);
-    // let texture2 = new THREE.TextureLoader().load( '/assets/textures/map2.png' );
-    let texture2 = new THREE.TextureLoader().load( '/assets/textures/xingqiu-last.jpg' );
+    this.outerBall.scene.add(mesh);
+    this.outerBall.mesh = mesh;
+  }
+
+  addInnerMesh() {
+    let THREE = this.THREE;
+    let geometry2 = new THREE.SphereGeometry( 80, 100, 100);
+    let texture2 = new THREE.TextureLoader().load( '/assets/textures/star/outer.png' );
+    // F:\learnProjects\angular-skirt-pro\src\assets\textures\earth.jpg
+    // let texture2 = new THREE.TextureLoader().load( '/assets/textures/earth.jpg' );
     let material2 = new THREE.MeshBasicMaterial( {
       map: texture2,  // 贴图
-      color: 0xffffff,
       wireframe: false, // 是否渲染边框
       transparent: true // 透明
     } );
-    let mesh2 = this.ball = new THREE.Mesh( geometry2, material2 );
+    let mesh2 = new THREE.Mesh( geometry2, material2 );
     mesh2.position.x = 0;
     mesh2.position.y = 0;
 
-    mesh.add(mesh2);
-    this.scene.add(mesh);
+    this.innerBall.scene.add(mesh2);
+    this.innerBall.mesh = mesh2;
+  }
+
+  addLight() {
+    // light--这里使用环境光
+    // var light = new THREE.DirectionalLight(0xffffff); /*方向性光源*/
+    // light.position.set(600, 1000, 800);
+    let THREE = this.THREE;
+    this.innerBall.scene.add(getLight());
+    this.outerBall.scene.add(getLight());
+
+
+    function getLight() {
+      let light = new THREE.AmbientLight(0xee0000); // 模拟漫反射光源
+      light.position.set(600, 0, 0); // 使用Ambient Light时可以忽略方向和角度，只考虑光源的位置
+      return light;
+    }
   }
 
   render() {
     let THREE = this.THREE;
-    this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true} );
 
-    let renderer = this.renderer;
-    renderer.setPixelRatio( 1 );
-    renderer.setClearColor( 0x0d2444, 0 );
-    renderer.setSize( client.width * 2, client.height * 2 );
+    function addRender(con) {
+      let renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true} );
+      renderer.setPixelRatio( 1 );
+      renderer.setSize( client.width, client.height );
+      con.nativeElement.appendChild( renderer.domElement );
+      return renderer;
+    }
 
-    this.canvasCon.nativeElement.appendChild( renderer.domElement );
-    renderer.render( this.scene, this.camera );
+    this.innerBall.renderer = addRender(this.canvasCon);
+    this.outerBall.renderer = addRender(this.outerBallCon);
+
+    this.innerBall.renderer.render( this.innerBall.scene, this.innerBall.camera );
+    this.outerBall.renderer.render( this.outerBall.scene, this.outerBall.camera );
   }
 }
