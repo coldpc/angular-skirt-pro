@@ -151,8 +151,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   initCamera() {
     let THREE = this.THREE;
-    let camera = this.camera = new THREE.PerspectiveCamera( 70, 1, 1, 1000 );
-    camera.position.z = 1200;
+    let camera = this.camera = new THREE.PerspectiveCamera( 70, client.width /client.height, 1, 1000 );
+    camera.position.z = 650;
+    camera.position.x = 0;
   }
 
   initScene(): void {
@@ -177,7 +178,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     mesh.position.x = 0;
     mesh.position.y = 0;
 
-    let geometry2 = new THREE.SphereGeometry( 600, 100, 100);
+    let geometry2 = new THREE.SphereGeometry( 100, 100, 100);
     // let texture2 = new THREE.TextureLoader().load( '/assets/textures/map2.png' );
     let texture2 = new THREE.TextureLoader().load( '/assets/textures/xingqiu-last.jpg' );
     let material2 = new THREE.MeshBasicMaterial( {
@@ -191,7 +192,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     mesh2.position.y = 0;
 
     mesh.add(mesh2);
-
     this.scene.add(mesh);
   }
 
@@ -202,7 +202,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let renderer = this.renderer;
     renderer.setPixelRatio( 1 );
     renderer.setClearColor( 0x0d2444, 0 );
-    renderer.setSize( client.width, client.width );
+    renderer.setSize( client.width * 2, client.height * 2 );
 
     this.canvasCon.nativeElement.appendChild( renderer.domElement );
     renderer.render( this.scene, this.camera );
