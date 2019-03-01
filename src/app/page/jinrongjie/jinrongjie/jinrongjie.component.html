@@ -4,12 +4,16 @@
     <div class="logo-box">
       <img class="logo" src="../../../../assets/img/jinrongjie/logo.png" alt="logo">
     </div>
-    <div class="back-box">
-      <img class="back" src="../../../../assets/img/jinrongjie/back.png" alt="back">
-    </div>
+    <!--<div class="back-box">-->
+      <!--<img class="back" src="../../../../assets/img/jinrongjie/back.png" alt="back">-->
+    <!--</div>-->
   </div>
   <div class="main">
     <div class="content">
+      <!--<div>-->
+        <!--<img class="top-arrows" src="../../../../assets/img/jinrongjie/arrows.png">-->
+      <!--</div>-->
+
       <div class="title-box">
         <img class="title" src="../../../../assets/img/jinrongjie/title.png">
       </div>
@@ -18,18 +22,13 @@
         <div>
           <div class="row-box">
             <div class="row-title">车型选择</div>
-            <div class="row-right">
+            <div class="row-right" (tap)="this.isShowCar = true">
               <div class="right-content">
-                雷凌HPEV
+                {{selectCar.text}}
               </div>
               <div class="arrows-box">
                 <img class="arrows" src="../../../../assets/img/jinrongjie/arrows.png">
               </div>
-              <select class="row-select">
-                <option value="1">打卡机1</option>
-                <option value="2">打卡机2</option>
-                <option value="3">打卡机3</option>
-              </select>
             </div>
           </div>
         </div>
@@ -37,18 +36,13 @@
         <div>
           <div class="row-box">
             <div class="row-title">移民源地区</div>
-            <div class="row-right">
+            <div class="row-right" (tap)="this.isShowArea = true">
               <div class="right-content">
-                湖南省长沙市
+                {{selectAreaText}}
               </div>
               <div class="arrows-box">
                 <img class="arrows" src="../../../../assets/img/jinrongjie/arrows.png">
               </div>
-              <select class="row-select">
-                <option value="1">打卡机1</option>
-                <option value="2">打卡机2</option>
-                <option value="3">打卡机3</option>
-              </select>
             </div>
           </div>
         </div>
@@ -56,18 +50,13 @@
         <div>
           <div class="row-box">
             <div class="row-title">配置选择</div>
-            <div class="row-right">
+            <div class="row-right" (tap)="this.isShowConfig = true">
               <div class="right-content">
-                2.4L舒适版
+                {{selectConfig.text}}
               </div>
               <div class="arrows-box">
                 <img class="arrows" src="../../../../assets/img/jinrongjie/arrows.png">
               </div>
-              <select class="row-select">
-                <option value="1">打卡机1</option>
-                <option value="2">打卡机2</option>
-                <option value="3">打卡机3</option>
-              </select>
             </div>
           </div>
         </div>
@@ -83,7 +72,7 @@
           <div  class="yunjia-jisuan">
             <div>
               <div style="margin-bottom: 0.18rem">20万</div>
-              <div>-05万</div>
+              <div>-5万</div>
             </div>
           </div>
         </div>
@@ -100,15 +89,21 @@
         </div>
       </div>
 
-      <div class="content-bottom">
-        <div>
-          <a class="detail" href="#">查看政策详情</a>
-        </div>
-        <div>
-          <img class="share" src="../../../../assets/img/jinrongjie/share.png">
-        </div>
-        <div class="share-text">点击分享</div>
+    </div>
+    <div class="content-bottom">
+      <!--<div>-->
+      <!--<a class="detail" href="#">查看政策详情</a>-->
+      <!--</div>-->
+      <div>
+        <img class="share" src="../../../../assets/img/jinrongjie/share.png">
       </div>
+      <!--<div class="share-text">点击分享</div>-->
     </div>
   </div>
 </sk-layout>
+
+<sk-picker [(isShow)]="isShowCar" [title]="'选择车型'" [data]="carData" (changeSelectedItem)="onChangeCar($event)"></sk-picker>
+<sk-picker [(isShow)]="isShowArea" [isMulti]="true"
+           [title]="'选择地区'" displayField="name" valueField="id"
+           [data]="areaData" (changeSelectedItem)="onChangeArea($event)"></sk-picker>
+<sk-picker [(isShow)]="isShowConfig" [title]="'选择配置'" [data]="configData" (changeSelectedItem)="onChangeConfig($event)"></sk-picker>

@@ -3,18 +3,21 @@ $headerH: 0.30rem;
 $colorB: #0EE0FF;
 .header {
   height: $headerH;
-  position: fixed;
+  //position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
   z-index: 3;
-  background-color: #fff;
+  //background-color: #fff;
 }
 .logo-box {
   display: inline-block;
-  padding-top: 0.06rem;
-  padding-left: 0.11rem;
+  padding-top: 0.12rem;
+  padding-left: 0.17rem;
+  //padding-top: 0.06rem;
+  //padding-left: 0.11rem;
   .logo {
     height: 0.16rem;
   }
@@ -29,17 +32,27 @@ $colorB: #0EE0FF;
 }
 .main {
   padding-top: $headerH;
-  background: url("../../../../assets/img/jinrongjie/bg.jpg") no-repeat;
+  background: #031e50 url("../../../../assets/img/jinrongjie/bg.jpg") no-repeat;
   background-position: center top;
-  background-size: cover;
+  background-size: 100% auto;
   //background-origin: content-box;
   min-height: 100vh;
 }
 .content {
-  margin: 1.83rem auto 0;
-  width: 2.59rem;
+  margin: 1.46rem auto 0;
+  padding: 0.16rem 0.2rem;
+  width: 2.97rem;
+  //width: 2.59rem;
+  //background-color: rgba(2, 11, 36, .5);
+  //text-align: center;
+}
+.top-arrows {
+  width: 0.18rem;
+  height: 0.16rem;
+  margin-bottom: 0.08rem;
 }
 .title-box {
+  margin-top: 0.37rem;
   margin-bottom: 0.27rem;
   .title {
     width: 100%;
@@ -119,7 +132,8 @@ $colorB: #0EE0FF;
   margin-left: 0.83rem;
   text-align: right;
   font-size: 0.2rem;
-  color: $colorB;
+  //color: $colorB;
+  color: #D4D4D4;
   line-height: 1;
 }
 .content-bottom {
