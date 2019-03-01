@@ -67,10 +67,35 @@ sk-layout {
 }
 
 .start-point-part {
+
+  .cool-menu-con {
+    margin-top: -0.3rem;
+    transform: scale(0, 0);
+    transition: all 200ms ease-in;
+    opacity: 0;
+
+    &.show {
+      transform: scale(1, 1);
+      opacity: 1;
+    }
+  }
+
+  .line-con {
+    position: absolute;
+  }
   .p1 {
     position: absolute;
-    top: 0.9rem;
+    top: 1.46rem;
     left: 0.4rem;
+
+    .point-t0 {
+      pointer-events: none;
+      width: 0.32rem;
+      position: absolute;
+      bottom: -0.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .p2 {
@@ -79,14 +104,47 @@ sk-layout {
     right: 0.3rem;
     transform: scale(0.618);
     transform-origin: top right;
+
+    .line-t1-con {
+      pointer-events: none;
+      position: absolute;
+      width: 0.53rem;
+      left: 33%;
+      transform: translateX(-50%);
+      top: 0.6rem;
+
+      .point {
+        width: 0.6rem;
+        position: absolute;
+        bottom: 0;
+        left: 0%;
+        transform: translate(-53%, 60%);
+      }
+    }
   }
 
   .p3 {
     position: absolute;
-    left: 0.24rem;
-    top: 4.74rem;
+    left: 0.4rem;
+    top: 5rem;
     transform: scale(0.5);
     transform-origin: bottom left;
+
+    .line-con {
+      pointer-events: none;
+      position: absolute;
+      bottom: 0.5rem;
+      right: 50%;
+      width: 0.16rem;
+
+      .point {
+        width: 0.64rem;
+        top: 0;
+        left: 0;
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 
   .p4 {
@@ -95,24 +153,56 @@ sk-layout {
     top: 4.93rem;
     transform: scale(0.6);
     transform-origin: bottom left;
+
+    .line-con {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 50%;
+      width: 0.25rem;
+      pointer-events: none;
+
+      .point {
+        width: 0.53rem;
+        top: 0;
+        left: 0;
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 
   .p5 {
     position: absolute;
-    left: 2.27rem;
+    left: 2.4rem;
     top: 5.33rem;
     transform: scale(0.6);
     transform-origin: bottom left;
+
+    .line-con {
+      pointer-events: none;
+      position: absolute;
+      bottom: 0.5rem;
+      right: 50%;
+      width: 0.32rem;
+
+      .point {
+        width: 0.53rem;
+        top: 0;
+        left: 0;
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 }
 
 
 .canvas-part {
   position: absolute;
-  top: 3.2rem;
+  top: 1.46rem;
   left: 0%;
   width: 100%;
-  transform: translate(0%, -50%);
+  transform: translate(0%, 0%);
 }
 
 .outer-ball {

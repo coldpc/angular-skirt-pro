@@ -29,6 +29,30 @@ export class RouterService extends RouterCoreService {
     };
     this.loadPage(params);
   }
+
+  // 去车型价格
+  gotoCarPrice(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.carPrice,
+      historyState
+    });
+  }
+
+  // 雷林尽情购买
+  gotoJinrongjie(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.jinrongjie,
+      historyState
+    });
+  }
+
+  // 预约试驾
+  gotoReserve(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.reserve,
+      historyState
+    });
+  }
 }
 
 // 约定取公寓列表的参数

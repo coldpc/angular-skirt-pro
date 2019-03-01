@@ -35,6 +35,11 @@ const routes: Routes = [
     path: 'page/reserve',
     loadChildren: './page/reserve/reserve.module#ReserveModule',
     canLoad: []
+  },
+  {
+    path: 'page/carPrice',
+    loadChildren: './page/carPrice/car-price.module#CarPriceModule',
+    canLoad: []
   }
 ];
 
