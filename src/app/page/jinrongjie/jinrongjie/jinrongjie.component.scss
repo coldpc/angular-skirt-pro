@@ -34,8 +34,7 @@ $colorB: #0EE0FF;
   padding-top: $headerH;
   background: #031e50 url("../../../../assets/img/jinrongjie/bg.jpg") no-repeat;
   background-position: center top;
-  background-size: 100% auto;
-  //background-origin: content-box;
+  background-size: cover;
   min-height: 100vh;
 }
 .content {
