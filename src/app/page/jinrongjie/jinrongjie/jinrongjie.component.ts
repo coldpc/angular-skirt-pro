@@ -34,10 +34,10 @@ export class JinrongjieComponent implements OnInit {
 
   // 选择车型
   isShowCar = false;
-  selectCar = {};
+  selectCar = {text: ""};
   // 选择配置
   isShowConfig = false;
-  selectConfig = {};
+  selectConfig = {text: ""};
 
   // 选择地区
   isShowArea = false;

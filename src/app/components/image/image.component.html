@@ -1,8 +1,8 @@
 <sk-box *ngIf="ratio" [ratio]="ratio">
-  <span *ngIf="!isComplete" [skIcon]="'logo'"></span>
+  <!--<span *ngIf="!isComplete" [skIcon]="'logo'"></span>-->
   <div class="img-content" [ngStyle]="getStyle()"></div>
 </sk-box>
 
 <!--这个html作用就是为了标记-->
-<img class="img-sign" *ngIf="getSrc()" [src]="getSrc()" alt="" (load)="onLoadImage()">
+<!--<img class="img-sign" *ngIf="getSrc()" [src]="getSrc()" alt="" (load)="onLoadImage()">-->
 

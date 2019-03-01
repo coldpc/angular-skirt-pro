@@ -24,7 +24,7 @@ export class ReserveComponent implements OnInit, AfterViewInit {
 
   // 选择车型
   isShowCar: boolean = false;
-  selectCar = {};
+  selectCar = {text: ""};
 
   // 选择经销商
   isShowMerchant: boolean = false;
@@ -96,7 +96,7 @@ export class ReserveComponent implements OnInit, AfterViewInit {
     this.focusIndex = Math.round(top / this.itemHeight);;
   }
 
-  onTapItem(index, type) {
+  onTapItem(index, type ?: string) {
     setTimeout(() => {
       this.scrollToIndex(index);
     }, 10);
