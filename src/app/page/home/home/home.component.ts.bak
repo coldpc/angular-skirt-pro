@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   percentComplete = 0;
 
 
-  rotate: number = 0;
+  rotate: number = -2;
 
   front = [-10, 10];
   back = [170, 190, ];
@@ -49,18 +49,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    this.loadInit().then(() => {
-      this.THREE = window['THREE'];
+      this.loadInit().then(() => {
+        this.THREE = window['THREE'];
 
-      this.initCamera();
-      this.initScene();
-      this.addInnerMesh();
-      this.addLight();
-      this.addRenderer();
-      this.addEvent();
-      this.loadModel();
-      this.animate();
-    });
+        this.initCamera();
+        this.initScene();
+        this.addInnerMesh();
+        this.addLight();
+        this.addRenderer();
+        this.addEvent();
+        this.loadModel();
+        this.animate();
+      });
   }
 
   addEvent() {
@@ -142,8 +142,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     let material = new THREE.MeshBasicMaterial( {
       map: texture,  // 贴图
-      color: 0x07335d,
-      transparent: false // 透明
+      wireframe: false, // 是否渲染边框
+      transparent: true // 透明
     } );
 
     // 创建三维网格
@@ -252,5 +252,3 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 }
-
-
