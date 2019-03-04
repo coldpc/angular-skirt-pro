@@ -4,6 +4,19 @@ import {UtilsBase} from "../../../lib/utils/UtilsBase";
 import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
 import {AreaData} from "../../../lib/utils/AreaData";
 
+interface InSelectValue {
+  text ?: string;
+  value ?: string;
+}
+
+const testData = [{
+  text: "汉州",
+  value: "11"
+}, {
+  text: "背景",
+  value: "111"
+}];
+
 @Component({
   selector: 'sk-reserve',
   templateUrl: './reserve.component.html',
@@ -18,21 +31,27 @@ export class ReserveComponent implements OnInit, AfterViewInit {
 
   areaData = ctrlData(AreaData);
 
-  zScroller: any;
-  itemHeight: number = 0;
   focusIndex: number = 0; // 当前输入
 
-  // 选择车型
-  isShowCar: boolean = false;
-  selectCar = {text: ""};
-
-  // 选择经销商
-  isShowMerchant: boolean = false;
+  // 选择省
+  selectProvince: InSelectValue = {};
+  isShowProvince: boolean = false;
+  provinceData = testData;
 
   // 选择地区
-  isShowArea = false;
-  selectAreaText = "";
-  selectArea = {};
+  selectCity: InSelectValue = {};
+  isShowCity: boolean = false;
+  cityData = testData;
+
+  selectMerchant: InSelectValue = {};
+  isShowMerchant: boolean = false;
+  merchantData = testData;
+
+  submitForm = {
+    name: '',
+    tel: '',
+    date: ''
+  };
 
   carData = [{
       text: "汉州",
@@ -55,78 +74,45 @@ export class ReserveComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.bg.nativeElement.style.minHeight = UtilsBase.getClient().height + 'px';
-
-    let scrollContent = this.scrollContent.nativeElement;
-    let form = this.form.nativeElement;
-
-    // 设置滚动区域的高度
-    scrollContent.parentNode.style.height = scrollContent.offsetHeight + 'px';
-
-
-    form.style.paddingBottom = (form.offsetHeight - form.children[0].offsetHeight)  + 'px';
-
-
-    let zScroller = this.zScroller = new SkEasyScroller(scrollContent, {
-      scrollingX: false,
-      scrollingY: true,
-      snapping: true, // 滚动结束之后 滑动对应的位置
-      scrollingComplete: this.onScrollComplete.bind(this),
-      onScroll: this.onScroll.bind(this)
-    });
-
-    this.itemHeight = form.children[1].offsetHeight;
-    // 设置每个格子的高度 这样滚动结束 自动滚到对应格子上
-    // 单位必须是px 所以要动态取一下
-    zScroller.scroller.setSnapSize(0, this.itemHeight);
-  }
-
-  onScrollComplete() {
-
-  }
-
-  onScroll() {
-    // 滚动条不存在的时候
-    if (!this.zScroller || !this.zScroller.scroller) {
-      return;
-    }
-
-    // 取出top 根据top计算当前选中的item
-    let top = this.zScroller.scroller.getValues().top || 0;
-    this.focusIndex = Math.round(top / this.itemHeight);;
   }
 
   onTapItem(index, type ?: string) {
-    setTimeout(() => {
-      this.scrollToIndex(index);
-    }, 10);
+    this.focusIndex = index;
 
-    if (type === 'car') {
-      this.isShowCar = true;
+    if (type === 'province') {
+      this.isShowProvince = true;
     }
 
-    if (type === 'area') {
-      this.isShowArea = true;
+    if (type === 'city') {
+      this.isShowCity = true;
+    }
+
+    if (type === 'merchant') {
+      this.isShowMerchant = true;
     }
   }
 
-  scrollToIndex(index) {
-    this.zScroller.scroller.scrollTo(0, this.itemHeight * index, true);
+  onChangeSelect(item, type) {
+    if (type === 'province') {
+      this.selectProvince = item;
+    }
+
+    if (type === 'city') {
+      this.selectCity = item;
+    }
+
+    if (type === 'merchant') {
+      this.selectMerchant = item;
+    }
   }
 
-  onChangeCar(item) {
-    this.selectCar = item;
-  }
-
-  onChangeArea(item) {
-    this.selectArea = item;
-    console.log(item);
-
-    this.selectAreaText = item[0].name + " " + item[1].name;
+  onChangeValue(value, name) {
+    this.submitForm[name] = value;
+    console.log(this.submitForm);
   }
 
   onSubmit() {
-    console.log(this.selectArea, this.selectCar);
+    console.log(this.selectMerchant, this.selectCity, this.selectProvince);
   }
 }
 

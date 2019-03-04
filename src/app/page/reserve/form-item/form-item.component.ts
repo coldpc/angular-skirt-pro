@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'sk-form-item',
@@ -15,6 +15,8 @@ export class FormItemComponent implements OnInit, AfterViewInit {
   @Input() selectText: string = '';
   @Input() type: string = 'text';
   @Input() level: number = 0;
+
+  @Output() onChangeValue: EventEmitter<string> = new EventEmitter<string>();
 
   isCommonInput = true;
 
@@ -34,5 +36,6 @@ export class FormItemComponent implements OnInit, AfterViewInit {
 
   onChange(e) {
     this.value = e.target.value;
+    this.onChangeValue.emit(this.value);
   }
 }

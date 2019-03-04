@@ -53,6 +53,14 @@ export class RouterService extends RouterCoreService {
       historyState
     });
   }
+
+  // 博物院
+  gotoExhibition(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.exhibition,
+      historyState
+    });
+  }
 }
 
 // 约定取公寓列表的参数

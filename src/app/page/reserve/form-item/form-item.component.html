@@ -3,8 +3,8 @@
   <div class="line line2"></div>
   <div class="circle c1"></div>
   <div class="circle c2"></div>
-  <div *ngIf="!isCommonInput" class="input">{{value || selectText || placeholder}}</div>
-  <input *ngIf="type != 'select'"  (change)="onChange($event)"
+  <button *ngIf="!isCommonInput" class="input">{{value || selectText || placeholder}}</button>
+  <input *ngIf="type != 'select'"  (change)="onChange($event)" (keydown)="onChange($event)"
          class="input" [ngClass]="{'not-common-input': !isCommonInput}"
          [placeholder]="placeholder" [type]="type">
 </div>

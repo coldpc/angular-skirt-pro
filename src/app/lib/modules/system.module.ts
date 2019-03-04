@@ -5,6 +5,7 @@ import {MaskComponent} from "../../components/mask/mask.component";
 import {HoverDirective} from "../directives/hover.directive";
 import {LoadingComponent} from "../../components/loading/loading.component";
 import {IconDirective} from "../directives/icon.directive";
+import {LeiHeaderComponent} from "../../components/lei-header/lei-header.component";
 
 // 系统加载的内容
 const components = [
@@ -12,7 +13,8 @@ const components = [
   DialogComponent,
   LoadingComponent,
   HoverDirective,
-  IconDirective
+  IconDirective,
+  LeiHeaderComponent
 ];
 
 // 服务供应列表

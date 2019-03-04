@@ -1,0 +1,40 @@
+<div class="back-img"></div>
+<div class="share-img">
+  <sk-image src="/assets/img/exhibition/share.png" [ratio]="1"></sk-image>
+</div>
+<sk-layout>
+  <div class="top">
+    <div class="header">
+      <div class="left">
+        <div class="logo-box">
+          <img class="logo" src="/assets/img/jinrongjie/logo.png" alt="logo">
+        </div>
+      </div>
+      <div class="right back-btn" (tap)="onTapBack()">返回</div>
+    </div>
+
+    <div class="tabset">
+      <div class="tab tab1" (tap)="switchTab(1)" [ngClass]="{visible: currentIndex === 1}">
+        <sk-image [ratio]="458/265" src="/assets/img/exhibition/t1.png"></sk-image>
+      </div>
+      <div class="tab tab2" (tap)="switchTab(2)" [ngClass]="{visible: currentIndex === 2}">
+        <sk-image [ratio]="110/60" src="/assets/img/exhibition/t2.png"></sk-image>
+      </div>
+      <div class="tab tab3" (tap)="switchTab(3)" [ngClass]="{visible: currentIndex === 3}">
+        <sk-image [ratio]="110/60" src="/assets/img/exhibition/t3.png"></sk-image>
+      </div>
+      <div class="tab tab4" (tap)="switchTab(4)" [ngClass]="{visible: currentIndex === 4}">
+        <sk-image [ratio]="110/60" src="/assets/img/exhibition/t4.png"></sk-image>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="content">
+      <img class="content-img" *ngIf="currentIndex === 1" src="/assets/img/exhibition/yicheshaungyong.jpg" alt="">
+      <img class="content-img" *ngIf="currentIndex === 2" src="/assets/img/exhibition/zhigansheji.jpg" alt="">
+      <img class="content-img" *ngIf="currentIndex === 3" src="/assets/img/exhibition/xianjinkeji.jpg" alt="">
+      <img class="content-img" *ngIf="currentIndex === 4" src="/assets/img/exhibition/zhinengbianli.jpg" alt="">
+    </div>
+  </div>
+</sk-layout>

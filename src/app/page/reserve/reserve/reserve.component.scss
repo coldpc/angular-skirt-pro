@@ -1,7 +1,10 @@
 @import "../../../theme/variables";
 .top-part {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   padding: 0.09rem;
-  background: #fff;
   sk-image {
     width: 0.82rem;
   }
@@ -16,6 +19,12 @@
   background-image: url("/assets/img/reserve/bg.jpg");
   background-size: cover;
   background-position: center center;
+
+  .text-img {
+    width: 3rem;
+    margin-top: 0.46rem;
+    margin-left: 0.6rem;
+  }
 }
 
 .main {
@@ -39,7 +48,7 @@
 .scroll-part {
   position: relative;
   .scroll-content {
-    padding-top: 1.16rem;
+    padding-top: 1.5rem;
   }
 }
 

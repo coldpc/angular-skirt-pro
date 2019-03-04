@@ -18,11 +18,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   THREE: any;
 
   threeInstance: {
-    camera ?: any,
-    scene ?: any,
-    mesh ?: any,
-    ball ?: any,
-    renderer ?: any
+    camera?: any,
+    scene?: any,
+    mesh?: any,
+    ball?: any,
+    renderer?: any
   } = {};
 
   // 模型
@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   rotate: number = 0;
 
-  front = [-10, 10];
-  back = [170, 190, ];
+  front = [-15, 15];
+  back = [170, 190,];
   back2 = [-190, -170];
 
   isShowFront = false;
@@ -96,14 +96,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   animate() {
 
-    requestAnimationFrame( () => {
+    requestAnimationFrame(() => {
       this.animate();
-    } );
+    });
 
     let threeInstance = this.threeInstance, r = this.rotate;
 
     threeInstance.mesh.rotation.y = r;
-    threeInstance.renderer.render( threeInstance.scene, threeInstance.camera );
+    threeInstance.renderer.render(threeInstance.scene, threeInstance.camera);
 
     this.checkShowMenu(r);
   }
@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   initCamera() {
     let THREE = this.THREE;
-    let camera = new THREE.PerspectiveCamera( 70, client.width / client.width, 1, 1000 );
+    let camera = new THREE.PerspectiveCamera(70, client.width / client.width, 1, 1000);
     camera.position.z = 840;
     camera.position.x = 0;
     this.threeInstance.camera = camera;
@@ -136,18 +136,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let THREE = this.THREE;
 
     // 创建球体 半径 精度份数 纬度份数
-    let geometry = new THREE.SphereGeometry( 122, 100, 100);
+    let geometry = new THREE.SphereGeometry(122, 100, 100);
 
-    let texture = new THREE.TextureLoader().load( '/assets/textures/star/inner512.png' );
+    let texture = new THREE.TextureLoader().load('/assets/textures/star/inner512.png');
 
-    let material = new THREE.MeshBasicMaterial( {
+    let material = new THREE.MeshBasicMaterial({
       map: texture,  // 贴图
-      color: 0x07335d,
-      transparent: false // 透明
-    } );
+      transparent: true // 透明
+    });
 
     // 创建三维网格
-    let mesh = new THREE.Mesh( geometry, material );
+    let mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = 0;
     mesh.position.y = 0;
     mesh.position.z = 500;
@@ -174,15 +173,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   addRenderer() {
     let THREE = this.THREE;
 
-    let renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true} );
-    renderer.setPixelRatio( 1 );
+    let renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    renderer.setPixelRatio(1);
     // renderer.setClearColor( 0x000000 );
-    renderer.setSize( client.width, client.width );
-    this.canvasCon.nativeElement.appendChild( renderer.domElement );
+    renderer.setSize(client.width, client.width);
+    this.canvasCon.nativeElement.appendChild(renderer.domElement);
 
     this.threeInstance.renderer = renderer;
 
-    renderer.render( this.threeInstance.scene, this.threeInstance.camera );
+    renderer.render(this.threeInstance.scene, this.threeInstance.camera);
   }
 
   // 记载进度
@@ -195,45 +194,45 @@ export class HomeComponent implements OnInit, AfterViewInit {
   loadModel() {
     let THREE = this.THREE;
 
-    let mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setPath('/assets/textures/3d/');
-    mtlLoader.load('ball1.mtl', (materials) => {
+    // let mtlLoader = new THREE.MTLLoader();
+    // mtlLoader.setPath('/assets/textures/3d/');
+    // mtlLoader.load('ball1.mtl', (materials) => {
 
-      materials.preload();
-      /*****************************************************************
-       * 1、collada是一种基于XML的3D模型交互方案，简单来说，就是一种3D模型可以通过collada转换成另一种3D模型，
-       * 从而，各种3D模型都可以通过collada转换成web支持的3D模型。
-       * 2、。dae是一个钟3D模型的格式
-       * 3、加载时注意浏览器同源策略的限制
-       *****************************************************************/
-      let objLoader = new THREE.OBJLoader();
-      // objLoader.setMaterials(materials);
-      let modelObj;
+    // materials.preload();
+    /*****************************************************************
+     * 1、collada是一种基于XML的3D模型交互方案，简单来说，就是一种3D模型可以通过collada转换成另一种3D模型，
+     * 从而，各种3D模型都可以通过collada转换成web支持的3D模型。
+     * 2、。dae是一个钟3D模型的格式
+     * 3、加载时注意浏览器同源策略的限制
+     *****************************************************************/
+    let objLoader = new THREE.OBJLoader();
+    // objLoader.setMaterials(materials);
+    let modelObj;
 
-      objLoader.setPath('/assets/textures/3d/');
-      objLoader.load('ball-bak.obj', (mesh) => {
-        // // 找到模型中需要的对象。将相机看向这个对象是为了让这个对象显示在屏幕中心
-        mesh.traverse(function (child) {
-          if (child instanceof THREE.SkinnedMesh) {
-            modelObj = child;
-          }
+    objLoader.setPath('/assets/textures/3d/');
+    objLoader.load('ball-bak.obj', (mesh) => {
+      // // 找到模型中需要的对象。将相机看向这个对象是为了让这个对象显示在屏幕中心
+      mesh.traverse(function (child) {
+        if (child instanceof THREE.SkinnedMesh) {
+          modelObj = child;
+        }
 
 
-          if (child instanceof THREE.Mesh) {
-            // 将贴图赋于材质
-            // 重点，没有该句会导致PNG无法正确显示透明效果
-            child.material.transparent = true;
-          }
-        });
-
-        mesh.scale.x = mesh.scale.y = mesh.scale.z = 1;
-        mesh.position.z = 0;
-        mesh.children.splice(3, 1);
-
-        // 加入模型中
-        this.threeInstance.mesh.add(mesh);
+        if (child instanceof THREE.Mesh) {
+          // 将贴图赋于材质
+          // 重点，没有该句会导致PNG无法正确显示透明效果
+          child.material.transparent = true;
+        }
       });
+
+      mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.8;
+      mesh.position.z = 0;
+      mesh.children.splice(3, 1);
+
+      // 加入模型中
+      this.threeInstance.mesh.add(mesh);
     });
+    // });
   }
 
   gotoPage(type) {
@@ -247,7 +246,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         break;
 
       case 'view':
-        // this.routerService.gotoReserve();
+        this.routerService.gotoExhibition();
         break;
     }
   }

@@ -40,7 +40,12 @@ const routes: Routes = [
     path: 'page/carPrice',
     loadChildren: './page/carPrice/car-price.module#CarPriceModule',
     canLoad: []
-  }
+  },
+  {
+    path: 'page/exhibition',
+    loadChildren: './page/exhibition/exhibition.module#ExhibitionModule',
+    canLoad: []
+  },
 ];
 
 @NgModule({
