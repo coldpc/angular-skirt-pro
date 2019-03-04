@@ -24,11 +24,6 @@ const testData = [{
 })
 export class ReserveComponent implements OnInit, AfterViewInit {
 
-  @ViewChild("bg") bg: ElementRef;
-  @ViewChild("inputBack") inputBack: ElementRef;
-  @ViewChild("scrollContent") scrollContent: ElementRef;
-  @ViewChild("form") form: ElementRef;
-
   areaData = ctrlData(AreaData);
 
   focusIndex: number = 0; // 当前输入
