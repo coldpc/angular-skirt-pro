@@ -1,8 +1,10 @@
 import {Component, OnInit, AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 import {DialogService} from "../../../lib/service/system/dialog.service";
+import {ApiCoreService} from "../../../lib/service/http/ApiCoreService";
+import {LoadingService} from "../../../lib/service/system/loading.service";
+import {RouterService} from "../../../lib/service/router/RouterService";
 import {LoadJs} from "../../../lib/utils/LoadJs";
 import {UtilsBase} from "../../../lib/utils/UtilsBase";
-import {RouterService} from 'src/app/lib/service/router/RouterService';
 
 const client = UtilsBase.getClient();
 
@@ -13,242 +15,182 @@ const client = UtilsBase.getClient();
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild("canvasCon") canvasCon: ElementRef;
-  @ViewChild("outerBallCon") outerBallCon: ElementRef;
 
   THREE: any;
+  scene: any;
+  camera: any;
+  renderer: any;
+  mesh: any;
+  ball: any;
 
-  threeInstance: {
-    camera ?: any,
-    scene ?: any,
-    mesh ?: any,
-    ball ?: any,
-    renderer ?: any
-  } = {};
-
-  // 模型
-  percentComplete = 0;
-
-
-  rotate: number = -2;
-
-  front = [-10, 10];
-  back = [170, 190, ];
-  back2 = [-190, -170];
-
-  isShowFront = false;
-  isShowBack = false;
-
-  constructor(private dialogServeice: DialogService,
-              private routerService: RouterService) {
+  constructor(private dialogServeice: DialogService) {
 
   }
 
   ngOnInit() {
-    window['_this'] = this;
   }
 
   ngAfterViewInit(): void {
+    LoadJs("/assets/threejs/build/three.min.js").then(() => {
+      this.THREE = window['THREE'];
 
       this.loadInit().then(() => {
-        this.THREE = window['THREE'];
-
         this.initCamera();
         this.initScene();
-        this.addInnerMesh();
-        this.addLight();
-        this.addRenderer();
-        this.addEvent();
-        this.loadModel();
+        this.addCube();
+        this.drawPoint();
+        this.render();
         this.animate();
       });
-  }
 
-  addEvent() {
-    let _this = this;
-    let touchData = {x0: 0, y0: 0, xt: 0, yt: 0};
-    this.canvasCon.nativeElement.addEventListener('touchstart', startFunc);
-
-    this.canvasCon.nativeElement.addEventListener('touchmove', moveFunc);
-
-    function startFunc(e) {
-      let touches = e.targetTouches;
-      touchData.y0 = touchData.yt = touches[0].clientY;
-      touchData.x0 = touchData.xt = touches[0].clientX;
-    }
-
-    function moveFunc(e) {
-      let touches = e.targetTouches;
-      touchData.yt = touches[0].clientY;
-      touchData.xt = touches[0].clientX;
-      _this.rotate += (touchData.xt - touchData.x0) / 500;
-      touchData.x0 = touchData.xt;
-      touchData.y0 = touchData.yt;
-      console.log(Math.round(_this.rotate * 180 / Math.PI));
-    }
+    }).catch();
   }
 
   async loadInit() {
-    let folderPath = "/assets/threejs/";
-    await LoadJs(folderPath + "build/three.min.js");
-    await LoadJs(folderPath + "js/loaders/MTLLoader.js");
-    await LoadJs(folderPath + "js/loaders/OBJLoader.js");
+    let folderPath = "/assets/threejs/js/lines/";
+    await LoadJs(folderPath + "LineSegmentsGeometry.js");
+    await LoadJs(folderPath + "LineGeometry.js");
+    await LoadJs(folderPath + "WireframeGeometry2.js");
+    await LoadJs(folderPath + "LineMaterial.js");
+    await LoadJs(folderPath + "Wireframe.js");
   }
 
   animate() {
-
+    let mesh = this.mesh;
     requestAnimationFrame( () => {
       this.animate();
     } );
-
-    let threeInstance = this.threeInstance, r = this.rotate;
-
-    threeInstance.mesh.rotation.y = r;
-    threeInstance.renderer.render( threeInstance.scene, threeInstance.camera );
-
-    this.checkShowMenu(r);
+    mesh.rotation.y += 0.005;
+    this.ball.rotation.y += 0.005;
+    this.renderer.render( this.scene, this.camera );
   }
 
-  checkShowMenu(r) {
+  test() {
+    let THREE = this.THREE;
+    let camera, scene, renderer;
+    let mesh;
 
-    let dr = (Math.round(r * 180 / Math.PI)) % 360;
+    init();
+    animate();
 
-    this.isShowFront = check(dr, this.front);
-    this.isShowBack = check(dr, this.back) || check(dr, this.back2);
+    function init() {
 
-    function check(value, array) {
-      return value > array[0] && value < array[1];
+      camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+      camera.position.z = 400;
+
+      scene = new THREE.Scene();
+
+      let texture = new THREE.TextureLoader().load( '/assets/textures/crate.gif' );
+
+      let geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+      let material = new THREE.MeshBasicMaterial( { map: texture } );
+
+      mesh = new THREE.Mesh( geometry, material );
+      scene.add( mesh );
+
+      renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+      renderer.setPixelRatio( window.devicePixelRatio );
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+
+      //
+
+      window.addEventListener( 'resize', onWindowResize, false );
+
+    }
+
+    function onWindowResize() {
+
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize( window.innerWidth, window.innerHeight );
+
+    }
+
+    function animate() {
+
+      requestAnimationFrame( animate );
+
+      mesh.rotation.x += 0.005;
+      mesh.rotation.y += 0.005;
+
+      renderer.render( scene, camera );
+
     }
   }
 
   initCamera() {
     let THREE = this.THREE;
-    let camera = new THREE.PerspectiveCamera( 70, client.width / client.width, 1, 1000 );
-    camera.position.z = 840;
-    camera.position.x = 0;
-    this.threeInstance.camera = camera;
+    let camera = this.camera = new THREE.PerspectiveCamera( 70, client.width / client.height, 1, 1000 );
+    camera.position.z = 300;
   }
 
   initScene(): void {
-    this.threeInstance.scene = new this.THREE.Scene();
-  }
-
-  addInnerMesh() {
     let THREE = this.THREE;
 
-    // 创建球体 半径 精度份数 纬度份数
-    let geometry = new THREE.SphereGeometry( 122, 100, 100);
+    // 创建相机和场景
+    this.scene = new THREE.Scene();
+  }
 
-    let texture = new THREE.TextureLoader().load( '/assets/textures/star/inner.png' );
+  /**
+   * 添加立方体
+   */
+  addCube(): void {
+    let THREE = this.THREE;
+    let texture = new THREE.TextureLoader().load( '/assets/textures/crate.gif' );
 
+
+    // let geometry = new THREE.SphereGeometry( 100, 18, 13 );
+    let geometry = new THREE.IcosahedronBufferGeometry( 100, 1 );
     let material = new THREE.MeshBasicMaterial( {
-      map: texture,  // 贴图
-      wireframe: false, // 是否渲染边框
-      transparent: true // 透明
+      // map: texture,  // 贴图
+      color: 0x76c1d4,
+      wireframe: true,
+      wireframeLinewidth: 4
     } );
-
-    // 创建三维网格
-    let mesh = new THREE.Mesh( geometry, material );
+    let mesh = this.mesh = new THREE.Mesh( geometry, material );
     mesh.position.x = 0;
     mesh.position.y = 0;
-    mesh.position.z = 500;
 
-    // 网格添加进入场景
-    this.threeInstance.scene.add(mesh);
-    this.threeInstance.mesh = mesh;
+    let geometry2 = new THREE.SphereGeometry( 80, 100, 100);
+    let texture2 = new THREE.TextureLoader().load( '/assets/textures/earth.jpg' )
+    let material2 = new THREE.MeshBasicMaterial( {
+      map: texture2,  // 贴图
+      color: 0xffffff,
+      wireframe: false,
+      linewidth: 10
+    } );
+    let mesh2 = this.ball = new THREE.Mesh( geometry2, material2 );
+    mesh2.position.x = 0;
+    mesh2.position.y = 0;
+
+    this.scene.add(mesh2);
+    this.scene.add(mesh);
   }
 
-  addLight() {
-    // light--这里使用环境光
-    let THREE = this.THREE, scene = this.threeInstance.scene;
-
-    // 环境光
-    let ambient = new THREE.AmbientLight(0xffffff);
-    scene.add(ambient);
-
-    /*点光源*/
-    let directionalLight = new THREE.PointLight(0xb4e3f3);
-    directionalLight.position.set(0, 0, 100).normalize();
-    scene.add(directionalLight);
-  }
-
-  addRenderer() {
+  drawPoint() {
     let THREE = this.THREE;
+    let geometry2 = new THREE.SphereGeometry( 2, 100, 100);
+    let material2 = new THREE.MeshBasicMaterial( {
+      color: 0xc9f5fb,
+      wireframe: false
+    } );
+    let mesh2 = this.ball = new THREE.Mesh( geometry2, material2 );
+    mesh2.position.x = 101;
+    mesh2.position.y = 0;
+    this.scene.add(mesh2);   // 加入场景里
+  }
 
-    let renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true} );
+  render() {
+    let THREE = this.THREE;
+    this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true} );
+
+    let renderer = this.renderer;
     renderer.setPixelRatio( 1 );
-    // renderer.setClearColor( 0x000000 );
-    renderer.setSize( client.width, client.width );
+    renderer.setClearColor( 0x0d2444, 1 );
+    renderer.setSize( client.width, client.height );
+
     this.canvasCon.nativeElement.appendChild( renderer.domElement );
-
-    this.threeInstance.renderer = renderer;
-
-    renderer.render( this.threeInstance.scene, this.threeInstance.camera );
-  }
-
-  // 记载进度
-  onProgress(xhr) {
-    if (xhr.lengthComputable) {
-      this.percentComplete = xhr.loaded / xhr.total * 100;
-    }
-  }
-
-  loadModel() {
-    let THREE = this.THREE;
-
-    let mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setPath('/assets/textures/3d/');
-    mtlLoader.load('ball1.mtl', (materials) => {
-
-      materials.preload();
-      /*****************************************************************
-       * 1、collada是一种基于XML的3D模型交互方案，简单来说，就是一种3D模型可以通过collada转换成另一种3D模型，
-       * 从而，各种3D模型都可以通过collada转换成web支持的3D模型。
-       * 2、。dae是一个钟3D模型的格式
-       * 3、加载时注意浏览器同源策略的限制
-       *****************************************************************/
-      let objLoader = new THREE.OBJLoader();
-      // objLoader.setMaterials(materials);
-      let modelObj;
-
-      objLoader.setPath('/assets/textures/3d/');
-      objLoader.load('ball1.obj', (mesh) => {
-        // // 找到模型中需要的对象。将相机看向这个对象是为了让这个对象显示在屏幕中心
-        mesh.traverse(function (child) {
-          if (child instanceof THREE.SkinnedMesh) {
-            modelObj = child;
-          }
-
-
-          if (child instanceof THREE.Mesh) {
-            // 将贴图赋于材质
-            // 重点，没有该句会导致PNG无法正确显示透明效果
-            child.material.transparent = true;
-          }
-        });
-
-        mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.016;
-        mesh.position.z = 0;
-        mesh.children.splice(3, 1);
-
-        // 加入模型中
-        this.threeInstance.mesh.add(mesh);
-      });
-    });
-  }
-
-  gotoPage(type) {
-    switch (type) {
-      case 'buy':
-        this.routerService.gotoCarPrice();
-        break;
-
-      case 'reserve':
-        this.routerService.gotoReserve();
-        break;
-
-      case 'view':
-        // this.routerService.gotoReserve();
-        break;
-    }
   }
 }

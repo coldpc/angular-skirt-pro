@@ -134,7 +134,7 @@ export class ReserveComponent implements OnInit, AfterViewInit {
 function ctrlData(areaData) {
   let result = [{options: areaData}, {}];
   for (let i = 0; i < areaData.length; i++) {
-    areaData[i].child = {options: areaData[i].child}
+    areaData[i].child = {options: areaData[i].child};
   }
   return result;
 }
