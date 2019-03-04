@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   percentComplete = 0;
 
 
-  rotate: number = 0;
+  rotate: number = -2;
 
   front = [-10, 10];
   back = [170, 190, ];
@@ -49,18 +49,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    this.loadInit().then(() => {
-      this.THREE = window['THREE'];
+      this.loadInit().then(() => {
+        this.THREE = window['THREE'];
 
-      this.initCamera();
-      this.initScene();
-      this.addInnerMesh();
-      this.addLight();
-      this.addRenderer();
-      this.addEvent();
-      this.loadModel();
-      this.animate();
-    });
+        this.initCamera();
+        this.initScene();
+        this.addInnerMesh();
+        this.addLight();
+        this.addRenderer();
+        this.addEvent();
+        this.loadModel();
+        this.animate();
+      });
   }
 
   addEvent() {
@@ -138,12 +138,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // 创建球体 半径 精度份数 纬度份数
     let geometry = new THREE.SphereGeometry( 122, 100, 100);
 
-    let texture = new THREE.TextureLoader().load( '/assets/textures/star/inner512.png' );
+    let texture = new THREE.TextureLoader().load( '/assets/textures/star/inner.png' );
 
     let material = new THREE.MeshBasicMaterial( {
       map: texture,  // 贴图
-      color: 0x07335d,
-      transparent: false // 透明
+      wireframe: false, // 是否渲染边框
+      transparent: true // 透明
     } );
 
     // 创建三维网格
@@ -211,7 +211,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       let modelObj;
 
       objLoader.setPath('/assets/textures/3d/');
-      objLoader.load('ball-bak.obj', (mesh) => {
+      objLoader.load('ball1.obj', (mesh) => {
         // // 找到模型中需要的对象。将相机看向这个对象是为了让这个对象显示在屏幕中心
         mesh.traverse(function (child) {
           if (child instanceof THREE.SkinnedMesh) {
@@ -226,7 +226,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           }
         });
 
-        mesh.scale.x = mesh.scale.y = mesh.scale.z = 1;
+        mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.016;
         mesh.position.z = 0;
         mesh.children.splice(3, 1);
 
@@ -252,5 +252,3 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 }
-
-
