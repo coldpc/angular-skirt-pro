@@ -2,10 +2,10 @@ import {Injectable, Injector} from '@angular/core';
 import {ApiCoreService} from "../ApiCoreService";
 
 @Injectable()
-export class ApiCitiesMapService extends ApiCoreService<Array<any>> {
+export class ApiReserveService extends ApiCoreService<Array<any>> {
 
   // 请求路径
-  public path = '/appointmentDistributor/getAppointmentCitiesMap';
+  public path = '/leilin/appointmentInfo/save';
 
   constructor(private injector: Injector) {
     super(injector);

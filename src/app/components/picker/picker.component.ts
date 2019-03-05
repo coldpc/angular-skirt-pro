@@ -101,8 +101,14 @@ export class PickerComponent extends DynamicCore implements OnInit {
     // 收集结果
     for (let i = 0, l = columns.length; i < l; i++) {
       column = columns[i];
-      values.push(column.value);
-      items.push(column.selectedItem);
+
+      if (column.value === undefined && column.data.length > 0) {
+        values.push(column.getItemValue(column.data[0]));
+        items.push(column.data[0]);
+      } else {
+        values.push(column.value);
+        items.push(column.selectedItem);
+      }
     }
 
     // 最后如果是单选 不需要采用数组

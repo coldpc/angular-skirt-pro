@@ -15,7 +15,7 @@ import {HttpErrorModel} from "./HttpErrorModel";
 import {LoadingService} from "../system/loading.service";
 
 // 成功返回请求的code值
-const SERVICE_SUCCESS_CODE_VALUE = 200;
+const SERVICE_SUCCESS_CODE_VALUE = 0;
 
 // 默认的basePath
 const DEFAULT_PROTOCOL = location.protocol;
@@ -34,7 +34,7 @@ export class ApiCoreService<T> {
   public method = EnRequestMethod.post;
 
   // contentType
-  public contentType = EnRequestContentType.json;
+  public contentType = EnRequestContentType.form;
 
   // 接口通用的路径 /h5-api
   public basePath = DEFAULT_BASE_PATH;

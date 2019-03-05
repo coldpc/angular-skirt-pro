@@ -6,6 +6,9 @@ import {RouterService} from "../../lib/service/router/RouterService";
 import { FormItemComponent } from './form-item/form-item.component';
 import {PickerModule} from "../../lib/modules/picker.module";
 import { ProtocolComponent } from './protocol/protocol.component';
+import {ApiCitiesMapService} from "../../lib/service/http/api/ApiCitiesMapService";
+import {ApiDistributorsService} from "../../lib/service/http/api/ApiDistributorsService";
+import {ApiReserveService} from "../../lib/service/http/api/ApiReserveService";
 
 @NgModule({
   declarations: [ReserveComponent, FormItemComponent, ProtocolComponent],
@@ -14,6 +17,6 @@ import { ProtocolComponent } from './protocol/protocol.component';
     CommonComponentsModule,
     PickerModule
   ],
-  providers: [RouterService]
+  providers: [RouterService, ApiCitiesMapService, ApiDistributorsService, ApiReserveService]
 })
 export class ReserveModule { }

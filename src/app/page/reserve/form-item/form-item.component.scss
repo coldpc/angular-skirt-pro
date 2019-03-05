@@ -46,6 +46,8 @@
   font-size: 0.2rem;
   transition: all 180ms ease-in;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &::-webkit-input-placeholder, &::placeholder{
     color: #fff;

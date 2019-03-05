@@ -1,8 +1,12 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import {RouterService} from "../../../lib/service/router/RouterService";
 import {UtilsBase} from "../../../lib/utils/UtilsBase";
-import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
 import {AreaData} from "../../../lib/utils/AreaData";
+import {ApiCitiesMapService} from "../../../lib/service/http/api/ApiCitiesMapService";
+import {ApiDistributorsService} from "../../../lib/service/http/api/ApiDistributorsService";
+import {ApiReserveService} from "../../../lib/service/http/api/ApiReserveService";
+import {DateApi} from "../../../lib/utils/DateApi";
+import {DialogService} from "../../../lib/service/system/dialog.service";
 
 interface InSelectValue {
   text ?: string;
@@ -48,9 +52,12 @@ export class ReserveComponent implements OnInit, AfterViewInit {
   isShowProtocol: boolean = false;
 
   submitForm = {
-    name: '',
-    tel: '',
-    date: ''
+    userName: '',
+    mobile: '',
+    province: '',
+    city: '',
+    distributor: '',
+    timeStart: ''
   };
 
   carData = [{
@@ -61,12 +68,49 @@ export class ReserveComponent implements OnInit, AfterViewInit {
     value: "111"
   }];
 
-  constructor(private routerService: RouterService) {
-
+  constructor(private routerService: RouterService,
+              private dialogService: DialogService,
+              private apiCitiesMapService: ApiCitiesMapService,
+              private apiReserveService: ApiReserveService,
+              private apiDistributorsService: ApiDistributorsService) {
   }
 
   ngOnInit() {
+    this.apiCitiesMapService.request((res) => {
+      this.onLoadCities(res);
+    });
+  }
 
+  onLoadCities(data) {
+    let res = [], child, temp;
+
+    for (let key in data) {
+      temp = data[key];
+      child = [];
+
+      for (let i = 0; i < temp.length; i++) {
+        child.push({
+          value: temp[i],
+          text: temp[i]
+        });
+      }
+      res.push({value: key, text: key, child});
+    }
+    this.provinceData = res;
+  }
+
+  loadMerchant(city) {
+    this.apiDistributorsService.setBody({
+      city: this.selectCity.value,
+      province: this.selectProvince.value
+    }).request((data) => {
+      let res = [];
+      for (let i = 0; i < data.length; i++) {
+        res.push({value: data[i], text: data[i]});
+      }
+      city.child = res;
+      this.merchantData = res;
+    });
   }
 
   onTapBack() {
@@ -94,28 +138,81 @@ export class ReserveComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(selectedItem, type) {
-    let item = UtilsBase.deepCopy(selectedItem);
-
-    if (type === 'province') {
-      this.selectProvince = item;
+    if (!selectedItem) {
+      return;
     }
 
-    if (type === 'city') {
+    let item = selectedItem;
+
+    if (type === 'province' && item.value !== this.selectProvince.text) {
+      this.selectProvince = item;
+      this.submitForm.province = selectedItem.text;
+
+      this.cityData = item.child;
+      this.selectCity = {};
+      this.selectMerchant = {};
+    }
+
+    if (type === 'city' && item.value !== this.selectCity.text) {
       this.selectCity = item;
+      this.submitForm.city = selectedItem.text;
+      this.selectMerchant = {};
+
+      if (item.child) {
+        this.merchantData = item.child;
+      } else {
+        this.merchantData = [];
+        this.loadMerchant(item);
+      }
     }
 
     if (type === 'merchant') {
       this.selectMerchant = item;
+      this.submitForm.distributor = selectedItem.text;
     }
   }
 
   onChangeValue(value, name) {
     this.submitForm[name] = value;
-    console.log(this.submitForm);
   }
 
   onSubmit() {
-    console.log(this.selectMerchant, this.selectCity, this.selectProvince, this.submitForm);
+    let {submitForm, selectProvince, selectCity, selectMerchant} = this;
+
+    // 选择的数据
+    submitForm.city = selectCity.value;
+    submitForm.province = selectProvince.value;
+    submitForm.distributor = selectMerchant.value;
+    submitForm.timeStart = DateApi.formatDate(submitForm.timeStart, 'yyyyMMdd');
+
+    let message = this.checkData(submitForm);
+    if (message) {
+      return this.dialogService.alert(message);
+    }
+
+    console.log(submitForm);
+    this.apiReserveService.setBody(submitForm).request(() => {
+      this.dialogService.alert("预约成功！");
+    });
+  }
+
+  checkData(submitForm) {
+    let error;
+
+    if (!submitForm.userName) {
+      error = '请输入姓名';
+    } else if (!submitForm.mobile) {
+      error = '请输入手机号';
+    } else if (!submitForm.city) {
+      error = '请选择城市';
+    } else if (!submitForm.province) {
+      error = '请选择省区';
+    } else if (!submitForm.distributor) {
+      error = '请选择特约门店';
+    } else if (!submitForm.timeStart) {
+      error = '请选择试驾时间';
+    }
+    return error;
   }
 
   showProtocol() {
