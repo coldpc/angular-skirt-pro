@@ -1,0 +1,17 @@
+<div [@anim]="state" class="modal-container"
+     (@anim.done)="animationDone($event)" (touchmove)="onTouchMove()">
+  <div class="main-content">
+    <div class="close-con" (tap)="onTapClose()">
+      <sk-image  class="close-image" [ratio]="1" src="/assets/img/reserve/close.png"></sk-image>
+    </div>
+    <div class="scroll-wrapper">
+      <div class="bar-part">
+        <div class="line-bar" #lineBar>
+          <div class="line" [ngStyle]="barStyle"></div>
+        </div>
+      </div>
+      <div class="scroll" #scroll>广汽丰田汽车有限公司（以下简称“广汽丰田”或“我们”）一贯重视对消费者或潜在消费者（以下简称“您”）个人信息和隐私的保护。您在使用我们的产品或服务时，我们可能会收集、使用您的个人信息。我们对您个人信息的所有收集、使用活动都将按照相关法律法规及本《隐私政策》（以下简称“本政策”）的规定进行。如果广汽丰田在产品/服务应用平台、用户条款或其他有法律约束力的协议、合同中，就收集、使用您的个人信息与您进行了约定，则前述约定的适用优先于本政策；前述约定中未涉及的事项，仍然适用本政策。 在您使用我们的产品或服务前，请务必仔细阅读并理解本政策，尤其是其中加粗的条款。 广汽丰田会在广汽丰田官方网站、产品或服务平台(如丰云行app、丰云惠、车友会、微信小程序)上登载本政策。当您使用广汽丰田官方网站我们的产品或服务时，即视为您已经阅读、理解并同意本政策及其不时更新的版本，同意我们按照本政策的约定收集和使用您的个人信息。</div>
+    </div>
+  </div>
+</div>
+<sk-mask [(isShow)]="isShow"></sk-mask>

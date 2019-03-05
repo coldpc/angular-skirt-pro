@@ -15,6 +15,13 @@
     margin-top: 0.46rem;
     margin-left: 0.6rem;
   }
+
+  .car-img {
+    position: absolute;
+    left: -0.9rem;
+    top: 3.42rem;
+    width: 3rem;
+  }
 }
 
 sk-layout {
@@ -26,7 +33,7 @@ sk-layout {
 }
 
 .main {
-  padding-top: 1rem;
+  padding-top: 0.7rem;
   padding-bottom: 0.2rem;
 }
 

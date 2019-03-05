@@ -1,0 +1,83 @@
+@import "../../../theme/variables";
+.modal-container{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: $modalIndex;
+  width: 100%;
+
+  .main-content {
+    background-image: url('/assets/img/reserve/back.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 3rem;
+    height: 3.74rem;
+    transform: translate(-50%, -50%);
+    color: #fff;
+
+    .close-con {
+      position: absolute;
+      top: 0rem;
+      right: 0rem;
+      width: 0.8rem;
+      text-align: right;
+      padding: 0.32rem 0.2rem 0.1rem 0.1rem;
+    }
+    .close-image {
+      display: inline-block;
+      width: 0.15rem;
+    }
+  }
+
+  .bar-part {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0.2rem;
+    width: 5px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .line-bar {
+    top: 0rem;
+    bottom: 0rem;
+    right: 2px;
+    position: absolute;
+    width: 1px;
+    background-color: #00FFFF;
+
+    .line {
+      top: 0;
+      position: absolute;
+      width: 5px;
+      border-radius:2px;
+      margin-left: -2px;
+      height: 0.67rem;
+      background-color: #00FFFF;
+    }
+  }
+
+  .scroll-wrapper {
+    top: 0.58rem;
+    bottom: 0.36rem;
+    left: 0;
+    right: 0;
+    padding-right: 0.33rem;
+    padding-left: 0.22rem;
+    overflow: hidden;
+    position: absolute;
+
+    .scroll {
+      font-size: 0.12rem;
+      color: rgba(255,255,255,1);
+      line-height: 0.27rem;
+      padding: 0.1rem 0;
+    }
+  }
+}
