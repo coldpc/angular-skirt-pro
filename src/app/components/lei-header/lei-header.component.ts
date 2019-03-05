@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {RouterService} from "../../lib/service/router/RouterService";
 
 @Component({
@@ -8,6 +8,7 @@ import {RouterService} from "../../lib/service/router/RouterService";
 })
 export class LeiHeaderComponent implements OnInit {
 
+  @Input() hasBack = true;
   constructor(private routeService: RouterService) { }
 
   ngOnInit() {

@@ -24,6 +24,8 @@ const testData = [{
 })
 export class ReserveComponent implements OnInit, AfterViewInit {
 
+  @ViewChild("bg") bgRef: ElementRef;
+
   areaData = ctrlData(AreaData);
 
   focusIndex: number = 0; // 当前输入
@@ -41,6 +43,9 @@ export class ReserveComponent implements OnInit, AfterViewInit {
   selectMerchant: InSelectValue = {};
   isShowMerchant: boolean = false;
   merchantData = testData;
+
+  // 显示协议窗口
+  isShowProtocol: boolean = false;
 
   submitForm = {
     name: '',
@@ -69,6 +74,7 @@ export class ReserveComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.bgRef.nativeElement.style.minHeight = UtilsBase.getClient().height + 'px';
   }
 
   onTapItem(index, type ?: string) {
@@ -87,7 +93,9 @@ export class ReserveComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onChangeSelect(item, type) {
+  onChangeSelect(selectedItem, type) {
+    let item = UtilsBase.deepCopy(selectedItem);
+
     if (type === 'province') {
       this.selectProvince = item;
     }
@@ -107,7 +115,11 @@ export class ReserveComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    console.log(this.selectMerchant, this.selectCity, this.selectProvince);
+    console.log(this.selectMerchant, this.selectCity, this.selectProvince, this.submitForm);
+  }
+
+  showProtocol() {
+    this.isShowProtocol = true;
   }
 }
 

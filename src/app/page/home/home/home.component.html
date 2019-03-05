@@ -1,12 +1,15 @@
-<sk-layout [type]="'static'">
-  <div class="main">
-    <div class="top-part">
-      <sk-image [ratio]="164/31" src="/assets/img/jinrongjie/logo.png"></sk-image>
-    </div>
-    <sk-image class="text1 text-img" [src]="'/assets/img/main/text/t1.png'" [ratio]="431/28"></sk-image>
-    <sk-image class="text2 text-img" [src]="'/assets/img/main/text/t2.png'" [ratio]="323/86"></sk-image>
-    <sk-image class="text3 text-img" [src]="'/assets/img/main/text/t3.png'" [ratio]="28/431"></sk-image>
+<div class="page-bg">
+  <sk-image class="text1 text-img" [src]="'/assets/img/main/text/t1.png'" [ratio]="431/28"></sk-image>
+  <sk-image class="text2 text-img" [src]="'/assets/img/main/text/t2.png'" [ratio]="323/86"></sk-image>
+  <sk-image class="text3 text-img" [src]="'/assets/img/main/text/t3.png'" [ratio]="28/431"></sk-image>
 
+  <div #canvasCon class="canvas-part"></div>
+</div>
+
+<sk-layout>
+  <sk-lei-header class="top" [hasBack]="false"></sk-lei-header>
+
+  <div class="main">
     <div class="start-point-part">
       <div class="cool-menu-con" [ngClass]="{'show': isShowFront}">
         <sk-cool-menu class="p3" [text]="'星球福利会社'" (tap)="gotoPage('buy')">
@@ -51,15 +54,10 @@
       </div>
 
     </div>
-
-
-    <div class="hand-con">
-      <sk-image [src]="'/assets/img/main/hand.png'" [ratio]="119/53"></sk-image>
-      <p>滑动移动星球</p>
-    </div>
-  </div>
-
-  <div #canvasCon class="canvas-part">
-    <div class="outer-ball" #outerBallCon></div>
   </div>
 </sk-layout>
+
+<div class="hand-con">
+  <sk-image [src]="'/assets/img/main/hand.png'" [ratio]="119/53"></sk-image>
+  <p>滑动移动星球</p>
+</div>

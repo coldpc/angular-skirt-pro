@@ -13,6 +13,7 @@ const client = UtilsBase.getClient();
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild("canvasCon") canvasCon: ElementRef;
+  @ViewChild("video") videoRef: ElementRef;
   @ViewChild("outerBallCon") outerBallCon: ElementRef;
 
   THREE: any;
@@ -60,6 +61,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.addEvent();
       this.loadModel();
       this.animate();
+      //
+      // this.addVideo();
     });
   }
 
@@ -233,6 +236,50 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.threeInstance.mesh.add(mesh);
     });
     // });
+  }
+
+  addVideo() {
+    let THREE = this.THREE;
+    let scene = new THREE.Scene();
+
+    let renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    renderer.setSize(client.width, client.height);
+    renderer.setClearColor( 0x000000 );
+    this.canvasCon.nativeElement.appendChild(renderer.domElement);
+
+    let camera = new THREE.PerspectiveCamera(70, client.width / client.height, 1, 1000);
+    camera.position.z = 100;
+
+    // let video = this.videoRef.nativeElement;
+    // let texture = new THREE.VideoTexture(video);
+    // texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
+    // texture.minFilter = THREE.LinearFilter;
+
+    // let geometry = new THREE.SphereGeometry(122, 100, 100);
+    let geometry = new THREE.PlaneGeometry(client.width, client.height);
+
+    let texture = new THREE.TextureLoader().load('/assets/textures/timg.gif');
+
+    let material = new THREE.MeshBasicMaterial({
+      map: texture,  // 贴图
+      // color: 0x00aa00,
+      transparent: true // 透明
+    });
+
+    // 创建三维网格
+    let mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = 0;
+    mesh.position.y = 0;
+    mesh.position.z = -100;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.21;
+    scene.add(mesh);
+
+    function render() {
+      requestAnimationFrame(render);
+      renderer.render(scene, camera);
+    }
+
+    render();
   }
 
   gotoPage(type) {

@@ -4,14 +4,7 @@
 </div>
 <sk-layout>
   <div class="top">
-    <div class="header">
-      <div class="left">
-        <div class="logo-box">
-          <img class="logo" src="/assets/img/jinrongjie/logo.png" alt="logo">
-        </div>
-      </div>
-      <div class="right back-btn" (tap)="onTapBack()">返回</div>
-    </div>
+    <sk-lei-header class="top-part"></sk-lei-header>
 
     <div class="tabset">
       <div class="tab tab1" (tap)="switchTab(1)" [ngClass]="{visible: currentIndex === 1}">

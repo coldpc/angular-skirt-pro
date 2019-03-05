@@ -5,9 +5,10 @@ import {ReserveRoutingModule} from "./reserve-routing.module";
 import {RouterService} from "../../lib/service/router/RouterService";
 import { FormItemComponent } from './form-item/form-item.component';
 import {PickerModule} from "../../lib/modules/picker.module";
+import { ProtocolComponent } from './protocol/protocol.component';
 
 @NgModule({
-  declarations: [ReserveComponent, FormItemComponent],
+  declarations: [ReserveComponent, FormItemComponent, ProtocolComponent],
   imports: [
     ReserveRoutingModule,
     CommonComponentsModule,

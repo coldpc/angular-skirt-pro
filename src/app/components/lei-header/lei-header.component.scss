@@ -6,18 +6,18 @@
 }
 
 .logo-box {
-  padding: 0 0.17rem;
-
+  padding: 0.16rem;
   .logo {
     height: 0.16rem;
   }
 }
 
 .back-btn {
+  background-color: transparent;
   display: inline-block;
   width: 0.55rem;
-  line-height: 1;
-  padding: 0.05rem 0;
+  height: 0.22rem;
+  line-height: 0.22rem;
   text-align: center;
   font-size: 0.13rem;
   margin: 0.12rem;

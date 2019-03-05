@@ -30,8 +30,8 @@
     </div>
 
     <div class="protocol-con">
-      <input class="check-box" type="checkbox">
-      <p class="text">本人同意《广汽丰田隐私政策》的规定，广汽丰田将对您提<br>交的个人信息保密，不对外公开。</p>
+      <input class="check-box" type="checkbox" checked>
+      <p class="text" (tap)="showProtocol()" >本人同意《广汽丰田隐私政策》的规定，广汽丰田将对您提<br>交的个人信息保密，不对外公开。</p>
     </div>
     <div class="btn">
       <sk-image src="/assets/img/reserve/submit.png" [ratio]="289/98" (tap)="onSubmit()"></sk-image>
@@ -43,11 +43,14 @@
            (changeSelectedItem)="onChangeSelect($event, 'province')"></sk-picker>
 
 <sk-picker [(isShow)]="isShowCity" [title]="'选择城市'" [data]="cityData"
-           (changeSelectedItem)="onChangeSelect($event, 'province')"></sk-picker>
+           (changeSelectedItem)="onChangeSelect($event, 'city')"></sk-picker>
 
 <sk-picker [(isShow)]="isShowMerchant" [isMulti]="false"
            [title]="'选择特约店'" displayField="text" valueField="value"
-           [data]="merchantData" (changeSelectedItem)="onChangeSelect($event, 'province')"></sk-picker>
+           [data]="merchantData" (changeSelectedItem)="onChangeSelect($event, 'merchant')"></sk-picker>
+
+
+<sk-protocol [(isShow)]="isShowProtocol"></sk-protocol>
 
 
 
