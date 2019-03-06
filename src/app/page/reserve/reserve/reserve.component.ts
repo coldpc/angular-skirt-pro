@@ -201,8 +201,8 @@ export class ReserveComponent implements OnInit, AfterViewInit {
 
     if (!submitForm.userName) {
       error = '请输入姓名';
-    } else if (!submitForm.mobile) {
-      error = '请输入手机号';
+    } else if (!this.checkMobile(submitForm.mobile)) {
+      error = '请输入11位数手机号';
     } else if (!submitForm.city) {
       error = '请选择城市';
     } else if (!submitForm.province) {
@@ -213,6 +213,15 @@ export class ReserveComponent implements OnInit, AfterViewInit {
       error = '请选择试驾时间';
     }
     return error;
+  }
+
+  // 检验手机号
+  checkMobile(str) {
+    let reg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+    if (!str || !reg.test(str)) {
+      return false;
+    }
+    return true;
   }
 
   showProtocol() {

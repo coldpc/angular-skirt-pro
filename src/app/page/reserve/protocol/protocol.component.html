@@ -1,5 +1,5 @@
 <div [@anim]="state" class="modal-container"
-     (@anim.done)="animationDone($event)" (touchmove)="onTouchMove()">
+     (@anim.done)="animationDone($event)" (touchmove)="onTouchMove($event)">
   <div class="main-content">
     <div class="close-con" (tap)="onTapClose()">
       <sk-image  class="close-image" [ratio]="1" src="/assets/img/reserve/close.png"></sk-image>

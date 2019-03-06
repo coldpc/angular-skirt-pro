@@ -2,57 +2,48 @@
   <sk-image class="text1 text-img" [src]="'/assets/img/main/text/t1.png'" [ratio]="431/28"></sk-image>
   <sk-image class="text2 text-img" [src]="'/assets/img/main/text/t2.png'" [ratio]="323/86"></sk-image>
   <sk-image class="text3 text-img" [src]="'/assets/img/main/text/t3.png'" [ratio]="28/431"></sk-image>
-
-  <div #canvasCon class="canvas-part"></div>
 </div>
 
 <sk-layout>
   <sk-lei-header class="top" [hasBack]="false"></sk-lei-header>
 
   <div class="main">
+    <div #canvasCon class="canvas-part"></div>
+
     <div class="start-point-part">
-      <div class="cool-menu-con" [ngClass]="{'show': isShowFront}">
-        <sk-cool-menu class="p3" [text]="'星球福利会社'" (tap)="gotoPage('buy')">
-          <div class="line-b1-con line-con">
-            <sk-image class="line" [ratio]="8/127" src="/assets/img/main/b1.png"></sk-image>
-            <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
-          </div>
-        </sk-cool-menu>
+      <div class="cool-menu-con cool-xingqiufuli" [ngClass]="{'show': isShowFront}" (tap)="gotoPage('buy')">
+          <sk-image class="line" [ratio]="506/154" src="/assets/img/main/v2/xingqiufuli.png"></sk-image>
+          <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
       </div>
 
-      <div class="cool-menu-con" [ngClass]="{'show': isShowFront}"  (tap)="gotoPage('reserve')">
-        <sk-cool-menu class="p2" [text]="'星球巡航预约'" >
-          <div class="line-t1-con line-con">
-            <sk-image class="line line-t1" [ratio]="28/102" src="/assets/img/main/t1.png"></sk-image>
-            <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
-          </div>
-        </sk-cool-menu>
+      <div class="cool-menu-con cool-reserve" [ngClass]="{'show': isShowFront}" (tap)="gotoPage('reserve')">
+        <sk-image [ratio]="500/152" src="/assets/img/main/v2/reserve.png"></sk-image>
+        <div class="line">
+          <sk-image [ratio]="192/316" src="/assets/img/main/v2/reserve-line.png"></sk-image>
+          <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
+        </div>
       </div>
 
-      <div class="cool-menu-con" [ngClass]="{'show': isShowFront}"  (tap)="gotoPage('view')">
-        <sk-cool-menu class="p5" [text]="'PHEV星球展览'"  [ngClass]="{'show': isShowFront}">
-          <div class="line-b3-con line-con">
-            <sk-image class="line" [ratio]="28/189" src="/assets/img/main/b2.png"></sk-image>
-            <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
-          </div>
-        </sk-cool-menu>
+      <div class="cool-menu-con cool-xingqiuzhanlan" [ngClass]="{'show': isShowFront}"  (tap)="gotoPage('view')">
+        <sk-image [ratio]="520/152" src="/assets/img/main/v2/xingqiuzhanlan.png"></sk-image>
+        <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
       </div>
 
-      <div class="cool-menu-con" [ngClass]="{'show': isShowBack}">
-        <sk-cool-menu class="p1" [text]="'星球大咖乐园'">
-          <sk-image class="point-t0" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
-        </sk-cool-menu>
+      <div class="cool-menu-con cool-wuxiandianbo" [ngClass]="{'show': isShowBack}">
+        <sk-image [ratio]="576/154" src="/assets/img/main/v2/wuxiandianbo.png"></sk-image>
+        <div class="line">
+          <sk-image [ratio]="106/600" src="/assets/img/main/v2/wuxiandianbo-line.png"></sk-image>
+          <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
+        </div>
       </div>
 
-      <div class="cool-menu-con" [ngClass]="{'show': isShowBack}">
-        <sk-cool-menu class="p4" [text]="'雷凌群英汇'">
-          <div class="line-b2-con line-con">
-            <sk-image class="line" [ratio]="40/190" src="/assets/img/main/b3.png"></sk-image>
-            <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
-          </div>
-        </sk-cool-menu>
+      <div class="cool-menu-con cool-xunhangjiaoliu" [ngClass]="{'show': isShowBack}">
+        <sk-image [ratio]="576/154" src="/assets/img/main/v2/xunhangjiaoliu.png"></sk-image>
+        <div class="line">
+          <sk-image [ratio]="208/320" src="/assets/img/main/v2/xunhangjiaoliu-line.png"></sk-image>
+          <sk-image class="point" [ratio]="1/1" src="/assets/img/main/light.png"></sk-image>
+        </div>
       </div>
-
     </div>
   </div>
 </sk-layout>

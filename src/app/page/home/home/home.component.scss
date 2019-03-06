@@ -1,20 +1,23 @@
 .page-bg {
-  background-image: url(/assets/img/main/bg.jpg);
+  //background-image: url(/assets/img/main/bg.jpg);
+  background-image: url(/assets/img/main/sun/bg2.gif);
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  min-height: 100vh;
   width: 100%;
   background-size: cover;
+  background-position: center bottom;
+  pointer-events: none;
 
-  .canvas-part {
+  .gif-part {
     position: absolute;
-    top: 1rem;
-    left: 0%;
     width: 100%;
-    transform: translate(0%, 0%);
+    bottom: 0;
+    left: 0;
   }
 
   .text-img {
@@ -51,10 +54,24 @@ sk-layout {
   top: 0;
 }
 
+
+.main {
+  position: relative;
+}
+.canvas-part {
+  margin-top: 0.6rem;
+  width: 100%;
+  transform: translate(0%, 0%);
+
+  .line, .point {
+    pointer-events: none;
+  }
+}
+
 .hand-con {
   position: fixed;
   z-index: 1000;
-  bottom: 0.2rem;
+  bottom: 0.7rem;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
@@ -70,131 +87,112 @@ sk-layout {
 }
 
 
-.start-point-part {
-  .cool-menu-con {
-    margin-top: -0.3rem;
-    transform: scale(0, 0);
-    transition: all 200ms ease-in;
-    opacity: 0;
+.cool-menu-con {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 200ms ease-in;
 
-    &.show {
-      transform: scale(1, 1);
-      opacity: 1;
+  &.show {
+    visibility: visible;
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.cool-xingqiufuli {
+  width: 1.3rem;
+  left: 0.28rem;
+  top: 0;
+
+  .point {
+    position: absolute;
+    top: 0.3rem;
+    left: 10%;
+    pointer-events: none;
+    width: 0.9rem;
+  }
+}
+
+.cool-reserve {
+  width: 1.25rem;
+  top: -0.2rem;
+  right: 0.16rem;
+
+  .line {
+    width: 0.48rem;
+    left: 50%;
+    top: 0.38rem;
+    position: absolute;
+    transform: translateX(-100%);
+
+    .point {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translate(-50%, 58%);
+      width: 0.9rem;
     }
   }
+}
 
-  .line-con {
+.cool-xingqiuzhanlan {
+  width: 1.38rem;
+  bottom: -0.2rem;
+  left: 1.3rem;
+
+  .point {
     position: absolute;
+    top: -0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.9rem;
   }
-  .p1 {
-    position: absolute;
-    top: 1.46rem;
-    left: 0.4rem;
+}
 
-    .point-t0 {
-      pointer-events: none;
-      width: 0.32rem;
+.cool-wuxiandianbo {
+  width: 1.44rem;
+  right: 0.24rem;
+  bottom: -0.5rem;
+
+  .line {
+    position: absolute;
+    bottom: 0.48rem;
+    width: 0.27rem;
+    left: 50%;
+    transform: translateX(-100%);
+
+    .point {
       position: absolute;
-      bottom: -0.6rem;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 0;
+      left: 0%;
+      transform: translate(-50%, -50%);
+      width: 0.9rem
     }
   }
+}
 
-  .p2 {
+
+.cool-xunhangjiaoliu {
+  left: 0.11rem;
+  width: 1.44rem;
+  bottom: -0.2rem;
+
+  .line {
     position: absolute;
-    top:0.7rem;
-    right: 0.3rem;
-    transform: scale(0.618);
-    transform-origin: top right;
+    bottom: 0.48rem;
+    width: 0.27rem;
+    left: 50%;
 
-    .line-t1-con {
-      pointer-events: none;
-      position: absolute;
-      width: 0.53rem;
-      left: 33%;
-      transform: translateX(-50%);
-      top: 0.6rem;
-
-      .point {
-        width: 0.6rem;
-        position: absolute;
-        bottom: 0;
-        left: 0%;
-        transform: translate(-53%, 60%);
-      }
-    }
-  }
-
-  .p3 {
-    position: absolute;
-    left: 0.4rem;
-    top: 5rem;
-    transform: scale(0.5);
-    transform-origin: bottom left;
-
-    .line-con {
-      pointer-events: none;
-      position: absolute;
-      bottom: 0.5rem;
-      right: 50%;
-      width: 0.16rem;
-
-      .point {
-        width: 0.64rem;
-        top: 0;
-        left: 0;
-        position: absolute;
-        transform: translate(-50%, -50%);
-      }
-    }
-  }
-
-  .p4 {
-    position: absolute;
-    left: 1.42rem;
-    top: 4.93rem;
-    transform: scale(0.6);
-    transform-origin: bottom left;
-
-    .line-con {
-      position: absolute;
-      bottom: 0.5rem;
-      right: 50%;
-      width: 0.25rem;
-      pointer-events: none;
-
-      .point {
-        width: 0.53rem;
-        top: 0;
-        left: 0;
-        position: absolute;
-        transform: translate(-50%, -50%);
-      }
-    }
-  }
-
-  .p5 {
-    position: absolute;
-    left: 2.4rem;
-    top: 5.33rem;
-    transform: scale(0.6);
-    transform-origin: bottom left;
-
-    .line-con {
-      pointer-events: none;
-      position: absolute;
-      bottom: 0.5rem;
-      right: 50%;
-      width: 0.32rem;
-
-      .point {
-        width: 0.53rem;
-        top: 0;
-        left: 0;
-        position: absolute;
-        transform: translate(-50%, -50%);
-      }
+    .point {
+      position:absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+      width: 0.9rem;
     }
   }
 }

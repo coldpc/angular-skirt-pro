@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ElementRef, ViewChild, OnDestroy} from '@angular/core';
 import {DialogService} from "../../../lib/service/system/dialog.service";
 import {LoadJs} from "../../../lib/utils/LoadJs";
 import {UtilsBase} from "../../../lib/utils/UtilsBase";
@@ -11,7 +11,7 @@ const client = UtilsBase.getClient();
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("canvasCon") canvasCon: ElementRef;
   @ViewChild("video") videoRef: ElementRef;
   @ViewChild("outerBallCon") outerBallCon: ElementRef;
@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     scene?: any,
     mesh?: any,
     ball?: any,
+    composer?: any,
     renderer?: any
   } = {};
 
@@ -33,13 +34,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   rotate: number = 0;
 
   front = [-15, 15];
-  back = [170, 190,];
+  back = [170, 190];
   back2 = [-190, -170];
 
   isShowFront = false;
   isShowBack = false;
 
-  constructor(private dialogServeice: DialogService,
+  hasDestroy = false;
+  hasLoadOuter = false;
+
+  constructor(private dialogService: DialogService,
               private routerService: RouterService) {
 
   }
@@ -61,8 +65,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.addEvent();
       this.loadModel();
       this.animate();
-      //
-      // this.addVideo();
     });
   }
 
@@ -83,32 +85,46 @@ export class HomeComponent implements OnInit, AfterViewInit {
       let touches = e.targetTouches;
       touchData.yt = touches[0].clientY;
       touchData.xt = touches[0].clientX;
-      _this.rotate += (touchData.xt - touchData.x0) / 500;
+
+      if (_this.hasLoadOuter) {
+        _this.rotate += (touchData.xt - touchData.x0) / 500;
+      }
+
       touchData.x0 = touchData.xt;
       touchData.y0 = touchData.yt;
-      console.log(Math.round(_this.rotate * 180 / Math.PI));
     }
   }
 
   async loadInit() {
     let folderPath = "/assets/threejs/";
     await LoadJs(folderPath + "build/three.min.js");
-    await LoadJs(folderPath + "js/loaders/MTLLoader.js");
+    // await LoadJs(folderPath + "js/loaders/MTLLoader.js");
     await LoadJs(folderPath + "js/loaders/OBJLoader.js");
+    // await LoadJs(folderPath + "js/EffectComposer.js");
+    // await LoadJs(folderPath + "js/CopyShader.js");
+    // await LoadJs(folderPath + "js/ShaderPass.js");
+    // await LoadJs(folderPath + "js/RenderPass.js");
+    // await LoadJs(folderPath + "js/OutlinePass.js");
+    // await LoadJs(folderPath + "js/FXAAShader.js");
   }
 
   animate() {
 
+    if (this.hasDestroy) {
+      return;
+    }
+
+    if (this.hasLoadOuter) {
+      let threeInstance = this.threeInstance, r = this.rotate;
+      threeInstance.mesh.rotation.y = r;
+      threeInstance.renderer.render(threeInstance.scene, threeInstance.camera);
+
+      this.checkShowMenu(r);
+    }
+
     requestAnimationFrame(() => {
       this.animate();
     });
-
-    let threeInstance = this.threeInstance, r = this.rotate;
-
-    threeInstance.mesh.rotation.y = r;
-    threeInstance.renderer.render(threeInstance.scene, threeInstance.camera);
-
-    this.checkShowMenu(r);
   }
 
   checkShowMenu(r) {
@@ -139,7 +155,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let THREE = this.THREE;
 
     // 创建球体 半径 精度份数 纬度份数
-    let geometry = new THREE.SphereGeometry(122, 100, 100);
+    let geometry = new THREE.SphereGeometry(130, 100, 100);
 
     let texture = new THREE.TextureLoader().load('/assets/textures/star/inner512.png');
 
@@ -164,12 +180,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let THREE = this.THREE, scene = this.threeInstance.scene;
 
     // 环境光
-    let ambient = new THREE.AmbientLight(0xffffff);
+    let ambient = new THREE.AmbientLight(0xE2F7FC);
     scene.add(ambient);
 
     /*点光源*/
     let directionalLight = new THREE.PointLight(0xb4e3f3);
-    directionalLight.position.set(0, 0, 100).normalize();
+    directionalLight.position.set(0, 0, 1000).normalize();
     scene.add(directionalLight);
   }
 
@@ -183,8 +199,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.canvasCon.nativeElement.appendChild(renderer.domElement);
 
     this.threeInstance.renderer = renderer;
-
-    renderer.render(this.threeInstance.scene, this.threeInstance.camera);
   }
 
   // 记载进度
@@ -228,12 +242,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
       });
 
-      mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.8;
+      mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.86;
       mesh.position.z = 0;
       mesh.children.splice(3, 1);
 
       // 加入模型中
       this.threeInstance.mesh.add(mesh);
+      this.hasLoadOuter = true;
     });
     // });
   }
@@ -282,6 +297,36 @@ export class HomeComponent implements OnInit, AfterViewInit {
     render();
   }
 
+  addEffect(mesh) {
+    let THREE = this.THREE;
+    // 加载纹理
+    let loader = new THREE.TextureLoader();
+    loader.load('/assets/img/main/light.png', (texture) => {
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+
+      let renderer = this.threeInstance.renderer;
+      let scene = this.threeInstance.scene;
+      let camera = this.threeInstance.camera;
+      let composer = new THREE.EffectComposer( renderer );
+
+      let renderPass = new THREE.RenderPass( scene, camera );
+      composer.addPass( renderPass );
+
+      let outlinePass = new THREE.OutlinePass( new THREE.Vector2( window.innerWidth, window.innerWidth ), scene, camera );
+      outlinePass.patternTexture = texture;
+      outlinePass.selectedObjects = [mesh];
+      composer.addPass( outlinePass );
+
+      let effectFXAA = new THREE.ShaderPass( THREE.FXAAShader );
+      effectFXAA.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+      effectFXAA.renderToScreen = true;
+      composer.addPass( effectFXAA );
+
+      this.threeInstance.composer = composer;
+    });
+  }
+
   gotoPage(type) {
     switch (type) {
       case 'buy':
@@ -296,6 +341,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.routerService.gotoExhibition();
         break;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.hasDestroy = true;
+    this.threeInstance = null;
   }
 }
 

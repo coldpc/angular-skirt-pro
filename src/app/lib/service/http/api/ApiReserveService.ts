@@ -5,7 +5,7 @@ import {ApiCoreService} from "../ApiCoreService";
 export class ApiReserveService extends ApiCoreService<Array<any>> {
 
   // 请求路径
-  public path = '/leilin/appointmentInfo/save';
+  public path = '/appointmentInfo/save';
 
   constructor(private injector: Injector) {
     super(injector);
