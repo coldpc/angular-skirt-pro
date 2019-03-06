@@ -1,4 +1,4 @@
 <div class="logo-box">
   <img class="logo" src="/assets/img/jinrongjie/logo.png" alt="logo">
 </div>
-<button *ngIf="hasBack" class="right back-btn" (tap)="onTapBack()">返回</button>
+<button *ngIf="hasBack" class="right back-btn" (tap)="onTapBack()" [ngClass]="{scale: isScale}">返回</button>

@@ -58,6 +58,7 @@ sk-layout {
 
 .main {
   position: relative;
+  transform: scale(0.9, 0.9);
 }
 .canvas-part {
   margin-top: 0.6rem;
@@ -80,13 +81,14 @@ sk-layout {
 .hand-con {
   position: fixed;
   z-index: 1000;
-  bottom: 0.7rem;
+  bottom: 0.4rem;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
   color: #fff;
   text-align: center;
   letter-spacing: 10px;
+  pointer-events: none;
 
   .line, .point {
     pointer-events: none;

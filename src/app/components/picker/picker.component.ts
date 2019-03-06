@@ -26,6 +26,15 @@ const DEFAULT_DISPLAY_FIELD = 'text';
 })
 export class PickerComponent extends DynamicCore implements OnInit {
 
+  static blur() {
+    let document = window.document;
+    let input = document.activeElement || document.querySelector("input:focus") || document.querySelector("textarea:focus");
+    if (input && input['blur']) {
+      input['blur']();
+      return input;
+    }
+  }
+
   // 输入参数
   @Input() displayField: string = DEFAULT_DISPLAY_FIELD;
   @Input() valueField: string = DEFAULT_VALUE_FIELD;
@@ -81,6 +90,7 @@ export class PickerComponent extends DynamicCore implements OnInit {
     this.animateEvent = e;
 
     this.isShowPicker = e.toState === 'active';
+    PickerComponent.blur();
   }
 
   onHide() {

@@ -15,12 +15,12 @@ import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
       })),
       state('void', style({
         opacity: 0,
-        transform: 'scale3d(0.5, 0.5, 0.5) translateY(50%)'
+        transform: 'scale3d(0.5, 0.5, 0.5) translateY(70%)'
       })),
       state('inactive', style({
         display: 'none',
         opacity: 0,
-        transform: 'scale3d(0.5, 0.5, 0.5) translateY(50%)'
+        transform: 'scale3d(0.5, 0.5, 0.5) translateY(70%)'
       })),
       transition('inactive => active', animate('250ms ease-out')),
       transition('void => active', animate('250ms ease-out')),
@@ -54,6 +54,8 @@ export class ImgViewerComponent extends DynamicCore implements OnInit {
       let zScroller = this.zScroller = new SkEasyScroller(this.scrollRef.nativeElement, {
         scrollingX: false
       });
+    } else {
+      this.zScroller.reflow();
     }
   }
 

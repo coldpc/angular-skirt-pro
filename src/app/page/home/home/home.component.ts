@@ -43,6 +43,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   hasDestroy = false;
   hasLoadOuter = false;
 
+  isAuto = true;
+
   constructor(private dialogService: DialogService,
               private routerService: RouterService) {
 
@@ -74,8 +76,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.canvasCon.nativeElement.addEventListener('touchstart', startFunc);
 
     this.canvasCon.nativeElement.addEventListener('touchmove', moveFunc);
+    this.canvasCon.nativeElement.addEventListener('touchend', endFunc);
+    this.canvasCon.nativeElement.addEventListener('touchcancel', endFunc);
 
     function startFunc(e) {
+      _this.isAuto = false;
       let touches = e.targetTouches;
       touchData.y0 = touchData.yt = touches[0].clientY;
       touchData.x0 = touchData.xt = touches[0].clientX;
@@ -92,6 +97,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
       touchData.x0 = touchData.xt;
       touchData.y0 = touchData.yt;
+    }
+
+    function endFunc() {
+      _this.isAuto = true;
     }
   }
 
@@ -112,6 +121,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.hasDestroy) {
       return;
+    }
+
+    if (this.isAuto) {
+      this.rotate += 0.0008;
     }
 
     if (this.hasLoadOuter) {

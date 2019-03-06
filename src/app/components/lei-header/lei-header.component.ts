@@ -9,6 +9,8 @@ import {RouterService} from "../../lib/service/router/RouterService";
 export class LeiHeaderComponent implements OnInit {
 
   @Input() hasBack = true;
+  @Input() isScale = false;
+
   constructor(private routeService: RouterService) { }
 
   ngOnInit() {

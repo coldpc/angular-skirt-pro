@@ -61,9 +61,7 @@ export class DynamicCore {
     this.state = maskState;
 
     // 同步isShow的值
-    if (isAsync) {
-      this.isShowChange.emit(isShow);
-    }
+    this.isShowChange.emit(isShow);
 
 
     if (isShow) {
