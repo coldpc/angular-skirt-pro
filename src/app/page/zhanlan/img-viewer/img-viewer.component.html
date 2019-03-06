@@ -1,0 +1,17 @@
+<div [@anim]="state" class="modal-container"
+     (@anim.done)="animationDone($event)" (touchmove)="stop($event)" (touchstart)="stop($event)">
+  <div class="main-content">
+    <div class="close-con" (tap)="onTapClose()">
+      <sk-image  class="close-image" [ratio]="1" src="/assets/img/reserve/close.png"></sk-image>
+    </div>
+    <div class="scroll-wrapper">
+      <div class="scroll" #scroll>
+        <img class="content-img" *ngIf="currentIndex === 1" src="/assets/img/exhibition/yicheshaungyong.jpg" alt="">
+        <img class="content-img" *ngIf="currentIndex === 2" src="/assets/img/exhibition/zhigansheji.jpg" alt="">
+        <img class="content-img" *ngIf="currentIndex === 3" src="/assets/img/exhibition/xianjinkeji.jpg" alt="">
+        <img class="content-img" *ngIf="currentIndex === 4" src="/assets/img/exhibition/zhinengbianli.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<sk-mask [(isShow)]="isShow"></sk-mask>

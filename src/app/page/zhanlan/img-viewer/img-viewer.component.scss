@@ -1,0 +1,73 @@
+@import "../../../theme/variables";
+.modal-container{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: $modalIndex;
+  width: 100%;
+  padding: 0.2rem;
+
+  .main-content {
+    position: relative;
+    height: 90%;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    .close-con {
+      position: absolute;
+      top: 0rem;
+      right: 0rem;
+      width: 0.8rem;
+      text-align: right;
+      padding: 0.1rem;
+    }
+    .close-image {
+      display: inline-block;
+      width: 0.15rem;
+    }
+  }
+
+  .bar-part {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0.2rem;
+    width: 5px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .line-bar {
+    top: 0rem;
+    bottom: 0rem;
+    right: 2px;
+    position: absolute;
+    width: 1px;
+    background-color: #00FFFF;
+
+    .line {
+      top: 0;
+      position: absolute;
+      width: 5px;
+      border-radius:2px;
+      margin-left: -2px;
+      height: 0.67rem;
+      background-color: #00FFFF;
+    }
+  }
+
+  .scroll-wrapper {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    position: absolute;
+
+    .scroll {
+      color: rgba(255,255,255,1);
+      line-height: 0;
+    }
+  }
+}

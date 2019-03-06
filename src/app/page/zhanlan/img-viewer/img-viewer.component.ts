@@ -4,9 +4,9 @@ import {DynamicCore} from "../../../components/dynamicCore/DynamicCore";
 import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
 
 @Component({
-  selector: 'sk-protocol',
-  templateUrl: './protocol.component.html',
-  styleUrls: ['./protocol.component.scss'],
+  selector: 'sk-img-viewer',
+  templateUrl: './img-viewer.component.html',
+  styleUrls: ['./img-viewer.component.scss'],
   animations: [
     trigger('anim', [
       state('active', style({
@@ -28,25 +28,13 @@ import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
     ])
   ]
 })
-export class ProtocolComponent extends DynamicCore implements OnInit {
+export class ImgViewerComponent extends DynamicCore implements OnInit {
 
-  @Input() title: string;
-  @Input() hasConfirm: boolean = true;
-
-  @Output() confirmEvent: EventEmitter<any> = new EventEmitter();
-  @Output() animationStartEvent: EventEmitter<AnimationEvent> = new EventEmitter();
-  @Output() animalDoneEvent: EventEmitter<AnimationEvent> = new EventEmitter();
-
-
-  barStyle = {
-    transform: 'translateY(0)'
-  };
+  @Input() currentIndex: number = 1;
 
 
   zScroller: any = null;
   @ViewChild("scroll") scrollRef;
-
-  @ViewChild("lineBar") lineBarRef;
 
   constructor() {
     super();
@@ -64,33 +52,13 @@ export class ProtocolComponent extends DynamicCore implements OnInit {
     if (!this.zScroller) {
 
       let zScroller = this.zScroller = new SkEasyScroller(this.scrollRef.nativeElement, {
-        scrollingX: false,
-        scrollingComplete: this.onScrollComplete.bind(this),
-        onScroll: this.onScroll.bind(this)
+        scrollingX: false
       });
     }
   }
 
-  onScrollComplete(left, top, zoom) {
 
-  }
-
-  onScroll(left, top, zoom) {
-    let dy = 0, translateY, isTop = true;
-
-    let totalHeight = this.scrollRef.nativeElement.offsetHeight;
-    let barHeight = this.lineBarRef.nativeElement.offsetHeight;
-    let lineHeight = this.lineBarRef.nativeElement.children[0].offsetHeight;
-
-    let scrollMax = totalHeight - barHeight;
-
-    // 计算translate
-    translateY = ((barHeight - lineHeight) * top / scrollMax);
-
-    this.barStyle.transform = `translateY(${translateY}px)`;
-  }
-
-  onTouchMove(e) {
+  stop(e) {
     if (e.cancelable) {
       e.preventDefault();
     }

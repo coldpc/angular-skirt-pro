@@ -8,5 +8,5 @@ export enum EnRouterPath {
   jinrongjie = 'page/jinrongjie',
   reserve = 'page/reserve',
   carPrice = 'page/carPrice',
-  exhibition = 'page/exhibition'
+  exhibition = 'page/zhanlan'
 }

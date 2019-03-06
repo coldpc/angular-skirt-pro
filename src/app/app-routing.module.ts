@@ -46,6 +46,11 @@ const routes: Routes = [
     loadChildren: './page/exhibition/exhibition.module#ExhibitionModule',
     canLoad: []
   },
+  {
+    path: 'page/zhanlan',
+    loadChildren: './page/zhanlan/zhanlan.module#ZhanlanModule',
+    canLoad: []
+  },
 ];
 
 @NgModule({

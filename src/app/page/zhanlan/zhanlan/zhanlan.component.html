@@ -1,0 +1,12 @@
+<div class="back-img">
+  <sk-lei-header class="top"></sk-lei-header>
+
+  <div class="btn-con">
+    <div class="b1" (tap)="onTap(1)"></div>
+    <div class="b2" (tap)="onTap(2)"></div>
+    <div class="b3" (tap)="onTap(3)"></div>
+    <div class="b4" (tap)="onTap(4)"></div>
+  </div>
+</div>
+
+<sk-img-viewer [(isShow)]="isShowImg" [currentIndex]="currentIndex"></sk-img-viewer>

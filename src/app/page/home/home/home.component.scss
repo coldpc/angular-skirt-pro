@@ -46,12 +46,13 @@
 }
 
 sk-layout {
-  position: absolute;
-  z-index: 2;
+  position: fixed;
+  z-index: 20;
   left: 0;
   right: 0;
   width: 100%;
   top: 0;
+  bottom: 0;
 }
 
 
