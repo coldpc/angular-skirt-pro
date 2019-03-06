@@ -62,9 +62,17 @@ sk-layout {
   margin-top: 0.6rem;
   width: 100%;
   transform: translate(0%, 0%);
+  background-image: url("/assets/img/main/out-light.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
 
-  .line, .point {
-    pointer-events: none;
+  .out-light-img {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
   }
 }
 
@@ -78,6 +86,10 @@ sk-layout {
   color: #fff;
   text-align: center;
   letter-spacing: 10px;
+
+  .line, .point {
+    pointer-events: none;
+  }
 
   sk-image {
     background: transparent;
@@ -104,16 +116,17 @@ sk-layout {
 }
 
 .cool-xingqiufuli {
-  width: 1.3rem;
+  width: 1.27rem;
   left: 0.28rem;
   top: 0;
 
   .point {
     position: absolute;
-    top: 0.3rem;
-    left: 10%;
+    top: 0.2rem;
+    right: 60%;
     pointer-events: none;
     width: 0.9rem;
+    transform: translateX(100%);
   }
 }
 
@@ -139,31 +152,16 @@ sk-layout {
   }
 }
 
-.cool-xingqiuzhanlan {
-  width: 1.38rem;
-  bottom: -0.2rem;
-  left: 1.3rem;
-
-  .point {
-    position: absolute;
-    top: -0.8rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0.9rem;
-  }
-}
-
 .cool-wuxiandianbo {
-  width: 1.44rem;
-  right: 0.24rem;
-  bottom: -0.5rem;
+  width: 0.88rem;
+  left: 0.74rem;
+  bottom: -0.1rem;
 
   .line {
     position: absolute;
-    bottom: 0.48rem;
-    width: 0.27rem;
-    left: 50%;
-    transform: translateX(-100%);
+    bottom: 0.4rem;
+    width: 0.2rem;
+    right: 50%;
 
     .point {
       position: absolute;
@@ -177,18 +175,18 @@ sk-layout {
 
 
 .cool-xunhangjiaoliu {
-  left: 0.11rem;
+  right: 0.64rem;
   width: 1.44rem;
-  bottom: -0.2rem;
+  bottom: -0.5rem;
 
   .line {
     position: absolute;
     bottom: 0.48rem;
-    width: 0.27rem;
-    left: 50%;
+    width: 0.23rem;
+    left: 40%;
 
     .point {
-      position:absolute;
+      position: absolute;
       top: 0;
       right: 0;
       transform: translate(50%, -50%);

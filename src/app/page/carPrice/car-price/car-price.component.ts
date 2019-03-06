@@ -14,7 +14,7 @@ export class CarPriceComponent implements OnInit {
   }
 
   gotoJinrongjie() {
-    this.routeService.gotoJinrongjie();
+    this.routeService.gotoReserve();
   }
 
 }

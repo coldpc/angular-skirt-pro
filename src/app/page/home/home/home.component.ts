@@ -180,11 +180,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     let THREE = this.THREE, scene = this.threeInstance.scene;
 
     // 环境光
-    let ambient = new THREE.AmbientLight(0xE2F7FC);
+    let ambient = new THREE.AmbientLight(0xa2efff);
     scene.add(ambient);
 
     /*点光源*/
-    let directionalLight = new THREE.PointLight(0xb4e3f3);
+    let directionalLight = new THREE.PointLight(0xffffff);
     directionalLight.position.set(0, 0, 1000).normalize();
     scene.add(directionalLight);
   }
@@ -234,13 +234,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           modelObj = child;
         }
 
-
         if (child instanceof THREE.Mesh) {
           // 将贴图赋于材质
           // 重点，没有该句会导致PNG无法正确显示透明效果
           child.material.transparent = true;
         }
       });
+
+
 
       mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.86;
       mesh.position.z = 0;

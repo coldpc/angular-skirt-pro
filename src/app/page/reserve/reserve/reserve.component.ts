@@ -13,13 +13,7 @@ interface InSelectValue {
   value ?: string;
 }
 
-const testData = [{
-  text: "汉州",
-  value: "11"
-}, {
-  text: "背景",
-  value: "111"
-}];
+const testData = [];
 
 @Component({
   selector: 'sk-reserve',
@@ -181,6 +175,7 @@ export class ReserveComponent implements OnInit, AfterViewInit {
     let {submitForm, selectProvince, selectCity, selectMerchant} = this;
 
     // 选择的数据
+    submitForm = UtilsBase.deepCopy(submitForm);
     submitForm.city = selectCity.value;
     submitForm.province = selectProvince.value;
     submitForm.distributor = selectMerchant.value;
