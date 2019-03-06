@@ -29,6 +29,7 @@ const testData = [{
 export class ReserveComponent implements OnInit, AfterViewInit {
 
   @ViewChild("bg") bgRef: ElementRef;
+  @ViewChild("checkBox") checkBoxRef: ElementRef;
 
   areaData = ctrlData(AreaData);
 
@@ -198,6 +199,10 @@ export class ReserveComponent implements OnInit, AfterViewInit {
 
   checkData(submitForm) {
     let error;
+
+    if (!this.checkBoxRef.nativeElement.checked) {
+      return '请勾选用户协议';
+    }
 
     if (!submitForm.userName) {
       error = '请输入姓名';
