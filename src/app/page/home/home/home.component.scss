@@ -33,7 +33,7 @@
 
     &.text2 {
       left: 0.21rem;
-      top: 5rem;
+      bottom: 1.14rem;
       width: 1.62rem;
     }
 
@@ -57,11 +57,11 @@ sk-layout {
 
 
 .main {
-  position: relative;
+  position: absolute;
   transform: scale(0.9, 0.9);
+  bottom: 1.5rem;
 }
 .canvas-part {
-  margin-top: 0.6rem;
   width: 100%;
   transform: translate(0%, 0%);
   background-image: url("/assets/img/main/out-light2.png");
@@ -81,7 +81,7 @@ sk-layout {
 .hand-con {
   position: fixed;
   z-index: 1000;
-  bottom: 0.4rem;
+  bottom: 0.7rem;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;

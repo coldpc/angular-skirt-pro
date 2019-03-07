@@ -179,7 +179,7 @@ export class ReserveComponent implements OnInit, AfterViewInit {
     submitForm.city = selectCity.value;
     submitForm.province = selectProvince.value;
     submitForm.distributor = selectMerchant.value;
-    submitForm.timeStart = DateApi.formatDate(submitForm.timeStart, 'yyyyMMdd');
+    // submitForm.timeStart = DateApi.formatDate(submitForm.timeStart, 'yyyyMMdd');
 
     let message = this.checkData(submitForm);
     if (message) {
@@ -209,8 +209,6 @@ export class ReserveComponent implements OnInit, AfterViewInit {
       error = '请选择省区';
     } else if (!submitForm.distributor) {
       error = '请选择特约门店';
-    } else if (!submitForm.timeStart) {
-      error = '请选择试驾时间';
     }
     return error;
   }
