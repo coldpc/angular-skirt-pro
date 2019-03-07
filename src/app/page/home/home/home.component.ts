@@ -50,6 +50,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   deg = 2;
 
+  huiXiongStyle = {
+    left: 0,
+    top: 0
+  };
+
   constructor(private dialogService: DialogService,
               private routerService: RouterService) {
 
@@ -70,10 +75,26 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.addLogo();
       this.addLight();
       this.addRenderer();
-      // this.addEvent();
+      this.addEvent();
       this.loadModel();
       this.animate();
     });
+  }
+
+  animateHuiXing() {
+    let huiXiongStyle = this.huiXiongStyle;
+    let x0 = 0, y0 = client.height - Math.random() * 10, dx = 1, dy = 1;
+
+    move();
+
+    function move() {
+      x0 += dx;
+      dy += dy;
+
+      requestAnimationFrame(() => {
+        this.move();
+      });
+    }
   }
 
   addEvent() {

@@ -13,6 +13,14 @@
   background-position: center bottom;
   pointer-events: none;
 
+  .hui-xing {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 1rem;
+    //visibility: hidden;
+  }
+
   .gif-part {
     position: absolute;
     width: 100%;
