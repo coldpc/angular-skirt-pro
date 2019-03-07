@@ -61,6 +61,17 @@ export class RouterService extends RouterCoreService {
       historyState
     });
   }
+
+  // 去领奖品
+  gotoGetAward(tel: string, historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.award,
+      params: {
+        tel
+      },
+      historyState
+    });
+  }
 }
 
 // 约定取公寓列表的参数

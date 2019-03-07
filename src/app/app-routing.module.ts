@@ -51,6 +51,11 @@ const routes: Routes = [
     loadChildren: './page/zhanlan/zhanlan.module#ZhanlanModule',
     canLoad: []
   },
+  {
+    path: 'page/award',
+    loadChildren: './page/award/award.module#AwardModule',
+    canLoad: []
+  },
 ];
 
 @NgModule({

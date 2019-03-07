@@ -1,0 +1,104 @@
+@import "../../../theme/variables";
+.modal-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 2000;
+
+  .main-content {
+    width: 3rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    background-position: left top;
+    background-repeat: no-repeat;
+
+
+    &.has-award {
+      height: 3.55rem;
+      background-image: url(/assets/img/award/has-bg.png);
+      color: #fff;
+      text-align: center;
+
+      .title {
+        width: 2.13rem;
+        padding-top: 0.45rem;
+        margin: 0 auto;
+      }
+
+      .p-title {
+        font-size: 0.18rem;
+        margin-top: 0.08rem;
+        padding-bottom: 0.16rem;
+      }
+      .p1 {
+        font-size: 0.15rem;
+        color: #00FFFF;
+        line-height: 1;
+        width: 100%;
+        text-align: center;
+        margin: 0.1rem auto 0 auto;
+        white-space: nowrap;
+      }
+
+      .desc {
+        font-size: 0.13rem;
+        margin-top: 0.22rem;
+        padding-bottom: 0.18rem;
+      }
+    }
+
+    &.no-award {
+      height: 2.87rem;
+      background-image: url(/assets/img/award/no-award-bg.png);
+
+      .title {
+        width: 1.86rem;
+        padding-top: 0.5rem;
+        margin: 0 auto;
+      }
+
+      .desc {
+        color: #fff;
+        font-style: italic;
+        text-align: center;
+        font-size: 0.13rem;
+        line-height: 0.2rem;
+        margin-top: 0.22rem;
+        padding-bottom: 0.27rem;
+      }
+    }
+
+    .close-con {
+      position: absolute;
+      padding: 0.33rem 0.2rem;
+      top: 0rem;
+      right: 0rem;
+      width: 0.8rem;
+      text-align: right;
+    }
+
+    .close-image {
+      display: inline-block;
+      width: 0.15rem;
+    }
+  }
+
+  .btn {
+    color: #fff;
+    border: 2px solid #00FFFF;
+    text-align: center;
+    width: 1.8rem;
+    height: 0.37rem;
+    font-size: 0.17rem;
+    font-weight: bold;
+    background: transparent;
+    display: block;
+    margin: 0 auto;
+    transform: skewX(-20deg);
+  }
+}

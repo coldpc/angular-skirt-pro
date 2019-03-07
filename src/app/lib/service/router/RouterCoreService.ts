@@ -40,13 +40,17 @@ export class RouterCoreService {
   // 加载页面
   loadPage(data: InRouterPath) {
     // 处理params 转化为下划线
-    let queryParams = data.params;
+    let queryParams = data.params, key2;
 
     // 大小写转化为下划线分隔开
     if (queryParams) {
       for (let key in queryParams) {
-        queryParams[UtilsBase.transToUnderline(key)] = queryParams[key];
-        delete queryParams[key];
+        key2 = UtilsBase.transToUnderline(key);
+
+        if (key2 !== key) {
+          queryParams[key2] = queryParams[key];
+          delete queryParams[key];
+        }
       }
     }
 

@@ -1,0 +1,9 @@
+@import "../../theme/variables";
+
+.share-container{
+  position: fixed;
+  right: 0.5rem;
+  top: 0.63rem;
+  width: 0.53rem;
+  z-index: $modalIndex;
+}

@@ -16,7 +16,7 @@ import * as THREE from 'three';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class AwardComponent implements OnInit, AfterViewInit {
   @ViewChild("canvasCon") canvasCon: ElementRef;
   @ViewChild("outerBallCon") outerBallCon: ElementRef;
 

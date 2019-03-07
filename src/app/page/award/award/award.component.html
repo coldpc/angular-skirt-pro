@@ -1,0 +1,20 @@
+<div class="page-bg"></div>
+
+<sk-layout>
+  <sk-lei-header class="top" [hasBack]="true"></sk-lei-header>
+
+  <div class="main">
+    <div #canvasCon class="canvas-part"></div>
+  </div>
+
+  <div class="info-part">
+    <div class="info">奖品：100元油卡</div>
+    <div class="remark">注意事项：每人只得一次抽奖机会</div>
+    <div class="button" (tap)="getAward()">
+      <sk-image [ratio]="526/178" src="/assets/img/award/get.png"></sk-image>
+    </div>
+  </div>
+</sk-layout>
+
+
+<sk-result [(isShow)]="isShow" [hasAward]="true"></sk-result>

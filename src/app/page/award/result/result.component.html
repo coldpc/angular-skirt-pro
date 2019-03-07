@@ -1,0 +1,26 @@
+<div [@anim]="state" class="modal-container" (touchmove)="stop($event)" (touchstart)="stop($event)">
+  <div class="main-content" [ngClass]="hasAward ? 'has-award': 'no-award'">
+    <div class="close-con" (tap)="onTapClose()">
+      <sk-image  class="close-image" [ratio]="1" src="/assets/img/reserve/close.png"></sk-image>
+    </div>
+
+    <div *ngIf="hasAward" class="has-part">
+      <sk-image  class="title" [ratio]="852/224" src="/assets/img/award/has-title.png"></sk-image>
+      <div class="p-title">中奖记录</div>
+      <div class="p1">中奖人：pccold</div>
+      <div class="p1">电话号码：15618962683</div>
+      <div class="p1">中将奖品：100元加油卡</div>
+      <div class="desc">（会有专人与您取得联系，请保持手机畅通）</div>
+    </div>
+
+    <div  *ngIf="!hasAward" class="no-part">
+      <sk-image  class="title" [ratio]="744 / 302" src="/assets/img/award/no-award-title.png"></sk-image>
+      <div class="desc">分享您的雷凌星球探索之旅<br>邀请好友共同预约试驾雷凌PHEV！</div>
+    </div>
+
+    <button class="btn" (tap)="onTapShare()">邀请好友预约试驾</button>
+  </div>
+</div>
+<sk-mask [(isShow)]="isShow" [isTapBackHide]="true"></sk-mask>
+
+<sk-share [(isShow)]="isShowShare"></sk-share>
