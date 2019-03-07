@@ -45,6 +45,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   isAuto = true;
 
+  // 自动停留2秒
+  time = 3;
+
+  deg = 2;
+
   constructor(private dialogService: DialogService,
               private routerService: RouterService) {
 
@@ -62,9 +67,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.initCamera();
       this.initScene();
       this.addInnerMesh();
+      this.addLogo();
       this.addLight();
       this.addRenderer();
-      this.addEvent();
+      // this.addEvent();
       this.loadModel();
       this.animate();
     });
@@ -124,15 +130,23 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (this.isAuto) {
-      this.rotate += 0.0008;
+      if (this.rotate % 3600 === 0) {
+        this.isAuto = false;
+        setTimeout(() => {
+          this.isAuto = true;
+          this.rotate += this.deg;
+        }, this.time * 1000);
+      } else {
+        this.rotate += this.deg;
+      }
     }
 
     if (this.hasLoadOuter) {
-      let threeInstance = this.threeInstance, r = this.rotate;
+      let threeInstance = this.threeInstance, r = this.rotate * Math.PI / 1800;
       threeInstance.mesh.rotation.y = r;
       threeInstance.renderer.render(threeInstance.scene, threeInstance.camera);
 
-      this.checkShowMenu(r);
+      this.checkShowMenu(this.rotate);
     }
 
     requestAnimationFrame(() => {
@@ -140,11 +154,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  checkShowMenu(r) {
-
-    let dr = (Math.round(r * 180 / Math.PI)) % 360;
-
-    this.isShowFront = check(dr, this.front);
+  checkShowMenu(dr) {
+    dr = dr % 360;
+    this.isShowFront = dr === 0;
     this.isShowBack = check(dr, this.back) || check(dr, this.back2);
 
     function check(value, array) {
@@ -240,7 +252,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     let modelObj;
 
     objLoader.setPath('/assets/textures/3d/');
-    objLoader.load('ball-bak.obj', (mesh) => {
+    // objLoader.load('ball-bak.obj', (mesh) => {
+    objLoader.load('0307/ball.obj', (mesh) => {
       // // 找到模型中需要的对象。将相机看向这个对象是为了让这个对象显示在屏幕中心
       mesh.traverse(function (child) {
         if (child instanceof THREE.SkinnedMesh) {
@@ -254,7 +267,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
-
+      // 去掉logo
+      mesh.children.splice(0, 1);
+      mesh.children.splice(2, 1);
 
       mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.86;
       mesh.position.z = 0;
@@ -265,6 +280,27 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.hasLoadOuter = true;
     });
     // });
+  }
+
+  addLogo() {
+    let THREE = this.THREE;
+    let geometry = new THREE.PlaneGeometry(10, 10);
+    let texture = new THREE.TextureLoader().load('/assets/textures/3d/0307/logo.png');
+    let material = new THREE.MeshBasicMaterial({
+      map: texture,  // 贴图
+      transparent: true // 透明
+    });
+
+    // 创建三维网格
+    let mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = 0;
+    mesh.position.y = 0;
+    // mesh.position.z = 700;
+    mesh.position.z = 140;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = 26;
+    this.threeInstance.mesh.add(mesh);
+
+    window['mesh'] = mesh;
   }
 
   addVideo() {
