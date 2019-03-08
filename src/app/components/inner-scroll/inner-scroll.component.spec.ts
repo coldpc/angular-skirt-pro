@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SkNativeScrollComponent } from './inner-scroll.component';
+import { InnerScrollComponent } from './inner-scroll.component';
 
 describe('SkNativeScrollComponent', () => {
-  let component: SkNativeScrollComponent;
-  let fixture: ComponentFixture<SkNativeScrollComponent>;
+  let component: InnerScrollComponent;
+  let fixture: ComponentFixture<InnerScrollComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SkNativeScrollComponent ]
+      declarations: [ InnerScrollComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SkNativeScrollComponent);
+    fixture = TestBed.createComponent(InnerScrollComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,32 +1,40 @@
 :host {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
+  display: block;
 }
 
 .logo-box {
-  padding: 0.16rem;
-  .logo {
-    height: 0.16rem;
+  display: flex;
+  padding: 0.1rem 0.13rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+
+  .logo-l {
+    width: 0.77rem;
+  }
+  .logo-r {
+    width: 0.82rem;
   }
 }
+
+
 
 .back-btn {
   background-color: transparent;
   display: inline-block;
-  width: 0.55rem;
-  height: 0.22rem;
-  line-height: 0.22rem;
-  text-align: center;
-  font-size: 0.13rem;
-  margin: 0.12rem;
-  border: 1px solid #feffff;
-  box-shadow: 0px 0px 10px #0AAAEC;
-  text-shadow: 0px 0px 2px #0EE0FF;
+  border: none;
   color: #fff;
+  margin-left: 0.13rem;
 
   &.scale {
     transform: scale(0.8) translateY(-36%);
+  }
+
+  .back-angle {
+    color: #00FFFF;
+  }
+
+  .back1 {
+    margin-left: 0.1rem;
   }
 }
