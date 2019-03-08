@@ -83,7 +83,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.addRenderer();
       this.addEvent();
       this.loadModel();
-      this.animate();
     });
 
     this.animateHuiXing(this.huiXingStyle);
@@ -240,7 +239,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    if (this.isAuto && this.hasLoadOuter) {
+    if (this.isAuto) {
       if (this.rotate % 3600 === 0) {
         this.isAuto = false;
         setTimeout(() => {
@@ -389,6 +388,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       // 加入模型中
       this.threeInstance.mesh.add(mesh);
       this.hasLoadOuter = true;
+      this.animate();
+
     });
     // });
   }

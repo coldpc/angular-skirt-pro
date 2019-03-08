@@ -2,10 +2,25 @@
   <sk-lei-header class="top" [isScale]="true"></sk-lei-header>
 
   <div class="btn-con">
-    <div class="b1" (tap)="onTap(1)"></div>
-    <div class="b2" (tap)="onTap(2)"></div>
-    <div class="b3" (tap)="onTap(3)"></div>
-    <div class="b4" (tap)="onTap(4)"></div>
+    <div class="b1" [ngClass]="{show: showB1}" (tap)="onTap(1)">
+      <sk-image [ratio]="396/456" src="/assets/img/zhanlan/b1.png"></sk-image>
+      <sk-image class="inner i1" [ratio]="56/90" src="/assets/img/zhanlan/b1-i.png"></sk-image>
+    </div>
+    <div class="b2" [ngClass]="{show: showB2}" (tap)="onTap(2)">
+      <sk-image [ratio]="396/456" src="/assets/img/zhanlan/b2.png"></sk-image>
+      <sk-image class="inner i2" [ratio]="66/74" src="/assets/img/zhanlan/b2-i.png"></sk-image>
+    </div>
+    <div class="b3" [ngClass]="{show: showB3}" (tap)="onTap(3)">
+      <sk-image [ratio]="396/456" src="/assets/img/zhanlan/b3.png"></sk-image>
+      <sk-image class="inner i3" [ratio]="68/72" src="/assets/img/zhanlan/b3-i.png"></sk-image>
+    </div>
+    <div class="b4" [ngClass]="{show: showB4}" (tap)="onTap(4)">
+      <sk-image [ratio]="396/456" src="/assets/img/zhanlan/b4.png"></sk-image>
+      <sk-image class="inner i4" [ratio]="72/70" src="/assets/img/zhanlan/b4-i.png"></sk-image>
+    </div>
+    <div class="b5" [ngClass]="{show: showB5}" (tap)="onTap(1)">
+      <sk-image [ratio]="516/992" src="/assets/img/zhanlan/b5-l.png"></sk-image>
+    </div>
   </div>
 </div>
 

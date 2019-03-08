@@ -6,7 +6,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url(/assets/img/zhanlan/bg.jpg);
+  //background-image: url(/assets/img/zhanlan/bg.jpg);
+  background-image: url(/assets/img/zhanlan/bg-gif.gif);
   background-position: center top;
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -22,31 +23,109 @@
 
 .btn-con{
   position: fixed;
-  top: 2.55rem;
+  top: 2.84rem;
   width: 100%;
-  height: 2.6rem;
+  left: 0;
 
   .b1, .b2, .b3, .b4 {
-    width: 50%;
+    width: 1rem;
+    height: 1.114rem;
+  }
+
+  .b1, .b2, .b3, .b4, .b5 {
+    opacity: 0;
     position: absolute;
-    height: 50%;
-    background-color: #000;
-    opacity: 0.001;
+
+    &.show {
+      animation-duration: 0.3s; /*动画时间*/
+      animation-fill-mode: both; /*播放后的状态*/
+      animation-name: buzz-out;
+      animation-iteration-count: 3; /*动作循环的次数：infinite 无限循环*/
+      transform-origin: center bottom; /*设置动画旋转元素的基点为：居中靠下*/
+      cursor: pointer;
+      opacity: 1;
+    }
   }
   .b1 {
-    left: 0;
+    left: 0.27rem;
     top: 0;
   }
   .b2 {
-    right: 0;
+    right: 0.27rem;
     top: 0;
   }
   .b3 {
-    left: 0;
-    bottom: 0;
+    left: 0.27rem;
+    top: 1.44rem;
   }
   .b4 {
-    right: 0;
-    bottom: 0;
+    right: 0.27rem;
+    top: 1.44rem;
+  }
+  .b5 {
+    width: 1.3rem;
+    left: 50%;
+    top: 0.12rem;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+}
+
+.inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -0.13rem;
+
+  animation-duration: 0.8s; /*动画时间*/
+  animation-fill-mode: both; /*播放后的状态*/
+  animation-name: scale-out;
+  animation-iteration-count: infinite; /*动作循环的次数：infinite 无限循环*/
+  transform-origin: left center; /*设置动画旋转元素的基点为：居中靠下*/
+
+  &.i1 {
+    width: 0.14rem;
+  }
+  &.i2 {
+    width: 0.17rem;
+    animation-delay: 0.5s;
+  }
+  &.i3 {
+    width: 0.17rem;
+    animation-delay: 1.5s;
+  }
+  &.i4 {
+    width: 0.18rem;
+    animation-delay: 2s;
+  }
+}
+
+.line {
+  position: absolute;
+  width: 1.28rem;
+  left: 1.15rem;
+  top: 0.5rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+
+@-webkit-keyframes buzz-out {
+  0%{
+    transition-timing-function: cubic-bezier(0.755,0.50,0.855,0.060);
+    opacity: 0;
+  }
+  99%{
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes scale-out {
+  0%{
+    transform: scale(0.1, 0.1) translate(-50%, -50%);
+  }
+  99%{
+    transform: scale(1, 1) translate(-50%, -50%);
   }
 }
