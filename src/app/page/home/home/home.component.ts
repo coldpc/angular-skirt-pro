@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("canvasCon") canvasCon: ElementRef;
   @ViewChild("video") videoRef: ElementRef;
   @ViewChild("outerBallCon") outerBallCon: ElementRef;
+  @ViewChild("huiXing") huiXing: ElementRef;
 
   THREE: any;
 
@@ -50,9 +51,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   deg = 2;
 
-  huiXiongStyle = {
-    left: 0,
-    top: 0
+  huiXingStyle = {
+    left: '',
+    top: '',
+    opacity: '1',
+    webkitTransitionDuration: '',
+    transitionDuration: '',
+    transform: 'rotateZ(-70deg)'
   };
 
   constructor(private dialogService: DialogService,
@@ -79,21 +84,105 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loadModel();
       this.animate();
     });
+
+    this.animateHuiXing(this.huiXingStyle);
   }
 
-  animateHuiXing() {
-    let huiXiongStyle = this.huiXiongStyle;
-    let x0 = 0, y0 = client.height - Math.random() * 10, dx = 1, dy = 1;
+  animateHuiXing(huiXingStyle, start = 1) {
+    let i = 1, position = {x: 0, y: 0};
+    let left, top, duration = 6000, engle, engle0 = -166; // 百分比
 
-    move();
+    if (start === 1) {
+      reset1();
+    } else {
+      reset2();
+    }
 
     function move() {
-      x0 += dx;
-      dy += dy;
+      if (i === 2) {
+        left = -200 - Math.random() * 30;
+        top = -140 - 100 * Math.random();
+      } else {
+        left = 200 + Math.random() * 10;
+        top = -140 - 100 * Math.random();
+      }
 
-      requestAnimationFrame(() => {
-        this.move();
-      });
+      engle = getAngle(position, {x: left, y: top});
+      if (engle < 0) {
+        engle = 180 + engle;
+      }
+      console.log(engle);
+
+      position.x = left;
+      position.y = top;
+
+      huiXingStyle.left = `${left}%`;
+      huiXingStyle.top = `${top}%`;
+      huiXingStyle.transform = `rotateZ(${engle0 + engle}deg)`;
+
+      if (i === 1) {
+        setTimeout(reset2, duration * 2/ 3);
+      } else {
+        setTimeout(reset1, duration * 2 / 3);
+      }
+    }
+
+    function reset1() {
+      setTransitionTime(0);
+      left = -100 - Math.random() * 50;
+      top = 80 + 20 * Math.random();
+
+      position.x = left;
+      position.y = top;
+
+      huiXingStyle.left = `${left}%`;
+      huiXingStyle.top = `${top}%`;
+      huiXingStyle.transform = `rotateZ(${engle0}deg)`;
+      huiXingStyle.opacity = `0`;
+
+      setTimeout(() => {
+        i = 1;
+        huiXingStyle.opacity = `1`;
+        setTransitionTime(duration);
+        move();
+      }, 50);
+    }
+
+    function reset2() {
+      setTransitionTime(0);
+      left = -10 - Math.random() * 10;
+      top = 60 + 10 * Math.random();
+
+      position.x = left;
+      position.y = top;
+
+      huiXingStyle.left = `${left}%`;
+      huiXingStyle.top = `${top}%`;
+      huiXingStyle.transform = `rotateZ(${engle0}deg)`;
+      huiXingStyle.opacity = `0`;
+
+      setTimeout(() => {
+        i = 2;
+        huiXingStyle.opacity = `1`;
+        setTransitionTime(duration);
+        move();
+      }, 50);
+    }
+
+    /**
+     * 设置时间
+     * @param time 渐变时间
+     */
+    function setTransitionTime(time: number) {
+      let elementStyle = huiXingStyle;
+      elementStyle.webkitTransitionDuration = time + 'ms';
+      elementStyle.transitionDuration = time + 'ms';
+    }
+
+    function getAngle(start, end){
+      let diff_x = end.x - start.x, diff_y = end.y - start.y;
+      // 返回角度,不是弧度
+      return 360 * Math.atan(diff_y/diff_x)/(2*Math.PI);
     }
   }
 
@@ -164,7 +253,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.hasLoadOuter) {
       let threeInstance = this.threeInstance, r = this.rotate * Math.PI / 1800;
-      threeInstance.mesh.rotation.y = r;
+      // threeInstance.mesh.rotation.y = r;
       threeInstance.renderer.render(threeInstance.scene, threeInstance.camera);
 
       this.checkShowMenu(this.rotate);
@@ -178,6 +267,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   checkShowMenu(dr) {
     dr = dr % 360;
     this.isShowFront = dr === 0;
+    this.isShowFront = true;
     this.isShowBack = check(dr, this.back) || check(dr, this.back2);
 
     function check(value, array) {

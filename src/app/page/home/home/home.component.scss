@@ -15,10 +15,11 @@
 
   .hui-xing {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
-    width: 1rem;
-    //visibility: hidden;
+    top: 0;
+    left: -200%;
+    width: 100%;
+    transition: left, top 2000ms linear;
+    transform-origin: right top;
   }
 
   .gif-part {
@@ -66,8 +67,8 @@ sk-layout {
 
 .main {
   position: absolute;
-  transform: scale(0.9, 0.9);
-  bottom: 1.8rem;
+  transform: scale(0.9, 0.9) translateY(-50%);
+  top: 50%;
 }
 .canvas-part {
   width: 100%;
@@ -118,6 +119,13 @@ sk-layout {
   opacity: 0;
   transition: all 200ms ease-in;
 
+  .line-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
   &.show {
     visibility: visible;
     transform: scale(1);
@@ -126,10 +134,14 @@ sk-layout {
   }
 }
 
+//探索雷凌星球、星球展览：311x81
+//巡航交流站：207x63
+//VIP基站：165x63
+
 .cool-xingqiufuli {
-  width: 1.27rem;
+  width: 1.56rem;
   left: 0.28rem;
-  top: 0;
+  top: -0.1rem;
 
   .point {
     position: absolute;
@@ -142,7 +154,7 @@ sk-layout {
 }
 
 .cool-reserve {
-  width: 1.25rem;
+  width: 1.56rem;
   top: -0.2rem;
   right: 0.16rem;
 
@@ -164,9 +176,9 @@ sk-layout {
 }
 
 .cool-wuxiandianbo {
-  width: 0.88rem;
   left: 0.74rem;
   bottom: -0.1rem;
+  width: 0.615rem;
 
   .line {
     position: absolute;
@@ -186,8 +198,8 @@ sk-layout {
 
 
 .cool-xunhangjiaoliu {
-  right: 0.64rem;
-  width: 1.44rem;
+  width: 1.035rem;
+  right: 0.825rem;
   bottom: -0.5rem;
 
   .line {
