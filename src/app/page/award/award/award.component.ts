@@ -74,7 +74,7 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
       this.addRenderer();
       this.addEvent();
       this.loadModel();
-      this.animate();
+      this.addLogo();
     });
   }
 
@@ -248,7 +248,8 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
     let modelObj;
 
     objLoader.setPath('/assets/textures/3d/');
-    objLoader.load('ball-bak.obj', (mesh) => {
+    // objLoader.load('ball-bak.obj', (mesh) => {
+    objLoader.load('0307/ball.obj', (mesh) => {
       // // 找到模型中需要的对象。将相机看向这个对象是为了让这个对象显示在屏幕中心
       mesh.traverse(function (child) {
         if (child instanceof THREE.SkinnedMesh) {
@@ -262,7 +263,9 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
-
+      // 去掉logo
+      mesh.children.splice(0, 1);
+      mesh.children.splice(2, 1);
 
       mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.86;
       mesh.position.z = 0;
@@ -271,8 +274,31 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
       // 加入模型中
       this.threeInstance.mesh.add(mesh);
       this.hasLoadOuter = true;
+      this.animate();
+
     });
     // });
+  }
+
+  addLogo() {
+    let THREE = this.THREE;
+    let geometry = new THREE.PlaneGeometry(10, 10);
+    let texture = new THREE.TextureLoader().load('/assets/textures/3d/0307/logo.png');
+    let material = new THREE.MeshBasicMaterial({
+      map: texture,  // 贴图
+      transparent: true // 透明
+    });
+
+    // 创建三维网格
+    let mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = 0;
+    mesh.position.y = 0;
+    // mesh.position.z = 700;
+    mesh.position.z = 140;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = 26;
+    this.threeInstance.mesh.add(mesh);
+
+    window['mesh'] = mesh;
   }
 
   addVideo() {

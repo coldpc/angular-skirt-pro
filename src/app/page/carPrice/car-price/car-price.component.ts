@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RouterService} from "../../../lib/service/router/RouterService";
+import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 
 @Component({
   selector: 'sk-car-price',
@@ -14,7 +15,7 @@ export class CarPriceComponent implements OnInit {
   }
 
   gotoJinrongjie() {
-    this.routeService.gotoReserve();
+    this.routeService.gotoReserve(EnHistoryState.replace);
   }
 
 }

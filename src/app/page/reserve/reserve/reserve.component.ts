@@ -7,6 +7,7 @@ import {ApiDistributorsService} from "../../../lib/service/http/api/ApiDistribut
 import {ApiReserveService} from "../../../lib/service/http/api/ApiReserveService";
 import {DateApi} from "../../../lib/utils/DateApi";
 import {DialogService} from "../../../lib/service/system/dialog.service";
+import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 
 interface InSelectValue {
   text ?: string;
@@ -187,7 +188,7 @@ export class ReserveComponent implements OnInit, AfterViewInit {
     }
 
     this.apiReserveService.setBody(submitForm).request(() => {
-      this.routerService.gotoGetAward(submitForm.mobile);
+      this.routerService.gotoGetAward(submitForm.mobile, EnHistoryState.replace);
     });
   }
 

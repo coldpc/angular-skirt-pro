@@ -3,6 +3,7 @@ import {DialogService} from "../../../lib/service/system/dialog.service";
 import {LoadJs} from "../../../lib/utils/LoadJs";
 import {UtilsBase} from "../../../lib/utils/UtilsBase";
 import {RouterService} from 'src/app/lib/service/router/RouterService';
+import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 
 const client = UtilsBase.getClient();
 
@@ -548,7 +549,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   gotoPage(type) {
     switch (type) {
       case 'buy':
-        this.routerService.gotoCarPrice();
+        this.routerService.gotoCarPrice(EnHistoryState.replace);
         break;
 
       case 'reserve':
