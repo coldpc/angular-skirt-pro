@@ -1,4 +1,6 @@
-<div class="bg"></div>
+<div class="bg">
+  <sk-image class="car" src="/assets/img/reserve/car.png" [ratio]="1192/610"></sk-image>
+</div>
 <sk-layout>
   <sk-lei-header class="top-part top"></sk-lei-header>
 
@@ -9,33 +11,33 @@
     <div class="text-top">
       <div class="top-row" style="border-bottom: 1px solid #fff">
         <div style="border-right: 1px solid #fff;padding-bottom: 0.1rem">
-          <div>1.8V豪华版（CVT）</div>
-          <div>
+          <div class="car-type">1.8V豪华版（CVT）</div>
+          <div class="price">
             <span class="top-num">16.18</span>
-            <span>万元</span>
+            <span class="unit">万元</span>
           </div>
         </div>
         <div style="padding-bottom: 0.1rem;padding-left: 0.1rem">
-          <div>1.8GS-L领先版（CVT）</div>
-          <div>
+          <div class="car-type">1.8GS-L领先版（CVT）</div>
+          <div class="price">
             <span class="top-num">15.28</span>
-            <span>万元</span>
+            <span class="unit">万元</span>
           </div>
         </div>
       </div>
       <div class="top-row">
         <div style="border-right: 1px solid #fff;padding-top: 0.1rem">
-          <div>1.8gGS精英版（CVT）</div>
-          <div>
+          <div class="car-type">1.8gGS精英版（CVT）</div>
+          <div class="price">
             <span class="top-num">14.18</span>
-            <span>万元</span>
+            <span class="unit">万元</span>
           </div>
         </div>
         <div style="padding-top: 0.1rem;padding-left: 0.1rem">
-          <div>185T领先版（CVT）</div>
-          <div>
+          <div class="car-type">185T领先版（CVT）</div>
+          <div class="price">
             <span class="top-num">13.78</span>
-            <span>万元</span>
+            <span class="unit">万元</span>
           </div>
         </div>
       </div>
@@ -69,7 +71,7 @@
         <div class="center-text">2019年每月节能排名前100名的车主，可享受免费保养服务一次</div>
       </div>
     </div>
-    <div style="text-align: right;margin-top: 0.1rem">
+    <div class="btn-con">
       <img (tap)="gotoJinrongjie();" class="go" src="/assets/img/carPrice/go.png">
     </div>
   </div>
