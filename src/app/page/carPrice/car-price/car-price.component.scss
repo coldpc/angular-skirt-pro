@@ -15,16 +15,104 @@ sk-layout {
 }
 
 
-.price-img {
-  margin-top: 1.9rem;
-  width: 80%;
-  margin-left: 10%;
+//.price-img {
+//  margin-top: 1.9rem;
+//  width: 80%;
+//  margin-left: 10%;
+//}
+//
+//.btn-img {
+//  position: absolute;
+//  width: 1.9rem;
+//  bottom: 0.5rem;
+//  left: 50%;
+//  transform: translateX(-50%);
+//}
+.content {
+  padding: 0 0.35rem;
 }
+.title {
+  width: 2.6rem;
+}
+.title2 {
+  width: 2.44rem;
+}
+.text-top, .text-center {
+  color: #fff;
+  font-size: 0.14rem;
+}
+.text-top {
+  margin: 0.14rem 0;
+}
+.top-row {
+  //overflow: hidden;
+  &::after, &::before {
+    content: '';
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+  > div {
+    float: left;
+    width: 50%;
+    > div {
+      white-space:nowrap;
+    }
+  }
+}
+.top-num {
+  color: #00ffff;
+  font-size: 0.24rem;
 
-.btn-img {
-  position: absolute;
-  width: 1.9rem;
-  bottom: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  animation:myfirst 1s;
+  -moz-animation:myfirst 1s; /* Firefox */
+  -webkit-animation:myfirst 1s; /* Safari and Chrome */
+
+  @keyframes myfirst
+  {
+    0%   {font-size: 0.1rem;}
+    50%  {font-size: 0.3rem;}
+    100% {font-size: 0.24rem;}
+  }
+
+  @-moz-keyframes myfirst /* Firefox */
+  {
+    0%   {font-size: 0.1rem;}
+    50%  {font-size: 0.3rem;}
+    100% {font-size: 0.24rem;}
+  }
+
+  @-webkit-keyframes myfirst /* Safari and Chrome */
+  {
+    0%   {font-size: 0.1rem;}
+    50%  {font-size: 0.3rem;}
+    100% {font-size: 0.24rem;}
+  }
+}
+.text-center {
+  border-top: 1px solid #fff;
+  .center-row {
+    margin-bottom: 0.06rem;
+  }
+  .center-label {
+    font-size: 0.16rem;
+    font-weight: bold;
+    width: 0.74rem;
+    float: left;
+  }
+  .center-text {
+    font-size: 0.12rem;
+    margin-left: 0.75rem;
+    //padding-top: 0.1rem;
+    line-height: 0.24rem;
+  }
+  .key-text {
+    color: #00ffff;
+    font-size: 0.16rem;
+    font-weight: bold;
+  }
+}
+.go {
+  width: 1.33rem;
 }
