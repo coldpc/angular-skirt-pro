@@ -268,6 +268,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   checkShowMenu(dr) {
     dr = dr % 360;
     this.isShowFront = dr === 0;
+    this.isShowFront = true;
     this.isShowBack = check(dr, this.back) || check(dr, this.back2);
 
     function check(value, array) {
