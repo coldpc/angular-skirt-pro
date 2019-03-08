@@ -1,8 +1,15 @@
 <div class="page-bg">
-  <!--<sk-image class="text1 text-img" [src]="'/assets/img/main/text/t1.png'" [ratio]="431/28"></sk-image>-->
-  <!--<sk-image class="text2 text-img" [src]="'/assets/img/main/text/t4.png'" [ratio]="323/86"></sk-image>-->
-  <!--<sk-image class="text3 text-img" [src]="'/assets/img/main/text/t3.png'" [ratio]="28/431"></sk-image>-->
-  <sk-image #huiXing [ngStyle]="huiXingStyle" class="hui-xing" [src]="'/assets/img/main/huixing.png'" [ratio]="380/253"></sk-image>
+  <sk-image #huiXing [ngStyle]="huiXingStyle"
+            class="hui-xing" [src]="'/assets/img/main/huixing.png'" [ratio]="380/253"></sk-image>
+
+  <div class="ball-container">
+    <div class="items">
+      <sk-image class="big-ball" [src]="'/assets/img/main/big-ball.png'" [ratio]="1"></sk-image>
+      <div class="item">
+        <sk-image class="small-ball" [src]="'/assets/img/main/small-ball.png'" [ratio]="1"></sk-image>
+      </div>
+    </div>
+  </div>
 </div>
 
 <sk-layout>
@@ -45,8 +52,3 @@
     </div>
   </div>
 </sk-layout>
-
-<div class="hand-con">
-  <sk-image [src]="'/assets/img/main/hand.png'" [ratio]="119/53"></sk-image>
-  <p>滑动移动星球</p>
-</div>

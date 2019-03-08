@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("canvasCon") canvasCon: ElementRef;
   @ViewChild("video") videoRef: ElementRef;
   @ViewChild("outerBallCon") outerBallCon: ElementRef;
+  @ViewChild("ballContainer") ballContainerRef: ElementRef;
   @ViewChild("huiXing") huiXing: ElementRef;
 
   THREE: any;
@@ -239,7 +240,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    if (this.isAuto) {
+    if (this.isAuto && this.hasLoadOuter) {
       if (this.rotate % 3600 === 0) {
         this.isAuto = false;
         setTimeout(() => {
@@ -411,6 +412,62 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.threeInstance.mesh.add(mesh);
 
     window['mesh'] = mesh;
+  }
+
+  addBallRotate() {
+    let rotate = 0;
+    let _this = this;
+    let small = '/assets/img/main/small-ball.png';
+    let big = '/assets/img/main/big-ball.png';
+    let con = this.ballContainerRef.nativeElement;
+
+    let THREE = this.THREE;
+    let scene = new THREE.Scene();
+
+    let renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    renderer.setSize(client.width, client.width);
+    con.nativeElement.appendChild(renderer.domElement);
+
+    let camera = new THREE.PerspectiveCamera(70, 1, 1, 1000);
+    camera.position.z = 100;
+
+
+    // 添加球
+    let geometry = new THREE.PlaneGeometry(10, 10);
+    let texture = new THREE.TextureLoader().load(small);
+    let material = new THREE.MeshBasicMaterial({
+      map: texture,  // 贴图
+      transparent: true // 透明
+    });
+
+    // 创建三维网格
+    let mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = 0;
+    mesh.position.y = 0;
+    // mesh.position.z = 700;
+    mesh.position.z = 140;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = 26;
+
+
+    function animate() {
+      if (_this.hasDestroy) {
+        return;
+      }
+
+      rotate += 0.01;
+
+      if (this.hasLoadOuter) {
+        let threeInstance = this.threeInstance, r = this.rotate * Math.PI / 1800;
+        threeInstance.mesh.rotation.y = r;
+        threeInstance.renderer.render(threeInstance.scene, threeInstance.camera);
+
+        this.checkShowMenu(this.rotate);
+      }
+
+      requestAnimationFrame(() => {
+        this.animate();
+      });
+    }
   }
 
   addVideo() {
