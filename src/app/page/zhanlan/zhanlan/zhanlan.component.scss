@@ -82,7 +82,7 @@
   animation-fill-mode: both; /*播放后的状态*/
   animation-name: scale-out;
   animation-iteration-count: infinite; /*动作循环的次数：infinite 无限循环*/
-  transform-origin: left center; /*设置动画旋转元素的基点为：居中靠下*/
+  transform-origin: left top; /*设置动画旋转元素的基点为：居中靠下*/
 
   &.i1 {
     width: 0.14rem;
@@ -125,7 +125,10 @@
   0%{
     transform: scale(0.1, 0.1) translate(-50%, -50%);
   }
-  99%{
+  60%{
     transform: scale(1, 1) translate(-50%, -50%);
+  }
+  100%{
+    transform: scale(0, 0) translate(-50%, -50%);
   }
 }
