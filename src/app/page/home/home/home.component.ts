@@ -253,7 +253,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.hasLoadOuter) {
       let threeInstance = this.threeInstance, r = this.rotate * Math.PI / 1800;
-      // threeInstance.mesh.rotation.y = r;
+      threeInstance.mesh.rotation.y = r;
       threeInstance.renderer.render(threeInstance.scene, threeInstance.camera);
 
       this.checkShowMenu(this.rotate);
@@ -267,7 +267,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   checkShowMenu(dr) {
     dr = dr % 360;
     this.isShowFront = dr === 0;
-    this.isShowFront = true;
     this.isShowBack = check(dr, this.back) || check(dr, this.back2);
 
     function check(value, array) {

@@ -30,6 +30,12 @@ import {DynamicCore} from "../../../components/dynamicCore/DynamicCore";
 export class ResultComponent extends DynamicCore implements OnInit {
 
   @Input() hasAward: boolean = false;
+  @Input() awardData: {
+    awardValue ?: string;
+    createTime ?: string;
+    name ?: string;
+    mobile ?: string;
+  } = {};
 
   isShowShare: boolean = false;
 

@@ -7,9 +7,9 @@
     <div *ngIf="hasAward" class="has-part">
       <sk-image  class="title" [ratio]="852/224" src="/assets/img/award/has-title.png"></sk-image>
       <div class="p-title">中奖记录</div>
-      <div class="p1">中奖人：pccold</div>
-      <div class="p1">电话号码：15618962683</div>
-      <div class="p1">中将奖品：100元加油卡</div>
+      <div class="p1">中奖人：{{awardData.name}}</div>
+      <div class="p1">电话号码：{{awardData.mobile}}</div>
+      <div class="p1">中将奖品：{{awardData.awardValue}}</div>
       <div class="desc">（会有专人与您取得联系，请保持手机畅通）</div>
     </div>
 

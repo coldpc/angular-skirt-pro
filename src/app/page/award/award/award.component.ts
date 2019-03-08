@@ -3,6 +3,7 @@ import {DialogService} from "../../../lib/service/system/dialog.service";
 import {LoadJs} from "../../../lib/utils/LoadJs";
 import {UtilsBase} from "../../../lib/utils/UtilsBase";
 import {RouterService} from 'src/app/lib/service/router/RouterService';
+import {ApiLotteryGetService} from "../../../lib/service/http/api/ApiLotteryGetService";
 
 const client = UtilsBase.getClient();
 
@@ -46,8 +47,11 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
   isAuto = true;
 
   isShow = false;
+  hasAward = false;
+  awardData: any = {};
 
   constructor(private dialogService: DialogService,
+              private apiLotteryGetService: ApiLotteryGetService,
               private routerService: RouterService) {
 
   }
@@ -367,7 +371,15 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getAward() {
-    this.isShow = true;
+    this.apiLotteryGetService.setBody({
+      mobile: this.routerService.queryParams.tel
+    }).showLoading().request((data) => {
+      this.hasAward = data['award'] === 1;
+      this.isShow = true;
+      this.awardData = data;
+    }, (error) => {
+      console.log(error);
+    });
   }
 }
 

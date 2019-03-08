@@ -5,6 +5,7 @@ import {RouterService} from "../../lib/service/router/RouterService";
 import {DatePickerModule} from "../../lib/modules/date.picker.module";
 import {AwardRoutingModule} from './award-routing.module';
 import {ResultComponent} from './result/result.component';
+import {ApiLotteryGetService} from 'src/app/lib/service/http/api/ApiLotteryGetService';
 
 @NgModule({
   declarations: [AwardComponent, ResultComponent],
@@ -13,6 +14,6 @@ import {ResultComponent} from './result/result.component';
     CommonComponentsModule,
     DatePickerModule
   ],
-  providers: [RouterService]
+  providers: [RouterService, ApiLotteryGetService]
 })
 export class AwardModule { }
