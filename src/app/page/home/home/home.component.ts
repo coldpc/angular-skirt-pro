@@ -62,6 +62,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     transform: 'rotateZ(-70deg)'
   };
 
+  flashImg = {
+    m1: false,
+    m2: false
+  };
+
   constructor(private dialogService: DialogService,
               private routerService: RouterService) {
 
@@ -87,6 +92,24 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     this.animateHuiXing(this.huiXingStyle);
+
+    // this.initFlashImage();
+  }
+
+  initFlashImage() {
+    let delay = 1000;
+    let flashImg = this.flashImg;
+    flashImg.m1 = Math.random() * 10 > 5;
+    flashImg.m2 = Math.random() * 10 > 5;
+    flash();
+
+    function flash() {
+      setTimeout(() => {
+        flashImg.m1 = !flashImg.m1;
+        flashImg.m2 = !flashImg.m2;
+        flash();
+      }, delay);
+    }
   }
 
   animateHuiXing(huiXingStyle, start = 1) {

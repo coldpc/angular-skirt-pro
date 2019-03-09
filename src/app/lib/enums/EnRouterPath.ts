@@ -11,5 +11,6 @@ export enum EnRouterPath {
   exhibition = 'page/zhanlan',
   vipjizhan = 'page/vipjizhan',
   forum = 'page/forum',
+  yaoqinghan = 'page/yaoqinghan',
   award = 'page/award'
 }

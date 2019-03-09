@@ -92,6 +92,16 @@ export class RouterService extends RouterCoreService {
       historyState
     });
   }
+
+  // 去邀请函
+  gotoYaoqinghan(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.yaoqinghan,
+      params: {
+      },
+      historyState
+    });
+  }
 }
 
 // 约定取公寓列表的参数

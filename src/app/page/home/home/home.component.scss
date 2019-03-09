@@ -119,6 +119,22 @@ sk-layout {
   opacity: 0;
   transition: all 200ms ease-in;
 
+  .swipe-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+  }
+
+  .resize-img {
+    left: -1%;
+    top: -1%;
+    width: 104%;
+    height: 106%;
+  }
+
   .line-border {
     position: absolute;
     top: 0;

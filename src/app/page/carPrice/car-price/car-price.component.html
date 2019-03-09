@@ -42,38 +42,44 @@
         </div>
       </div>
     </div>
-    <div style="text-align: center">
-      <img class="title2" src="/assets/img/carPrice/title2.png">
+
+    <div class="part2">
+      <div style="text-align: center">
+        <!--<img class="title2" src="/assets/img/carPrice/title2.png">-->
+        <div class="title2">全程无忧价值体系</div>
+      </div>
+      <div class="text-center">
+        <div class="center-row" style="margin-top: 0.1rem">
+          <div class="center-label">品质无忧:</div>
+          <div class="center-text">全球<span class="key-text">1200万</span>丰田混动用户信赖</div>
+        </div>
+        <div class="center-row">
+          <div class="center-label">购买无忧:</div>
+          <div class="center-text">享受新能源汽车补贴及低门槛金融政策</div>
+        </div>
+        <div class="center-row">
+          <div class="center-label">上牌无忧:</div>
+          <div class="center-text"><span class="key-text">不拍牌、不限行、直接上绿牌</span></div>
+        </div>
+        <div class="center-row">
+          <div class="center-label">品质无忧:</div>
+          <div class="center-text" style="white-space:nowrap;">有车位及物业同意,提车即送电桩及免费安装</div>
+        </div>
+        <div class="center-row">
+          <div class="center-label">电池无忧:</div>
+          <div class="center-text"><span class="key-text">不限年限、不限里程</span>电池无忧保障</div>
+        </div>
+        <div class="center-row">
+          <div class="center-label">服务无忧:</div>
+          <div class="center-text">2019年每月节能排名前100名的车主，可享受免费保养服务一次</div>
+        </div>
+      </div>
+      <div class="btn-con">
+        <img *ngIf="!isYaoqinghan" (tap)="gotoJinrongjie();" class="go" src="/assets/img/carPrice/go.png">
+        <img *ngIf="isYaoqinghan" (tap)="gotoGaming();" class="go" src="/assets/img/carPrice/open.png">
+      </div>
     </div>
-    <div class="text-center">
-      <div class="center-row" style="margin-top: 0.1rem">
-        <div class="center-label">品质无忧:</div>
-        <div class="center-text">全球<span class="key-text">1200万</span>丰田混动用户信赖</div>
-      </div>
-      <div class="center-row">
-        <div class="center-label">购买无忧:</div>
-        <div class="center-text">享受新能源汽车补贴及低门槛金融政策</div>
-      </div>
-      <div class="center-row">
-        <div class="center-label">上牌无忧:</div>
-        <div class="center-text"><span class="key-text">不拍牌、不限行、直接上绿牌</span></div>
-      </div>
-      <div class="center-row">
-        <div class="center-label">品质无忧:</div>
-        <div class="center-text" style="white-space:nowrap;">有车位及物业同意,提车即送电桩及免费安装</div>
-      </div>
-      <div class="center-row">
-        <div class="center-label">电池无忧:</div>
-        <div class="center-text"><span class="key-text">不限年限、不限里程</span>电池无忧保障</div>
-      </div>
-      <div class="center-row">
-        <div class="center-label">服务无忧:</div>
-        <div class="center-text">2019年每月节能排名前100名的车主，可享受免费保养服务一次</div>
-      </div>
-    </div>
-    <div class="btn-con">
-      <img (tap)="gotoJinrongjie();" class="go" src="/assets/img/carPrice/go.png">
-    </div>
+
   </div>
   <!--<sk-image (tap)="gotoJinrongjie();" class="btn-img" [ratio]="784/154" src="/assets/img/carPrice/btn.png"></sk-image>-->
 </sk-layout>

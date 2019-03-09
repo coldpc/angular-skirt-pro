@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {RouterService} from "../../../lib/service/router/RouterService";
 import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 
@@ -9,6 +9,7 @@ import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 })
 export class CarPriceComponent implements OnInit {
 
+  @Input() isYaoqinghan: boolean = false;
   constructor(private routeService: RouterService) { }
 
   ngOnInit() {
@@ -18,4 +19,7 @@ export class CarPriceComponent implements OnInit {
     this.routeService.gotoReserve(EnHistoryState.replace);
   }
 
+  gotoGaming() {
+
+  }
 }
