@@ -72,6 +72,26 @@ export class RouterService extends RouterCoreService {
       historyState
     });
   }
+
+  // 去vip基站
+  gotoVipjizhan(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.vipjizhan,
+      params: {
+      },
+      historyState
+    });
+  }
+
+  // 去vip基站
+  gotoForum(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.forum,
+      params: {
+      },
+      historyState
+    });
+  }
 }
 
 // 约定取公寓列表的参数

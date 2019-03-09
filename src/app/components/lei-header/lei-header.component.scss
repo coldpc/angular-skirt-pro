@@ -17,13 +17,14 @@
   }
 }
 
-
-
-.back-btn {
+button {
   background-color: transparent;
   display: inline-block;
   border: none;
   color: #fff;
+}
+
+.back-btn {
   margin-left: 0.13rem;
 
   &.scale {
@@ -37,4 +38,15 @@
   .back1 {
     margin-left: 0.1rem;
   }
+}
+
+.btns-con {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.right {
+  flex: 1;
+  text-align: right;
+  padding-right: 0.3rem;
 }

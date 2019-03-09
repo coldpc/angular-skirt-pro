@@ -1,18 +1,23 @@
-import { Component, AfterViewInit} from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import {SkDynamicComponentService} from "./components/dynamic-component-factory/sk-dynamic-component.service";
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import {AudioService} from "./lib/service/system/audio.service";
 
 @Component({
   selector: 'sk-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements AfterViewInit {
   title = 'angular7-skirt-pro';
+
 
   loadingDom = window.document.getElementById("app_loading_id");
 
+  @ViewChild("audio") audioRef: ElementRef;
+
   constructor(private dynamicService: SkDynamicComponentService,
+              private audioService: AudioService,
               private router: Router) {
 
     this.setRouteState();
@@ -20,6 +25,7 @@ export class AppComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
+    this.audioService.audioRef = this.audioRef;
   }
 
   prepareRoute(outlet: RouterOutlet) {

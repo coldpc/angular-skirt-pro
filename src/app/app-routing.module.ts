@@ -66,6 +66,11 @@ const routes: Routes = [
     loadChildren: './page/yaoqinghan/yaoqinghan.module#YaoqinghanModule',
     canLoad: []
   },
+  {
+    path: 'page/forum',
+    loadChildren: './page/forum/forum.module#ForumModule',
+    canLoad: []
+  }
 ];
 
 @NgModule({

@@ -559,6 +559,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       case 'view':
         this.routerService.gotoExhibition();
         break;
+
+      case 'vip':
+        this.routerService.gotoVipjizhan();
+        break;
+
+      case 'forum':
+        this.routerService.gotoForum();
+        break;
     }
   }
 

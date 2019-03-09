@@ -145,7 +145,7 @@ sk-layout {
 
   .point {
     position: absolute;
-    top: 0.2rem;
+    top: 0.4rem;
     right: 60%;
     pointer-events: none;
     width: 0.9rem;
@@ -161,7 +161,7 @@ sk-layout {
   .line {
     width: 0.48rem;
     left: 50%;
-    top: 0.38rem;
+    top: 0.48rem;
     position: absolute;
     transform: translateX(-100%);
 
@@ -176,9 +176,9 @@ sk-layout {
 }
 
 .cool-wuxiandianbo {
-  left: 0.74rem;
+  left: 0.615rem;
   bottom: -0.1rem;
-  width: 0.615rem;
+  width: 0.83rem;
 
   .line {
     position: absolute;
@@ -204,7 +204,7 @@ sk-layout {
 
   .line {
     position: absolute;
-    bottom: 0.48rem;
+    bottom: 0.4rem;
     width: 0.23rem;
     left: 40%;
 
