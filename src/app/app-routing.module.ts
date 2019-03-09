@@ -56,6 +56,16 @@ const routes: Routes = [
     loadChildren: './page/award/award.module#AwardModule',
     canLoad: []
   },
+  {
+    path: 'page/vipjizhan',
+    loadChildren: './page/vipjizhan/vipjizhan.module#VipjizhanModule',
+    canLoad: []
+  },
+  {
+    path: 'page/yaoqinghan',
+    loadChildren: './page/yaoqinghan/yaoqinghan.module#YaoqinghanModule',
+    canLoad: []
+  },
 ];
 
 @NgModule({

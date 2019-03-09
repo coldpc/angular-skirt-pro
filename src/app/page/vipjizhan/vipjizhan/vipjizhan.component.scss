@@ -1,0 +1,50 @@
+@import "../../../theme/variables";
+
+.back-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(/assets/img/vipjizhan/bg.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-color: #000;
+}
+
+.center_bg {
+  position: fixed;
+  width: 92%;
+  height: 72%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(/assets/img/vipjizhan/center_bg.png);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  .experience, .seek {
+    position: absolute;
+    width: 1.35rem;
+    height: 0.6rem;
+    outline: none;
+    border: none;
+    overflow: hidden;
+  }
+
+  .experience {
+    left: 0.46rem;
+    top: 0.98rem;
+    background: url(/assets/img/vipjizhan/experience.png) top no-repeat;
+    background-size: 100%;
+  }
+
+  .seek {
+    right: 0.46rem;
+    bottom: 1.8rem;
+    background: url(/assets/img/vipjizhan/seek.png) top no-repeat;
+    background-size: 100%;
+  }
+}

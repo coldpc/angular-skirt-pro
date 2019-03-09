@@ -1,0 +1,128 @@
+@import "../../../theme/variables";
+
+$fontColor: #fff;
+
+// 背景
+.back-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(/assets/img/vipjizhan/bg.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-color: #000;
+}
+
+// 头部
+.header {
+  width: 100%;
+  height: auto;
+  z-index: 3;
+
+  // 头部logo
+  .logo-box {
+    display: block;
+    padding-top: 0.16rem;
+    padding-left: 0.18rem;
+
+    .logo {
+      height: 0.16rem;
+    }
+  }
+
+  // 头部小字介绍
+  .product-box {
+    display: block;
+    padding: 0.1rem 0 0  0.18rem;
+
+    .product{
+      width: 80%;
+      height: 0.2rem;
+    }
+  }
+}
+
+// 邀请函标题
+.title-box {
+  display: block;
+  text-align: center;
+  margin: 0.35rem auto 0;
+
+  .title {
+    width: 60%;
+  }
+}
+
+// 文字
+.txt-info {
+  //background: #f00;
+
+  .txt-img-box {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.2rem;
+
+    .txt-img {
+      width: 42%;
+    }
+  }
+
+  .txt-box {
+    //width: 100%;
+
+    li {
+      width: 100%;
+      text-align: center;
+      line-height: 0.35rem;
+      font-size: $defaultFontSize;
+      color: $fontColor;
+      font-style: italic;
+      list-style-type:none;
+    }
+  }
+}
+
+// 输入框
+.input-box {
+  width: 100%;
+  margin: 0.2rem 0;
+  text-align: center;
+
+  input[type='text'] {
+    width: 80%;
+    height: 0.33rem;
+    padding: 0.1rem 0.2rem;
+    text-align: center;
+    color: $fontColor;
+    font-size: $defaultFontSize;
+    border: solid 1px #ffffff;
+    box-shadow: 0px 0px 10px 10px rgba(51, 180, 211, 0.8);
+    background: rgba(16, 31, 44, .8);
+  }
+
+  input::-webkit-input-placeholder {
+    font-size: $defaultFontSize;
+    color: #666;
+    text-align: center;
+  }
+}
+
+// 确认按钮
+.btn-box {
+  width: 100%;
+  text-align: center;
+  margin: 0.18rem 0 0;
+
+  button{
+    width: 1.2rem;
+    height: 0.5rem;
+    outline: none;
+    border: none;
+    background: url(/assets/img/yaoqinghan/button.png) top no-repeat;
+    background-size: 100%;
+  }
+}
+
