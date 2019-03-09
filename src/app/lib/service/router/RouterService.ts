@@ -72,6 +72,16 @@ export class RouterService extends RouterCoreService {
       historyState
     });
   }
+
+  // 去论坛
+  gotoForum(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.forum,
+      params: {
+      },
+      historyState
+    });
+  }
 }
 
 // 约定取公寓列表的参数

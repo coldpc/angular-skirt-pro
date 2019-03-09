@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="cool-menu-con cool-wuxiandianbo" [ngClass]="{'show': true}">
+      <div class="cool-menu-con cool-wuxiandianbo" [ngClass]="{'show': true}"  (tap)="gotoPage('vip')">
         <sk-image [ratio]="175/75" src="/assets/img/main/v3/b1.png"></sk-image>
         <div class="line">
           <sk-image [ratio]="37/172" src="/assets/img/main/v3/b1-line.png"></sk-image>
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <div class="cool-menu-con cool-xunhangjiaoliu" [ngClass]="{'show': true}">
+      <div class="cool-menu-con cool-xunhangjiaoliu" [ngClass]="{'show': true}"  (tap)="gotoPage('forum')">
         <sk-image [ratio]="217/75" src="/assets/img/main/v3/b2.png"></sk-image>
         <div class="line">
           <sk-image [ratio]="45/285" src="/assets/img/main/v3/b2-line.png"></sk-image>

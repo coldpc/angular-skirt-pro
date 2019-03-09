@@ -56,6 +56,11 @@ const routes: Routes = [
     loadChildren: './page/award/award.module#AwardModule',
     canLoad: []
   },
+  {
+    path: 'page/forum',
+    loadChildren: './page/forum/forum.module#ForumModule',
+    canLoad: []
+  },
 ];
 
 @NgModule({
