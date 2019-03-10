@@ -63,8 +63,18 @@
     </div>
     <button (tap)="passVideo()">跳过 <span class="back-angle">></span></button>
   </div>
-  <video class="video" width="100%" src="/assets/img/video/m.mp4" #video poster="/assets/img/video/poster.jpg">
+
+ <!--
+    关于微信打开h5页面播放视频，播放结束无法跳转回h5页面问题的方法
+    https://www.jianshu.com/p/f0cd97395821
+
+ npm install &#45;&#45;save iphone-inline-video
+  var enableInlineVideo = require('iphone-inline-video');
+  import enableInlineVideo from 'iphone-inline-video';-->
+
+  <video class="video" width="100%" src="/assets/img/video/m.mp4" #video poster="/assets/img/video/poster.jpg" autoplay="autoplay">
     your browser does not support the video tag
   </video>
+  <!--<video id="video" class="video" preload="auto" playsinline src="http://wqs.jd.com/promote/superfestival/superfestival.mp4" width="1" height="1" type="video/mp4">-->
   <div class="video-poster" (tap)="onTapVideo()"></div>
 </div>
