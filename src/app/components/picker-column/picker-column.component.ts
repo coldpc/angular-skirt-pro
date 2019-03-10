@@ -17,8 +17,7 @@ import {UtilsBase} from "../../lib/utils/UtilsBase";
 @Component({
   selector: 'sk-picker-column',
   templateUrl: './picker-column.component.html',
-  styleUrls: ['./picker-column.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./picker-column.component.scss']
 })
 export class PickerColumnComponent implements AfterViewChecked {
 

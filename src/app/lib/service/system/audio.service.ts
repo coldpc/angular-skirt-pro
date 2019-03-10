@@ -13,6 +13,8 @@ export class AudioService {
     return this._audioRef;
   }
 
+  public isPassVideo = false;
+
   constructor() {
     // let _this = this;
     // window.addEventListener('click', onTouch);

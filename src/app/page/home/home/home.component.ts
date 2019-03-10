@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private dialogService: DialogService,
               private audioService: AudioService,
               private routerService: RouterService) {
-
+    this.isPassVideo = audioService.isPassVideo;
   }
 
   ngOnInit() {
@@ -88,6 +88,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   passVideo() {
     this.isPassVideo = true;
     this.audioService.play();
+    this.audioService.isPassVideo = true;
   }
 
   isPaused() {
@@ -590,7 +591,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   gotoPage(type) {
     switch (type) {
       case 'buy':
-        this.routerService.gotoCarPrice(EnHistoryState.replace);
+        this.routerService.gotoCarPrice();
         break;
 
       case 'reserve':

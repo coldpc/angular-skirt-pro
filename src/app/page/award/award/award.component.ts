@@ -4,6 +4,7 @@ import {LoadJs} from "../../../lib/utils/LoadJs";
 import {UtilsBase} from "../../../lib/utils/UtilsBase";
 import {RouterService} from 'src/app/lib/service/router/RouterService';
 import {ApiLotteryGetService} from "../../../lib/service/http/api/ApiLotteryGetService";
+import {WxShareService} from "../../../lib/utils/WxShare";
 
 const client = UtilsBase.getClient();
 
@@ -52,6 +53,7 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private dialogService: DialogService,
               private apiLotteryGetService: ApiLotteryGetService,
+              private wxShareService: WxShareService,
               private routerService: RouterService) {
 
   }
@@ -76,6 +78,8 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loadModel();
       this.addLogo();
     });
+
+    this.wxShareService.getConfig({}).catch();
   }
 
   addEvent() {

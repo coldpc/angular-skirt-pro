@@ -10,13 +10,13 @@
   background-position: center top;
   background-size: cover;
 
-  .desc {
+  .not-img {
+    width: 1.78rem;
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
-    font-size: 0.4rem;
   }
 }
 
