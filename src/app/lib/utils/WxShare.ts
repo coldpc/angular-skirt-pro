@@ -23,7 +23,7 @@ export class WxShareService {
     config.imgUrl = config.imgUrl || (location.protocol + '//' + location.host + '/assets/img/share-default.jpg');
     config.link = config.link || (location.protocol + '//' + location.host + "/");
     config.title = config.title || "雷凌星球";
-    config.desc = config.desc || "雷凌星球 抽奖";
+    config.desc = config.desc || "雷凌双擎E+探索神秘星球";
 
     // 加载js
     if (!window['wx']) {
@@ -46,7 +46,15 @@ export class WxShareService {
       timestamp: data.timestamp, // 必填，生成签名的时间戳
       nonceStr: data.nonceStr, // 必填，生成签名的随机串
       signature: data.signature, // 必填，签名
-      jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] // 必填，需要使用的JS接口列表
+      jsApiList: [
+        'updateAppMessageShareData',
+        'updateTimelineShareData',
+
+        // 1.4.0 即将废弃的 API，但是仅使用上面的API设置，安卓无效
+        // 所以还是需要用一下
+        'onMenuShareAppMessage',
+        'onMenuShareTimeline'
+      ] // 必填，需要使用的JS接口列表
     });
 
     this.listenerReady();
@@ -60,25 +68,25 @@ export class WxShareService {
   listenerReady() {
     let config = this.config;
     let wx = window['wx'];
-    wx.ready(() => {
-      wx.updateAppMessageShareData({
-        title: config.title, // 分享标题
-        desc: config.desc, // 分享描述
-        link: config.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: config.imgUrl, // 分享图标
-        success: function () {
-          // 设置成功
-        }
-      });
 
-      wx.updateTimelineShareData({
-        title: config.title, // 分享标题
-        link: config.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: config.imgUrl, // 分享图标
-        success: function () {
-          // 设置成功
-        }
-      });
+    wx.ready(() => {
+      // 1.4.0 新接口 (只调用这个接口在安卓下是无效的)
+      if (typeof wx.updateAppMessageShareData === 'function') {
+        wx.updateAppMessageShareData(config);
+      }
+
+      if (typeof wx.updateTimelineShareData === 'function') {
+        wx.updateTimelineShareData(config);
+      }
+
+      if (typeof wx.onMenuShareAppMessage === 'function') {
+        // 1.2.0 老接口
+        wx.onMenuShareAppMessage(config);
+      }
+
+      if (typeof wx.onMenuShareTimeline === 'function') {
+        wx.onMenuShareTimeline(config);
+      }
     });
   }
 }
