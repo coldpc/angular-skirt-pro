@@ -95,7 +95,7 @@
     <img class="loading" src="/assets/img/loading/loading.gif">
 
     <div class="loading_finish">
-      <p class="loading_txt">100%</p>
+      <p class="loading_txt"><!--100%--></p>
 
       <div class="btn_wrap">
         <button></button>
@@ -105,15 +105,18 @@
 </div>
 
 <script>
-  let n = 1;
-  let loading_text = document.querySelector(".loading_txt");
+  /**/
 
-  setInterval(() => {
-    while (n<100){
-      n++;
-      loading_text.innerHTML = n + "%";
+  let n = 0;
+  let t = setInterval(() => {
+    n ++;
+    let loading_text = document.querySelector(".loading_txt");
+    loading_text.innerText = n + '%';
+
+    if(n == 100){
+      clearInterval(t);
     }
-  }, 2000);
+  }, 10);
 </script>
 
 <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="application/javascript"></script>-->
