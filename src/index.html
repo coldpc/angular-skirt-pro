@@ -62,6 +62,10 @@
       height: 100vh;
     }
 
+    .loading {
+      width: 100%;
+    }
+
     .btn_wrap button {
       position: absolute;
       bottom: 1.3rem;
@@ -99,6 +103,18 @@
     </div>
   </div>
 </div>
+
+<script>
+  let n = 1;
+  let loading_text = document.querySelector(".loading_txt");
+
+  setInterval(() => {
+    while (n<100){
+      n++;
+      loading_text.innerHTML = n + "%";
+    }
+  }, 2000);
+</script>
 
 <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="application/javascript"></script>-->
 <script id="vertexShader" type="x-shader/x-vertex">
