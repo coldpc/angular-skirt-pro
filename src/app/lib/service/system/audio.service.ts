@@ -4,6 +4,8 @@ import { Injectable, ComponentRef, EventEmitter, ElementRef} from "@angular/core
 export class AudioService {
   private _audioRef: ElementRef;
 
+  public hasInit = false;
+
   set audioRef(audioRef: ElementRef) {
     this._audioRef = audioRef;
   }
@@ -25,10 +27,23 @@ export class AudioService {
     }
   }
 
+  setInit() {
+    this.hasInit = true;
+
+    setTimeout(() => {
+      this.play();
+    }, 1000);
+  }
+
   play() {
     let audio = this.audioRef.nativeElement;
     if (audio.paused ) {
-      audio.play();
+      
+      try {
+        audio.play();  
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 

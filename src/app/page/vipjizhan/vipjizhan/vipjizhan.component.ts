@@ -8,7 +8,16 @@ import {RouterService} from "../../../lib/service/router/RouterService";
 })
 export class VipjizhanComponent {
 
-  title:string = "ddd";  //组件类操作模板
-  aaa:string = "123456";
 
+  constructor(private routerService: RouterService) {
+
+  }
+
+  gotoTiyan() {
+    this.routerService.gotoTiyan();
+  }
+
+  gotoXunzhao() {
+    this.routerService.gotoXunzhao();
+  }
 }

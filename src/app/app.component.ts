@@ -26,6 +26,14 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.audioService.audioRef = this.audioRef;
+
+    setTimeout(() => {
+      this.audioService.setInit();
+    }, 2000);
+  }
+
+  onCanPlayVideo() {
+    this.audioService.setInit();
   }
 
   prepareRoute(outlet: RouterOutlet) {

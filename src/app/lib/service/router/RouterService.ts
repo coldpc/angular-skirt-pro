@@ -102,6 +102,26 @@ export class RouterService extends RouterCoreService {
       historyState
     });
   }
+
+  // 抢鲜体验
+  gotoTiyan (historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.tiyan,
+      params: {
+      },
+      historyState
+    });
+  }
+
+  // 立即寻找
+  gotoXunzhao (historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.xunzhao,
+      params: {
+      },
+      historyState
+    });
+  }
 }
 
 // 约定取公寓列表的参数

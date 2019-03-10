@@ -49,7 +49,7 @@ sk-layout {
   padding: 0 0.35rem;
 }
 .title {
-  width: 2.6rem;
+  width: 2.3rem;
 }
 .title2 {
   width: 100%;
@@ -85,14 +85,14 @@ sk-layout {
 
 .price {
   white-space:nowrap;
-  margin-top: 0.05rem;
+  margin-top: 2px;
 }
 .unit {
   margin-left: 0.04rem;
 }
 .top-num {
   color: #00ffff;
-  font-size: 0.24rem;
+  font-size: 0.22rem;
   transform: translate(0, 0);
   animation: my-first 0.5s;
   display: inline-block;
@@ -124,8 +124,12 @@ sk-layout {
 }
 .text-center {
   border-top: 1px solid #fff;
+
+  & > .center-row {
+    margin-top: 0.06rem;
+  }
   .center-row {
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.04rem;
     display: flex;
     flex-direction: row;
     align-items: baseline;
@@ -133,7 +137,7 @@ sk-layout {
     flex-wrap: nowrap;
   }
   .center-label {
-    font-size: 0.15rem;
+    font-size: 0.13rem;
     font-weight: bold;
     white-space: nowrap;
   }
@@ -143,11 +147,11 @@ sk-layout {
     margin-left: 0.04rem;
     white-space: normal;
     overflow: hidden;
-    line-height: 0.24rem;
+    line-height: 0.2rem;
   }
   .key-text {
     color: #00ffff;
-    font-size: 0.15rem;
+    font-size: 0.13rem;
     font-weight: bold;
     margin-right: 0.04rem;
   }

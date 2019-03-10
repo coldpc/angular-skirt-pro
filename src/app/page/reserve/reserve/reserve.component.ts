@@ -172,11 +172,18 @@ export class ReserveComponent implements OnInit, AfterViewInit {
     this.submitForm[name] = value;
   }
 
-  onSubmit() {
+  onTapSubmit() {
+    setTimeout(() => {
+      this.submit();
+    }, 300);
+  }
+
+  submit() {
     let {submitForm, selectProvince, selectCity, selectMerchant} = this;
 
     // 选择的数据
     submitForm = UtilsBase.deepCopy(submitForm);
+    submitForm.mobile = this.strim(submitForm.mobile);
     submitForm.city = selectCity.value;
     submitForm.province = selectProvince.value;
     submitForm.distributor = selectMerchant.value;
@@ -190,6 +197,13 @@ export class ReserveComponent implements OnInit, AfterViewInit {
     this.apiReserveService.setBody(submitForm).request(() => {
       this.routerService.gotoGetAward(submitForm.mobile, EnHistoryState.replace);
     });
+  }
+
+  strim(str) {
+    if (!UtilsBase.isNull(str)) {
+      str = str.replace(/(^\s*)|(\s*$)/g, "");
+    }
+    return str;
   }
 
   checkData(submitForm) {

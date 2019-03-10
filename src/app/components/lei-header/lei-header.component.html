@@ -1,4 +1,5 @@
 <div class="logo-box">
+
   <img class="logo-l" src="/assets/img/logo-l.png" alt="logo">
   <img class="logo-r" src="/assets/img/logo-r.png" alt="logo">
 </div>
@@ -8,7 +9,7 @@
     <span class="back1">返回</span>
   </button>
 
-  <button class="right m-btn" (tap)="toggleMusic()" [ngClass]="{scale: isScale}">
+  <button *ngIf="audioService.hasInit" class="right m-btn" (tap)="toggleMusic()" [ngClass]="{scale: isScale}">
     <span *ngIf="!audioService.isPaused()" class="m1">关闭</span>
     <span  *ngIf="audioService.isPaused()"  class="m2">播放</span>
   </button>

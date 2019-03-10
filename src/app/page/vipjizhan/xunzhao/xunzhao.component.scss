@@ -1,0 +1,19 @@
+.bg {
+  background-image: url("../../../../assets/img/vipjizhan/p2.jpg");
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center top;
+  pointer-events: none;
+}
+
+sk-layout {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
