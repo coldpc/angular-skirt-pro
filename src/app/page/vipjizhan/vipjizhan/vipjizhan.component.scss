@@ -14,16 +14,12 @@
 }
 
 .center_bg {
-  position: fixed;
-  width: 3.375rem;
-  height: 4.72rem;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-image: url(/assets/img/vipjizhan/center_bg.png);
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: contain;
+  position: relative;
+  width: 3.075rem;
+  height: 5.2rem;
+  background: url(/assets/img/vipjizhan/center_bg.png) top no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto;
 
   .experience, .seek {
     position: absolute;
@@ -36,14 +32,14 @@
 
   .experience {
     left: 0.46rem;
-    top: 0.98rem;
+    top: 1.38rem;
     background: url(/assets/img/vipjizhan/experience.png) top no-repeat;
     background-size: 100%;
   }
 
   .seek {
     right: 0.46rem;
-    bottom: 1.8rem;
+    bottom: 2rem;
     background: url(/assets/img/vipjizhan/seek.png) top no-repeat;
     background-size: 100%;
   }
