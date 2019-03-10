@@ -1,5 +1,4 @@
 <div class="bg">
-  <sk-image class="car" src="/assets/img/reserve/car.png" [ratio]="1192/610"></sk-image>
 </div>
 <sk-layout>
   <sk-lei-header class="top-part top"></sk-lei-header>
@@ -120,6 +119,8 @@
         <img *ngIf="!isYaoqinghan" (tap)="gotoJinrongjie();" class="go" src="/assets/img/carPrice/go.png">
         <img *ngIf="isYaoqinghan" (tap)="gotoGaming();" class="go" src="/assets/img/carPrice/open.png">
       </div>
+      <sk-image class="car" src="/assets/img/reserve/car.png" [ratio]="1192/610"></sk-image>
+      <p class="bottom-desc">*现补贴价按2018年国补政策计算，仅供参考。待2019年新国补政策出台，以新政策规定办理补贴。*需装珍珠白车身需另加2000元</p>
     </div>
 
   </div>

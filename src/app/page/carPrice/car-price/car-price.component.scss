@@ -4,20 +4,18 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  bottom: 0;
   width: 100%;
   background-image: url("/assets/img/carPrice/bg.jpg");
   background-size: cover;
-  background-position: center top;
+  background-position: center bottom;
   pointer-events: none;
+}
 
-
-  .car {
-    position: absolute;
-    bottom: 0.2rem;
-    left: -0.3rem;
-    width: 2.36rem;
-  }
+.car {
+  margin-left: -0.6rem;
+  width: 2.36rem;
+  margin-top: -0.5rem;
 }
 
 sk-layout {
@@ -212,3 +210,17 @@ sk-layout {
   }
 }
 
+.bottom-desc {
+  width: 2.97rem;
+  line-height: 0.15rem;
+  font-size: 0.11rem;
+  font-weight: 400;
+  color:rgba(1,24,53,1);
+  padding-bottom: 0.1rem;
+  transform: scale(0.9, 0.9);
+  font-family:Impact;
+}
+
+.content {
+  overflow: hidden;
+}
