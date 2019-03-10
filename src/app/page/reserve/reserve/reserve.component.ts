@@ -194,7 +194,7 @@ export class ReserveComponent implements OnInit, AfterViewInit {
       return this.dialogService.alert(message);
     }
 
-    this.apiReserveService.setBody(submitForm).request(() => {
+    this.apiReserveService.setBody(submitForm).showLoading().request(() => {
       this.routerService.gotoGetAward(submitForm.mobile, EnHistoryState.replace);
     });
   }
