@@ -14,6 +14,14 @@ export class AudioService {
   }
 
   constructor() {
+    // let _this = this;
+    // window.addEventListener('click', onTouch);
+    // function onTouch() {
+    //   if (_this.audioRef && _this.audioRef.nativeElement) {
+    //     _this.play();
+    //     window.removeEventListener('click', onTouch);
+    //   }
+    // }
   }
 
   isPaused(): boolean {
@@ -30,9 +38,6 @@ export class AudioService {
   setInit() {
     this.hasInit = true;
 
-    setTimeout(() => {
-      this.play();
-    }, 1000);
   }
 
   play() {

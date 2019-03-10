@@ -12,6 +12,7 @@ import {SystemModule} from "./system.module";
 import {MoneyComponent} from 'src/app/components/money/money.component';
 import {TagComponent} from "../../components/tag/tag.component";
 import {ShareComponent} from "../../components/share/share.component.";
+import {LeiHeaderComponent} from "../../components/lei-header/lei-header.component";
 
 const components = [
   ListComponent,
@@ -25,7 +26,8 @@ const components = [
   ModalComponent,
   MoneyComponent,
   TagComponent,
-  ShareComponent
+  ShareComponent,
+  LeiHeaderComponent
 ];
 
 @NgModule({

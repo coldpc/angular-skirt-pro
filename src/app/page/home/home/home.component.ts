@@ -4,6 +4,7 @@ import {LoadJs} from "../../../lib/utils/LoadJs";
 import {UtilsBase} from "../../../lib/utils/UtilsBase";
 import {RouterService} from 'src/app/lib/service/router/RouterService';
 import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
+import {AudioService} from "../../../lib/service/system/audio.service";
 
 const client = UtilsBase.getClient();
 
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("outerBallCon") outerBallCon: ElementRef;
   @ViewChild("ballContainer") ballContainerRef: ElementRef;
   @ViewChild("huiXing") huiXing: ElementRef;
+  @ViewChild("video") video: ElementRef;
 
   THREE: any;
 
@@ -67,13 +69,29 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     m2: false
   };
 
+  isPassVideo = false;
+
   constructor(private dialogService: DialogService,
+              private audioService: AudioService,
               private routerService: RouterService) {
 
   }
 
   ngOnInit() {
     window['_this'] = this;
+  }
+
+  onTapVideo() {
+    this.video.nativeElement.play();
+  }
+
+  passVideo() {
+    this.isPassVideo = true;
+    this.audioService.play();
+  }
+
+  isPaused() {
+    return !this.video || this.video.nativeElement.paused;
   }
 
   ngAfterViewInit(): void {

@@ -14,8 +14,7 @@ const components = [
   DialogComponent,
   LoadingComponent,
   HoverDirective,
-  IconDirective,
-  LeiHeaderComponent
+  IconDirective
 ];
 
 // 服务供应列表
