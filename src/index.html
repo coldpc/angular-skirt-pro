@@ -111,12 +111,14 @@
   let t = setInterval(() => {
     n ++;
     let loading_text = document.querySelector(".loading_txt");
-    loading_text.innerText = n + '%';
+    if (loading_text) {
+      loading_text.innerText = n + '%';
+    }
 
     if(n == 100){
       clearInterval(t);
     }
-  }, 10);
+  }, 100);
 </script>
 
 <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="application/javascript"></script>-->

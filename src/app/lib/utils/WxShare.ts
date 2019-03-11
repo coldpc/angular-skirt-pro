@@ -32,7 +32,7 @@ export class WxShareService {
 
     // 加载微信分享
     this.apiWxShareService.setBody({
-      path: config.link
+      path: window.location.href
     }).request((data: InWxConfig) => {
       this.initWxConfig(data);
     });
