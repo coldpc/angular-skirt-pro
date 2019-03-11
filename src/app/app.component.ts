@@ -48,12 +48,19 @@ export class AppComponent implements AfterViewInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
 
-        setTimeout(() => {
+        if (this.router.url.indexOf('home') > -1) {
+          setTimeout(() => {
+            if (this.loadingDom) {
+              this.loadingDom.querySelector(".loading_txt").innerHTML = '100%';
+              this.loadingDom.querySelector("button").style.display = 'inline-block';
+            }
+          }, 1500 + parseInt(Math.random() * 1500 + '', 10));
+        } else {
           if (this.loadingDom) {
-            this.loadingDom.querySelector(".loading_txt").innerHTML = '100%';
-            this.loadingDom.querySelector("button").style.display = 'inline-block';
+            this.loadingDom.parentNode.removeChild(this.loadingDom);
           }
-        }, 1500 + parseInt(Math.random() * 1500 + '', 10));
+        }
+
 
         // 每次路由跳转改变状态
         // this.routerState = !this.routerState;

@@ -70,6 +70,11 @@ const routes: Routes = [
     path: 'page/forum',
     loadChildren: './page/forum/forum.module#ForumModule',
     canLoad: []
+  },
+  {
+    path: 'page/game',
+    loadChildren: './page/game/game.module#GameModule',
+    canLoad: []
   }
 ];
 
