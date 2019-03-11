@@ -30,20 +30,22 @@
         height: 0.29rem;
       }
     }
+  }
 
-    button {
-      background-color: transparent;
-      display: inline-block;
-      border: none;
-      color: #fff;
-      padding: 0.12rem 0.15rem;
-      margin-top: -0.04rem;
-      float: right;
-      font-size: 0.12rem;
+  .pass-btn {
+    background-color: transparent;
+    display: inline-block;
+    border: none;
+    color: #fff;
+    top: 0.4rem;
+    right: 0;
+    z-index: 100;
+    padding: 0.12rem 0.15rem;
+    position: absolute;
+    font-size: 0.12rem;
 
-      .back-angle {
-        color: #00FFFF;
-      }
+    .back-angle {
+      color: #00FFFF;
     }
   }
 
@@ -52,9 +54,9 @@
       visibility: visible;
     }
     .video {
-      width: 1px !important;
-      height: 1px !important;
-      z-index: 1;
+      //width: 1px !important;
+      //height: 1px !important;
+      z-index: 3;
       visibility: hidden;
     }
 

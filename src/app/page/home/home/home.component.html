@@ -56,12 +56,12 @@
 </sk-layout>
 
 <div *ngIf="!isPassVideo" class="v-con" [ngClass]="{'pause-video-con': isPaused()}">
+  <button class="pass-btn" (tap)="passVideo()">跳过 <span class="back-angle">></span></button>
   <div class="logo-part">
     <div class="flex">
       <img class="logo-l" src="/assets/img/logo-l.png" alt="logo">
       <img class="logo-r" src="/assets/img/logo-r.png" alt="logo">
     </div>
-    <button (tap)="passVideo()">跳过 <span class="back-angle">></span></button>
   </div>
 
  <!--
