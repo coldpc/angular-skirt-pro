@@ -112,6 +112,11 @@
   function removeLoading() {
     let loadingDom = window.document.getElementById("app_loading_id");
     loadingDom.parentNode.removeChild(loadingDom);
+
+    let video = window.document.querySelector("video");
+    if (video) {
+      video.play();
+    }
   }
   /**/
 
