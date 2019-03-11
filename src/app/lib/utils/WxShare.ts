@@ -13,6 +13,8 @@ export interface InShareData {
 export class WxShareService {
   appId = 'wxa3ca844a8780edbd';
   config: InShareData;
+  hasReady = false;
+
   constructor(private apiWxShareService: ApiWxShareService) {
   }
 
@@ -57,7 +59,11 @@ export class WxShareService {
       ] // 必填，需要使用的JS接口列表
     });
 
-    this.listenerReady();
+    if (!this.hasReady) {
+      this.listenerReady();
+    } else {
+      this.shareContent();
+    }
   }
 
   // config信息验证后会执行ready方法，
@@ -66,27 +72,34 @@ export class WxShareService {
   // 则须把相关接口放在ready函数中调用来确保正确执行。
   // 对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
   listenerReady() {
-    let config = this.config;
     let wx = window['wx'];
 
     wx.ready(() => {
-      // 1.4.0 新接口 (只调用这个接口在安卓下是无效的)
-      if (typeof wx.updateAppMessageShareData === 'function') {
-        wx.updateAppMessageShareData(config);
-      }
-
-      if (typeof wx.updateTimelineShareData === 'function') {
-        wx.updateTimelineShareData(config);
-      }
-
-      if (typeof wx.onMenuShareAppMessage === 'function') {
-        // 1.2.0 老接口
-        wx.onMenuShareAppMessage(config);
-      }
-
-      if (typeof wx.onMenuShareTimeline === 'function') {
-        wx.onMenuShareTimeline(config);
-      }
+      this.hasReady = true;
+      this.shareContent();
     });
+  }
+
+  shareContent() {
+    let config = this.config;
+    let wx = window['wx'];
+
+    // 1.4.0 新接口 (只调用这个接口在安卓下是无效的)
+    if (typeof wx.updateAppMessageShareData === 'function') {
+      wx.updateAppMessageShareData(config);
+    }
+
+    if (typeof wx.updateTimelineShareData === 'function') {
+      wx.updateTimelineShareData(config);
+    }
+
+    if (typeof wx.onMenuShareAppMessage === 'function') {
+      // 1.2.0 老接口
+      wx.onMenuShareAppMessage(config);
+    }
+
+    if (typeof wx.onMenuShareTimeline === 'function') {
+      wx.onMenuShareTimeline(config);
+    }
   }
 }

@@ -34,8 +34,6 @@ export class AppComponent implements AfterViewInit {
     setTimeout(() => {
       this.audioService.setInit();
     }, 2000);
-
-    this.wxShareService.getConfig({}).catch();
   }
 
   onCanPlayVideo() {
@@ -66,6 +64,8 @@ export class AppComponent implements AfterViewInit {
         //
         // this.routerStateCode = historyState + (this.routerState ? 'active' : 'inactive');
         // this.pageControllerBase.historyState = '';
+
+        this.wxShareService.getConfig({}).catch();
       }
     });
   }
