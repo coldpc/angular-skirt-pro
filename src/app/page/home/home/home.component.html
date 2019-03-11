@@ -74,7 +74,7 @@
 
   <video class="video" width="100%"
          x5-video-player-type="h5" x5-video-player-fullscreen="true" (ended)="passVideo()" playsinline
-         src="/assets/img/video/m.mp4" #video poster="/assets/img/video/poster.jpg" autoplay="autoplay1">
+         [src]="videoSrc" #video>
     your browser does not support the video tag
   </video>
   <!--<video id="video" class="video" preload="auto" playsinline src="http://wqs.jd.com/promote/superfestival/superfestival.mp4" width="1" height="1" type="video/mp4">-->

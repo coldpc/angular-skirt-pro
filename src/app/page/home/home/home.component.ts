@@ -71,6 +71,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   isPassVideo = false;
 
+  videoSrcArray = {
+    min: '/assets/img/video/m.mp4',
+    max: '/assets/img/video/m-max.mp4'
+  };
+  videoSrc: string = '/assets/img/video/m.mp4';
+
   constructor(private dialogService: DialogService,
               private audioService: AudioService,
               private routerService: RouterService) {
@@ -79,6 +85,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     window['_this'] = this;
+    let videoSrcArray = this.videoSrcArray;
+
+    let cli = UtilsBase.getClient();
+    let ratio = cli.screenHeight / cli.screenWidth > 1.9 ? videoSrcArray.max : videoSrcArray.min;
+    this.videoSrc = ratio;
   }
 
   onTapVideo() {

@@ -1,6 +1,8 @@
 interface InClientInfo {
   width: number;
   height: number;
+  screenWidth: number;
+  screenHeight: number;
   isIos: boolean;
   isAndroid: boolean;
   isPhone: boolean;
@@ -102,6 +104,8 @@ export class UtilsBase {
     const result: InClientInfo = {
       width: document.documentElement.clientWidth,
       height: document.documentElement.clientHeight,
+      screenWidth: window.screen.width,
+      screenHeight:  window.screen.height,
       isPc: true,
       isPhone: false,
       isWx: false,
