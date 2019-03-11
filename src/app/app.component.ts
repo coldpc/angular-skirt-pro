@@ -45,8 +45,8 @@ export class AppComponent implements AfterViewInit {
       if (event instanceof NavigationEnd) {
 
         if (this.loadingDom) {
-          this.loadingDom.parentNode.removeChild(this.loadingDom);
-          this.loadingDom = null;
+          this.loadingDom.querySelector(".loading_txt").innerHTML = '100%';
+          this.loadingDom.querySelector("button").style.display = 'inline-block';
         }
         // 每次路由跳转改变状态
         // this.routerState = !this.routerState;

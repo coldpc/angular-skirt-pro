@@ -24,7 +24,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 10001;
+      z-index: 1000001;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -67,6 +67,7 @@
     }
 
     .btn_wrap button {
+      display: none;
       position: absolute;
       bottom: 1.3rem;
       left: 50%;
@@ -97,7 +98,7 @@
     <div class="loading_finish">
       <p class="loading_txt"><!--100%--></p>
 
-      <div class="btn_wrap">
+      <div class="btn_wrap" onclick="removeLoading()">
         <button></button>
       </div>
     </div>
@@ -105,17 +106,23 @@
 </div>
 
 <script>
+
+  function removeLoading() {
+    let loadingDom = window.document.getElementById("app_loading_id");
+    loadingDom.parentNode.removeChild(loadingDom);
+  }
   /**/
 
-  let n = 0;
   let t = setInterval(() => {
-    n ++;
+    let n = 0;
     let loading_text = document.querySelector(".loading_txt");
     if (loading_text) {
+      n = (parseInt(loading_text.innerText) || 0) + 1;
       loading_text.innerText = n + '%';
     }
 
-    if(n == 100){
+    if(n > 100){
+      loading_text.innerText = '100%';
       clearInterval(t);
     }
   }, 100);
