@@ -15,7 +15,6 @@ export class DialogService {
   }
 
   constructor(private dynamicService: SkDynamicComponentService) {
-    this.dialogComponent = dynamicService.createComponent(DialogComponent);
   }
 
   /**
@@ -40,6 +39,9 @@ export class DialogService {
    * @param config 配置
    */
   show(config: InDialogModel): void {
+    if (!this.dialogComponent) {
+      this.dialogComponent = this.dynamicService.createComponent(DialogComponent);
+    }
     let dialog = this.dialogComponent;
     dialog.isConfirm = config.isConfirm;
     dialog.okText = config.okText;

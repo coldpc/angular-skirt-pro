@@ -11,7 +11,7 @@ import {ModalComponent} from "../../components/modal/modal.component";
 import {SystemModule} from "./system.module";
 import {MoneyComponent} from 'src/app/components/money/money.component';
 import {TagComponent} from "../../components/tag/tag.component";
-import {ShareComponent} from "../../components/share/share.component.";
+import {ShareComponent} from "../../components/share/share.component";
 import {LeiHeaderComponent} from "../../components/lei-header/lei-header.component";
 
 const components = [

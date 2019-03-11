@@ -2,11 +2,14 @@ import { Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import {SkDynamicComponentService} from "./components/dynamic-component-factory/sk-dynamic-component.service";
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import {AudioService} from "./lib/service/system/audio.service";
+import {WxShareService} from "./lib/utils/WxShare";
+import {ApiWxShareService} from "./lib/service/http/api/ApiWxShareService";
 
 @Component({
   selector: 'sk-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [ApiWxShareService, WxShareService]
 })
 export class AppComponent implements AfterViewInit {
   title = 'angular7-skirt-pro';
@@ -18,6 +21,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private dynamicService: SkDynamicComponentService,
               private audioService: AudioService,
+              private wxShareService: WxShareService,
               private router: Router) {
 
     this.setRouteState();
@@ -30,6 +34,8 @@ export class AppComponent implements AfterViewInit {
     setTimeout(() => {
       this.audioService.setInit();
     }, 2000);
+
+    this.wxShareService.getConfig({}).catch();
   }
 
   onCanPlayVideo() {
@@ -49,7 +55,7 @@ export class AppComponent implements AfterViewInit {
             this.loadingDom.querySelector(".loading_txt").innerHTML = '100%';
             this.loadingDom.querySelector("button").style.display = 'inline-block';
           }
-        }, 4000);
+        }, 1500 + parseInt(Math.random() * 1500 + '', 10));
 
         // 每次路由跳转改变状态
         // this.routerState = !this.routerState;

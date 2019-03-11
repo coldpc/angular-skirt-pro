@@ -8,5 +8,4 @@ export class AddHostDirective {
   constructor(public viewContainerRef: ViewContainerRef, private dynamicService: SkDynamicComponentService) {
     this.dynamicService.setContainerRef(viewContainerRef);
   }
-
 }

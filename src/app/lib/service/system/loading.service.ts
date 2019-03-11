@@ -24,10 +24,12 @@ export class LoadingService {
   }
 
   constructor(private dynamicService: SkDynamicComponentService) {
-    this.loadingComponent = dynamicService.createComponent(LoadingComponent);
   }
 
   show(sign: string = ''): void {
+    if (!this.loadingComponent) {
+      this.loadingComponent = this.dynamicService.createComponent(LoadingComponent);
+    }
     if (!this.loadingComponent.isShow) {
       this.loadingComponent.isShow = true;
       this.sign = sign;

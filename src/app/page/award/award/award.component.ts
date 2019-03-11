@@ -53,15 +53,12 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private dialogService: DialogService,
               private apiLotteryGetService: ApiLotteryGetService,
-              private wxShareService: WxShareService,
               private routerService: RouterService) {
 
   }
 
   ngOnInit() {
     window['_this'] = this;
-
-    console.log(this.routerService.queryParams.tel);
   }
 
   ngAfterViewInit(): void {
@@ -78,8 +75,6 @@ export class AwardComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loadModel();
       this.addLogo();
     });
-
-    this.wxShareService.getConfig({}).catch();
   }
 
   addEvent() {
