@@ -30,10 +30,13 @@
       align-items: center;
       height: 100%;
       color: #91c3e6;
-      background: #136ead;
+      background-color: #000;
       text-transform: uppercase;
       font-size: 5vh;
       text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
+      background-image: url("/assets/img/loading/loading.gif");
+      background-position: center bottom;
+      background-size: 100% auto;
     }
 
     @keyframes dots {
@@ -69,7 +72,7 @@
     .btn_wrap button {
       display: none;
       position: absolute;
-      bottom: 1.3rem;
+      bottom: 1.8rem;
       left: 50%;
       transform: translateX(-50%);
       width: 1.5rem;
@@ -81,9 +84,10 @@
 
     .loading_txt{
       position: absolute;
-      bottom: 1.82rem;
+      bottom: 2rem;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%);
+      margin-top: 1rem;
       width: 100%;
       height: 0.42rem;
       text-align: center;
@@ -93,8 +97,6 @@
   </style>
   <!--Loading<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>-->
   <div class="loading_box">
-    <img class="loading" src="/assets/img/loading/loading.gif">
-
     <div class="loading_finish">
       <p class="loading_txt"><!--100%--></p>
 
