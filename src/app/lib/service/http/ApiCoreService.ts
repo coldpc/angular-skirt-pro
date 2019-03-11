@@ -19,8 +19,8 @@ const SERVICE_SUCCESS_CODE_VALUE = 0;
 
 // 默认的basePath
 const DEFAULT_PROTOCOL = location.protocol;
-const DEFAULT_BASE_PATH = '/h5-api';
-const DEFAULT_REQUEST_HOST = location.host;
+const DEFAULT_BASE_PATH = '';
+const DEFAULT_REQUEST_HOST = 'leilingapi.ximuok.com';
 
 // 设置headers的content-type键值
 const HEADER_CONTENT_TYPE_KEY = 'Content-Type';
