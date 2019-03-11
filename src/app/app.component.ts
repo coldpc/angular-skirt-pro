@@ -44,10 +44,13 @@ export class AppComponent implements AfterViewInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
 
-        if (this.loadingDom) {
-          this.loadingDom.querySelector(".loading_txt").innerHTML = '100%';
-          this.loadingDom.querySelector("button").style.display = 'inline-block';
-        }
+        setTimeout(() => {
+          if (this.loadingDom) {
+            this.loadingDom.querySelector(".loading_txt").innerHTML = '100%';
+            this.loadingDom.querySelector("button").style.display = 'inline-block';
+          }
+        }, 4000);
+
         // 每次路由跳转改变状态
         // this.routerState = !this.routerState;
         // // this.routerStateCode = this.routerState ? 'active' : 'inactive';
