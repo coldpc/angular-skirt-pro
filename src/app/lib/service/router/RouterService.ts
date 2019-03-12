@@ -38,6 +38,13 @@ export class RouterService extends RouterCoreService {
     });
   }
 
+  gotoVipPrice(historyState ?: EnHistoryState) {
+    this.loadPage({
+      path: EnRouterPath.vipPrice,
+      historyState
+    });
+  }
+
   // 雷林尽情购买
   gotoJinrongjie(historyState ?: EnHistoryState) {
     this.loadPage({

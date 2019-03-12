@@ -8,6 +8,7 @@ export enum EnRouterPath {
   jinrongjie = 'page/jinrongjie',
   reserve = 'page/reserve',
   carPrice = 'page/carPrice',
+  vipPrice = 'page/carPrice/vip-price',
   exhibition = 'page/zhanlan',
   vipjizhan = 'page/vipjizhan',
   forum = 'page/forum',

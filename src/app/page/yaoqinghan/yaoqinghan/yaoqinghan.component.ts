@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterService} from "../../../lib/service/router/RouterService";
+import {EnHistoryState} from "../../../lib/enums/EnHistoryState";
 
 @Component({
   selector: 'sk-yaoqinghan',
@@ -15,7 +16,7 @@ export class YaoqinghanComponent {
   }
 
   onTapOk() {
-    this.service.gotoCarPrice();
+    this.service.gotoVipPrice(EnHistoryState.replace);
   }
 
 }
