@@ -1,3 +1,15 @@
-<div class="game-part">
+<sk-start-game [(isShow)]="isShowStart"></sk-start-game>
 
+
+<div class="main-container">
+  <div class="top"></div>
+
+  <div class="roads">
+    <div class="road"></div>
+  </div>
+
+  <sk-image class="car" src="/assets/img/game/car.png" [ratio]="268/544"></sk-image>
+  <sk-image class="left" src="/assets/img/game/angle.png" [ratio]="1"></sk-image>
+  <sk-image class="right" src="/assets/img/game/angle.png" [ratio]="1"></sk-image>
+  <sk-image class="jiasu" src="/assets/img/game/jiasu.png" [ratio]="1"></sk-image>
 </div>

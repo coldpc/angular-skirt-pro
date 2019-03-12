@@ -6,6 +6,8 @@ import {Component, OnInit, AfterViewInit, ElementRef, ViewChild, OnDestroy} from
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
+  isShowStart = true;
+
   constructor() {
   }
 
