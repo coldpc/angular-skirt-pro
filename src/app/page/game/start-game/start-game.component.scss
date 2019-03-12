@@ -1,0 +1,37 @@
+@import "../../../theme/variables";
+.modal-container {
+  z-index: $modalIndex;
+  width: 3.36rem;
+  height: 6rem;
+  background-size: cover;
+  background-image: url("../../../../assets/img/game/back.png");
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -1.68rem;
+}
+
+.title-img {
+  width: 2.55rem;
+  margin: 0.97rem auto 0 auto;
+}
+
+.info-part {
+  line-height: 0.18rem;
+  margin-top: 0.4rem;
+  color: #fff;
+  font-size: $xSmallFontSize;
+  padding: 0 0.26rem;
+  letter-spacing: 0.02rem;
+
+  .t {
+    padding-bottom: 0.1rem;
+    color: #00ffff;
+    font-size: $smallFontSize;
+  }
+}
+
+.start-btn {
+  width: 0.86rem;
+  margin: 0.39rem auto 0 auto;
+}

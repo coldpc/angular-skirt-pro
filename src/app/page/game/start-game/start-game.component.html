@@ -1,0 +1,16 @@
+<div [@anim]="state" class="modal-container" (touchmove)="stop($event)" (touchstart)="stop($event)">
+  <div class="main-content">
+    <sk-image class="title-img" [ratio]="1020/390" src="/assets/img/game/title.png"></sk-image>
+    <div class="info-part">
+      <div class="t">游戏规则：</div>
+      <div class="lines">
+        <span>1. 点击左、右按钮躲避星轨上的障碍物<br></span>
+        <span>2. 点击加速按钮可加速行驶,若雷凌PHEV<br>碰到障碍物会减速<br></span>
+        <span>3. 在15秒内行驶的里程数越多则排名越高<br></span>
+        <span>4. 排名前5的参与者即可获得100元油卡</span>
+      </div>
+    </div>
+  </div>
+  <sk-image class="start-btn" [ratio]="1" src="/assets/img/game/start.png" (tap)="start()"></sk-image>
+</div>
+<sk-mask [(isShow)]="isShow" [isTapBackHide]="false"></sk-mask>
