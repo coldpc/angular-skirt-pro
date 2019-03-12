@@ -1,15 +1,32 @@
-<sk-start-game [(isShow)]="isShowStart"></sk-start-game>
+<sk-start-game [(isShow)]="isShowStart" (startEvent)="startGame()"></sk-start-game>
 
 
-<div class="main-container">
-  <div class="top"></div>
-
-  <div class="roads">
-    <div class="road"></div>
+<div class="main-container" (touchstart)="stop($event)" (touchmove)="stop($event)">
+  <div class="top">
+    <img class="logo-img" src="/assets/img/logo-l.png" alt="">
   </div>
 
-  <sk-image class="car" src="/assets/img/game/car.png" [ratio]="268/544"></sk-image>
-  <sk-image class="left" src="/assets/img/game/angle.png" [ratio]="1"></sk-image>
-  <sk-image class="right" src="/assets/img/game/angle.png" [ratio]="1"></sk-image>
-  <sk-image class="jiasu" src="/assets/img/game/jiasu.png" [ratio]="1"></sk-image>
+  <div class="roads" #roadsRef >
+    <div class="road">
+      <sk-image src="assets/img/game/road.png" [ratio]="750/1334" ></sk-image>
+    </div>
+
+    <div class="road">
+      <sk-image src="assets/img/game/road.png" [ratio]="750/1334" ></sk-image>
+    </div>
+
+    <div class="road">
+      <sk-image src="assets/img/game/road.png" [ratio]="750/1334" ></sk-image>
+    </div>
+  </div>
+
+  <sk-image class="car" src="/assets/img/game/car.png" [ratio]="268/544" [ngClass]="'car-p' + carPosition"></sk-image>
+
+  <sk-image class="left" src="/assets/img/game/angle.png" [ratio]="1"
+            (touchstart)="onTurnLeft()" (touchcancel)="onTurnLeftEnd()" (touchend)="onTurnLeftEnd()"></sk-image>
+  <sk-image class="right" src="/assets/img/game/angle.png" [ratio]="1"
+            (touchstart)="onTurnRight()" (touchcancel)="onTurnRightEnd()" (touchend)="onTurnRightEnd()"></sk-image>
+
+  <sk-image class="jiasu" src="/assets/img/game/jiasu.png" [ratio]="1"
+            (touchstart)="onMove()" (touchcancel)="onMoveEnd()" (touchend)="onMoveEnd()"></sk-image>
 </div>

@@ -29,6 +29,7 @@ import {DynamicCore} from "../../../components/dynamicCore/DynamicCore";
 })
 export class StartGameComponent extends DynamicCore implements OnInit {
 
+  @Output() startEvent: EventEmitter<null> = new EventEmitter();
   constructor() {
     super();
   }
@@ -44,5 +45,6 @@ export class StartGameComponent extends DynamicCore implements OnInit {
 
   start() {
     this.hide();
+    this.startEvent.emit();
   }
 }
