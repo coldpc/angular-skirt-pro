@@ -1,0 +1,155 @@
+@import "../../../theme/variables";
+
+$fontColor: #fff;
+
+// 背景
+.back-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(/assets/img/vipjizhan/bg.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-color: #000;
+}
+
+// 头部
+.header {
+  width: 100%;
+  height: auto;
+  z-index: 3;
+
+  // 头部logo
+  .logo-box {
+    display: block;
+    padding-top: 0.16rem;
+    padding-left: 0.18rem;
+
+    .logo {
+      height: 0.16rem;
+    }
+  }
+
+  // 头部小字介绍
+  .product-box {
+    display: block;
+    padding: 0.1rem 0 0  0.18rem;
+
+    .product{
+      width: 80%;
+      height: 0.2rem;
+    }
+  }
+}
+
+// 邀请函标题
+.title-box {
+  display: block;
+  text-align: center;
+  margin: 0.35rem auto 0;
+
+  .title {
+    width: 60%;
+  }
+}
+
+// 表单
+.review-form {
+  width: 3rem;
+  height: 2.36rem;
+  background: rgba(2, 11, 36, 0.5);
+  margin: 0.2rem auto 0;
+
+  // 表单内容
+  .rev_txt {
+    padding: 0.25rem 0.15rem 0.15rem;
+    overflow: hidden;
+
+    ul {
+      width: 95%;
+      padding: 0;
+      margin: 0 auto;
+      overflow: hidden;
+
+      li:not(:last-child){
+        margin-bottom: 0.12rem;
+      }
+
+      li{
+        height: 0.32rem;
+        line-height: 0.32rem;
+        list-style: none;
+        color: #fff;
+        border-bottom: solid 1px #fff;
+        overflow: hidden;
+
+        dl{
+          position: relative;
+          margin: 0;
+          padding: 0;
+
+          dd {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+          }
+
+          dd.info {
+            margin-left: 0.1rem;
+
+            &::before {
+              content: "*";
+              position: absolute;
+              left: 0;
+              top: 60%;
+              transform: translateY(-50%);
+              line-height: initial;
+            }
+          }
+
+          dd.ipt {
+            input[type="text"] {
+              width: 1.6rem;
+              padding: 0.08rem;
+              border: none;
+              background: none;
+              outline: none;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 按钮
+  .rev_btn{
+    text-align: center;
+    margin: 0.15rem auto 0;
+
+    .sccf{
+      width: 1.35rem;
+      height: 0.4rem;
+      border: none;
+      margin: 0 auto;
+      background: url(/assets/img/yaoqinghan/sccf.png) top no-repeat;
+      background-size: 100%;
+    }
+  }
+}
+
+// 汽车图标
+.car-box {
+  width: 100%;
+  //height: 1.66rem;
+  margin: 0.43rem auto 0;
+  overflow: hidden;
+
+  .car {
+    width: 100%;
+    height: 100%;
+  }
+}
