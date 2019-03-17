@@ -75,6 +75,11 @@ const routes: Routes = [
     path: 'page/game',
     loadChildren: './page/game/game.module#GameModule',
     canLoad: []
+  },
+  {
+    path: 'page/yaoqinghanliuzi',
+    loadChildren: './page/yaoqinghanliuzi/yaoqinghanliuzi.module#yaoqinghanliuziModule',
+    canLoad: []
   }
 ];
 
