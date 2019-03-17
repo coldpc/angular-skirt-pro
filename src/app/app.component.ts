@@ -48,11 +48,10 @@ export class AppComponent implements AfterViewInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
 
-        if (this.router.url.indexOf('home') > -1) {
+        if (this.router.url.indexOf('forum') > -1) {
           setTimeout(() => {
             if (this.loadingDom) {
-              this.loadingDom.querySelector(".loading_txt").innerHTML = '100%';
-              this.loadingDom.querySelector("button").style.display = 'inline-block';
+              this.loadingDom.parentNode.removeChild(this.loadingDom);
             }
           }, 1500 + parseInt(Math.random() * 1500 + '', 10));
         } else {

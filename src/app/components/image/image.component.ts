@@ -36,7 +36,7 @@ export class ImageComponent implements OnInit {
    * @param width 宽度
    * @param quality 质量
    */
-  static processImageUrl(remoteUrl, width = 1, quality = 80) {
+  static processImageUrl(remoteUrl, width, quality = 80) {
     let host = 'aliyuncs.com';
     let prefix = 'x-oss-process=image';
 
@@ -66,7 +66,7 @@ export class ImageComponent implements OnInit {
   getSrc(): string {
     let src = this.src || (this.pictures && this.pictures[this.pictureType]);
     if (src) {
-      src = ImageComponent.processImageUrl(src);
+      src = ImageComponent.processImageUrl(src, this.processWidth, this.processQuality);
     }
     return src;
   }

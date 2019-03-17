@@ -96,6 +96,14 @@ export class SwiperComponent implements AfterViewInit, AfterContentInit, OnDestr
     this.plugin.slideTo(index);
   }
 
+  slideNext() {
+    this.plugin.slideNext();
+  }
+
+  slidePrev() {
+    this.plugin.slidePrev();
+  }
+
   destroy() {
     if (this.plugin) {
       this.plugin.destroy(true, true);

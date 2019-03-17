@@ -31,128 +31,106 @@
       height: 100%;
       color: #91c3e6;
       background-color: #000;
+      text-transform: uppercase;
+      font-size: 5vh;
+      text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
+      background-image: url("/assets/img/loading/loading.gif");
+      background-position: center bottom;
+      background-size: 100% auto;
+    }
+
+    @keyframes dots {
+      50% {
+        transform: translateY(-.2em);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .d {
+      animation: dots 1.5s ease-out infinite;
+    }
+
+    .d-2 {
+      animation-delay: .5s;
+    }
+
+    .d-3 {
+      animation-delay: 1s;
     }
 
     .loading_box {
-      position: absolute;
-      top: 50%;
       width: 100%;
-      height: 4.34rem;
+      height: 100vh;
+    }
+
+    .loading {
+      width: 100%;
+    }
+
+    .btn_wrap button {
+      display: none;
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1.5rem;
+      height: 0.42rem;
+      background: url(/assets/img/loading/btn.png) top no-repeat;
+      background-size: 100% 100%;
+      border: none;
+    }
+
+    .loading_txt{
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translate(-50%);
+      margin-top: 1rem;
+      width: 100%;
+      height: 0.42rem;
       text-align: center;
-      transform: translateY(-50%);
+      font-size: 0.15rem;
+      color: #fff;
     }
-
-    .zhizhen, .km-con {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .zhizhen {
-      width: 0.83rem;
-      height: 0.4rem;
-      top: 2.3rem;
-      left: 1.1rem;
-      transform: rotateZ(10deg);
-      transform-origin: right top;
-    }
-    .zhizhen .img {
-      width: 100%;
-      transform-origin: right bottom;
-      transform: rotateZ(-32deg) translate(0.52rem, -0.28rem);
-    }
-
-    .km-con {
-      width: 0.88rem;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 2.7rem;
-    }
-
-    .km-con .img {
-      width: 100%;
-    }
-
-    .bg-img {
-      width: 100%;
-    }
-    .loading_txt {
-      font-size: 0.2rem;
-      line-height: 0.2rem;
-      text-align: center;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-    }
-
-
-    .small {
-      font-size: 0.12rem;
-    }
-
   </style>
   <!--Loading<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>-->
   <div class="loading_box">
-    <img class="bg-img img" src="/assets/img/forum/yibiaopan/bg.png" alt="">
-    <div class="zhizhen">
-      <img class="img" src="/assets/img/forum/yibiaopan/zhizhen.png" alt="">
-    </div>
-    <div class="km-con">
-      <img class="km img" src="/assets/img/forum/yibiaopan/km.png" alt="">
-      <p class="loading_txt">
-        <span class="km-text" style="letter-spacing: 0.02rem;">0985</span>
-        <span class="small">km</span>
-      </p>
+    <div class="loading_finish">
+      <p class="loading_txt"><!--100%--></p>
+
+      <div class="btn_wrap">
+        <button onclick="removeLoading()"></button>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
 
-  setFontSize();
-  function setFontSize() {
-    const html = window.document.documentElement;
-    const screenWidth = html.offsetWidth;
-
-    let fontSize = window.devicePixelRatio * 100 * screenWidth / 375;
-    fontSize = window.Math.floor(fontSize);
-    html.style.fontSize = fontSize + "px";
-
-    const viewport = window.document.querySelector("meta[name=viewport]");
-    const scale = Math.round(100 * 1 /  window.devicePixelRatio) / 100;
-
-    viewport.setAttribute('content',
-      [`width=device-width`,
-        `initial-scale=${scale}`,
-        `maximum-scale=${scale}`,
-        `minimum-scale=${scale}`,
-        `shrink-to-fit=no`,
-        `user-scalable=0`,
-        `viewport-fit=cover`].join(", "));
-  }
-
   function removeLoading() {
     let loadingDom = window.document.getElementById("app_loading_id");
     loadingDom.parentNode.removeChild(loadingDom);
+
+    let video = window.document.querySelector("video");
+    if (video) {
+      video.play();
+    }
   }
   /**/
 
-  let n = 0;
   let t = setInterval(() => {
-    let zhizhen = document.querySelector(".zhizhen");
-    let loading_text = document.querySelector(".km-con .km-text");
+    let n = 0;
+    let loading_text = document.querySelector(".loading_txt");
     if (loading_text) {
-      n = n + Math.ceil(1 * Math.random() + 1);
-      loading_text.innerText = '0' + (100 + Math.ceil(n / 100 * 985));
-      zhizhen.style.transform = 'rotateZ(' + Math.ceil(200 * n / 100) + 'deg)';
+      n = (parseInt(loading_text.innerText) || 0) + 1;
+      loading_text.innerText = n + '%';
     }
 
     if(n > 100){
       loading_text.innerText = '100%';
       clearInterval(t);
-      // removeLoading();
     }
   }, 150);
 </script>

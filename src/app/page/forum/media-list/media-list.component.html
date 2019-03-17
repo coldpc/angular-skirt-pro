@@ -1,0 +1,24 @@
+<div class="media-list-wrap">
+  <div class="media-list" #mediaList>
+    <div *ngFor="let media of mediaListData; let i = index"
+         class="media-item" [ngClass]="{active: currentMediaIndex === i}"
+         (tap)="onTapMedia(i)"
+         [ngStyle]="getScaleStyle(i - currentMediaIndex)">
+      <div class="media">汽车之家</div>
+      <sk-image [src]="media" [ratio]="1"></sk-image>
+    </div>
+  </div>
+</div>
+
+
+<div class="rich-container">
+  <div class="angle-left" (tap)="prevMedia(-1)"></div>
+  <div class="angle-right" (tap)="prevMedia(1)"></div>
+  <sk-image src="/assets/img/forum/p3-rich-bg.png" [ratio]="729/581"></sk-image>
+  <div class="rich-wrapper">
+    <div class="scroll" #richScroll>
+      <div class="title">SourceHanSansCN-Bold</div>
+      <div class="desc">全新雷凌双擎作为主流家用车，主打舒适性的小轮圈+厚轮胎的搭配仍应是主销车型的配置。而在设计方面，全新雷凌......</div>
+    </div>
+  </div>
+</div>
