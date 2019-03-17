@@ -12,6 +12,8 @@ export class ForumComponent implements OnInit {
 
   currentIndex = 1;
 
+  pics = [{url: "/assets/img/vipjizhan/bg.jpg"}, {url: "/assets/img/vipjizhan/bg.jpg"}];
+
   constructor(private routerService: RouterService) {
 
   }

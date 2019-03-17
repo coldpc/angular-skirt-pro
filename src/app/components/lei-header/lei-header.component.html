@@ -8,7 +8,7 @@
     <span class="back1">返回</span>
   </button>
 
-  <button class="right m-btn" (tap)="toggleMusic()" [ngClass]="{scale: isScale}">
+  <button *ngIf="hasMusic" class="right m-btn" (tap)="toggleMusic()" [ngClass]="{scale: isScale}">
     <sk-image src="/assets/img/m-play.png" *ngIf="!audioService.isPaused()" class="m1" [ratio]="1"></sk-image>
     <sk-image src="/assets/img/m-pause.png" *ngIf="audioService.isPaused()" class="m1" [ratio]="1"></sk-image>
   </button>

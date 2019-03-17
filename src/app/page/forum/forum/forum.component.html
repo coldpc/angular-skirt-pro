@@ -1,8 +1,71 @@
-<div class="back-img">
+<div class="back-img" [ngClass]="{'back-t2': currentIndex === 2}">
   <!--<sk-image class="not-img" [ratio]="356/235" src="/assets/img/xunhangjiaoliu/not.png"></sk-image>-->
 </div>
 <sk-layout>
   <div class="top">
-    <sk-lei-header class="top-part"></sk-lei-header>
+    <sk-lei-header class="top-part" [hasBack]="false" [hasMusic]="false"></sk-lei-header>
+
+    <div class="tabset">
+      <div class="tab tab1" (tap)="switchTab(1)" [ngClass]="{visible: currentIndex === 1}">
+        <sk-image [ratio]="458/265" src="/assets/img/forum/t1-big.png"></sk-image>
+      </div>
+      <div class="tab tab2" (tap)="switchTab(2)" [ngClass]="{visible: currentIndex === 2}">
+        <sk-image [ratio]="110/60" src="/assets/img/forum/t2-big.png"></sk-image>
+      </div>
+      <div class="tab tab3" (tap)="switchTab(3)" [ngClass]="{visible: currentIndex === 3}">
+        <sk-image [ratio]="110/60" src="/assets/img/forum/t3-big.png"></sk-image>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="main-content">
+
+    <div *ngIf="currentIndex === 1" class="t1-page">
+      <div class="title">
+        <div class="c1"></div>
+        <div class="c2"></div>
+        <p>宁波站</p>
+      </div>
+      <div class="flex-img-part">
+        <div class="img-item">
+          <sk-image src="/assets/img/forum/t11.png" class="img" [ratio]="1"></sk-image>
+        </div>
+
+        <div class="img-item">
+          <sk-image src="/assets/img/forum/t11-big.png" class="img" [ratio]="1"></sk-image>
+        </div>
+
+        <div class="img-item">
+          <sk-image src="/assets/img/forum/t11-big.png" class="img" [ratio]="1"></sk-image>
+        </div>
+
+        <div class="img-item">
+          <sk-image src="/assets/img/forum/t11-big.png" class="img" [ratio]="1"></sk-image>
+        </div>
+
+        <div class="img-item">
+          <sk-image src="/assets/img/forum/t11-big.png" class="img" [ratio]="1"></sk-image>
+        </div>
+
+        <div class="img-item">
+          <sk-image src="/assets/img/forum/t11-big.png" class="img" [ratio]="1"></sk-image>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentIndex === 2"  class="t2-page">
+      <div class="content">
+        <sk-image src="/assets/img/forum/p2-video-bg.png" [ratio]="726 / 403"></sk-image>
+        <div class="swiper-con">
+          <sk-swiper>
+            <sk-swiper-slide *ngFor="let pic of pics">
+              <sk-image [src]="pic.url" [ratio]="16 / 9"></sk-image>
+            </sk-swiper-slide>
+          </sk-swiper>
+        </div>
+      </div>
+
+    </div>
   </div>
 </sk-layout>

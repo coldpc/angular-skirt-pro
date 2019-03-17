@@ -56,7 +56,7 @@ export class AppComponent implements AfterViewInit {
             }
           }, 1500 + parseInt(Math.random() * 1500 + '', 10));
         } else {
-          if (this.loadingDom) {
+          if (this.loadingDom && this.loadingDom.parentNode) {
             this.loadingDom.parentNode.removeChild(this.loadingDom);
           }
         }
