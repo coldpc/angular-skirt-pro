@@ -32,7 +32,11 @@ export class ForumComponent implements OnInit, AfterViewInit {
   @ViewChild("mediaList") mediaListRef: ElementRef;
   scroll;
 
-  pics = [{url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/textures/movie.mp4"}, {url: "/assets/img/vipjizhan/bg.jpg"}];
+  pics = [
+    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v1.mp4"},
+    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v2.mp4"}
+  ];
+  // pics = [{url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/textures/movie.mp4"}, {url: "/assets/img/vipjizhan/bg.jpg"}];
 
   constructor(private routerService: RouterService,
               private apiStationImgListService: ApiStationImgListService,
