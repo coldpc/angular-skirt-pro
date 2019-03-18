@@ -8,9 +8,10 @@ import {ApiStationListService} from "../../lib/service/http/api/ApiStationListSe
 import {PickerModule} from "../../lib/modules/picker.module";
 import {ApiStationImgListService} from "../../lib/service/http/api/ApiStationImgListService";
 import { MediaListComponent } from './media-list/media-list.component';
+import { ImgViewerComponent } from './img-viewer/img-viewer.component';
 
 @NgModule({
-  declarations: [ForumComponent, MediaListComponent],
+  declarations: [ForumComponent, MediaListComponent, ImgViewerComponent],
   imports: [
     ForumRoutingModule,
     CommonComponentsModule,

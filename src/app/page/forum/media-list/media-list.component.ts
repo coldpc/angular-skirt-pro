@@ -17,6 +17,9 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   currentMediaIndex = 0;
 
+  isShow = false;
+  richData = "打卡时间打卡机快速达科技";
+
   @ViewChild("mediaList") mediaListRef: ElementRef;
   @ViewChild("richScroll") richScrollRef: ElementRef;
 
@@ -76,6 +79,11 @@ export class MediaListComponent implements OnInit, AfterViewInit {
       this.currentMediaIndex = index;
       this.scroll.scroller.scrollTo(this.snapWidth * index, 0, true);
     }, 100);
+  }
+
+  onTapShare() {
+    this.isShow = true;
+    console.log(1111)
   }
 
   prevMedia(change) {

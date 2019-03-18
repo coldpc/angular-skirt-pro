@@ -16,6 +16,9 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
   currentIndex = 1;
 
+  allWidth = "1000px";
+  sIndex = 0;
+
   isShowSelect = false;
   stationList = [];
   selectedStation = null;
@@ -54,6 +57,8 @@ export class ForumComponent implements OnInit, AfterViewInit {
       console.log(res);
       this.stationList = res;
 
+      this.allWidth = res.length * 9 / 10 + "rem";
+
       if (!this.selectedStation) {
         this.loadImgList(res[0]);
       }
@@ -70,6 +75,11 @@ export class ForumComponent implements OnInit, AfterViewInit {
       });
     }
 
+  }
+
+  onChangeCity(e, i) {
+   this.sIndex = i;
+   this.loadImgList(e);
   }
 
   onChangeSelect(e) {

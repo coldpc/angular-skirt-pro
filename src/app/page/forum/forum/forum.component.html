@@ -22,14 +22,21 @@
   <div class="main-content">
 
     <div *ngIf="currentIndex === 1" class="t1-page">
-      <div class="title" (tap)="onTapStation()">
-        <div class="c1"></div>
-        <div class="c2"></div>
-        <p>{{selectedStation && selectedStation.stationName}}</p>
+      <div class="title-box">
+        <div [ngStyle]="{width: allWidth}">
+          <div *ngFor="let city of stationList; let i = index" [ngStyle]="{color: sIndex === i ? '#fff' : '#ddd', fontWeight: sIndex === i ? 'bold' : 'normal'}" class="title" (tap)="onChangeCity(city, i)">
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <p>{{stationList && city.stationName}}</p>
+          </div>
+        </div>
       </div>
+
       <div class="flex-img-part">
-        <div class="img-item" *ngFor="let imgItem of stationImgList" (tap)="onViewImg(imgItem)">
-          <sk-image [src]="imgItem.url" class="img" [ratio]="1"  [processWidth]="256"></sk-image>
+        <div class="flex-img-box">
+          <div class="img-item" *ngFor="let imgItem of stationImgList" (tap)="onViewImg(imgItem)">
+            <sk-image [src]="imgItem.url" class="img" [ratio]="1"  [processWidth]="256"></sk-image>
+          </div>
         </div>
       </div>
     </div>

@@ -12,6 +12,7 @@
 
   &.back-t2 {
     background-image: url("/assets/img/forum/p2-bg.jpg");
+    background-position: center bottom;
   }
 
   .not-img {
@@ -90,17 +91,24 @@ sk-layout {
 
 
 .t1-page {
-  .title {
-    color: #ffffff;
-    margin-left: 0.12rem;
-    border-bottom: 2px solid #00A0E9;
+  height: calc(100vh - 1.46rem);
+  overflow: auto;
+  .title-box {
     border-left: 2px solid #00A0E9;
+    margin: 0 0.12rem;
+    overflow: auto;
+  }
+  .title {
+    display: inline-block;
+    color: #ffffff;
+    border-bottom: 2px solid #00A0E9;
     width: 0.9rem;
     text-align: center;
     font-size: 0.15rem;
     padding-top: 0.15rem;
     padding-bottom: 0.06rem;
     position: relative;
+    font-weight: normal;
 
     .c1, .c2 {
       position: absolute;
@@ -123,18 +131,12 @@ sk-layout {
 }
 
 .flex-img-part {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-content: flex-start;
   width: 3.28rem;
   padding-left: 0.1rem;
   padding-top: 0.1rem;
   margin-left: 0.12rem;
   border-left: 2px solid #00A0E9;
-  min-height: 100vh;
+  height: calc(100% - 0.46rem);
 
   .img-item {
     width: 1.05rem;
@@ -145,6 +147,17 @@ sk-layout {
       background-color: #fff;
     }
   }
+}
+
+.flex-img-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+  height: 100%;
+  overflow: auto;
 }
 
 
