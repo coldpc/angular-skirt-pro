@@ -210,7 +210,6 @@ export class ApiCoreService<T> {
           onError ?: (error: HttpErrorModel) => void,
           onComplete ?: (api: ApiCoreService<T>) => void): void {
 
-    debugger;
     // 获取url地址
     const url = UrlApi.addParams(this.url, this.params);
 

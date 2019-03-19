@@ -162,7 +162,35 @@
   }, 150);
 
   function completeLoad() {
-    n = 100;
+    let dn = (100 - n) / 10;
+    let myIn = setInterval(run, 100);
+    clearInterval(t);
+
+    function run() {
+      n += dn;
+      let nn = n;
+
+      let zhizhen = document.querySelector(".zhizhen");
+      let loading_text = document.querySelector(".km-con .km-text");
+      if (loading_text) {
+        nn = nn + Math.ceil(1 * Math.random() + 1);
+
+        if (nn > 100) {
+          nn = 100;
+        }
+
+        loading_text.innerText = '0' + (100 + Math.ceil(nn / 100 * 885));
+        zhizhen.style.transform = 'rotateZ(' + Math.ceil(200 * nn / 100) + 'deg)';
+      }
+
+      if(n > 100) {
+        loading_text.innerText = '0985';
+        clearInterval(myIn);
+
+        let dom = window.document.getElementById("app_loading_id");
+        dom.parentNode.removeChild(dom);
+      }
+    }
   }
 </script>
 

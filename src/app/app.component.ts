@@ -49,16 +49,17 @@ export class AppComponent implements AfterViewInit {
       if (event instanceof NavigationEnd) {
 
         if (this.router.url.indexOf('forum') > -1) {
-          setTimeout(() => {
-            window['completeLoad']();
-
-            setTimeout(() => {
-              if (this.loadingDom) {
-                this.loadingDom.parentNode.removeChild(this.loadingDom);
-              }
-            }, 500);
-
-          }, 1200 + parseInt(Math.random() * 1500 + '', 10));
+          // setTimeout(() => {
+          //   window['completeLoad']();
+          //
+          //   setTimeout(() => {
+          //     if (this.loadingDom) {
+          //       this.loadingDom.parentNode.removeChild(this.loadingDom);
+          //     }
+          //   }, 500);
+          //
+          // }, 1200 + parseInt(Math.random() * 1500 + '', 10));
+          window['completeLoad']();
         } else {
           if (this.loadingDom && this.loadingDom.parentNode) {
             this.loadingDom.parentNode.removeChild(this.loadingDom);
