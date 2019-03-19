@@ -50,10 +50,15 @@ export class AppComponent implements AfterViewInit {
 
         if (this.router.url.indexOf('forum') > -1) {
           setTimeout(() => {
-            if (this.loadingDom) {
-              this.loadingDom.parentNode.removeChild(this.loadingDom);
-            }
-          }, 1500 + parseInt(Math.random() * 1500 + '', 10));
+            window['completeLoad']();
+
+            setTimeout(() => {
+              if (this.loadingDom) {
+                this.loadingDom.parentNode.removeChild(this.loadingDom);
+              }
+            }, 500);
+
+          }, 1200 + parseInt(Math.random() * 1500 + '', 10));
         } else {
           if (this.loadingDom && this.loadingDom.parentNode) {
             this.loadingDom.parentNode.removeChild(this.loadingDom);

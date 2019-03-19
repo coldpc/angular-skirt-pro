@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
+import {ApiMediaListService} from "../../../lib/service/http/api/ApiMediaListService";
+import {ApiMediaPageListService} from "../../../lib/service/http/api/ApiMediaPageListService";
 
 @Component({
   selector: 'sk-media-list',
@@ -13,20 +15,49 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   snapWidth;
 
-  mediaListData = ["/assets/img/forum/p3-meiti.png", "/assets/img/forum/p3-meiti.png", "/assets/img/forum/p3-meiti.png"];
+  mediaListData = [];
 
   currentMediaIndex = 0;
+
+  isShow = false;
+  richData: {
+    text ?: string,
+    title ?: string,
+    headPic ?: string
+  } = {};
 
   @ViewChild("mediaList") mediaListRef: ElementRef;
   @ViewChild("richScroll") richScrollRef: ElementRef;
 
-  constructor() { }
+  constructor(private mediaListService: ApiMediaListService,
+              protected pageService: ApiMediaPageListService) { }
 
   ngOnInit() {
+    this.mediaListService.request((res) => {
+      console.log(res);
+      this.mediaListData = res;
+      this.loadMediaPage(res[0].id);
+    });
   }
 
   ngAfterViewInit(): void {
     this.initScroll();
+  }
+
+  loadMediaPage(mediaId) {
+    this.pageService.setParams({
+      offset: 10,
+      limit: 1,
+      createTimeDesc: 'true',
+      mediaId
+    }).request((res) => {
+      console.log(res);
+      if (res.records && res.records.length > 0) {
+        this.richData = res.records[0];
+      } else {
+        this.richData = {};
+      }
+    });
   }
 
   initScroll() {
@@ -38,7 +69,7 @@ export class MediaListComponent implements OnInit, AfterViewInit {
       onScroll: this.onScroll.bind(this)
     });
 
-    this.snapWidth = this.mediaListRef.nativeElement.children[0].offsetWidth;
+    this.snapWidth = 1.1 * parseInt(window.document.documentElement.style.fontSize, 10);
     this.scroll.scroller.setSnapSize(this.snapWidth, 0);
 
 
@@ -73,12 +104,24 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   onTapMedia(index) {
     setTimeout(() => {
-      this.currentMediaIndex = index;
+      this.changeMedia(index);
       this.scroll.scroller.scrollTo(this.snapWidth * index, 0, true);
     }, 100);
   }
 
+  onTapShare() {
+    this.isShow = true;
+    console.log(1111);
+  }
+
   prevMedia(change) {
     this.onTapMedia(this.currentMediaIndex + change);
+  }
+
+  changeMedia(index) {
+    if (this.currentMediaIndex !== index) {
+      this.currentMediaIndex = index;
+      this.loadMediaPage(this.mediaListData[index].id);
+    }
   }
 }

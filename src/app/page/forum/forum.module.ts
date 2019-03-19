@@ -8,15 +8,18 @@ import {ApiStationListService} from "../../lib/service/http/api/ApiStationListSe
 import {PickerModule} from "../../lib/modules/picker.module";
 import {ApiStationImgListService} from "../../lib/service/http/api/ApiStationImgListService";
 import { MediaListComponent } from './media-list/media-list.component';
+import { ImgViewerComponent } from './img-viewer/img-viewer.component';
+import {ApiMediaListService} from "../../lib/service/http/api/ApiMediaListService";
+import {ApiMediaPageListService} from "../../lib/service/http/api/ApiMediaPageListService";
 
 @NgModule({
-  declarations: [ForumComponent, MediaListComponent],
+  declarations: [ForumComponent, MediaListComponent, ImgViewerComponent],
   imports: [
     ForumRoutingModule,
     CommonComponentsModule,
     SwiperModule,
     PickerModule
   ],
-  providers: [RouterService, ApiStationListService, ApiStationImgListService]
+  providers: [RouterService, ApiStationListService, ApiStationImgListService, ApiMediaListService, ApiMediaPageListService]
 })
 export class ForumModule { }

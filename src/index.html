@@ -102,7 +102,7 @@
     <div class="km-con">
       <img class="km img" src="/assets/img/forum/yibiaopan/km.png" alt="">
       <p class="loading_txt">
-        <span class="km-text" style="letter-spacing: 0.02rem;">0985</span>
+        <span class="km-text" style="letter-spacing: 0.02rem;">0000</span>
         <span class="small">km</span>
       </p>
     </div>
@@ -145,16 +145,25 @@
     let loading_text = document.querySelector(".km-con .km-text");
     if (loading_text) {
       n = n + Math.ceil(1 * Math.random() + 1);
-      loading_text.innerText = '0' + (100 + Math.ceil(n / 100 * 985));
+
+      if (n > 100) {
+        n = 100;
+      }
+
+      loading_text.innerText = '0' + (100 + Math.ceil(n / 100 * 885));
       zhizhen.style.transform = 'rotateZ(' + Math.ceil(200 * n / 100) + 'deg)';
     }
 
-    if(n > 100){
-      loading_text.innerText = '100%';
+    if(n > 99){
+      loading_text.innerText = '0985';
       clearInterval(t);
       // removeLoading();
     }
   }, 150);
+
+  function completeLoad() {
+    n = 100;
+  }
 </script>
 
 <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="application/javascript"></script>-->

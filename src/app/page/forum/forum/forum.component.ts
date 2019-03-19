@@ -16,6 +16,9 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
   currentIndex = 1;
 
+  allWidth = "1000px";
+  sIndex = 0;
+
   isShowSelect = false;
   stationList = [];
   selectedStation = null;
@@ -29,7 +32,11 @@ export class ForumComponent implements OnInit, AfterViewInit {
   @ViewChild("mediaList") mediaListRef: ElementRef;
   scroll;
 
-  pics = [{url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/textures/movie.mp4"}, {url: "/assets/img/vipjizhan/bg.jpg"}];
+  pics = [
+    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v1.mp4"},
+    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v2.mp4"}
+  ];
+  // pics = [{url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/textures/movie.mp4"}, {url: "/assets/img/vipjizhan/bg.jpg"}];
 
   constructor(private routerService: RouterService,
               private apiStationImgListService: ApiStationImgListService,
@@ -54,6 +61,8 @@ export class ForumComponent implements OnInit, AfterViewInit {
       console.log(res);
       this.stationList = res;
 
+      this.allWidth = res.length * 9 / 10 + "rem";
+
       if (!this.selectedStation) {
         this.loadImgList(res[0]);
       }
@@ -72,8 +81,13 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
   }
 
+  onChangeCity(e, i) {
+    this.sIndex = i;
+    this.loadImgList(e);
+  }
+
   onChangeSelect(e) {
-   this.loadImgList(e);
+    this.loadImgList(e);
   }
 
   onTapBack() {

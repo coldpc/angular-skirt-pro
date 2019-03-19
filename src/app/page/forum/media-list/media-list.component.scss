@@ -28,6 +28,22 @@
     color: #0AAAEC;
     border-radius: 50%;
     z-index: 22;
+
+    sk-image {
+      border-radius: 50%;
+    }
+
+    .media-name {
+      overflow: hidden;
+      position: absolute;
+      line-height: 0.65rem;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      z-index: 2;
+      top: 0;
+      left: 0;
+    }
   }
 }
 
