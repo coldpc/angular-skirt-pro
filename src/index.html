@@ -49,17 +49,16 @@
     }
 
     .zhizhen {
-      width: 0.83rem;
-      height: 0.4rem;
-      top: 2.3rem;
-      left: 1.1rem;
-      transform: rotateZ(10deg);
-      transform-origin: right top;
+      width: 1.4rem;
+      top: 50%;
+      left: 50%;
+      margin-left: -0.76rem;
+      transform: rotateZ(-40deg);
+      margin-top: -0.4rem;
+      line-height: 0;
     }
     .zhizhen .img {
       width: 100%;
-      transform-origin: right bottom;
-      transform: rotateZ(-32deg) translate(0.52rem, -0.28rem);
     }
 
     .km-con {
@@ -97,7 +96,7 @@
   <div class="loading_box">
     <img class="bg-img img" src="/assets/img/forum/yibiaopan/bg.png" alt="">
     <div class="zhizhen">
-      <img class="img" src="/assets/img/forum/yibiaopan/zhizhen.png" alt="">
+      <img class="img" src="/assets/img/forum/yibiaopan/zhizhen2.png" alt="">
     </div>
     <div class="km-con">
       <img class="km img" src="/assets/img/forum/yibiaopan/km.png" alt="">
@@ -151,7 +150,7 @@
       }
 
       loading_text.innerText = '0' + (100 + Math.ceil(n / 100 * 885));
-      zhizhen.style.transform = 'rotateZ(' + Math.ceil(200 * n / 100) + 'deg)';
+      zhizhen.style.transform = 'rotateZ(' + Math.ceil(-40 + 220 * n / 100) + 'deg)';
     }
 
     if(n > 99){
@@ -180,7 +179,7 @@
         }
 
         loading_text.innerText = '0' + (100 + Math.ceil(nn / 100 * 885));
-        zhizhen.style.transform = 'rotateZ(' + Math.ceil(200 * nn / 100) + 'deg)';
+        zhizhen.style.transform = 'rotateZ(' + Math.ceil(-40 + 220 * nn / 100) + 'deg)';
       }
 
       if(n > 100) {

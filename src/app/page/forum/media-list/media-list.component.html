@@ -15,16 +15,19 @@
 
 
 <div class="rich-container">
-  <div class="angle-left" (tap)="prevMedia(-1)"></div>
-  <div class="angle-right" (tap)="prevMedia(1)"></div>
+  <div class="angle-left" (tap)="changeMediaArticle(-1)"></div>
+  <div class="angle-right" (tap)="changeMediaArticle(1)"></div>
   <sk-image src="/assets/img/forum/p3-rich-bg.png" [ratio]="729/581"></sk-image>
   <div class="rich-wrapper" (tap)="onTapShare()">
-    <div class="scroll" #richScroll>
-      <div class="title">{{richData.title}}</div>
-      <div class="desc" [innerHTML]="richData.text"></div>
-    </div>
+    <ng-container *ngFor="let article of articleList; let ind = index">
+      <div *ngIf="ind === currentArticleIndex">
+        <div class="title">{{article.title}}</div>
+        <div class="rich-text" [innerHTML]="article.text"></div>
+        <img class="article-img" [src]="article.headPic" alt="">
+      </div>
+    </ng-container>
   </div>
 </div>
 
 <!--<sk-img-viewer></sk-img-viewer>-->
-<sk-img-viewer [(isShow)]="isShow" [richData]="richData"></sk-img-viewer>
+<sk-article-viewer [(isShow)]="isShow" [richData]="articleList && articleList[currentArticleIndex]"></sk-article-viewer>

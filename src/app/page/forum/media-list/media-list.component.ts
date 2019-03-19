@@ -3,6 +3,12 @@ import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
 import {ApiMediaListService} from "../../../lib/service/http/api/ApiMediaListService";
 import {ApiMediaPageListService} from "../../../lib/service/http/api/ApiMediaPageListService";
 
+interface InArticle {
+  text ?: string;
+  title ?: string;
+  headPic ?: string;
+}
+
 @Component({
   selector: 'sk-media-list',
   templateUrl: './media-list.component.html',
@@ -19,12 +25,13 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   currentMediaIndex = 0;
 
+  currentArticleIndex = 0;
+
   isShow = false;
-  richData: {
-    text ?: string,
-    title ?: string,
-    headPic ?: string
-  } = {};
+
+  articleData: InArticle = {};
+
+  articleList: Array<InArticle> = [];
 
   @ViewChild("mediaList") mediaListRef: ElementRef;
   @ViewChild("richScroll") richScrollRef: ElementRef;
@@ -46,16 +53,17 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   loadMediaPage(mediaId) {
     this.pageService.setParams({
-      offset: 10,
+      offset: 5,
       limit: 1,
       createTimeDesc: 'true',
       mediaId
     }).request((res) => {
       console.log(res);
       if (res.records && res.records.length > 0) {
-        this.richData = res.records[0];
+        this.articleList = res.records;
+        this.currentArticleIndex = 0;
       } else {
-        this.richData = {};
+        this.articleList = [];
       }
     });
   }
@@ -73,9 +81,9 @@ export class MediaListComponent implements OnInit, AfterViewInit {
     this.scroll.scroller.setSnapSize(this.snapWidth, 0);
 
 
-    this.richScroll = new SkEasyScroller(this.richScrollRef.nativeElement, {
-      scrollingX: false
-    });
+    // this.richScroll = new SkEasyScroller(this.richScrollRef.nativeElement, {
+    //   scrollingX: false
+    // });
   }
 
   onScrollComplete() {
@@ -114,8 +122,14 @@ export class MediaListComponent implements OnInit, AfterViewInit {
     console.log(1111);
   }
 
-  prevMedia(change) {
-    this.onTapMedia(this.currentMediaIndex + change);
+  changeMediaArticle(change) {
+    let currentIndex = this.currentArticleIndex + change;
+    if (currentIndex > 4) {
+      currentIndex = 4;
+    } else if (currentIndex < 0) {
+      currentIndex = 0;
+    }
+    this.currentArticleIndex = currentIndex;
   }
 
   changeMedia(index) {

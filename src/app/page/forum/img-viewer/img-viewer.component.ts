@@ -4,7 +4,7 @@ import {DynamicCore} from "../../../components/dynamicCore/DynamicCore";
 import {SkEasyScroller} from "../../../lib/utils/ZScroller/SkEasyScroller";
 
 @Component({
-  selector: 'sk-img-viewer',
+  selector: 'sk-article-viewer',
   templateUrl: './img-viewer.component.html',
   styleUrls: ['./img-viewer.component.scss'],
   animations: [

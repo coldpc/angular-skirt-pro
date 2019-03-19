@@ -93,3 +93,16 @@
     left: auto !important;
   }
 }
+
+
+.rich-wrapper {
+  .article-img {
+    display: block;
+    width: 100%;
+  }
+  .rich-text {
+    padding: 0.15rem 0.1rem;
+    color: #fff;
+  }
+
+}

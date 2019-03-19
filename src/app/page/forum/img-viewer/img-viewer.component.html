@@ -6,7 +6,8 @@
     </div>
     <div class="scroll-wrapper">
       <div class="scroll" #scroll>
-        <div [innerHTML]="richData.text"></div>
+        <div class="title">{{richData && (richData.title || '无题')}}</div>
+        <div class="rich-wrapper" [innerHTML]="richData && richData.text"></div>
       </div>
     </div>
   </div>

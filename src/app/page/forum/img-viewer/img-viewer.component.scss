@@ -23,8 +23,8 @@
 
     .close-con {
       position: absolute;
-      top: 0rem;
-      right: 0rem;
+      top: -0.1rem;
+      right: 0.1rem;
       width: 0.8rem;
       text-align: right;
       padding: 0.1rem;
@@ -81,4 +81,15 @@
 
 .content-img {
   width: 100%;
+}
+
+.title {
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px dashed rgba(0, 160, 233, 1);
+  line-height: 0.3rem;
+}
+
+.rich-wrapper {
+  padding: 0.15rem 0;
 }
