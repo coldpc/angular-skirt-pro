@@ -51,8 +51,9 @@
           <sk-swiper #swiper [isAuto]="false">
             <sk-swiper-slide *ngFor="let pic of pics; let i = index;">
               <video #video class="video" width="100%" controls
+                     poster="/assets/img/car-3.png"
                      x5-video-player-type="h5" x5-video-player-fullscreen="true" playsinline
-                     [src]="pic.video">
+                     [src]="pic.video" (play)="onPlayVideo(pic)" preload="auto" (pause)="onPause(pic)">
                 your browser does not support the video tag
               </video>
               <sk-image [src]="pic.url" [ratio]="16 / 9"></sk-image>

@@ -125,10 +125,12 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
   nextVideo() {
     this.swiperRef.slideNext();
+    this.pauseVideo();
   }
 
   preVideo() {
     this.swiperRef.slidePrev();
+    this.pauseVideo();
   }
 
   onViewImg(imgItem) {
@@ -144,5 +146,23 @@ export class ForumComponent implements OnInit, AfterViewInit {
     let videoList = this.videoList.toArray();
     let video = videoList[index].nativeElement;
     video.play();
+  }
+
+  onPlayVideo(pic) {
+    pic.hasPlay = true;
+  }
+
+  onPause(pic) {
+    pic.hasPlay = false;
+  }
+
+  pauseVideo() {
+    let videoList = this.videoList.toArray(), video;
+    for (let i = 0; i < videoList.length; i++) {
+      video = videoList[i].nativeElement;
+      if (!video.paused) {
+        video.pause();
+      }
+    }
   }
 }
