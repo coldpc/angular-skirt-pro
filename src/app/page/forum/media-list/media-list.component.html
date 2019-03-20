@@ -22,7 +22,9 @@
     <ng-container *ngFor="let article of articleList; let ind = index">
       <div *ngIf="ind === currentArticleIndex">
         <div class="title">{{article.title}}</div>
-        <div class="rich-text" [innerHTML]="article.text"></div>
+        <div class="desc" [innerHTML]="article.description"></div>
+        <img class="headpic" src="{{ article.headPic }}" alt="">
+        <!--<div class="rich-text" [innerHTML]="article.text"></div>-->
         <!--<img class="article-img" [src]="article.headPic" alt="">-->
       </div>
     </ng-container>

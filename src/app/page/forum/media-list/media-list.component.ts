@@ -6,6 +6,7 @@ import {ApiMediaPageListService} from "../../../lib/service/http/api/ApiMediaPag
 interface InArticle {
   text ?: string;
   title ?: string;
+  description ?: string,
   headPic ?: string;
 }
 

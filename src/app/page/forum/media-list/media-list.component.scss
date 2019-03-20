@@ -79,13 +79,6 @@
       font-size: 0.18rem;
       text-align: center;
     }
-
-    // 试驾频道头图
-    .headPic {
-      width: 100%;
-      height: 1.5rem;
-      margin-top: 0.22rem;
-    }
   }
 
   .angle-left, .angle-right {
@@ -109,15 +102,28 @@
     font-size: 0.18rem;
     font-weight: 600;
   }
+
+  // 试驾频道头图
+  .headpic {
+    width: 100%;
+    height: 1.5rem;
+    margin-top: 0.22rem;
+  }
+
+  // 详情
+  .desc{
+    color: #fff;
+  }
+
   .article-img {
     display: block;
     width: 100%;
   }
+
   .rich-text {
     padding: 0.15rem 0.1rem;
     color: #fff;
     height: 13em;
     overflow: hidden;
   }
-
 }
