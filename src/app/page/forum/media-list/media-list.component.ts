@@ -116,8 +116,9 @@ export class MediaListComponent implements OnInit, AfterViewInit {
   }
 
   onTapMedia(index) {
-    console.log("onTapMedia")
+    console.log("onTapMedia");
 
+    this.scroll.reflow();
     setTimeout(() => {
       this.changeMedia(index);
       this.scroll.scroller.scrollTo(this.snapWidth * index, 0, true);
