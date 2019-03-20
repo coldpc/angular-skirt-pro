@@ -249,4 +249,21 @@ sk-layout {
   .close-image {
     width: 0.15rem;
   }
+
+  .check-real {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    width: 0.75rem;
+    height: 0.23rem;
+    font-size: 0.11rem;
+    color: #fff;
+    border-radius: 0.07rem;
+    border: solid 2px #ffffff;
+    background: rgba(0,0,0,0.5);
+    outline: none;
+  }
 }
+

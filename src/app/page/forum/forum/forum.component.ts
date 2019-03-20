@@ -58,7 +58,7 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
   loadData() {
     this.apiStationListService.request((res) => {
-      console.log(res);
+      // console.log(res);
       this.stationList = res;
 
       this.allWidth = res.length * 9 / 10 + "rem";
@@ -74,11 +74,27 @@ export class ForumComponent implements OnInit, AfterViewInit {
     if (this.selectedStation !== station) {
       this.selectedStation = station;
       this.apiStationImgListService.setParams({stationId: station.id}).request((res) => {
-        this.stationImgList = res;
-        console.log(res);
+        for (let i=0; i<res.length; i++){
+          this.stationImgList.push({
+            id: res[i].id,
+            url: res[i].url + "?x-oss-process=image/resize,w_512"
+          })
+        }
       });
     }
 
+  }
+
+  // 查看原图
+  checkReal () {
+    // 获取当前压缩之后的图片地址
+    let realIme = this.viewImgSrc;
+
+    // 截取？之前的字符串
+    let index = realIme.indexOf("?");
+    realIme = realIme.slice(0, index);
+
+    this.viewImgSrc = realIme;
   }
 
   onChangeCity(e, i) {
@@ -103,12 +119,10 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
   nextVideo() {
     this.swiperRef.slideNext();
-    this.pauseVideo();
   }
 
   preVideo() {
     this.swiperRef.slidePrev();
-    this.pauseVideo();
   }
 
   onViewImg(imgItem) {
@@ -123,23 +137,5 @@ export class ForumComponent implements OnInit, AfterViewInit {
     let videoList = this.videoList.toArray();
     let video = videoList[index].nativeElement;
     video.play();
-  }
-
-  onPlayVideo(pic) {
-    pic.hasPlay = true;
-  }
-
-  onPause(pic) {
-    pic.hasPlay = false;
-  }
-
-  pauseVideo() {
-    let videoList = this.videoList.toArray(), video;
-    for (let i = 0; i < videoList.length; i++) {
-      video = videoList[i].nativeElement;
-      if (!video.paused) {
-        video.pause();
-      }
-    }
   }
 }
