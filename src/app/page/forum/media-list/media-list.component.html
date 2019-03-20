@@ -15,8 +15,10 @@
 
 
 <div class="rich-container">
-  <div class="angle-left" (tap)="changeMediaArticle(-1)"></div>
-  <div class="angle-right" (tap)="changeMediaArticle(1)"></div>
+  <!--<div class="angle-left" (tap)="changeMediaArticle(-1)"></div>
+  <div class="angle-right" (tap)="changeMediaArticle(1)"></div>-->
+    <div class="angle-left" (tap)="changeMediaBefore()"></div>
+    <div class="angle-right" (tap)="changeMediaAfter()"></div>
   <sk-image src="/assets/img/forum/p3-rich-bg.png" [ratio]="729/581"></sk-image>
   <div class="rich-wrapper" (tap)="onTapShare()">
     <ng-container *ngFor="let article of articleList; let ind = index">

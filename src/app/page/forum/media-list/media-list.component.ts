@@ -42,7 +42,7 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.mediaListService.request((res) => {
-      console.log(res);
+      // console.log(res);
       this.mediaListData = res;
       this.loadMediaPage(res[0].id);
     });
@@ -59,7 +59,7 @@ export class MediaListComponent implements OnInit, AfterViewInit {
       createTimeDesc: 'true',
       mediaId
     }).request((res) => {
-      console.log(res);
+      console.log("aa", res);
       if (res.records && res.records.length > 0) {
         this.articleList = res.records;
         this.currentArticleIndex = 0;
@@ -88,7 +88,7 @@ export class MediaListComponent implements OnInit, AfterViewInit {
   }
 
   onScrollComplete() {
-
+    this.loadMediaPage(this.currentMediaIndex + 1);
   }
 
   getShotText(text) {
@@ -116,6 +116,8 @@ export class MediaListComponent implements OnInit, AfterViewInit {
   }
 
   onTapMedia(index) {
+    console.log("onTapMedia")
+
     setTimeout(() => {
       this.changeMedia(index);
       this.scroll.scroller.scrollTo(this.snapWidth * index, 0, true);
@@ -128,6 +130,8 @@ export class MediaListComponent implements OnInit, AfterViewInit {
   }
 
   changeMediaArticle(change) {
+    // console.log("aa")
+
     let articleList = this.articleList;
     let currentIndex = this.currentArticleIndex + change;
     if (currentIndex > articleList.length - 1) {
@@ -143,5 +147,23 @@ export class MediaListComponent implements OnInit, AfterViewInit {
       this.currentMediaIndex = index;
       this.loadMediaPage(this.mediaListData[index].id);
     }
+  }
+
+  changeMediaBefore () {
+    if (this.currentMediaIndex >= 1) {
+      this.onTapMedia(this.currentMediaIndex - 1);
+    }
+  }
+
+  changeMediaAfter () {
+    if (this.currentMediaIndex == 0) {
+      this.onTapMedia(0);
+    }
+
+    if (this.currentMediaIndex <= this.mediaListData.length - 2){
+      console.log("-----")
+      this.onTapMedia(this.currentMediaIndex + 1);
+    }
+
   }
 }
