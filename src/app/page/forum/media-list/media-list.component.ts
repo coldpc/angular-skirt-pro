@@ -90,6 +90,10 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   }
 
+  getShotText(text) {
+    return text.substr(0, 100) + '...';
+  }
+
   onScroll(x, y) {
     let selectedIndex = Math.round(x / this.snapWidth) || 0;
     if (selectedIndex !== this.currentMediaIndex) {
@@ -123,11 +127,12 @@ export class MediaListComponent implements OnInit, AfterViewInit {
   }
 
   changeMediaArticle(change) {
+    let articleList = this.articleList;
     let currentIndex = this.currentArticleIndex + change;
-    if (currentIndex > 4) {
-      currentIndex = 4;
-    } else if (currentIndex < 0) {
+    if (currentIndex > articleList.length - 1) {
       currentIndex = 0;
+    } else if (currentIndex < 0) {
+      currentIndex = articleList.length - 1;
     }
     this.currentArticleIndex = currentIndex;
   }

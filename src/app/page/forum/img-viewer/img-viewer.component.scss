@@ -7,23 +7,23 @@
   top: 0;
   height: 100%;
   z-index: 1010;
-  background-size: 80% auto;
-  background-position: center 60px;
-  background-image: url(/assets/img/forum/bg.png);
-  background-color: rgba(0, 0, 0, 0.5);
-  background-repeat: no-repeat;
 
   .main-content {
-    left: 10%;
-    right: 10%;
-    top: 0.5rem;
-    height: 5rem;
+    margin-left: -1.6rem;
+    left: 50%;
+    top: 50%;
+    height: 6rem;
+    width: 3.2rem;
+    margin-top: -3rem;
+    background-position: center center;
+    background-image: url(/assets/img/forum/bg.png);
+    background-repeat: no-repeat;
     position: absolute;
-    color: #fff;
+    background-size: cover;
 
     .close-con {
       position: absolute;
-      top: -0.1rem;
+      top: 0.1rem;
       right: 0.1rem;
       width: 0.8rem;
       text-align: right;
@@ -63,18 +63,27 @@
       background-color: #00FFFF;
     }
   }
+}
 
-  .scroll-wrapper {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    position: absolute;
-    padding: 0.1rem;
+.scroll-wrapper {
+  top: 0.3rem;
+  bottom: 0.3rem;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  position: absolute;
+  padding: 0rem 0.1rem;
+  word-break: break-all;
+  overflow: hidden;
 
-    .scroll {
-      color: rgba(255,255,255,1);
+  .scroll {
+    color: white;
+    width: 100%;
+    overflow-x: hidden;
+    word-break: break-all;
+
+    img {
+      max-width: 100%;
     }
   }
 }
@@ -88,6 +97,8 @@
   width: 100%;
   border-bottom: 1px dashed rgba(0, 160, 233, 1);
   line-height: 0.3rem;
+  font-size: 0.18rem;
+  font-weight: 600;
 }
 
 .rich-wrapper {
