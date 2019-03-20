@@ -85,5 +85,5 @@
   </div>
   <img [src]="viewImgSrc" alt="" class="img">
 
-  <button class="check-real" (tap)="checkReal()">查看原图</button>
+  <button *ngIf="isShowRealImgBtn" class="check-real" (tap)="checkReal()">查看原图</button>
 </div>

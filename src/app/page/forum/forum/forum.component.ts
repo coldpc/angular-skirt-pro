@@ -23,6 +23,7 @@ export class ForumComponent implements OnInit, AfterViewInit {
   stationList = [];
   selectedStation = null;
   stationImgList = [];
+  isShowRealImgBtn = true;
 
   // 预览图片地址
   viewImgSrc = '';
@@ -96,6 +97,8 @@ export class ForumComponent implements OnInit, AfterViewInit {
     realIme = realIme.slice(0, index);
 
     this.viewImgSrc = realIme;
+
+    this.isShowRealImgBtn = false;
   }
 
   onChangeCity(e, i) {
@@ -129,6 +132,7 @@ export class ForumComponent implements OnInit, AfterViewInit {
   }
 
   onViewImg(imgItem) {
+    this.isShowRealImgBtn = true;
     this.viewImgSrc = imgItem.url;
   }
 
