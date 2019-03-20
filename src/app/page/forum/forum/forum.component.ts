@@ -74,6 +74,8 @@ export class ForumComponent implements OnInit, AfterViewInit {
     if (this.selectedStation !== station) {
       this.selectedStation = station;
       this.apiStationImgListService.setParams({stationId: station.id}).request((res) => {
+        this.stationImgList = [];
+
         for (let i=0; i<res.length; i++){
           this.stationImgList.push({
             id: res[i].id,
@@ -82,7 +84,6 @@ export class ForumComponent implements OnInit, AfterViewInit {
         }
       });
     }
-
   }
 
   // 查看原图
@@ -98,6 +99,8 @@ export class ForumComponent implements OnInit, AfterViewInit {
   }
 
   onChangeCity(e, i) {
+    console.log(e, i);
+
     this.sIndex = i;
     this.loadImgList(e);
   }
