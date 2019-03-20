@@ -1,3 +1,4 @@
+<sk-image class="shouzhi" [ratio]="288 / 45" src="/assets/img/forum/shouzhi.png"></sk-image>
 <div class="media-list-wrap">
   <div class="media-list" #mediaList>
     <div *ngFor="let media of mediaListData; let i = index"
@@ -25,7 +26,7 @@
       <div *ngIf="ind === currentArticleIndex">
         <div class="title">{{article.title}}</div>
         <div class="desc" [innerHTML]="article.description"></div>
-        <img class="headpic" src="{{ article.headPic }}" alt="">
+        <sk-image size="contain" class="headpic" [src]="article.headPic" [ratio]="16/9"  alt=""></sk-image>
         <!--<div class="rich-text" [innerHTML]="article.text"></div>-->
         <!--<img class="article-img" [src]="article.headPic" alt="">-->
       </div>

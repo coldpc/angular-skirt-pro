@@ -12,6 +12,7 @@ export class ImageComponent implements OnInit {
 
   // 图片比例
   @Input() ratio: number;
+  @Input() size: string = 'cover';
 
   // src
   @Input() src: string;
@@ -75,7 +76,8 @@ export class ImageComponent implements OnInit {
     let src = this.getSrc();
     if (src) {
       return {
-        backgroundImage: `url(${src})`
+        backgroundImage: `url(${src})`,
+        backgroundSize: this.size
       };
     }
   }
