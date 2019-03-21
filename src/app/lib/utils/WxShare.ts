@@ -24,8 +24,8 @@ export class WxShareService {
 
     config.imgUrl = config.imgUrl || (location.protocol + '//' + location.host + '/assets/img/share-default.jpg');
     config.link = config.link || (location.protocol + '//' + location.host + "/");
-    config.title = config.title || "雷凌星球";
-    config.desc = config.desc || "广汽丰田雷凌星球全新启航";
+    config.title = config.title || "雷凌双擎E+" || "雷凌星球";
+    config.desc = config.desc || "电动+混动，一车双用" || "广汽丰田雷凌星球全新启航";
 
     // 加载js
     if (!window['wx']) {
