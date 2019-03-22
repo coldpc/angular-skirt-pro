@@ -51,7 +51,7 @@
           <sk-swiper #swiper [isAuto]="false">
             <sk-swiper-slide *ngFor="let pic of pics; let i = index;">
               <video #video class="video" width="100%" controls
-                     poster="/assets/img/car-3.png"
+                     poster="/assets/img/car-3.png">
                      x5-video-player-type="h5" x5-video-player-fullscreen="true" playsinline
                      [src]="pic.video" (play)="onPlayVideo(pic)" preload="auto" (pause)="onPause(pic)">
                 your browser does not support the video tag
@@ -86,5 +86,8 @@
   </div>
   <img [src]="viewImgSrc" alt="" class="img">
 
+  <button class="change-pic before" (tap)="tapBefore()"></button>
+  <button class="change-pic prev" (tap)="tapPrev()"></button>
+  
   <button *ngIf="isShowRealImgBtn" class="check-real" (tap)="checkReal()">查看原图</button>
 </div>

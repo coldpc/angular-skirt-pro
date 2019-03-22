@@ -28,14 +28,19 @@ export class ForumComponent implements OnInit, AfterViewInit {
   // 预览图片地址
   viewImgSrc = '';
 
+  // 预览图片id
+  viewImgId = '';
+
+  // 预览图片索引
+  viewImgIndex = 0;
+
   @ViewChildren("video") videoList: QueryList<ElementRef>;
   @ViewChild("swiper") swiperRef: SwiperComponent;
   @ViewChild("mediaList") mediaListRef: ElementRef;
   scroll;
 
   pics = [
-    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v1.mp4"},
-    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v2.mp4"}
+    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v1.mp4"}
   ];
   // pics = [{url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/textures/movie.mp4"}, {url: "/assets/img/vipjizhan/bg.jpg"}];
 
@@ -79,6 +84,7 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
         for (let i=0; i<res.length; i++){
           this.stationImgList.push({
+            index: i,
             id: res[i].id,
             url: res[i].url + "?x-oss-process=image/resize,w_512"
           })
@@ -136,6 +142,9 @@ export class ForumComponent implements OnInit, AfterViewInit {
   onViewImg(imgItem) {
     this.isShowRealImgBtn = true;
     this.viewImgSrc = imgItem.url;
+    this.viewImgId = imgItem.id;
+    this.viewImgIndex = imgItem.index;
+    console.log('onViewImg111', imgItem)
   }
 
   onTapCloseViewImg() {
@@ -163,6 +172,25 @@ export class ForumComponent implements OnInit, AfterViewInit {
       if (!video.paused) {
         video.pause();
       }
+    }
+  }
+
+  /**
+   * 预览图切换
+   */
+  // 上一张
+  tapBefore () {
+    if (this.viewImgIndex >= 0) {
+      this.viewImgSrc = this.stationImgList[this.viewImgIndex -= 1].url;
+      this.isShowRealImgBtn = true;
+    }
+  }
+
+  // 下一张
+  tapPrev () {
+    if (this.viewImgIndex <= this.stationImgList.length) {
+      this.viewImgSrc = this.stationImgList[this.viewImgIndex += 1].url;
+      this.isShowRealImgBtn = true;
     }
   }
 }

@@ -265,5 +265,26 @@ sk-layout {
     background: rgba(0,0,0,0.5);
     outline: none;
   }
+
+  .change-pic {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.4rem;
+    height: 0.4rem;
+    border: none;
+  }
+
+  .before {
+    left: 0;
+    background: url(../../../../assets/img/forum/before.png) top no-repeat;
+    background-size: 100%;
+  }
+
+  .prev {
+    right: 0;
+    background: url(../../../../assets/img/forum/prev.png) top no-repeat;
+    background-size: 100%;
+  }
 }
 
