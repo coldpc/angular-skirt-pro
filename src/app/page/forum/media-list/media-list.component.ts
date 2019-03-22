@@ -42,7 +42,6 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.mediaListService.request((res) => {
-      // console.log(res);
       this.mediaListData = res;
       this.loadMediaPage(res[0].id);
     });
@@ -59,7 +58,6 @@ export class MediaListComponent implements OnInit, AfterViewInit {
       createTimeDesc: 'true',
       mediaId
     }).request((res) => {
-      console.log("aa", res);
       if (res.records && res.records.length > 0) {
         this.articleList = res.records;
         this.currentArticleIndex = 0;
@@ -116,8 +114,6 @@ export class MediaListComponent implements OnInit, AfterViewInit {
   }
 
   onTapMedia(index) {
-    console.log("onTapMedia");
-
     this.scroll.reflow();
     setTimeout(() => {
       this.changeMedia(index);
@@ -127,11 +123,9 @@ export class MediaListComponent implements OnInit, AfterViewInit {
 
   onTapShare() {
     this.isShow = true;
-    console.log(1111);
   }
 
   changeMediaArticle(change) {
-    // console.log("aa")
 
     let articleList = this.articleList;
     let currentIndex = this.currentArticleIndex + change;
@@ -162,7 +156,6 @@ export class MediaListComponent implements OnInit, AfterViewInit {
     }
 
     if (this.currentMediaIndex <= this.mediaListData.length - 2){
-      console.log("-----")
       this.onTapMedia(this.currentMediaIndex + 1);
     }
 

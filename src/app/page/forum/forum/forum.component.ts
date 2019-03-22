@@ -24,6 +24,8 @@ export class ForumComponent implements OnInit, AfterViewInit {
   selectedStation = null;
   stationImgList = [];
   isShowRealImgBtn = true;
+  isShowBeforeBtn = true;
+  isShowPrevBtn = true;
 
   // 预览图片地址
   viewImgSrc = '';
@@ -40,7 +42,7 @@ export class ForumComponent implements OnInit, AfterViewInit {
   scroll;
 
   pics = [
-    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v1.mp4"}
+    {url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/video/v1.mp4"},
   ];
   // pics = [{url: "/assets/img/vipjizhan/bg.jpg", video: "/assets/textures/movie.mp4"}, {url: "/assets/img/vipjizhan/bg.jpg"}];
 
@@ -141,10 +143,18 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
   onViewImg(imgItem) {
     this.isShowRealImgBtn = true;
+    this.isShowBeforeBtn = true;
+    this.isShowPrevBtn = true;
     this.viewImgSrc = imgItem.url;
     this.viewImgId = imgItem.id;
     this.viewImgIndex = imgItem.index;
-    console.log('onViewImg111', imgItem)
+    if (this.viewImgIndex == 0) {
+      this.isShowBeforeBtn = false;
+    }
+
+    if (this.viewImgIndex == this.stationImgList.length - 1) {
+      this.isShowPrevBtn = false;
+    }
   }
 
   onTapCloseViewImg() {
@@ -183,6 +193,12 @@ export class ForumComponent implements OnInit, AfterViewInit {
     if (this.viewImgIndex >= 0) {
       this.viewImgSrc = this.stationImgList[this.viewImgIndex -= 1].url;
       this.isShowRealImgBtn = true;
+      this.isShowPrevBtn = true;
+      this.isShowBeforeBtn = true;
+    }
+
+    if (this.viewImgIndex == 0) {
+      this.isShowBeforeBtn = false;
     }
   }
 
@@ -191,6 +207,12 @@ export class ForumComponent implements OnInit, AfterViewInit {
     if (this.viewImgIndex <= this.stationImgList.length) {
       this.viewImgSrc = this.stationImgList[this.viewImgIndex += 1].url;
       this.isShowRealImgBtn = true;
+      this.isShowBeforeBtn = true;
+      this.isShowPrevBtn = true;
+    }
+
+    if (this.viewImgIndex == this.stationImgList.length - 1) {
+      this.isShowPrevBtn = false;
     }
   }
 }
