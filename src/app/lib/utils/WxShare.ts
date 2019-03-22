@@ -22,10 +22,10 @@ export class WxShareService {
     let location = window.location;
     this.config = config;
 
-    config.imgUrl = config.imgUrl || (location.protocol + '//' + location.host + '/assets/img/share-default.jpg');
+    config.imgUrl = config.imgUrl || (location.protocol + '//' + location.host + '/assets/img/share-default1.jpg');
     config.link = config.link || (location.protocol + '//' + location.host + "/");
-    config.title = config.title || "雷凌双擎E+" || "雷凌星球";
-    config.desc = config.desc || "电动+混动，一车双用" || "广汽丰田雷凌星球全新启航";
+    config.title = config.title || "雷凌双擎E+宁波试驾会" || "雷凌星球";
+    config.desc = config.desc || "电动+混动，一车双用，近1000公里超长续航" || "广汽丰田雷凌星球全新启航";
 
     // 加载js
     if (!window['wx']) {
