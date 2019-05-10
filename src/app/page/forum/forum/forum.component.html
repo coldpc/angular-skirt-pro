@@ -4,17 +4,35 @@
 <sk-layout>
   <div class="top">
     <sk-lei-header class="top-part" [hasBack]="false" [hasMusic]="false"></sk-lei-header>
+    <!-- <div class="top-name">
+      <sk-image [ratio]="293/72" src="/assets/img/forum/top-name.png"></sk-image>
+    </div> -->
+
+    <div class="tabtop">
+      <img src="/assets/img/forum/topname.png" alt="">
+    </div>
 
     <div class="tabset">
       <div class="tab tab1" (tap)="switchTab(1)" [ngClass]="{visible: currentIndex === 1}">
-        <sk-image [ratio]="458/265" src="/assets/img/forum/t1-big.png"></sk-image>
+        <!-- <sk-image [ratio]="458/265" src="/assets/img/forum/t1-big.png"></sk-image> -->
+        <span>智趣图集</span>
       </div>
       <div class="tab tab2" (tap)="switchTab(2)" [ngClass]="{visible: currentIndex === 2}">
-        <sk-image [ratio]="110/60" src="/assets/img/forum/t2-big.png"></sk-image>
+        <!-- <sk-image [ratio]="110/60" src="/assets/img/forum/t2-big.png"></sk-image> -->
+        <span>型动视野</span>
       </div>
       <div class="tab tab3" (tap)="switchTab(3)" [ngClass]="{visible: currentIndex === 3}">
-        <sk-image [ratio]="110/60" src="/assets/img/forum/t3-big.png"></sk-image>
+        <!-- <sk- [ratio]="110/60" src="/assets/img/forum/t3-big.png"></sk-image> -->
+        <span>试驾频道</span>
       </div>
+
+      <div class="tabline">
+        <img src="/assets/img/forum/cattabline.png" alt="">
+      </div>
+
+      <!-- <div class="tabcenter">
+        <img src="/assets/img/forum/p3-meiti.png" alt="">
+      </div> -->
     </div>
   </div>
 
@@ -22,7 +40,7 @@
   <div class="main-content">
 
     <div *ngIf="currentIndex === 1" class="t1-page">
-      <div class="title-box">
+      <!-- <div class="title-box">
         <div [ngStyle]="{width: allWidth}">
           <div *ngFor="let city of stationList; let i = index" [ngStyle]="{color: sIndex === i ? '#fff' : '#ddd', fontWeight: sIndex === i ? 'bold' : 'normal'}" class="title" (tap)="onChangeCity(city, i)">
             <div class="c1"></div>
@@ -30,9 +48,9 @@
             <p>{{stationList && city.stationName}}</p>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="flex-img-part">
+      <div class="flex-img-part" style="border-left: none">
         <div class="flex-img-box">
           <div class="img-item" *ngFor="let imgItem of stationImgList" (tap)="onViewImg(imgItem)">
             <sk-image [src]="imgItem.url" class="img" [ratio]="1"  [processWidth]="256"></sk-image>
@@ -42,7 +60,7 @@
     </div>
 
     <div *ngIf="currentIndex === 2"  class="t2-page">
-      <sk-image class="img-title" [ratio]="492/111" src="/assets/img/forum/p2-back-title.png"></sk-image>
+      <!-- <sk-image class="img-title" [ratio]="492/111" src="/assets/img/forum/p2-back-title.png"></sk-image> -->
       <div class="content">
         <div class="angle-left" (tap)="preVideo();"></div>
         <div class="angle-right" (tap)="nextVideo();"></div>
