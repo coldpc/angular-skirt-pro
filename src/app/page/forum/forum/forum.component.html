@@ -8,6 +8,12 @@
       <sk-image [ratio]="293/72" src="/assets/img/forum/top-name.png"></sk-image>
     </div> -->
 
+    <div class="topback">
+      <a href="http://a.xhangjia.com/llxq_1905_fe/">
+        <img src="/assets/img/forum/back.png" alt="">
+      </a>
+    </div>
+
     <div class="tabtop">
       <img src="/assets/img/forum/topname.png" alt="">
     </div>
@@ -78,8 +84,13 @@
               <sk-image *ngIf="false && !pic.hasPlay" class="play-img" [ratio]="1" src="/assets/img/forum/play.png" (tap)="playVideo(i)"></sk-image>
             </sk-swiper-slide>
           </sk-swiper>
+          <div class="bottomimg">
+            <img src="/assets/img/forum/love.png" alt="">
+          </div>
         </div>
+        
       </div>
+      
     </div>
 
     <div *ngIf="currentIndex === 3"  class="t3-page">

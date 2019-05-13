@@ -51,10 +51,22 @@ sk-layout {
 }
 
 .tabtop {
-  margin: 0.3rem 0 0.12rem 0;
+  margin: 0.2rem 0 0.12rem 0;
   text-align: center;
   img {
     width: 1.5rem;
+  }
+}
+
+.topback {
+  margin-top: 0.05rem;
+  margin-left: 0.1rem;
+  a {
+    color: white;
+  }
+
+  img {
+    width: 0.4rem;
   }
 }
 
@@ -145,7 +157,7 @@ sk-layout {
 
 
 .t1-page {
-  height: calc(100vh - 2.2rem);
+  height: calc(100vh - 2.29rem);
   overflow: auto;
   .title-box {
     border-left: 2px solid #00A0E9;
@@ -239,6 +251,14 @@ sk-layout {
     transform: translate(-50%, -50%);
     z-index: 22;
     width: 0.6rem;
+  }
+
+  .bottomimg {
+    margin: 0.3rem 0 0.12rem 0;
+    text-align: center;
+    img {
+      width: 3rem;
+    }
   }
 
   .content {

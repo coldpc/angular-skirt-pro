@@ -23,7 +23,6 @@ export class AppComponent implements AfterViewInit {
               private audioService: AudioService,
               private wxShareService: WxShareService,
               private router: Router) {
-
     this.setRouteState();
 
   }
